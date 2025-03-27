@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bunnycraft:item/rosegold_ingot"
+  }
+}
