@@ -1,0 +1,15 @@
+{
+  "itemgroup.bunnycraft.group": "Bunnycraft",
+  "item.bunnycraft.rosegold_ingot": "Rose Gold Ingot",
+  "item.bunnycraft.steel_ingot": "Steel Ingot",
+  "item.bunnycraft.pancake_rabbit": "Pancake Rabbit",
+
+  "block.bunnycraft.pancake_rabbit_ore": "Pancake Rabbit Ore",
+  "block.bunnycraft.pancake_rabbit_block": "Pancake Rabbit Block",
+
+  "item.bunnycraft.copper_pickaxe": "Copper Pickaxe",
+  "item.bunnycraft.copper_sword": "Copper Sword",
+  "item.bunnycraft.copper_axe": "Copper Axe",
+  "item.bunnycraft.copper_shovel": "Copper Shovel",
+  "item.bunnycraft.copper_hoe": "Copper Hoe"
+}

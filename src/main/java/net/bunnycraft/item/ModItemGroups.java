@@ -1,6 +1,7 @@
 package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.block.ModBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -10,14 +11,24 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
-    public static final ItemGroup NELLY_LEARNS_MODDING = Registry.register(Registries.ITEM_GROUP,
+    public static final ItemGroup BunnycraftItems = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(Bunnycraft.MOD_ID,"bunnycraft"),
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.PANCAKE_RABBIT))
-                    .displayName(Text.translatable("itemgroup.bunnycraft.bunnycraft"))
+                    .displayName(Text.translatable("itemgroup.bunnycraft.group"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.ROSEGOLD_INGOT);
                         entries.add(ModItems.STEEL_INGOT);
                         entries.add(ModItems.PANCAKE_RABBIT);
+
+                        entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
+                        entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
+
+                        entries.add(ModTools.COPPER_PICKAXE);
+                        entries.add(ModTools.COPPER_SWORD);
+                        entries.add(ModTools.COPPER_SHOVEL);
+                        entries.add(ModTools.COPPER_HOE);
+                        entries.add(ModTools.COPPER_AXE);
+
                     }).build());
 
     public static void registerItemGroups() {

@@ -1,7 +1,9 @@
 package net.bunnycraft;
 
+import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
+import net.bunnycraft.item.ModTools;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -14,6 +16,8 @@ public class Bunnycraft implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
+		ModTools.registerModTools();
+		ModBlocks.registerModBlocks();
 		ModItemGroups.registerItemGroups();
 		LOGGER.info("Hello Bunnycrafter!");
 	}
