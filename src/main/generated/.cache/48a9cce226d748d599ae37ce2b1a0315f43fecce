@@ -1,4 +1,7 @@
-// 1.21.1	2025-03-30T13:44:19.6163911	Bunnycraft/Model Definitions
+// 1.21.1	2025-03-30T16:04:56.5926814	Bunnycraft/Model Definitions
+40dc2352f97fa22e801f2a46b29608fd2ce31ce0 assets\bunnycraft\models\item\steel_hoe.json
+a07a0469a6940af9a1dd7d7fd20cb0e24b4181c4 assets\bunnycraft\models\item\steel_axe.json
+05f48896f2015aaec07b36d9c6df3731372d0f1b assets\bunnycraft\models\item\steel_sword.json
 baee389cc4e3c225dbe31f6cf321e7bd230b0475 assets\bunnycraft\models\block\pancake_rabbit_ore.json
 ea2020d0a70c94bdc52199e660b09153e676011c assets\bunnycraft\models\item\pancake_rabbit_ore.json
 053fd4602f4bf0d051b992702a26078fac9d9e45 assets\bunnycraft\blockstates\pancake_rabbit_ore.json
@@ -8,8 +11,10 @@ f21a93d3f47d392d5e99c2e6fa4c83262877ef25 assets\bunnycraft\models\block\pancake_
 d3d8dc108f052d672f9166c3ae0a09cf61e65beb assets\bunnycraft\models\item\copper_axe.json
 bdadf85c663d602512acf1ebfb3f477d4c4c0cfe assets\bunnycraft\models\item\copper_hoe.json
 5e9ba769c1a77aa9b90970e24642b3401aae9df9 assets\bunnycraft\models\item\copper_sword.json
+24df3fac594b32773e875fcbd9c5e07d831607fe assets\bunnycraft\models\item\steel_pickaxe.json
 c2ae0605a53a051ec3e4800bffe164f802ce6ccb assets\bunnycraft\models\item\copper_pickaxe.json
 e899df7bd6e9149187d642e99cae31e6a9e74c46 assets\bunnycraft\models\item\steel_ingot.json
+52939fa5ac3f769ef26d59f64e30de80691d2919 assets\bunnycraft\models\item\steel_shovel.json
 4e4d47d60ee08d36241dddd5e9ad5532a1d51cfe assets\bunnycraft\models\item\copper_shovel.json
 3fc80f3647ae59c6bf18712074018e927273335e assets\bunnycraft\models\item\pancake_rabbit.json
 2959f4291379777888ff6541ecff2ca3806802e1 assets\bunnycraft\models\item\pancake_rabbit_block.json

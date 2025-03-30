@@ -25,9 +25,15 @@ public class ModItemGroups {
 
                         entries.add(ModTools.COPPER_PICKAXE);
                         entries.add(ModTools.COPPER_SWORD);
-                        entries.add(ModTools.COPPER_SHOVEL);
-                        entries.add(ModTools.COPPER_HOE);
                         entries.add(ModTools.COPPER_AXE);
+                        entries.add(ModTools.COPPER_HOE);
+                        entries.add(ModTools.COPPER_SHOVEL);
+
+                        entries.add(ModTools.STEEL_PICKAXE);
+                        entries.add(ModTools.STEEL_SWORD);
+                        entries.add(ModTools.STEEL_AXE);
+                        entries.add(ModTools.STEEL_HOE);
+                        entries.add(ModTools.STEEL_SHOVEL);
 
                     }).build());
 

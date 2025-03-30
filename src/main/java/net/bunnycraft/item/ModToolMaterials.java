@@ -3,16 +3,21 @@ package net.bunnycraft.item;
 import com.google.common.base.Suppliers;
 import net.bunnycraft.util.ModTags;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 
 import java.util.Objects;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 161, 5.5F, 1.5F, 12, () -> Ingredient.ofItems(Items.COPPER_INGOT));
+    COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL,
+            161, 5.5F, 1.5F, 12, () -> Ingredient.ofItems(Items.COPPER_INGOT)),
+    STEEL(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL,
+            3842, 7.0F, 8.0F, 11, () -> Ingredient.ofItems(ModItems.STEEL_INGOT));
 
     private final TagKey<Block> inverseTag;
     private final int itemDurability;
