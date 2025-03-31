@@ -1,5 +1,6 @@
 package net.bunnycraft.datagen;
 
+import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -35,5 +36,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ItemTags.AXES)
                 .add(ModTools.COPPER_AXE)
                 .add(ModTools.STEEL_AXE);
+
+        getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS)
+                .add(ModItems.ROSEGOLD_INGOT)
+                .add(ModItems.STEEL_INGOT);
+
+        getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)
+                .add(ModItems.PANCAKE_RABBIT);
     }
 }

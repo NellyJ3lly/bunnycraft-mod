@@ -1,5 +1,6 @@
 package net.bunnycraft.datagen;
 
+import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.util.ModToolRecipes;
@@ -10,6 +11,7 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -37,5 +39,7 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
 
         makeHoe(ModTools.COPPER_HOE,Items.COPPER_INGOT).offerTo(exporter);
         makeHoe(ModTools.STEEL_HOE,ModItems.STEEL_INGOT).offerTo(exporter);
+
+        offerSmithingTrimRecipe(exporter, ModItems.PANCAKE_RABBIT, Identifier.of(Bunnycraft.MOD_ID,"rabbit"));
     }
 }

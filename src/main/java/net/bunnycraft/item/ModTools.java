@@ -1,6 +1,7 @@
 package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.item.custom.SpearItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -8,6 +9,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModTools  {
+
     // COPPER TOOLS
     public static  final Item COPPER_PICKAXE = registerItem("copper_pickaxe", new PickaxeItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
             PickaxeItem.createAttributeModifiers(ModToolMaterials.COPPER, 2, -2.2f))));
@@ -26,19 +28,19 @@ public class ModTools  {
 
     // STEEL TOOLS
     public static  final Item STEEL_PICKAXE = registerItem("steel_pickaxe", new PickaxeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            PickaxeItem.createAttributeModifiers(ModToolMaterials.STEEL, 2, -2.8f))));
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.STEEL, 2, -3f))));
 
     public static  final Item STEEL_SWORD = registerItem("steel_sword", new SwordItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            SwordItem.createAttributeModifiers(ModToolMaterials.STEEL, 4, -2.8f))));
+            SwordItem.createAttributeModifiers(ModToolMaterials.STEEL, 4, -3f))));
 
     public static  final Item STEEL_AXE = registerItem("steel_axe", new AxeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            AxeItem.createAttributeModifiers(ModToolMaterials.STEEL, 7, -3.2f))));
+            AxeItem.createAttributeModifiers(ModToolMaterials.STEEL, 6, -3.2f))));
 
     public static  final Item STEEL_SHOVEL = registerItem("steel_shovel", new ShovelItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            ShovelItem.createAttributeModifiers(ModToolMaterials.STEEL, 2, -2.6f))));
+            ShovelItem.createAttributeModifiers(ModToolMaterials.STEEL, 2, -3.2f))));
 
     public static  final Item STEEL_HOE = registerItem("steel_hoe", new HoeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            HoeItem.createAttributeModifiers(ModToolMaterials.STEEL, 2, -2.4f))));
+            HoeItem.createAttributeModifiers(ModToolMaterials.STEEL, 1, -2.8f))));
 
 
 
