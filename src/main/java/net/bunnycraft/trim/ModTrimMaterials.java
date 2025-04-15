@@ -22,7 +22,7 @@ public class ModTrimMaterials {
             Identifier.of(Bunnycraft.MOD_ID, "steel"));
 
     public static final RegistryKey<ArmorTrimMaterial> ROSEGOLD = RegistryKey.of(RegistryKeys.TRIM_MATERIAL,
-            Identifier.of(Bunnycraft.MOD_ID, "rose_gold"));
+            Identifier.of(Bunnycraft.MOD_ID, "rosegold"));
 
     public static void bootstrap(Registerable<ArmorTrimMaterial> registerable) {
         register(registerable, STEEL, Registries.ITEM.getEntry(ModItems.STEEL_INGOT),

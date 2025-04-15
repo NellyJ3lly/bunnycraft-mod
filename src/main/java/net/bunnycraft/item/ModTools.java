@@ -42,6 +42,21 @@ public class ModTools  {
     public static  final Item STEEL_HOE = registerItem("steel_hoe", new HoeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
             HoeItem.createAttributeModifiers(ModToolMaterials.STEEL, 1, -2.8f))));
 
+    // ROSE GOLD TOOLS
+    public static  final Item ROSE_GOLD_PICKAXE = registerItem("rose_gold_pickaxe", new PickaxeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, 2, -1f))));
+
+    public static  final Item ROSE_GOLD_SWORD = registerItem("rose_gold_sword", new SwordItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
+            SwordItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, 3, -1f))));
+
+    public static  final Item ROSE_GOLD_AXE = registerItem("rose_gold_axe", new AxeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
+            AxeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, 4, -1.4f))));
+
+    public static  final Item ROSE_GOLD_SHOVEL = registerItem("rose_gold_shovel", new ShovelItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
+            ShovelItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, 2, -1.4f))));
+
+    public static  final Item ROSE_GOLD_HOE = registerItem("rose_gold_hoe", new HoeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
+            HoeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, 1, -0.8f))));
 
 
 
@@ -64,6 +79,12 @@ public class ModTools  {
             entries.add(STEEL_AXE);
             entries.add(STEEL_SHOVEL);
             entries.add(STEEL_HOE);
+
+            entries.add(ROSE_GOLD_PICKAXE);
+            entries.add(ROSE_GOLD_SWORD);
+            entries.add(ROSE_GOLD_AXE);
+            entries.add(ROSE_GOLD_SHOVEL);
+            entries.add(ROSE_GOLD_HOE);
         });
     }
 }

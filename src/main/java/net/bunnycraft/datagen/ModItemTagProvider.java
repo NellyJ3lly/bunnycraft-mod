@@ -19,23 +19,29 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(ItemTags.SWORDS)
                 .add(ModTools.COPPER_SWORD)
-                .add(ModTools.STEEL_SWORD);
+                .add(ModTools.STEEL_SWORD)
+                .add(ModTools.ROSE_GOLD_SWORD);
 
         getOrCreateTagBuilder(ItemTags.PICKAXES)
                 .add(ModTools.COPPER_PICKAXE)
-                .add(ModTools.STEEL_PICKAXE);
+                .add(ModTools.STEEL_PICKAXE)
+                .add(ModTools.ROSE_GOLD_PICKAXE);
 
         getOrCreateTagBuilder(ItemTags.HOES)
                 .add(ModTools.COPPER_HOE)
-                .add(ModTools.STEEL_HOE);
+                .add(ModTools.STEEL_HOE)
+                .add(ModTools.ROSE_GOLD_HOE);
 
         getOrCreateTagBuilder(ItemTags.SHOVELS)
                 .add(ModTools.COPPER_SHOVEL)
-                .add(ModTools.STEEL_SHOVEL);
+                .add(ModTools.STEEL_SHOVEL)
+                .add(ModTools.ROSE_GOLD_SHOVEL);
+
 
         getOrCreateTagBuilder(ItemTags.AXES)
                 .add(ModTools.COPPER_AXE)
-                .add(ModTools.STEEL_AXE);
+                .add(ModTools.STEEL_AXE)
+                .add(ModTools.ROSE_GOLD_AXE);
 
         getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS)
                 .add(ModItems.ROSEGOLD_INGOT)

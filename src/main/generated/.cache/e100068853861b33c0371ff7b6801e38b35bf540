@@ -1,8 +1,8 @@
-// 1.21.1	2025-03-30T22:00:57.0324138	Bunnycraft/Tags for minecraft:item
-bed872f82ddc2bce4fc0ee7b5c775dcd72a6e5c0 data\minecraft\tags\item\shovels.json
+// 1.21.1	2025-04-15T15:34:49.4797803	Bunnycraft/Tags for minecraft:item
+0a2a1d2bea1ab69b262f74b47ae94166f10eb165 data\minecraft\tags\item\shovels.json
 e1655ba820a5252e32474ec975d8d764beab022d data\minecraft\tags\item\trim_materials.json
-9ea24edcf7bfb241208379ef6fb3919e5d7c4092 data\minecraft\tags\item\pickaxes.json
-f6a90ca24fe19bb77ec53a24dea1ebbc066f0a87 data\minecraft\tags\item\hoes.json
+baf99fb6582330080f8a2d53cd29a0e7a534c2f2 data\minecraft\tags\item\pickaxes.json
+afba61138130186c70f31f77983b6762d0029019 data\minecraft\tags\item\hoes.json
 f46bf1b668b37e24a0bdfd8d192f6faed34a2ddf data\minecraft\tags\item\trim_templates.json
-0237b154369601e07935213033e22ad62f4b5493 data\minecraft\tags\item\axes.json
-4b37d96ce68069ff76dbaa97702a15b9bec7b84e data\minecraft\tags\item\swords.json
+de65c9281226ecd84b7936a1f70c53f75726ae10 data\minecraft\tags\item\axes.json
+fead63f8ed413399a46979ba9af2234c62dce118 data\minecraft\tags\item\swords.json
