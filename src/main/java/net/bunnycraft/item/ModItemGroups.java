@@ -16,7 +16,7 @@ public class ModItemGroups {
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.PANCAKE_RABBIT))
                     .displayName(Text.translatable("itemgroup.bunnycraft.group"))
                     .entries((displayContext, entries) -> {
-                        entries.add(ModItems.ROSEGOLD_INGOT);
+                        entries.add(ModItems.ROSE_GOLD_INGOT);
                         entries.add(ModItems.STEEL_INGOT);
                         entries.add(ModItems.PANCAKE_RABBIT);
 

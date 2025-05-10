@@ -21,13 +21,13 @@ public class ModTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> STEEL = RegistryKey.of(RegistryKeys.TRIM_MATERIAL,
             Identifier.of(Bunnycraft.MOD_ID, "steel"));
 
-    public static final RegistryKey<ArmorTrimMaterial> ROSEGOLD = RegistryKey.of(RegistryKeys.TRIM_MATERIAL,
-            Identifier.of(Bunnycraft.MOD_ID, "rosegold"));
+    public static final RegistryKey<ArmorTrimMaterial> ROSE_GOLD = RegistryKey.of(RegistryKeys.TRIM_MATERIAL,
+            Identifier.of(Bunnycraft.MOD_ID, "rose_gold"));
 
     public static void bootstrap(Registerable<ArmorTrimMaterial> registerable) {
         register(registerable, STEEL, Registries.ITEM.getEntry(ModItems.STEEL_INGOT),
                 Style.EMPTY.withColor(TextColor.parse("#bdebe1").getOrThrow()), 1.0f);
-        register(registerable, ROSEGOLD, Registries.ITEM.getEntry(ModItems.ROSEGOLD_INGOT),
+        register(registerable, ROSE_GOLD, Registries.ITEM.getEntry(ModItems.ROSE_GOLD_INGOT),
                 Style.EMPTY.withColor(TextColor.parse("#ffc8c2").getOrThrow()), 1.0f);
 
     }

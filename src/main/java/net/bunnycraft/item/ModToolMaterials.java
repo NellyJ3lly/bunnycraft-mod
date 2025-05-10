@@ -3,11 +3,9 @@ package net.bunnycraft.item;
 import com.google.common.base.Suppliers;
 import net.bunnycraft.util.ModTags;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 
 import java.util.Objects;
@@ -19,7 +17,7 @@ public enum ModToolMaterials implements ToolMaterial {
     STEEL(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL,
             3842, 7.0F, 5F, 11, () -> Ingredient.ofItems(ModItems.STEEL_INGOT)),
     ROSE_GOLD(ModTags.Blocks.INCORRECT_FOR_ROSE_GOLD_TOOL,
-            535, 14.0F, 2.0F, 26, () -> Ingredient.ofItems(ModItems.ROSEGOLD_INGOT));
+            535, 14.0F, 2.0F, 26, () -> Ingredient.ofItems(ModItems.ROSE_GOLD_INGOT));
 
     private final TagKey<Block> inverseTag;
     private final int itemDurability;

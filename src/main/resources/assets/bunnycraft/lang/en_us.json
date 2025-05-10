@@ -1,6 +1,6 @@
 {
   "itemgroup.bunnycraft.group": "Bunnycraft",
-  "item.bunnycraft.rosegold_ingot": "Rose Gold Ingot",
+  "item.bunnycraft.rose_gold_ingot": "Rose Gold Ingot",
   "item.bunnycraft.steel_ingot": "Steel Ingot",
   "item.bunnycraft.pancake_rabbit": "Pancake Rabbit",
 
@@ -17,5 +17,23 @@
   "item.bunnycraft.steel_sword": "Steel Sword",
   "item.bunnycraft.steel_axe": "Steel Axe",
   "item.bunnycraft.steel_shovel": "Steel Shovel",
-  "item.bunnycraft.steel_hoe": "Steel Hoe"
+  "item.bunnycraft.steel_hoe": "Steel Hoe",
+
+  "item.bunnycraft.rose_gold_pickaxe": "Rose Gold Pickaxe",
+  "item.bunnycraft.rose_gold_sword": "Rose Gold Sword",
+  "item.bunnycraft.rose_gold_axe": "Rose Gold Axe",
+  "item.bunnycraft.rose_gold_shovel": "Rose Gold Shovel",
+  "item.bunnycraft.rose_gold_hoe": "Rose Gold Hoe",
+
+  "item.bunnycraft.wooden_spear": "Wooden Spear",
+  "item.bunnycraft.stone_spear": "Stone Spear",
+  "item.bunnycraft.copper_spear": "Copper Spear",
+  "item.bunnycraft.iron_spear": "Iron Spear",
+  "item.bunnycraft.golden_spear": "Golden Spear",
+  "item.bunnycraft.diamond_spear": "Diamond Spear",
+  "item.bunnycraft.netherite_spear": "Netherite Spear",
+  "item.bunnycraft.steel_spear": "Steel Spear",
+  "item.bunnycraft.empty_spear_slot": "Spear Slot",
+
+  "tooltip.bunnycraft.empty_slot.instructions": "This item reserves a slot for you spear, Drop to delete"
 }

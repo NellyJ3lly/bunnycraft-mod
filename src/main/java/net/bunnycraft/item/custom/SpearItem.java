@@ -1,120 +1,148 @@
 package net.bunnycraft.item.custom;
 
-import java.util.List;
-import net.minecraft.block.BlockState;
-import net.minecraft.component.EnchantmentEffectComponentTypes;
+
+import net.bunnycraft.entity.custom.SpearEntity;
+import net.bunnycraft.item.ModItems;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.component.type.ToolComponent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MovementType;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.attribute.EntityAttributeModifier.Operation;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.entity.projectile.TridentEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity.PickupPermission;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ProjectileItem;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.item.*;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Position;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class SpearItem extends Item implements ProjectileItem {
-    public static final int MIN_DRAW_DURATION = 10;
-    public static final float ATTACK_DAMAGE = 8.0F;
-    public static final float THROW_SPEED = 2.5F;
 
-    public SpearItem(ToolMaterial material,Item.Settings settings) {
+public class SpearItem extends ToolItem implements ProjectileItem {
 
-        super(settings);
+    //initializes the tracked variables so they can be accessed from anywhere and be updated
+
+
+    private float divergence; //divergence is how accurate the throw is, bigger number is worse accuracy
+    private float speed; // how hard its thrown
+
+    public SpearItem(ToolMaterial material, Item.Settings settings, float accuracy, float throwSpeed) {
+
+        super(material, settings);
+        //divergence is the variable in this class, accuracy is declared in the registering of the spear, same with the throw speed
+        divergence = accuracy;
+        speed = throwSpeed;
     }
 
-    public static AttributeModifiersComponent createAttributeModifiers() {
-        return AttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, (double)8.0F, Operation.ADD_VALUE),
-                        AttributeModifierSlot.MAINHAND).add(EntityAttributes.GENERIC_ATTACK_SPEED,
-                        new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, (double)-2.9F, Operation.ADD_VALUE),
-                        AttributeModifierSlot.MAINHAND).build();
+    //helper method for getting the tool material
+    public ToolMaterial getToolMaterial() {
+        return super.getMaterial();
     }
 
-    public static ToolComponent createToolComponent() {
-        return new ToolComponent(List.of(), 1.0F, 2);
+    //attributes, passed in when declaring a new SpearItem
+    public static AttributeModifiersComponent createAttributeModifiers(ToolMaterial material, int baseAttackDamage, float attackSpeed) {
+        return AttributeModifiersComponent.builder()
+                .add(
+                        EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, baseAttackDamage + material.getAttackDamage(), EntityAttributeModifier.Operation.ADD_VALUE),
+                        AttributeModifierSlot.MAINHAND
+                )
+                .add(
+                        EntityAttributes.GENERIC_ATTACK_SPEED,
+                        new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, attackSpeed, EntityAttributeModifier.Operation.ADD_VALUE),
+                        AttributeModifierSlot.MAINHAND
+                )
+                .build();
     }
 
-    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
-        return !miner.isCreative();
+
+    //checks if an entity was hit using the item, idk why its needed
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        return true;
     }
 
+    //damages the item
+    @Override
+    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.damage(1, attacker, EquipmentSlot.MAINHAND);
+    }
+
+    //sets animations when the spear is used with right click
+    @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.SPEAR;
     }
 
+    //defines the max use time. its such a high value (1hour) so as to not terminate the action early like eating a consumable would normally
+    @Override
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         return 72000;
     }
 
+
+    //called when the item is not being used anymore, requires stack.consume to be called
+    @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        if (user instanceof PlayerEntity playerEntity) {
-            int i = this.getMaxUseTime(stack, user) - remainingUseTicks;
-            if (i >= 10) {
-                float f = EnchantmentHelper.getTridentSpinAttackStrength(stack, playerEntity);
-                if (!(f > 0.0F) || playerEntity.isTouchingWaterOrRain()) {
-                    if (!isAboutToBreak(stack)) {
-                        RegistryEntry<SoundEvent> registryEntry = (RegistryEntry)EnchantmentHelper.getEffect(stack, EnchantmentEffectComponentTypes.TRIDENT_SOUND).orElse(SoundEvents.ITEM_TRIDENT_THROW);
-                        if (!world.isClient) {
-                            stack.damage(1, playerEntity, LivingEntity.getSlotForHand(user.getActiveHand()));
-                            if (f == 0.0F) {
-                                TridentEntity tridentEntity = new TridentEntity(world, playerEntity, stack);
-                                tridentEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, 2.5F, 1.0F);
-                                if (playerEntity.isInCreativeMode()) {
-                                    tridentEntity.pickupType = PickupPermission.CREATIVE_ONLY;
-                                }
 
-                                world.spawnEntity(tridentEntity);
-                                world.playSoundFromEntity((PlayerEntity)null, tridentEntity, (SoundEvent)registryEntry.value(), SoundCategory.PLAYERS, 1.0F, 1.0F);
-                                if (!playerEntity.isInCreativeMode()) {
-                                    playerEntity.getInventory().removeOne(stack);
-                                }
-                            }
-                        }
+        //checks if the user is a player and creates a variable for the player
+        if (user instanceof PlayerEntity player) {
 
-                        playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-                        if (f > 0.0F) {
-                            float g = playerEntity.getYaw();
-                            float h = playerEntity.getPitch();
-                            float j = -MathHelper.sin(g * ((float)Math.PI / 180F)) * MathHelper.cos(h * ((float)Math.PI / 180F));
-                            float k = -MathHelper.sin(h * ((float)Math.PI / 180F));
-                            float l = MathHelper.cos(g * ((float)Math.PI / 180F)) * MathHelper.cos(h * ((float)Math.PI / 180F));
-                            float m = MathHelper.sqrt(j * j + k * k + l * l);
-                            j *= f / m;
-                            k *= f / m;
-                            l *= f / m;
-                            playerEntity.addVelocity((double)j, (double)k, (double)l);
-                            playerEntity.useRiptide(20, 8.0F, stack);
-                            if (playerEntity.isOnGround()) {
-                                float n = 1.1999999F;
-                                playerEntity.move(MovementType.SELF, new Vec3d((double)0.0F, (double)1.1999999F, (double)0.0F));
-                            }
+            //gets the time the spear was used for
+            int useTime = this.getMaxUseTime(stack, user) - remainingUseTicks;
+            if (useTime > 10) {
 
-                            world.playSoundFromEntity((PlayerEntity)null, playerEntity, (SoundEvent)registryEntry.value(), SoundCategory.PLAYERS, 1.0F, 1.0F);
-                        }
+                //checks if the spear has loyalty
+                int slot = -2;
+                if (world instanceof ServerWorld serverWorld && EnchantmentHelper.getTridentReturnAcceleration(serverWorld, stack, user) > 0) {
+                    slot = getUseSlot(stack, player);
+                }
+
+                //breaks instead of throws if about to break
+                if (isAboutToBreak(stack)) {
+
+                    //ensures the stacks damage is about to break for redundancy
+                    stack.setDamage(stack.getMaxDamage());
+                    //breaks the item stack on use
+                    stack.damage(1, player, EquipmentSlot.MAINHAND);
+
+                } else { // if it wasnt about to break do normal stuff
+
+                    //play the sound pitched a bit lower so it sounds different
+                    world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 0.8F, 0.8F);
+
+
+                    //damages then removes the item if the player is not in creative
+                    if (!player.isInCreativeMode()) {
+                        stack.damage(1, player, EquipmentSlot.MAINHAND);
+                        player.getInventory().removeOne(stack);
+
+                        //inserts the slot reserver at the slot that the spear was used from
+                            if (slot == -1) {//-1 means it wasnt found in main inventory which means it was likely in offhand
+                                player.getInventory().offHand.set(0, ModItems.EMPTY_SPEAR_SLOT.getDefaultStack());
+                            } else if (slot >= 0 && slot <= 36 ){
+                                player.getInventory().setStack(slot, ModItems.EMPTY_SPEAR_SLOT.getDefaultStack());
+                            } // -2 means should skip because it doesnt have loyalty or it was client world
+                    }
+
+                    //create the entity idk why i need to check if the world is not client
+                    if (!world.isClient) {
+
+
+                        //passes in all variables needed
+                        SpearEntity thrownSpear = new SpearEntity(world, player, stack,this);
+                        //sets the velocity of the new spear
+                        thrownSpear.setVelocity(player, player.getPitch(), player.getYaw(), 0f, speed, divergence);
+
+                        //actually spawns in the entity
+                        world.spawnEntity(thrownSpear);
 
                     }
                 }
@@ -122,37 +150,39 @@ public class SpearItem extends Item implements ProjectileItem {
         }
     }
 
+
+
+    // gets the keypress and calls consume
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        if (isAboutToBreak(itemStack)) {
-            return TypedActionResult.fail(itemStack);
-        } else if (EnchantmentHelper.getTridentSpinAttackStrength(itemStack, user) > 0.0F && !user.isTouchingWaterOrRain()) {
-            return TypedActionResult.fail(itemStack);
-        } else {
+        //if (isAboutToBreak(itemStack)) {
+        //    return TypedActionResult.fail(itemStack);
+        //} else {
             user.setCurrentHand(hand);
             return TypedActionResult.consume(itemStack);
-        }
+        //}
     }
 
+    //helper method for checking if its about to break
     private static boolean isAboutToBreak(ItemStack stack) {
         return stack.getDamage() >= stack.getMaxDamage() - 1;
     }
 
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        return true;
-    }
-
-    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damage(1, attacker, EquipmentSlot.MAINHAND);
-    }
-
-    public int getEnchantability() {
-        return 1;
-    }
-
+    @Override
     public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
-        TridentEntity tridentEntity = new TridentEntity(world, pos.getX(), pos.getY(), pos.getZ(), stack.copyWithCount(1));
-        tridentEntity.pickupType = PickupPermission.ALLOWED;
-        return tridentEntity;
+        SpearEntity thrown = new SpearEntity(world, pos.getX(), pos.getY(), pos.getZ(), stack.copyWithCount(1));
+        thrown.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
+        return thrown;
+    }
+
+
+    public int getUseSlot(ItemStack stack, PlayerEntity player) {
+        //finds the slot in the inventory that the item is in, does not check outside of the 36 slot array
+        if(player.getInventory().getStack(player.getInventory().selectedSlot) != stack) {
+            return -1; // returns -1 if item was not found
+        } else {
+            return player.getInventory().selectedSlot;
+        }
     }
 }
