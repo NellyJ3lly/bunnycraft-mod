@@ -26,15 +26,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModTools.STEEL_SWORD)
                 .add(ModTools.ROSE_GOLD_SWORD);
 
-        getOrCreateTagBuilder(ModTags.Items.SPEARS)
-                .add(ModTools.WOODEN_SPEAR)
-                .add(ModTools.STONE_SPEAR)
-                .add(ModTools.COPPER_SPEAR)
-                .add(ModTools.IRON_SPEAR)
-                .add(ModTools.GOLDEN_SPEAR)
-                .add(ModTools.DIAMOND_SPEAR)
-                .add(ModTools.NETHERITE_SPEAR)
-                .add(ModTools.STEEL_SPEAR);
+        //add spears
+        for(int i = 0; ModTools.getSpear(i) != null; i++) {
+            getOrCreateTagBuilder(ModTags.Items.SPEARS).add(ModTools.getSpear(i));
+        }
 
         getOrCreateTagBuilder(ItemTags.PICKAXES)
                 .add(ModTools.COPPER_PICKAXE)

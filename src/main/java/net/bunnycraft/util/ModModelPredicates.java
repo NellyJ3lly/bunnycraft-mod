@@ -9,77 +9,18 @@ import net.minecraft.util.Identifier;
 
 public class ModModelPredicates {
     public static void registerModelPredicates() {
-        ModelPredicateProviderRegistry.register
-                (ModTools.STEEL_SPEAR,
-                        Identifier.of(Bunnycraft.MOD_ID, "charging"),
-                        (stack, world, entity, seed)
+        for(int i = 0; ModTools.getSpear(i) != null; i++) {
 
-                                //checks if the player is charging up the spear
-                                -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
+            ModelPredicateProviderRegistry.register
+                    (ModTools.getSpear(i),
+                            Identifier.of(Bunnycraft.MOD_ID, "charging"),
+                            (stack, world, entity, seed)
 
-                );
-        ModelPredicateProviderRegistry.register
-                (ModTools.NETHERITE_SPEAR,
-                        Identifier.of(Bunnycraft.MOD_ID, "charging"),
-                        (stack, world, entity, seed)
+                                    //checks if the player is charging up the spear
+                                    -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
 
-                                //checks if the player is charging up the spear
-                                -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
+                    );
 
-                );
-        ModelPredicateProviderRegistry.register
-                (ModTools.DIAMOND_SPEAR,
-                        Identifier.of(Bunnycraft.MOD_ID, "charging"),
-                        (stack, world, entity, seed)
-
-                                //checks if the player is charging up the spear
-                                -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
-
-                );
-        ModelPredicateProviderRegistry.register
-                (ModTools.GOLDEN_SPEAR,
-                        Identifier.of(Bunnycraft.MOD_ID, "charging"),
-                        (stack, world, entity, seed)
-
-                                //checks if the player is charging up the spear
-                                -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
-
-                );
-        ModelPredicateProviderRegistry.register
-                (ModTools.IRON_SPEAR,
-                        Identifier.of(Bunnycraft.MOD_ID, "charging"),
-                        (stack, world, entity, seed)
-
-                                //checks if the player is charging up the spear
-                                -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
-
-                );
-        ModelPredicateProviderRegistry.register
-                (ModTools.COPPER_SPEAR,
-                        Identifier.of(Bunnycraft.MOD_ID, "charging"),
-                        (stack, world, entity, seed)
-
-                                //checks if the player is charging up the spear
-                                -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
-
-                );
-        ModelPredicateProviderRegistry.register
-                (ModTools.STONE_SPEAR,
-                        Identifier.of(Bunnycraft.MOD_ID, "charging"),
-                        (stack, world, entity, seed)
-
-                                //checks if the player is charging up the spear
-                                -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
-
-                );
-        ModelPredicateProviderRegistry.register
-                (ModTools.WOODEN_SPEAR,
-                        Identifier.of(Bunnycraft.MOD_ID, "charging"),
-                        (stack, world, entity, seed)
-
-                                //checks if the player is charging up the spear
-                                -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1f : 0f
-
-                );
+        }
     }
 }

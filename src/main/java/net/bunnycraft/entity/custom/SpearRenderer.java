@@ -2,6 +2,7 @@ package net.bunnycraft.entity.custom;
 
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.item.ModTools;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -19,14 +20,6 @@ import static net.bunnycraft.entity.custom.SpearEntity.MATERIAL;
 public class SpearRenderer extends EntityRenderer<SpearEntity> {
 
     protected SpearModel model;
-    public static final Identifier STEELTEXTURE = Identifier.of(Bunnycraft.MOD_ID,"textures/entity/model_steel_spear.png");
-    public static final Identifier NETHERITETEXTURE = Identifier.of(Bunnycraft.MOD_ID,"textures/entity/model_netherite_spear.png");
-    public static final Identifier DIAMONDTEXTURE = Identifier.of(Bunnycraft.MOD_ID,"textures/entity/model_diamond_spear.png");
-    public static final Identifier GOLDENTEXTURE = Identifier.of(Bunnycraft.MOD_ID,"textures/entity/model_golden_spear.png");
-    public static final Identifier IRONTEXTURE = Identifier.of(Bunnycraft.MOD_ID,"textures/entity/model_iron_spear.png");
-    public static final Identifier COPPERTEXTURE = Identifier.of(Bunnycraft.MOD_ID,"textures/entity/model_copper_spear.png");
-    public static final Identifier STONETEXTURE = Identifier.of(Bunnycraft.MOD_ID,"textures/entity/model_stone_spear.png");
-    public static final Identifier WOODENTEXTURE = Identifier.of(Bunnycraft.MOD_ID,"textures/entity/model_wooden_spear.png");
 
     public SpearRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
@@ -53,7 +46,7 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
     @Override
     public Identifier getTexture(SpearEntity entity) {
         //get the tool material and return the texture based on it
-        return switch (entity.getDataTracker().get(MATERIAL)) {
+        /*return switch (entity.getDataTracker().get(MATERIAL)) {
             case 0 -> WOODENTEXTURE;
             case 1 -> STONETEXTURE;
             case 2 -> COPPERTEXTURE;
@@ -63,7 +56,9 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
             case 6 -> NETHERITETEXTURE;
             case 7 -> STEELTEXTURE;
             default -> null;
-        };
+        };*/
+
+        return Identifier.of(Bunnycraft.MOD_ID, "textures/entity/model_" + ModTools.getSpearName(entity.getDataTracker().get(MATERIAL)) + ".png");
 
     }
 }

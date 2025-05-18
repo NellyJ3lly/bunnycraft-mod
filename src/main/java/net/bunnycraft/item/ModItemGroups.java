@@ -35,6 +35,11 @@ public class ModItemGroups {
                         entries.add(ModTools.STEEL_HOE);
                         entries.add(ModTools.STEEL_SHOVEL);
 
+                        //add spears
+                        for(int i = 0; ModTools.getSpear(i) != null; i++) {
+                            entries.add(ModTools.getSpear(i));
+                        }
+
                     }).build());
 
     public static void registerItemGroups() {

@@ -2,6 +2,7 @@ package net.bunnycraft.mixin;
 
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.item.ModTools;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.util.Identifier;
@@ -18,14 +19,12 @@ public abstract class ModelLoaderMixin {
 
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/model/ModelLoader;loadItemModel(Lnet/minecraft/client/util/ModelIdentifier;)V", ordinal = 1))
     private void onInit(CallbackInfo ci) {
-        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "steel_spear_item")));
-        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "netherite_spear_item")));
-        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "diamond_spear_item")));
-        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "golden_spear_item")));
-        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "iron_spear_item")));
-        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "copper_spear_item")));
-        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "stone_spear_item")));
-        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "wooden_spear_item")));
+
+        for(int i = 0; ModTools.getSpear(i) != null; i++) {
+            //loads all spear_items
+            this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, ModTools.getSpearName(i) + "_item")));
+        }
+
         this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "empty_spear_slot_gui")));
     }
 }

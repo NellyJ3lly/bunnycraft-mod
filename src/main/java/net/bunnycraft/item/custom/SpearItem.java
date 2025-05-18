@@ -33,11 +33,11 @@ public class SpearItem extends ToolItem implements ProjectileItem {
     private float divergence; //divergence is how accurate the throw is, bigger number is worse accuracy
     private float speed; // how hard its thrown
 
-    public SpearItem(ToolMaterial material, Item.Settings settings, float accuracy, float throwSpeed) {
+    public SpearItem(ToolMaterial material, Item.Settings settings, float deviation, float throwSpeed) {
 
         super(material, settings);
         //divergence is the variable in this class, accuracy is declared in the registering of the spear, same with the throw speed
-        divergence = accuracy;
+        divergence = deviation;
         speed = throwSpeed;
     }
 
@@ -134,7 +134,6 @@ public class SpearItem extends ToolItem implements ProjectileItem {
 
                     //create the entity idk why i need to check if the world is not client
                     if (!world.isClient) {
-
 
                         //passes in all variables needed
                         SpearEntity thrownSpear = new SpearEntity(world, player, stack,this);

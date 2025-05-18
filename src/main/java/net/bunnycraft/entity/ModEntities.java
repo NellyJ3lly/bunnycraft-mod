@@ -15,7 +15,7 @@ public class ModEntities {
     //registers the spear entity
     public static final EntityType<SpearEntity> SPEAR = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Bunnycraft.MOD_ID, "spear_entity"),
             EntityType.Builder.<SpearEntity>create(SpearEntity::new, SpawnGroup.MISC)
-                    .dimensions(2, 2).build());
+                    .dimensions(1.5f, 1.5f).build());
 
     //dummy event for initializing the class
     public static void registerModEntities() {
