@@ -2,7 +2,6 @@ package net.bunnycraft.entity.custom;
 
 
 import net.bunnycraft.Bunnycraft;
-import net.bunnycraft.item.ModTools;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -14,18 +13,16 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 
-import static net.bunnycraft.entity.custom.SpearEntity.MATERIAL;
+
+public class RoseGoldSpearRenderer extends EntityRenderer<SpearEntity> {
+
+    protected RoseGoldSpearModel spearModel;
 
 
-public class SpearRenderer extends EntityRenderer<SpearEntity> {
-
-    protected SpearModel spearModel;
-
-
-    public SpearRenderer(EntityRendererFactory.Context ctx) {
+    public RoseGoldSpearRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
         //gets the model, use this to use different models based on logic
-        this.spearModel = new SpearModel(ctx.getPart(SpearModel.SPEAR));
+        this.spearModel = new RoseGoldSpearModel(ctx.getPart(RoseGoldSpearModel.ROSE_GOLD_SPEAR));
     }
 
     //copied from the trident
@@ -47,7 +44,7 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
     @Override
     public Identifier getTexture(SpearEntity entity) {
 
-        return Identifier.of(Bunnycraft.MOD_ID, "textures/entity/model_" + ModTools.spearList.get((int) entity.getDataTracker().get(MATERIAL)).getTranslationKey().substring(16) + ".png");
+        return Identifier.of(Bunnycraft.MOD_ID, "textures/entity/model_rose_gold_spear.png");
 
     }
 }

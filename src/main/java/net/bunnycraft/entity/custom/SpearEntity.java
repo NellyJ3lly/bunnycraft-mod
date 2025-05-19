@@ -61,17 +61,18 @@ public class SpearEntity extends PersistentProjectileEntity {
     //creates the entity from the item
     public SpearEntity(World world, LivingEntity owner, ItemStack stack, SpearItem spearItem) {
 
+        //tells the super what entity it is
+        super(stack.getItem().getTranslationKey().substring(16).equals("rose_gold_spear") ? ModEntities.ROSE_GOLD_SPEAR : ModEntities.SPEAR, owner, world, stack, null);
 
-        super(ModEntities.SPEAR, owner, world, stack, null);
         this.dataTracker.set(LOYALTY, this.getLoyalty(stack));
         this.dataTracker.set(FIRE_ASPECT, this.getFireAspect(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
 
         Damage = spearItem.getToolMaterial().getAttackDamage() + ModTools.spearDmg;
 
-        for(int i = 0; ModTools.getSpear(i) != null; i++) {
+        for(int i = 0; ModTools.spearList.get(i) != null; i++) {
 
-            if (ModTools.getSpear(i) == stack.getItem()) {
+            if (ModTools.spearList.get(i) == stack.getItem()) {
                 this.dataTracker.set(MATERIAL, (byte) i);
                 break; // no need to keep checking
             }
@@ -84,7 +85,7 @@ public class SpearEntity extends PersistentProjectileEntity {
 
     //idk what this does but its also called from SpearItem, maybe spawning from commands? dont remove
     public SpearEntity(World world, double x, double y, double z, ItemStack stack) {
-        super(ModEntities.SPEAR, x, y, z, world, stack, stack);
+        super(stack.getItem().getTranslationKey().substring(16).equals("rose_gold_spear") ? ModEntities.ROSE_GOLD_SPEAR : ModEntities.SPEAR, x, y, z, world, stack, stack);
         this.dataTracker.set(LOYALTY, this.getLoyalty(stack));
         this.dataTracker.set(FIRE_ASPECT, this.getFireAspect(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());

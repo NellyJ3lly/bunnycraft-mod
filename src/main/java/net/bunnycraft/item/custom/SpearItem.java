@@ -30,8 +30,8 @@ public class SpearItem extends ToolItem implements ProjectileItem {
     //initializes the tracked variables so they can be accessed from anywhere and be updated
 
 
-    private float divergence; //divergence is how accurate the throw is, bigger number is worse accuracy
-    private float speed; // how hard its thrown
+    private final float divergence; //divergence is how accurate the throw is, bigger number is worse accuracy
+    private final float speed; // how hard its thrown
 
     public SpearItem(ToolMaterial material, Item.Settings settings, float deviation, float throwSpeed) {
 
@@ -47,7 +47,7 @@ public class SpearItem extends ToolItem implements ProjectileItem {
     }
 
     //attributes, passed in when declaring a new SpearItem
-    public static AttributeModifiersComponent createAttributeModifiers(ToolMaterial material, int baseAttackDamage, float attackSpeed) {
+    public static AttributeModifiersComponent createAttributeModifiers(ToolMaterial material, float baseAttackDamage, float attackSpeed) {
         return AttributeModifiersComponent.builder()
                 .add(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,

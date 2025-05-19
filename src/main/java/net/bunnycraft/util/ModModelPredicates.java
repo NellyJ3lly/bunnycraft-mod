@@ -9,10 +9,10 @@ import net.minecraft.util.Identifier;
 
 public class ModModelPredicates {
     public static void registerModelPredicates() {
-        for(int i = 0; ModTools.getSpear(i) != null; i++) {
+        for(int i = 0; ModTools.spearList.get(i) != null; i++) {
 
             ModelPredicateProviderRegistry.register
-                    (ModTools.getSpear(i),
+                    (ModTools.spearList.get(i),
                             Identifier.of(Bunnycraft.MOD_ID, "charging"),
                             (stack, world, entity, seed)
 

@@ -34,26 +34,38 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.ROSE_GOLD_INGOT, Models.GENERATED);
         gen.register(ModItems.PANCAKE_RABBIT, Models.GENERATED);
 
-        gen.register(ModTools.COPPER_PICKAXE, Models.HANDHELD);
-        gen.register(ModTools.COPPER_SWORD, Models.HANDHELD);
-        gen.register(ModTools.COPPER_AXE, Models.HANDHELD);
-        gen.register(ModTools.COPPER_SHOVEL, Models.HANDHELD);
-        gen.register(ModTools.COPPER_HOE, Models.HANDHELD);
+        //add pickaxes
+        for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {
+            gen.register(ModTools.pickaxeList.get(i), Models.GENERATED);
+        }
 
-        gen.register(ModTools.STEEL_PICKAXE, Models.HANDHELD);
-        gen.register(ModTools.STEEL_AXE, Models.HANDHELD);
-        gen.register(ModTools.STEEL_HOE, Models.HANDHELD);
-        gen.register(ModTools.STEEL_SWORD, Models.HANDHELD);
-        gen.register(ModTools.STEEL_SHOVEL, Models.HANDHELD);
+        //add swords
+        for(int i = 0; ModTools.swordList.get(i) != null; i++) {
+            gen.register(ModTools.swordList.get(i), Models.GENERATED);
+        }
 
-        gen.register(ModTools.ROSE_GOLD_PICKAXE, Models.HANDHELD);
-        gen.register(ModTools.ROSE_GOLD_AXE, Models.HANDHELD);
-        gen.register(ModTools.ROSE_GOLD_HOE, Models.HANDHELD);
-        gen.register(ModTools.ROSE_GOLD_SWORD, Models.HANDHELD);
-        gen.register(ModTools.ROSE_GOLD_SHOVEL, Models.HANDHELD);
+        //add spears
+        for(int i = 0; ModTools.spearList.get(i) != null; i++) {
+            if (ModTools.spearList.get(i).getTranslationKey().substring(16).equals("rose_gold_spear")) {
+                Bunnycraft.LOGGER.info("skipping model datagen for rose_gold_spear");
+            } else {
+                registerSpearModels(gen, ModTools.spearList.get(i));
+            }
+        }
 
-        for(int i = 0; ModTools.getSpear(i) != null; i++) {
-            registerSpearModels(gen, ModTools.getSpear(i));
+        //add axes
+        for(int i = 0; ModTools.axeList.get(i) != null; i++) {
+            gen.register(ModTools.axeList.get(i), Models.GENERATED);
+        }
+
+        //add shovels
+        for(int i = 0; ModTools.shovelList.get(i) != null; i++) {
+            gen.register(ModTools.shovelList.get(i), Models.GENERATED);
+        }
+
+        //add hoes
+        for(int i = 0; ModTools.hoeList.get(i) != null; i++) {
+            gen.register(ModTools.hoeList.get(i), Models.GENERATED);
         }
     }
 

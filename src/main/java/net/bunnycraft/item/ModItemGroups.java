@@ -23,21 +23,34 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
                         entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
 
-                        entries.add(ModTools.COPPER_PICKAXE);
-                        entries.add(ModTools.COPPER_SWORD);
-                        entries.add(ModTools.COPPER_AXE);
-                        entries.add(ModTools.COPPER_HOE);
-                        entries.add(ModTools.COPPER_SHOVEL);
+                        //add pickaxes
+                        for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {
+                            entries.add(ModTools.pickaxeList.get(i));
+                        }
 
-                        entries.add(ModTools.STEEL_PICKAXE);
-                        entries.add(ModTools.STEEL_SWORD);
-                        entries.add(ModTools.STEEL_AXE);
-                        entries.add(ModTools.STEEL_HOE);
-                        entries.add(ModTools.STEEL_SHOVEL);
+                        //add swords
+                        for(int i = 0; ModTools.swordList.get(i) != null; i++) {
+                            entries.add(ModTools.swordList.get(i));
+                        }
 
                         //add spears
-                        for(int i = 0; ModTools.getSpear(i) != null; i++) {
-                            entries.add(ModTools.getSpear(i));
+                        for(int i = 0; ModTools.spearList.get(i) != null; i++) {
+                            entries.add(ModTools.spearList.get(i));
+                        }
+
+                        //add axes
+                        for(int i = 0; ModTools.axeList.get(i) != null; i++) {
+                            entries.add(ModTools.axeList.get(i));
+                        }
+
+                        //add shovels
+                        for(int i = 0; ModTools.shovelList.get(i) != null; i++) {
+                            entries.add(ModTools.shovelList.get(i));
+                        }
+
+                        //add hoes
+                        for(int i = 0; ModTools.hoeList.get(i) != null; i++) {
+                            entries.add(ModTools.hoeList.get(i));
                         }
 
                     }).build());

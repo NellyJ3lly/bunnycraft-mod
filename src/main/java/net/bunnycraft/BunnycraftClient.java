@@ -1,6 +1,8 @@
 package net.bunnycraft;
 
 import net.bunnycraft.entity.ModEntities;
+import net.bunnycraft.entity.custom.RoseGoldSpearModel;
+import net.bunnycraft.entity.custom.RoseGoldSpearRenderer;
 import net.bunnycraft.entity.custom.SpearModel;
 import net.bunnycraft.entity.custom.SpearRenderer;
 import net.bunnycraft.util.ModModelPredicates;
@@ -17,5 +19,8 @@ public class BunnycraftClient implements ClientModInitializer {
         //registers the model for the spear entity
         EntityModelLayerRegistry.registerModelLayer(SpearModel.SPEAR, SpearModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.SPEAR, SpearRenderer::new);
+
+        EntityModelLayerRegistry.registerModelLayer(RoseGoldSpearModel.ROSE_GOLD_SPEAR, RoseGoldSpearModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.ROSE_GOLD_SPEAR, RoseGoldSpearRenderer::new);
     }
 }

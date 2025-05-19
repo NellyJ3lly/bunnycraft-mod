@@ -20,9 +20,9 @@ public abstract class ModelLoaderMixin {
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/model/ModelLoader;loadItemModel(Lnet/minecraft/client/util/ModelIdentifier;)V", ordinal = 1))
     private void onInit(CallbackInfo ci) {
 
-        for(int i = 0; ModTools.getSpear(i) != null; i++) {
+        for(int i = 0; ModTools.spearList.get(i) != null; i++) {
             //loads all spear_items
-            this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, ModTools.getSpearName(i) + "_item")));
+            this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, ModTools.spearList.get(i).getTranslationKey().substring(16) + "_item")));
         }
 
         this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "empty_spear_slot_gui")));
