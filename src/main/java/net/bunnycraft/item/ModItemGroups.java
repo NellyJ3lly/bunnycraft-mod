@@ -28,12 +28,21 @@ public class ModItemGroups {
                         entries.add(ModTools.COPPER_AXE);
                         entries.add(ModTools.COPPER_HOE);
                         entries.add(ModTools.COPPER_SHOVEL);
+                        entries.add(ModTools.COPPER_SPEAR);
 
                         entries.add(ModTools.STEEL_PICKAXE);
                         entries.add(ModTools.STEEL_SWORD);
                         entries.add(ModTools.STEEL_AXE);
                         entries.add(ModTools.STEEL_HOE);
                         entries.add(ModTools.STEEL_SHOVEL);
+                        entries.add(ModTools.STEEL_SPEAR);
+
+                        entries.add(ModItems.COPPER_BUNNYCOIN);
+                        entries.add(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
+                        entries.add(ModItems.GOLD_BUNNYCOIN);
+                        entries.add(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
+                        entries.add(ModItems.DIAMOND_BUNNYCOIN);
+                        entries.add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
 
                     }).build());
 

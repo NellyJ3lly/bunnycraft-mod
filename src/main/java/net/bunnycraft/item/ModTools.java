@@ -14,11 +14,11 @@ public class ModTools  {
 
     // WOODEN TOOLS
     public static final Item WOODEN_SPEAR = registerItem("wooden_spear", new SpearItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.WOOD, spearDmg, -2)), 1.2f, 2.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.WOOD, spearDmg, -2,0)), 1.2f, 2.5f));
 
     // STONE TOOLS
     public static final Item STONE_SPEAR = registerItem("stone_spear", new SpearItem(ToolMaterials.STONE, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.STONE, spearDmg, -2.2f)), 1.7f, 2f));
+            SpearItem.createAttributeModifiers(ToolMaterials.STONE, spearDmg, -2.2f,1)), 1.7f, 2f));
 
     // COPPER TOOLS
     public static  final Item COPPER_PICKAXE = registerItem("copper_pickaxe", new PickaxeItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
@@ -28,7 +28,7 @@ public class ModTools  {
             SwordItem.createAttributeModifiers(ModToolMaterials.COPPER, 3, -2.2f))));
 
     public static final Item COPPER_SPEAR = registerItem("copper_spear", new SpearItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ModToolMaterials.COPPER, spearDmg, -2.2f)), 1.2f, 2.5f));
+            SpearItem.createAttributeModifiers(ModToolMaterials.COPPER, spearDmg, -2.2f,1)), 1.2f, 2.5f));
 
     public static  final Item COPPER_AXE = registerItem("copper_axe", new AxeItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
                     AxeItem.createAttributeModifiers(ModToolMaterials.COPPER, 5, -2.6f))));
@@ -41,19 +41,19 @@ public class ModTools  {
 
     // IRON TOOLS
     public static final Item IRON_SPEAR = registerItem("iron_spear", new SpearItem(ToolMaterials.IRON, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.IRON, spearDmg, -2.4f)), 1f, 2.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.IRON, spearDmg, -2.4f,2)), 1f, 2.5f));
 
     // GOLDEN TOOLS
     public static final Item GOLDEN_SPEAR = registerItem("golden_spear", new SpearItem(ToolMaterials.GOLD, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.GOLD, spearDmg, -2.6f)), .5f, 4.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.GOLD, spearDmg, -2.6f,2)), .5f, 4.5f));
 
     // DIAMOND TOOLS
     public static final Item DIAMOND_SPEAR = registerItem("diamond_spear", new SpearItem(ToolMaterials.DIAMOND, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.DIAMOND, spearDmg, -2.8f)), .5f, 3.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.DIAMOND, spearDmg, -2.8f,3)), .5f, 3.5f));
 
     // NETHERITE TOOLS
     public static final Item NETHERITE_SPEAR = registerItem("netherite_spear", new SpearItem(ToolMaterials.NETHERITE, new Item.Settings().fireproof().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.NETHERITE, spearDmg, -3)), .2f, 4.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.NETHERITE, spearDmg, -3,3)), .2f, 4.5f));
 
 
     // STEEL TOOLS
@@ -64,7 +64,7 @@ public class ModTools  {
             SwordItem.createAttributeModifiers(ModToolMaterials.STEEL, 4, -3f))));
 
     public static final Item STEEL_SPEAR = registerItem("steel_spear", new SpearItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ModToolMaterials.COPPER, spearDmg, -2.8f)), .2f, 3.5f));
+            SpearItem.createAttributeModifiers(ModToolMaterials.COPPER, spearDmg, -2.8f,3)), .2f, 3.5f));
 
     public static  final Item STEEL_AXE = registerItem("steel_axe", new AxeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
             AxeItem.createAttributeModifiers(ModToolMaterials.STEEL, 6, -3.2f))));

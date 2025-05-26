@@ -3,9 +3,16 @@
   "item.bunnycraft.rose_gold_ingot": "Rose Gold Ingot",
   "item.bunnycraft.steel_ingot": "Steel Ingot",
   "item.bunnycraft.pancake_rabbit": "Pancake Rabbit",
+  "item.bunnycraft.copper_bunnycoin": "Copper Bunnycoin",
+  "item.bunnycraft.gold_bunnycoin": "Gold Bunnycoin",
+  "item.bunnycraft.diamond_bunnycoin": "Diamond Bunnycoin",
 
   "block.bunnycraft.pancake_rabbit_ore": "Pancake Rabbit Ore",
   "block.bunnycraft.pancake_rabbit_block": "Pancake Rabbit Block",
+
+  "block.bunnycraft.copper_bunnycoin_block": "Block of Copper Bunnycoins",
+  "block.bunnycraft.gold_bunnycoin_block": "Block of Gold Bunnycoins",
+  "block.bunnycraft.diamond_bunnycoin_block": "Block of Diamond Bunnycoins",
 
   "item.bunnycraft.copper_pickaxe": "Copper Pickaxe",
   "item.bunnycraft.copper_sword": "Copper Sword",

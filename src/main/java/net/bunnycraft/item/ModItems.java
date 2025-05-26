@@ -18,6 +18,10 @@ public class ModItems {
     public static  final Item PANCAKE_RABBIT = registerItem("pancake_rabbit",SmithingTemplateItem.of(Identifier.of(Bunnycraft.MOD_ID,"rabbit_trim"), FeatureFlags.VANILLA));
     public static  final Item BUNDLE = registerItem("bundle", new BundleItem(new Item.Settings()));
 
+    public static  final Item COPPER_BUNNYCOIN = registerItem("copper_bunnycoin", new Item(new Item.Settings()));
+    public static  final Item GOLD_BUNNYCOIN = registerItem("gold_bunnycoin", new Item(new Item.Settings()));
+    public static  final Item DIAMOND_BUNNYCOIN = registerItem("diamond_bunnycoin", new Item(new Item.Settings()));
+
     //item that reserves a slot for your spear
     public static final Item EMPTY_SPEAR_SLOT = registerItem("empty_spear_slot", new Item(new Item.Settings().maxCount(1)) {
 
@@ -46,6 +50,9 @@ public class ModItems {
             entries.add(STEEL_INGOT);
             entries.add(PANCAKE_RABBIT);
             entries.add(BUNDLE);
+            entries.add(COPPER_BUNNYCOIN);
+            entries.add(GOLD_BUNNYCOIN);
+            entries.add(DIAMOND_BUNNYCOIN);
         });
     }
 }

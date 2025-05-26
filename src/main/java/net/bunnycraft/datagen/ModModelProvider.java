@@ -26,6 +26,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ROSE_GOLD_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.PANCAKE_RABBIT, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DIAMOND_BUNNYCOIN, Models.GENERATED);
+
         itemModelGenerator.register(ModTools.COPPER_PICKAXE, Models.HANDHELD);
         itemModelGenerator.register(ModTools.COPPER_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModTools.COPPER_AXE, Models.HANDHELD);

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "bunnycraft:block/gold_bunnycoin_block_top",
+    "side": "bunnycraft:block/gold_bunnycoin_block_side"
+  }
+}

@@ -23,6 +23,13 @@ public class ModBlocks {
             new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
                     AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
+    public static final Block COPPER_BUNNYCOIN_BLOCK = registerBlock("copper_bunnycoin_block",
+            new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.CHAIN)));
+    public static final Block GOLD_BUNNYCOIN_BLOCK = registerBlock("gold_bunnycoin_block",
+            new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.CHAIN)));
+    public static final Block DIAMOND_BUNNYCOIN_BLOCK = registerBlock("diamond_bunnycoin_block",
+            new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.CHAIN)));
+
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
@@ -40,6 +47,9 @@ public class ModBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
             entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
+            entries.add(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
+            entries.add(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
+            entries.add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
         });
     }
 }
