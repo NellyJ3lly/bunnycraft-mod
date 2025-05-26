@@ -18,10 +18,18 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.ROSE_GOLD_INGOT);
                         entries.add(ModItems.STEEL_INGOT);
-                        entries.add(ModItems.PANCAKE_RABBIT);
 
+                        entries.add(ModItems.PANCAKE_RABBIT);
                         entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
                         entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
+
+                        entries.add(ModItems.COPPER_BUNNYCOIN);
+                        entries.add(ModItems.GOLD_BUNNYCOIN);
+                        entries.add(ModItems.DIAMOND_BUNNYCOIN);
+
+                        entries.add(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
+                        entries.add(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
+                        entries.add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
 
                         entries.add(ModTools.COPPER_PICKAXE);
                         entries.add(ModTools.COPPER_SWORD);
@@ -29,12 +37,27 @@ public class ModItemGroups {
                         entries.add(ModTools.COPPER_HOE);
                         entries.add(ModTools.COPPER_SHOVEL);
 
+                        entries.add(ModTools.ROSE_GOLD_PICKAXE);
+                        entries.add(ModTools.ROSE_GOLD_SWORD);
+                        entries.add(ModTools.ROSE_GOLD_AXE);
+                        entries.add(ModTools.ROSE_GOLD_HOE);
+                        entries.add(ModTools.ROSE_GOLD_SHOVEL);
+
                         entries.add(ModTools.STEEL_PICKAXE);
                         entries.add(ModTools.STEEL_SWORD);
                         entries.add(ModTools.STEEL_AXE);
                         entries.add(ModTools.STEEL_HOE);
                         entries.add(ModTools.STEEL_SHOVEL);
 
+                        entries.add(ModTools.WOODEN_SPEAR);
+                        entries.add(ModTools.STONE_SPEAR);
+                        entries.add(ModTools.COPPER_SPEAR);
+                        entries.add(ModTools.IRON_SPEAR);
+                        entries.add(ModTools.GOLDEN_SPEAR);
+                        entries.add(ModTools.ROSE_GOLD_SPEAR);
+                        entries.add(ModTools.DIAMOND_SPEAR);
+                        entries.add(ModTools.NETHERITE_SPEAR);
+                        entries.add(ModTools.STEEL_SPEAR);
                     }).build());
 
     public static void registerItemGroups() {

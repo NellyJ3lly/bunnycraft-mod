@@ -34,14 +34,18 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.ROSE_GOLD_INGOT, Models.GENERATED);
         gen.register(ModItems.PANCAKE_RABBIT, Models.GENERATED);
 
+        gen.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);
+        gen.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);
+        gen.register(ModItems.DIAMOND_BUNNYCOIN, Models.GENERATED);
+
         //add pickaxes
         for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {
-            gen.register(ModTools.pickaxeList.get(i), Models.GENERATED);
+            gen.register(ModTools.pickaxeList.get(i), Models.HANDHELD);
         }
 
         //add swords
         for(int i = 0; ModTools.swordList.get(i) != null; i++) {
-            gen.register(ModTools.swordList.get(i), Models.GENERATED);
+            gen.register(ModTools.swordList.get(i), Models.HANDHELD);
         }
 
         //add spears
@@ -55,17 +59,17 @@ public class ModModelProvider extends FabricModelProvider {
 
         //add axes
         for(int i = 0; ModTools.axeList.get(i) != null; i++) {
-            gen.register(ModTools.axeList.get(i), Models.GENERATED);
+            gen.register(ModTools.axeList.get(i), Models.HANDHELD);
         }
 
         //add shovels
         for(int i = 0; ModTools.shovelList.get(i) != null; i++) {
-            gen.register(ModTools.shovelList.get(i), Models.GENERATED);
+            gen.register(ModTools.shovelList.get(i), Models.HANDHELD);
         }
 
         //add hoes
         for(int i = 0; ModTools.hoeList.get(i) != null; i++) {
-            gen.register(ModTools.hoeList.get(i), Models.GENERATED);
+            gen.register(ModTools.hoeList.get(i), Models.HANDHELD);
         }
     }
 
