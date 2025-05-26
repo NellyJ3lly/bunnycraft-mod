@@ -4,7 +4,7 @@ package net.bunnycraft.mixin;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.item.ModItems;
-import net.bunnycraft.item.ModTools;
+import net.bunnycraft.util.ModTags;
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
@@ -38,22 +38,9 @@ public abstract class ItemRendererMixin {
     public BakedModel renderItem(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ModelTransformationMode renderMode) {
         if (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED) {
 
-            if (stack.getItem() == ModTools.STEEL_SPEAR) {
-                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "steel_spear_item")));
-            } else if (stack.getItem() == ModTools.NETHERITE_SPEAR) {
-                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "netherite_spear_item")));
-            } else if (stack.getItem() == ModTools.DIAMOND_SPEAR) {
-                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "diamond_spear_item")));
-            } else if (stack.getItem() == ModTools.GOLDEN_SPEAR) {
-                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "golden_spear_item")));
-            } else if (stack.getItem() == ModTools.IRON_SPEAR) {
-                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "iron_spear_item")));
-            } else if (stack.getItem() == ModTools.COPPER_SPEAR) {
-                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "copper_spear_item")));
-            } else if (stack.getItem() == ModTools.STONE_SPEAR) {
-                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "stone_spear_item")));
-            } else if (stack.getItem() == ModTools.WOODEN_SPEAR) {
-                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "wooden_spear_item")));
+            if (stack.getItem().getDefaultStack().isIn(ModTags.Items.SPEARS)) {
+                return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, stack.getItem().getTranslationKey().substring(16) + "_item")));
+
             } else if (stack.getItem() == ModItems.EMPTY_SPEAR_SLOT) {
                 return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(Bunnycraft.MOD_ID, "empty_spear_slot_gui")));
             }

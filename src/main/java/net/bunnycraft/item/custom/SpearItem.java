@@ -18,25 +18,26 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 
+
 public class SpearItem extends ToolItem implements ProjectileItem {
+
     //initializes the tracked variables so they can be accessed from anywhere and be updated
 
 
-    private float divergence; //divergence is how accurate the throw is, bigger number is worse accuracy
-    private float speed; // how hard its thrown
+    private final float divergence; //divergence is how accurate the throw is, bigger number is worse accuracy
+    private final float speed; // how hard its thrown
 
-    public SpearItem(ToolMaterial material, Item.Settings settings, float accuracy, float throwSpeed) {
+    public SpearItem(ToolMaterial material, Item.Settings settings, float deviation, float throwSpeed) {
 
         super(material, settings);
         //divergence is the variable in this class, accuracy is declared in the registering of the spear, same with the throw speed
-        divergence = accuracy;
+        divergence = deviation;
         speed = throwSpeed;
     }
 
@@ -46,7 +47,7 @@ public class SpearItem extends ToolItem implements ProjectileItem {
     }
 
     //attributes, passed in when declaring a new SpearItem
-    public static AttributeModifiersComponent createAttributeModifiers(ToolMaterial material, int baseAttackDamage, float attackSpeed, float entityreach) {
+    public static AttributeModifiersComponent createAttributeModifiers(ToolMaterial material, float baseAttackDamage, float attackSpeed) {
         return AttributeModifiersComponent.builder()
                 .add(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
@@ -58,11 +59,6 @@ public class SpearItem extends ToolItem implements ProjectileItem {
                         new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, attackSpeed, EntityAttributeModifier.Operation.ADD_VALUE),
                         AttributeModifierSlot.MAINHAND
                 )
-//                .add(
-//                        EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE,
-//                        new EntityAttributeModifier(BASE_ENTITY_INTERACTION_RANGE_ID, entityreach, EntityAttributeModifier.Operation.ADD_VALUE),
-//                        AttributeModifierSlot.MAINHAND
-//                )
                 .build();
     }
 
@@ -138,7 +134,6 @@ public class SpearItem extends ToolItem implements ProjectileItem {
 
                     //create the entity idk why i need to check if the world is not client
                     if (!world.isClient) {
-
 
                         //passes in all variables needed
                         SpearEntity thrownSpear = new SpearEntity(world, player, stack,this);

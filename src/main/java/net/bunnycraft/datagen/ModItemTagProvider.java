@@ -19,43 +19,36 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
 
-        //adds basic weapon tags
+        //add pickaxes
+        for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {
+            getOrCreateTagBuilder(ItemTags.PICKAXES).add(ModTools.pickaxeList.get(i));
+        }
 
-        getOrCreateTagBuilder(ItemTags.SWORDS)
-                .add(ModTools.COPPER_SWORD)
-                .add(ModTools.STEEL_SWORD)
-                .add(ModTools.ROSE_GOLD_SWORD);
+        //add swords
+        for(int i = 0; ModTools.swordList.get(i) != null; i++) {
+            getOrCreateTagBuilder(ItemTags.SWORDS).add(ModTools.swordList.get(i));
+        }
 
-        getOrCreateTagBuilder(ModTags.Items.SPEARS)
-                .add(ModTools.WOODEN_SPEAR)
-                .add(ModTools.STONE_SPEAR)
-                .add(ModTools.COPPER_SPEAR)
-                .add(ModTools.IRON_SPEAR)
-                .add(ModTools.GOLDEN_SPEAR)
-                .add(ModTools.DIAMOND_SPEAR)
-                .add(ModTools.NETHERITE_SPEAR)
-                .add(ModTools.STEEL_SPEAR);
+        //add spears
+        for(int i = 0; ModTools.spearList.get(i) != null; i++) {
+            getOrCreateTagBuilder(ModTags.Items.SPEARS).add(ModTools.spearList.get(i));
+        }
 
-        getOrCreateTagBuilder(ItemTags.PICKAXES)
-                .add(ModTools.COPPER_PICKAXE)
-                .add(ModTools.STEEL_PICKAXE)
-                .add(ModTools.ROSE_GOLD_PICKAXE);
+        //add axes
+        for(int i = 0; ModTools.axeList.get(i) != null; i++) {
+            getOrCreateTagBuilder(ItemTags.AXES).add(ModTools.axeList.get(i));
+        }
 
-        getOrCreateTagBuilder(ItemTags.HOES)
-                .add(ModTools.COPPER_HOE)
-                .add(ModTools.STEEL_HOE)
-                .add(ModTools.ROSE_GOLD_HOE);
+        //add shovels
+        for(int i = 0; ModTools.shovelList.get(i) != null; i++) {
+            getOrCreateTagBuilder(ItemTags.SHOVELS).add(ModTools.shovelList.get(i));
+        }
 
-        getOrCreateTagBuilder(ItemTags.SHOVELS)
-                .add(ModTools.COPPER_SHOVEL)
-                .add(ModTools.STEEL_SHOVEL)
-                .add(ModTools.ROSE_GOLD_SHOVEL);
+        //add hoes
+        for(int i = 0; ModTools.hoeList.get(i) != null; i++) {
+            getOrCreateTagBuilder(ItemTags.HOES).add(ModTools.hoeList.get(i));
+        }
 
-
-        getOrCreateTagBuilder(ItemTags.AXES)
-                .add(ModTools.COPPER_AXE)
-                .add(ModTools.STEEL_AXE)
-                .add(ModTools.ROSE_GOLD_AXE);
 
         //trim tags
 

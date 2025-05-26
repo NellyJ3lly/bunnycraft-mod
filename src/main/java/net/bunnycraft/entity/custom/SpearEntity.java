@@ -1,6 +1,5 @@
 package net.bunnycraft.entity.custom;
 
-import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.entity.ModEntities;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
@@ -35,6 +34,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class SpearEntity extends PersistentProjectileEntity {
+
+    //TODO loyalty beyond functionality: if the entity is destroyed it inserts the item back into the players inventory
+    // if the player dies the item follows into their inventory after respawning
+    // if the entity goes below the bottom of the world (the void in the end) activate normal loyalty and begin coming back
+    // buff the loyalty return speed and make it bounce right off the ground rather than stick as if you hit a mob
+
     private static final TrackedData<Byte> LOYALTY = DataTracker.registerData(SpearEntity.class, TrackedDataHandlerRegistry.BYTE);
     private static final TrackedData<Byte> FIRE_ASPECT = DataTracker.registerData(SpearEntity.class, TrackedDataHandlerRegistry.BYTE);
     private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(SpearEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -56,50 +61,31 @@ public class SpearEntity extends PersistentProjectileEntity {
     //creates the entity from the item
     public SpearEntity(World world, LivingEntity owner, ItemStack stack, SpearItem spearItem) {
 
+        //tells the super what entity it is
+        super(stack.getItem().getTranslationKey().substring(16).equals("rose_gold_spear") ? ModEntities.ROSE_GOLD_SPEAR : ModEntities.SPEAR, owner, world, stack, null);
 
-        super(ModEntities.SPEAR, owner, world, stack, null);
         this.dataTracker.set(LOYALTY, this.getLoyalty(stack));
         this.dataTracker.set(FIRE_ASPECT, this.getFireAspect(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
-        //3 is the default damage of a spear, so to match the spear item
-        Damage = spearItem.getToolMaterial().getAttackDamage() + 3;
 
+        Damage = spearItem.getToolMaterial().getAttackDamage() + ModTools.spearDmg;
+
+        for(int i = 0; ModTools.spearList.get(i) != null; i++) {
+
+            if (ModTools.spearList.get(i) == stack.getItem()) {
+                this.dataTracker.set(MATERIAL, (byte) i);
+                break; // no need to keep checking
+            }
+        }
         //used by the renderer to figure out which texture to use, doing it this way makes it so you cant load custom models based on material but that could possibly be changed idk how tho
 
-        switch (spearItem.getToolMaterial().toString()) {
-            case "WOOD":
-                this.dataTracker.set(MATERIAL, (byte) 0);
-                break;
-            case "STONE":
-                this.dataTracker.set(MATERIAL, (byte) 1);
-                break;
-            case "COPPER":
-                this.dataTracker.set(MATERIAL, (byte) 2);
-                break;
-            case "IRON":
-                this.dataTracker.set(MATERIAL, (byte) 3);
-                break;
-            case "GOLD":
-                this.dataTracker.set(MATERIAL, (byte) 4);
-                break;
-            case "DIAMOND":
-                this.dataTracker.set(MATERIAL, (byte) 5);
-                break;
-            case "NETHERITE":
-                this.dataTracker.set(MATERIAL, (byte) 6);
-                break;
-            case "STEEL":
-                this.dataTracker.set(MATERIAL, (byte) 7);
-                break;
-            default:
-                Bunnycraft.LOGGER.error("Unexpected value: {}", spearItem.getToolMaterial().toString());
-        }
+
     }
 
 
     //idk what this does but its also called from SpearItem, maybe spawning from commands? dont remove
     public SpearEntity(World world, double x, double y, double z, ItemStack stack) {
-        super(ModEntities.SPEAR, x, y, z, world, stack, stack);
+        super(stack.getItem().getTranslationKey().substring(16).equals("rose_gold_spear") ? ModEntities.ROSE_GOLD_SPEAR : ModEntities.SPEAR, x, y, z, world, stack, stack);
         this.dataTracker.set(LOYALTY, this.getLoyalty(stack));
         this.dataTracker.set(FIRE_ASPECT, this.getFireAspect(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
@@ -335,18 +321,21 @@ public class SpearEntity extends PersistentProjectileEntity {
 
 
     //picks up the spear and adds a stack if not in creative
+    //TODO rewrite this so only the spears owner can pick it up if the spear has loyalty, pretty sure i fixed but check again anyway
     @Override
     protected boolean tryPickup(PlayerEntity player) {
         if (player.isInCreativeMode()) {
             return true;
         } else if (player.getInventory().containsAny(itemStack -> itemStack.isOf(ModItems.EMPTY_SPEAR_SLOT))) {
 
-            if (player.getInventory().getSlotWithStack(ModItems.EMPTY_SPEAR_SLOT.getDefaultStack()) == -1) {
+            if (player.getInventory().getSlotWithStack(ModItems.EMPTY_SPEAR_SLOT.getDefaultStack()) == -1 && this.isOwner(player) && this.isNoClip()) {
                 player.getInventory().offHand.set(0, this.asItemStack());
-            } else {
+                return true;
+            } else if (this.isOwner(player) && this.isNoClip()) {
                 player.getInventory().setStack(player.getInventory().getSlotWithStack(ModItems.EMPTY_SPEAR_SLOT.getDefaultStack()), this.asItemStack());
+                return true;
             }
-            return true;
+            return false;
 
 
         } else {
