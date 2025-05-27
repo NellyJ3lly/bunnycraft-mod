@@ -47,7 +47,7 @@ public class SpearRenderer extends EntityRenderer<SpearEntity> {
     @Override
     public Identifier getTexture(SpearEntity entity) {
 
-        return Identifier.of(Bunnycraft.MOD_ID, "textures/entity/model_" + ModTools.spearList.get((int) entity.getDataTracker().get(MATERIAL)).getTranslationKey().substring(16) + ".png");
+        return Identifier.of(Bunnycraft.MOD_ID, "textures/entity/spear/model_" + ModTools.spearList.get((int) entity.getDataTracker().get(MATERIAL)).getTranslationKey().substring(16) + ".png");
 
     }
 }

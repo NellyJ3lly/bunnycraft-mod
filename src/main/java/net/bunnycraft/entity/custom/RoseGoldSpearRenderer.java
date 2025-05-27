@@ -44,7 +44,7 @@ public class RoseGoldSpearRenderer extends EntityRenderer<SpearEntity> {
     @Override
     public Identifier getTexture(SpearEntity entity) {
 
-        return Identifier.of(Bunnycraft.MOD_ID, "textures/entity/model_rose_gold_spear.png");
+        return Identifier.of(Bunnycraft.MOD_ID, "textures/entity/spear/model_rose_gold_spear.png");
 
     }
 }
