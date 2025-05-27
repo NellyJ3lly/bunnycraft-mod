@@ -20,9 +20,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
 
-    //@Shadow
-    //@Final
-    //private ItemModels models;
 
     @Shadow
     public abstract ItemModels getModels();
