@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "bunnycraft:diamond_bunnycoin_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "bunnycraft:diamond_bunnycoin"
+  }
+}

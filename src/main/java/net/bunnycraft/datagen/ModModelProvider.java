@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -11,6 +12,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
@@ -26,6 +28,8 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         BlockStateModelGenerator.BlockTexturePool pancakerabbittexturepool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.PANCAKE_RABBIT_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PANCAKE_RABBIT_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ROSE_GOLD_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STEEL_BLOCK);
     }
 
     @Override
@@ -37,6 +41,11 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.DIAMOND_BUNNYCOIN, Models.GENERATED);
+
+        gen.registerArmor(((ArmorItem) ModArmors.STEEL_HELMET));
+        gen.registerArmor(((ArmorItem) ModArmors.STEEL_CHESTPLATE));
+        gen.registerArmor(((ArmorItem) ModArmors.STEEL_LEGGINGS));
+        gen.registerArmor(((ArmorItem) ModArmors.STEEL_BOOTS));
 
         //add pickaxes
         for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {

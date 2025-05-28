@@ -23,12 +23,20 @@ public class ModBlocks {
             new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
                     AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
+    // we will need to change the strengths and actual stuff to mine these blocks
+    // for now I'm leaving it as is to focus on other things
     public static final Block COPPER_BUNNYCOIN_BLOCK = registerBlock("copper_bunnycoin_block",
             new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.CHAIN)));
     public static final Block GOLD_BUNNYCOIN_BLOCK = registerBlock("gold_bunnycoin_block",
             new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.CHAIN)));
     public static final Block DIAMOND_BUNNYCOIN_BLOCK = registerBlock("diamond_bunnycoin_block",
             new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.CHAIN)));
+
+    public static final Block STEEL_BLOCK = registerBlock("steel_block",
+            new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.METAL)));
+
+    public static final Block ROSE_GOLD_BLOCK = registerBlock("rose_gold_block",
+            new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.METAL)));
 
 
     private static Block registerBlock(String name, Block block) {
@@ -50,6 +58,9 @@ public class ModBlocks {
             entries.add(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
             entries.add(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
             entries.add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
+
+            entries.add(ModBlocks.ROSE_GOLD_BLOCK);
+            entries.add(ModBlocks.STEEL_BLOCK);
         });
     }
 }

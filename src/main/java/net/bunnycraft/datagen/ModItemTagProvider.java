@@ -1,5 +1,6 @@
 package net.bunnycraft.datagen;
 
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.util.ModTags;
@@ -58,6 +59,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)
                 .add(ModItems.PANCAKE_RABBIT);
+
+        getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModArmors.STEEL_HELMET)
+                .add(ModArmors.STEEL_CHESTPLATE)
+                .add(ModArmors.STEEL_LEGGINGS)
+                .add(ModArmors.STEEL_BOOTS);
 
         //additional spear tags
 

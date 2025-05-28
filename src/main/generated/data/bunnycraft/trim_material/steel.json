@@ -1,0 +1,9 @@
+{
+  "asset_name": "steel",
+  "description": {
+    "color": "#BDEBE1",
+    "translate": "trim_material.bunnycraft.steel"
+  },
+  "ingredient": "bunnycraft:steel_ingot",
+  "item_model_index": 1.0
+}

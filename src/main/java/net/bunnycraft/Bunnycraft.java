@@ -2,6 +2,7 @@ package net.bunnycraft;
 
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.entity.ModEntities;
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
@@ -18,6 +19,7 @@ public class Bunnycraft implements ModInitializer {
 	public void onInitialize() {
 		ModItems.registerModItems();
 		ModTools.registerModTools();
+		ModArmors.registerModArmors();
 		ModBlocks.registerModBlocks();
 		ModEntities.registerModEntities();
 		ModItemGroups.registerItemGroups();

@@ -16,7 +16,6 @@ public class ModItems {
     public static  final Item ROSE_GOLD_INGOT = registerItem("rose_gold_ingot", new Item(new Item.Settings()));
     public static  final Item STEEL_INGOT = registerItem("steel_ingot", new Item(new Item.Settings()));
     public static  final Item PANCAKE_RABBIT = registerItem("pancake_rabbit",SmithingTemplateItem.of(Identifier.of(Bunnycraft.MOD_ID,"rabbit_trim"), FeatureFlags.VANILLA));
-    public static  final Item BUNDLE = registerItem("bundle", new BundleItem(new Item.Settings()));
 
     public static  final Item COPPER_BUNNYCOIN = registerItem("copper_bunnycoin", new Item(new Item.Settings()));
     public static  final Item GOLD_BUNNYCOIN = registerItem("gold_bunnycoin", new Item(new Item.Settings()));
@@ -37,7 +36,6 @@ public class ModItems {
 
     });
 
-
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(Bunnycraft.MOD_ID,name), item);
     }
@@ -49,7 +47,6 @@ public class ModItems {
             entries.add(ROSE_GOLD_INGOT);
             entries.add(STEEL_INGOT);
             entries.add(PANCAKE_RABBIT);
-            entries.add(BUNDLE);
             entries.add(COPPER_BUNNYCOIN);
             entries.add(GOLD_BUNNYCOIN);
             entries.add(DIAMOND_BUNNYCOIN);

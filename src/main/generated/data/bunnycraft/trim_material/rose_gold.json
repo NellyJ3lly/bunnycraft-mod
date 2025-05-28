@@ -1,0 +1,9 @@
+{
+  "asset_name": "rose_gold",
+  "description": {
+    "color": "#FFC8C2",
+    "translate": "trim_material.bunnycraft.rose_gold"
+  },
+  "ingredient": "bunnycraft:rose_gold_ingot",
+  "item_model_index": 1.0
+}

@@ -16,9 +16,6 @@ public class ModItemGroups {
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.PANCAKE_RABBIT))
                     .displayName(Text.translatable("itemgroup.bunnycraft.group"))
                     .entries((displayContext, entries) -> {
-                        entries.add(ModItems.ROSE_GOLD_INGOT);
-                        entries.add(ModItems.STEEL_INGOT);
-
                         entries.add(ModItems.PANCAKE_RABBIT);
                         entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
                         entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
@@ -37,12 +34,17 @@ public class ModItemGroups {
                         entries.add(ModTools.COPPER_HOE);
                         entries.add(ModTools.COPPER_SHOVEL);
 
+
+                        entries.add(ModItems.ROSE_GOLD_INGOT);
+                        entries.add(ModBlocks.ROSE_GOLD_BLOCK);
                         entries.add(ModTools.ROSE_GOLD_PICKAXE);
                         entries.add(ModTools.ROSE_GOLD_SWORD);
                         entries.add(ModTools.ROSE_GOLD_AXE);
                         entries.add(ModTools.ROSE_GOLD_HOE);
                         entries.add(ModTools.ROSE_GOLD_SHOVEL);
 
+                        entries.add(ModItems.STEEL_INGOT);
+                        entries.add(ModBlocks.STEEL_BLOCK);
                         entries.add(ModTools.STEEL_PICKAXE);
                         entries.add(ModTools.STEEL_SWORD);
                         entries.add(ModTools.STEEL_AXE);
