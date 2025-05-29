@@ -21,6 +21,11 @@
   "item.bunnycraft.steel_shovel": "Spoon",
   "item.bunnycraft.steel_hoe": "Metel ho",
 
+  "item.bunnycraft.steel_helmet": "Head bukkeet",
+  "item.bunnycraft.steel_chestplate": "Metel belly cover",
+  "item.bunnycraft.steel_leggings": "Metel leg tubez",
+  "item.bunnycraft.steel_boots": "steel toedd crocs",
+
   "item.bunnycraft.rose_gold_pickaxe": "Fancy pikkatt",
   "item.bunnycraft.rose_gold_sword": "Fancy sord",
   "item.bunnycraft.rose_gold_spear": "Fancy pointy stik",
@@ -36,5 +41,13 @@
   "item.bunnycraft.netherite_spear": "Hot pointy stik",
 
   "item.bunnycraft.empty_spear_slot": "Huh?",
-  "tooltip.bunnycraft.empty_slot.instructions": "Pointy stik go here"
+  "tooltip.bunnycraft.empty_slot.instructions": "Pointy stik go here",
+
+  "item.bunnycraft.copper_bunnycoin": "copurr bnuy dabloon",
+  "item.bunnycraft.gold_bunnycoin": "gold bnuy dabloon",
+  "item.bunnycraft.diamond_bunnycoin": "Shinee bnuy dabloon",
+
+  "block.bunnycraft.copper_bunnycoin_block": "little stack o bnuy dabloonz",
+  "block.bunnycraft.gold_bunnycoin_block": "Big stack o bnuyy dabloonz",
+  "block.bunnycraft.diamond_bunnycoin_block": "Shinee stak o bnuy dabloonz"
 }
