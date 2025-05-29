@@ -1,6 +1,7 @@
 package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.item.custom.ModArmorItem;
 import net.bunnycraft.item.custom.SpearItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ArmorItem;
@@ -14,7 +15,7 @@ import net.minecraft.util.Identifier;
 public class ModArmors {
 
     public static final Item STEEL_HELMET = registerItem("steel_helmet",
-            new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+            new ModArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
                     .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(42))));
     public static final Item STEEL_CHESTPLATE = registerItem("steel_chestplate",
             new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()

@@ -3,6 +3,7 @@ package net.bunnycraft.item;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.item.custom.SpearItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -68,7 +69,6 @@ public class ModTools  {
     public static final Item NETHERITE_SPEAR = registerTool("netherite_spear", new SpearItem(ToolMaterials.NETHERITE, new Item.Settings().fireproof().attributeModifiers(
             SpearItem.createAttributeModifiers(ToolMaterials.NETHERITE, spearDmg, -3)), .2f, 4.5f));
 
-
     // STEEL TOOLS
     public static  final Item STEEL_PICKAXE = registerTool("steel_pickaxe", new PickaxeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
             PickaxeItem.createAttributeModifiers(ModToolMaterials.STEEL, pickaxeDmg, -3f))));
@@ -87,6 +87,11 @@ public class ModTools  {
 
     public static  final Item STEEL_HOE = registerTool("steel_hoe", new HoeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
             HoeItem.createAttributeModifiers(ModToolMaterials.STEEL, hoeDmg, -2.8f))));
+
+    // later make it so they always give 3 maybe a chance for 4 wool while shearingy
+    public static  final Item STEEL_SHEARS = registerItem("steel_shears", new ShearsItem(new Item.Settings().attributeModifiers(
+            SwordItem.createAttributeModifiers(ModToolMaterials.STEEL, 0, -1f)).maxDamage(714).component(DataComponentTypes.TOOL, ShearsItem.createToolComponent())));
+
 
     // ROSE GOLD TOOLS
     public static  final Item ROSE_GOLD_PICKAXE = registerTool("rose_gold_pickaxe", new PickaxeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
@@ -115,6 +120,10 @@ public class ModTools  {
     public static Map<Integer, Item> shovelList;
     public static Map<Integer, Item> hoeList;
     private static boolean listsRegistered = false;
+
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(Registries.ITEM, Identifier.of(Bunnycraft.MOD_ID,name), item);
+    }
 
     private static Item registerTool(String name, Item item) {
 
@@ -146,6 +155,7 @@ public class ModTools  {
         Bunnycraft.LOGGER.info("Registering Mod Tools for" + Bunnycraft.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            entries.add(STEEL_SHEARS);
 
             //add pickaxes
             for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {

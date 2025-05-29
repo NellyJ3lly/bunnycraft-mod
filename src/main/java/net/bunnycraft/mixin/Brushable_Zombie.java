@@ -1,18 +1,14 @@
 package net.bunnycraft.mixin;
 
+
+import net.bunnycraft.item.ModTools;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.entity.passive.ArmadilloEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -56,10 +52,11 @@ public abstract class Brushable_Zombie extends HostileEntity {
         super(entityType, world);
     }
 
+    // make it so shears will take more durability while steel shears take less
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (itemStack.isOf(Items.SHEARS) && this.brushzombie()) {
+        if ((itemStack.isOf(Items.SHEARS) || itemStack.isOf(ModTools.STEEL_SHEARS)) && this.brushzombie()) {
             itemStack.damage(8, player, getSlotForHand(hand));
             this.brushed = true;
             return ActionResult.success(this.getWorld().isClient);

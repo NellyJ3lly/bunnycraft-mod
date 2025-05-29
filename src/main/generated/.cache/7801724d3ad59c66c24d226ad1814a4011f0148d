@@ -1,6 +1,6 @@
-// 1.21.1	2025-05-27T21:12:20.6454503	Bunnycraft/Block Loot Tables
-f310afbb2188ee5d811091bd3ec61b7ba0f68f88 data\bunnycraft\loot_table\blocks\pancake_rabbit_ore.json
+// 1.21.1	2025-05-29T12:52:12.2654635	Bunnycraft/Block Loot Tables
 36c2bbd5093ce0e6d03415e22c88049a624593ef data\bunnycraft\loot_table\blocks\gold_bunnycoin_block.json
+f310afbb2188ee5d811091bd3ec61b7ba0f68f88 data\bunnycraft\loot_table\blocks\pancake_rabbit_ore.json
 fc9f1327207b03ad414c1cd57453f43b3bde6aa6 data\bunnycraft\loot_table\blocks\copper_bunnycoin_block.json
 5684b6bdc17a161c74d2e581c9f52cfc5fe4afd6 data\bunnycraft\loot_table\blocks\steel_block.json
 6f18959373f3b2d4b3603812e29717728ae7dee7 data\bunnycraft\loot_table\blocks\pancake_rabbit_block.json

@@ -50,6 +50,7 @@ public class ModItemGroups {
                         entries.add(ModTools.STEEL_AXE);
                         entries.add(ModTools.STEEL_HOE);
                         entries.add(ModTools.STEEL_SHOVEL);
+                        entries.add(ModTools.STEEL_SHEARS);
 
                         entries.add(ModTools.WOODEN_SPEAR);
                         entries.add(ModTools.STONE_SPEAR);

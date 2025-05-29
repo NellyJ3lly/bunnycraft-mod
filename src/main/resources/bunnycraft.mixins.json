@@ -5,7 +5,9 @@
   "mixins": [
     "Brushable_Zombie",
     "PickaxeItemMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "ItemStatChangesMixin",
+    "ShearsBecomeSwordMixin"
   ],
   "injectors": {
     "defaultRequire": 1
