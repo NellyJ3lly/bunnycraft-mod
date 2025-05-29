@@ -27,10 +27,15 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        addDrop(ModBlocks.PANCAKE_RABBIT_ORE);
+        addDrop(ModBlocks.PANCAKE_RABBIT_ORE, oreDrops(ModBlocks.PANCAKE_RABBIT_ORE, ModItems.PANCAKE_RABBIT));
         addDrop(ModBlocks.PANCAKE_RABBIT_BLOCK);
 
-        addDrop(ModBlocks.PANCAKE_RABBIT_ORE, oreDrops(ModBlocks.PANCAKE_RABBIT_ORE, ModItems.PANCAKE_RABBIT));
+        addDrop(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
+        addDrop(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
+        addDrop(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
+
+        addDrop(ModBlocks.ROSE_GOLD_BLOCK);
+        addDrop(ModBlocks.STEEL_BLOCK);
     }
 
     public LootTable.Builder multipleOreDrops(Block drop, Item item, float minDrops, float maxDrops) {

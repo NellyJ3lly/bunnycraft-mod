@@ -1,0 +1,7 @@
+{
+  "parent": "bunnycraft:item/template_spear_throwing",
+  "textures": {
+    "0": "bunnycraft:item/model_copper_spear",
+    "particle": "bunnycraft:item/copper_spear"
+  }
+}

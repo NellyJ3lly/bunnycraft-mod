@@ -1,0 +1,15 @@
+{
+  "parent": "bunnycraft:item/template_spear",
+  "overrides": [
+    {
+      "model": "bunnycraft:item/diamond_spear_throwing",
+      "predicate": {
+        "bunnycraft:charging": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "0": "bunnycraft:item/model_diamond_spear",
+    "particle": "bunnycraft:item/diamond_spear"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "bunnycraft:block/pancake_rabbit_ore"
+  }
+}

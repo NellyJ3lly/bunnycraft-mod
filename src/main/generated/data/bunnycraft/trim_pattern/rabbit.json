@@ -1,0 +1,8 @@
+{
+  "asset_id": "bunnycraft:rabbit",
+  "decal": false,
+  "description": {
+    "translate": "trim_pattern.bunnycraft.rabbit"
+  },
+  "template_item": "bunnycraft:pancake_rabbit"
+}
