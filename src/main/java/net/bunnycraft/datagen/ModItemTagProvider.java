@@ -6,6 +6,7 @@ import net.bunnycraft.item.ModTools;
 import net.bunnycraft.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 
@@ -66,22 +67,48 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModArmors.STEEL_LEGGINGS)
                 .add(ModArmors.STEEL_BOOTS);
 
-        //additional spear tags
+
 
         getOrCreateTagBuilder(ModTags.Items.SPEAR_ENCHANTABLE)
                 .addTag(ModTags.Items.SPEARS);
 
+        getOrCreateTagBuilder(ModTags.Items.HOE_ENCHANTABLE)
+                .addTag(ItemTags.HOES);
+
+        getOrCreateTagBuilder(ModTags.Items.PICKAXE_ENCHANTABLE)
+                .addTag(ItemTags.PICKAXES);
+
+        getOrCreateTagBuilder(ModTags.Items.SHOVEL_ENCHANTABLE)
+                .addTag(ItemTags.SHOVELS);
+
+        getOrCreateTagBuilder(ModTags.Items.SHEAR_ENCHANTABLE)
+                .add(Items.SHEARS);
+
+
         //makes loyalty go to tridents and spears by making loyalty.json target the loyalty compat tag
         //currently targeting this tag is loyalty.json
-        getOrCreateTagBuilder(ModTags.Items.LOYALTY_COMPAT_TAG)
+        getOrCreateTagBuilder(ModTags.Items.ACCEPTS_LOYALTY)
                 .addOptionalTag(ItemTags.TRIDENT_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE);
 
-        //all enchants that target sword now also target spear by ovveridding them to target the spear compat tag
+
         //currently targeting this tag is bane_of_arthropods.json, fire_aspect.json, knockback.json, looting,json, sharpness.json, smite.json
-        getOrCreateTagBuilder(ModTags.Items.SPEAR_COMPAT_TAG)
+
+        getOrCreateTagBuilder(ModTags.Items.ACCEPTS_GENERIC_COMBAT_ENCHANTS) // might be broken? hoes, pickaxes, and shovels seem to rarely get the generic combat enchants idk why
                 .addOptionalTag(ItemTags.SWORD_ENCHANTABLE)
-                .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE);
+                .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.HOE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.PICKAXE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.SHOVEL_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.SHEAR_ENCHANTABLE);
+
+        getOrCreateTagBuilder(ModTags.Items.ACCEPTS_MACE_ENCHANTS)
+                .add(Items.MACE)
+                .addOptionalTag(ItemTags.PICKAXES);
+
+        getOrCreateTagBuilder(ModTags.Items.ACCEPTS_SWEEPING_EDGE)
+                .addOptionalTag(ItemTags.SWORD_ENCHANTABLE)
+                .addOptionalTag(ItemTags.HOES);
 
         //vanilla tag that allows getting stuff like unbreaking
         getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)

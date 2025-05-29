@@ -27,7 +27,7 @@
     "base": 1,
     "per_level_above_first": 11
   },
-  "primary_items": "#bunnycraft:enchantable/spear_compat_tag",
+  "primary_items": "#bunnycraft:enchantable/accepts_generic_combat_enchants",
   "slots": [
     "mainhand"
   ],

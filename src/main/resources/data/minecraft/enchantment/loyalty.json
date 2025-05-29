@@ -29,6 +29,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#bunnycraft:enchantable/loyalty_compat_tag",
+  "supported_items": "#bunnycraft:enchantable/accepts_loyalty",
   "weight": 10
 }

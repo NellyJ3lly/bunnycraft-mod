@@ -29,6 +29,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#bunnycraft:enchantable/spear_compat_tag",
+  "supported_items": "#bunnycraft:enchantable/accepts_generic_combat_enchants",
   "weight": 5
 }

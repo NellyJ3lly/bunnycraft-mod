@@ -74,7 +74,6 @@ public class PickaxeItemMixin {
             serverPlayerEntity.setVelocity(serverPlayerEntity.getVelocity().withAxis(Direction.Axis.Y, 0.01F));
             serverPlayerEntity.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(serverPlayerEntity));
             if (target.isOnGround()) {
-                //serverPlayerEntity.setSpawnExtraParticlesOnFall(false);
                 SoundEvent soundEvent = SoundEvents.ITEM_MACE_SMASH_GROUND;
                 serverWorld.playSound(
                         null, serverPlayerEntity.getX(), serverPlayerEntity.getY(), serverPlayerEntity.getZ(), soundEvent, serverPlayerEntity.getSoundCategory(), 1.0F, 1.0F

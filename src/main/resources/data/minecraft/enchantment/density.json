@@ -1,24 +1,17 @@
 {
   "anvil_cost": 2,
   "description": {
-    "translate": "enchantment.minecraft.smite"
+    "translate": "enchantment.minecraft.density"
   },
   "effects": {
-    "minecraft:damage": [
+    "minecraft:smash_damage_per_fallen_block": [
       {
         "effect": {
           "type": "minecraft:add",
           "value": {
             "type": "minecraft:linear",
-            "base": 2.5,
-            "per_level_above_first": 2.5
-          }
-        },
-        "requirements": {
-          "condition": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "type": "#minecraft:sensitive_to_smite"
+            "base": 0.5,
+            "per_level_above_first": 0.5
           }
         }
       }
@@ -34,10 +27,9 @@
     "base": 5,
     "per_level_above_first": 8
   },
-  "primary_items": "#bunnycraft:enchantable/accepts_generic_combat_enchants",
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#minecraft:enchantable/weapon",
+  "supported_items": "#bunnycraft:enchantable/accepts_mace_enchants",
   "weight": 5
 }

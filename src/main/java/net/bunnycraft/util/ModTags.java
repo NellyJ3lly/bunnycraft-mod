@@ -30,12 +30,23 @@ public class ModTags {
 
         public static final TagKey<Item> SPEAR_ENCHANTABLE = createTag("enchantable/spear");
 
-        //a special tag used only for loyalty that allows loyalty to go onto a spear and a trident
-        // the loyalty json targets this tag and this tag targets spear enchantable and trident enchantable
-        public static final TagKey<Item> LOYALTY_COMPAT_TAG = createTag("enchantable/loyalty_compat_tag");
+        public static final TagKey<Item> HOE_ENCHANTABLE = createTag("enchantable/hoe");
 
-        //another special tag used for al sword enchants that allows them to go on spears or swords except sweeping edge
-        public static final TagKey<Item> SPEAR_COMPAT_TAG = createTag("enchantable/spear_compat_tag");
+        public static final TagKey<Item> PICKAXE_ENCHANTABLE = createTag("enchantable/pickaxe");
+
+        public static final TagKey<Item> SHOVEL_ENCHANTABLE = createTag("enchantable/shovel");
+
+        public static final TagKey<Item> SHEAR_ENCHANTABLE = createTag("enchantable/shear");
+
+        public static final TagKey<Item> ACCEPTS_LOYALTY = createTag("enchantable/accepts_loyalty");
+
+        public static final TagKey<Item> ACCEPTS_SWEEPING_EDGE = createTag("enchantable/accepts_sweeping_edge");
+
+        public static final TagKey<Item> ACCEPTS_GENERIC_COMBAT_ENCHANTS = createTag("enchantable/accepts_generic_combat_enchants");
+
+        public static final TagKey<Item> ACCEPTS_MACE_ENCHANTS = createTag(("enchantable/accepts_mace_enchants"));
+
+
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(Bunnycraft.MOD_ID,name));
