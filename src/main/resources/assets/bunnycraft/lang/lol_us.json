@@ -1,25 +1,30 @@
 {
-  "itemgroup.bunnycraft.group": "Bun Buns",
+  "itemgroup.bunnycraft.group": "BUNNY BUNSWORTH?? WRITER OF THE LEGENDS???",
   "item.bunnycraft.rose_gold_ingot": "Fancy hunk of riches",
   "item.bunnycraft.steel_ingot": "Metel chunk",
 
   "item.bunnycraft.pancake_rabbit": "Pancakes?",
-  "block.bunnycraft.pancake_rabbit_ore": "Rok with pancakes",
-  "block.bunnycraft.pancake_rabbit_block": "Hunk of pancake",
+  "block.bunnycraft.pancake_rabbit_ore": "rok with pancakes",
+  "block.bunnycraft.pancake_rabbit_block": "hunk of pancake",
 
-  "item.bunnycraft.copper_pickaxe": "Copurr pikkatt",
-  "item.bunnycraft.copper_sword": "Copurr sord",
-  "item.bunnycraft.copper_spear": "Pointy orang stik",
+  "item.bunnycraft.copper_pickaxe": "copurr pikkatt",
+  "item.bunnycraft.copper_sword": "copurr sord",
+  "item.bunnycraft.copper_spear": "pointy copurr stik",
   "item.bunnycraft.copper_axe": "Copurr chopurr",
-  "item.bunnycraft.copper_shovel": "Copurr spoon",
-  "item.bunnycraft.copper_hoe": "Copurr Hoe",
+  "item.bunnycraft.copper_shovel": "copurr spoon",
+  "item.bunnycraft.copper_hoe": "copurr Hoe",
 
-  "item.bunnycraft.steel_pickaxe": "Metel pikkatt",
-  "item.bunnycraft.steel_sword": "Metel sord",
+  "item.bunnycraft.steel_pickaxe": "metel pikkatt",
+  "item.bunnycraft.steel_sword": "metel sord",
   "item.bunnycraft.steel_spear": "Pointy metel stik",
-  "item.bunnycraft.steel_axe": "Metel choppurr",
+  "item.bunnycraft.steel_axe": "metel choppurr",
   "item.bunnycraft.steel_shovel": "Spoon",
-  "item.bunnycraft.steel_hoe": "Metel ho",
+  "item.bunnycraft.steel_hoe": "metel ho",
+
+  "item.bunnycraft.steel_helmet": "Head bukkeet",
+  "item.bunnycraft.steel_chestplate": "metel belly cover",
+  "item.bunnycraft.steel_leggings": "metel leg tubez",
+  "item.bunnycraft.steel_boots": "steel toedd crocs",
 
   "item.bunnycraft.rose_gold_pickaxe": "Fancy pikkatt",
   "item.bunnycraft.rose_gold_sword": "Fancy sord",
@@ -28,13 +33,21 @@
   "item.bunnycraft.rose_gold_shovel": "Fancy spoon",
   "item.bunnycraft.rose_gold_hoe": "Fancy Hoe",
 
-  "item.bunnycraft.wooden_spear": "Pointy wud stik",
-  "item.bunnycraft.stone_spear": "Pointy rock stik",
-  "item.bunnycraft.iron_spear": "Pointy stik",
+  "item.bunnycraft.wooden_spear": "pointy stik",
+  "item.bunnycraft.stone_spear": "pointy rock",
+  "item.bunnycraft.iron_spear": "pointy irun",
   "item.bunnycraft.golden_spear": "Pointy stik of riches",
   "item.bunnycraft.diamond_spear": "Shiny pointy stik",
   "item.bunnycraft.netherite_spear": "Hot pointy stik",
 
   "item.bunnycraft.empty_spear_slot": "Huh?",
-  "tooltip.bunnycraft.empty_slot.instructions": "Pointy stik go here"
+  "tooltip.bunnycraft.empty_slot.instructions": "Pointy stik go here",
+
+  "item.bunnycraft.copper_bunnycoin": "copurr bnuy dabloon",
+  "item.bunnycraft.gold_bunnycoin": "gold bnuy dabloon",
+  "item.bunnycraft.diamond_bunnycoin": "Shinee bnuy dabloon",
+
+  "block.bunnycraft.copper_bunnycoin_block": "little stack o bnuy dabloonz",
+  "block.bunnycraft.gold_bunnycoin_block": "Big stack o bnuyy dabloonz",
+  "block.bunnycraft.diamond_bunnycoin_block": "Shinee stak o bnuy dabloonz"
 }
