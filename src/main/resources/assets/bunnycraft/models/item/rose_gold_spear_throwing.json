@@ -2,7 +2,7 @@
   "gui_light": "front",
   "texture_size": [32, 32],
   "textures": {
-    "0": "bunnycraft:item/model_rose_gold_spear",
+    "0": "bunnycraft:entity/spear/model_rose_gold_spear",
     "particle": "bunnycraft:item/rose_gold_spear"
   },
   "display": {

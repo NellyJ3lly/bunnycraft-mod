@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-29T12:52:12.2824783	Bunnycraft/Model Definitions
+// 1.21.1	2025-05-29T17:51:49.5898984	Bunnycraft/Model Definitions
 b00770f3d6930d381020096703deb773735ac4f2 assets\bunnycraft\models\item\diamond_bunnycoin.json
 aaa98443682e86b4412e9a550a7068d941644235 assets\bunnycraft\models\item\steel_helmet_diamond_trim.json
 036b80191f428b29149d2836617b94395e6e157e assets\bunnycraft\blockstates\pancake_rabbit_block.json
@@ -13,8 +13,8 @@ d88d29517c3a624f63bb7c336e2aef85f5561bbf assets\bunnycraft\models\item\rose_gold
 271870d43b0a52674753942b102f6dafdef0ec31 assets\bunnycraft\models\item\steel_chestplate_redstone_trim.json
 de4c6e678f1351a5fd275925311144c52c925ff0 assets\bunnycraft\models\item\rose_gold_hoe.json
 8c2f2dc98f0a8043d6373b94c707c04468c8f594 assets\bunnycraft\models\item\steel_helmet_amethyst_trim.json
-c5cd48f66d24d53f8acb4af6a2d0caf2ad5f03ed assets\bunnycraft\models\item\steel_helmet_quartz_trim.json
 b23604c2529289d133bd393e5eec2d48e3f66e23 assets\bunnycraft\models\item\steel_chestplate_amethyst_trim.json
+c5cd48f66d24d53f8acb4af6a2d0caf2ad5f03ed assets\bunnycraft\models\item\steel_helmet_quartz_trim.json
 347921d61f4f54c87fdfd4b5fcb88b3690b80863 assets\bunnycraft\models\item\wooden_spear_item.json
 4c7d8256b50ea7e26ac2db08f8d375226b5671e2 assets\bunnycraft\models\item\steel_leggings_gold_trim.json
 bf078f3ac1dee6957db27536a11d5ef0b8af8d4c assets\bunnycraft\models\item\steel_spear.json
@@ -41,8 +41,8 @@ e899df7bd6e9149187d642e99cae31e6a9e74c46 assets\bunnycraft\models\item\steel_ing
 52939fa5ac3f769ef26d59f64e30de80691d2919 assets\bunnycraft\models\item\steel_shovel.json
 ea10e22e0418d56b40808ca966b3598ec56f18cb assets\bunnycraft\models\item\steel_chestplate_gold_trim.json
 ea2020d0a70c94bdc52199e660b09153e676011c assets\bunnycraft\models\item\pancake_rabbit_ore.json
-053fd4602f4bf0d051b992702a26078fac9d9e45 assets\bunnycraft\blockstates\pancake_rabbit_ore.json
 a70ca7f94cb9691a0402dc3c0df96ee8f457fabe assets\bunnycraft\models\item\steel_boots_netherite_trim.json
+053fd4602f4bf0d051b992702a26078fac9d9e45 assets\bunnycraft\blockstates\pancake_rabbit_ore.json
 a282510e5d40bccab07528837df6e3b35bf47d21 assets\bunnycraft\models\item\rose_gold_axe.json
 9e62e6b806b84cd7221defcbc85a084ad35ff034 assets\bunnycraft\models\block\steel_block.json
 3493968af6b4d6072956c785a26b03d703dcd129 assets\bunnycraft\models\item\steel_leggings_netherite_trim.json

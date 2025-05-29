@@ -3,7 +3,7 @@
   "package": "net.bunnycraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "Brushable_Zombie",
+    "entity/ShearableZombieMixin",
     "PickaxeItemMixin",
     "PlayerEntityMixin",
     "ItemStatChangesMixin",

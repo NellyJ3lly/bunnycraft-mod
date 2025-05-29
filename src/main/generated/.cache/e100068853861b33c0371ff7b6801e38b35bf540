@@ -1,8 +1,10 @@
-// 1.21.1	2025-05-29T12:52:12.2654635	Bunnycraft/Tags for minecraft:item
+// 1.21.1	2025-05-29T17:51:49.588898	Bunnycraft/Tags for minecraft:item
+8fb2c86ef1e8e3e5c111578b51da91908ea5deb9 data\bunnycraft\tags\item\enchantable\shear.json
 f46bf1b668b37e24a0bdfd8d192f6faed34a2ddf data\minecraft\tags\item\trim_templates.json
-25c2507dca14c190331ee5ef89023cca0ab32776 data\bunnycraft\tags\item\enchantable\loyalty_compat_tag.json
-11764a16794ae28ff5e824d7e4ffb7fcaff90f06 data\bunnycraft\tags\item\enchantable\spear_compat_tag.json
+8517f77100ee076565740945e21e8732293db870 data\bunnycraft\tags\item\enchantable\accepts_mace_enchants.json
+9d91de19a3ab0637f8c09435ba6494f81ec68401 data\bunnycraft\tags\item\enchantable\accepts_sweeping_edge.json
 0a2a1d2bea1ab69b262f74b47ae94166f10eb165 data\minecraft\tags\item\shovels.json
+5e7c760621586934c47d721d06be94fdb2693f4e data\bunnycraft\tags\item\enchantable\shovel.json
 bc7a4f1d327f0c3286854888237365bd61e07fd4 data\minecraft\tags\item\trim_materials.json
 afba61138130186c70f31f77983b6762d0029019 data\minecraft\tags\item\hoes.json
 565a3694085afd1f0fdc011a21289ac9fe7cd81a data\bunnycraft\tags\item\spear.json
@@ -10,7 +12,11 @@ baf99fb6582330080f8a2d53cd29a0e7a534c2f2 data\minecraft\tags\item\pickaxes.json
 3ba3c72187fbfe96e09f409d79a532f2b2ff1a74 data\minecraft\tags\item\trimmable_armor.json
 e2e2997774c4a7994530b4f3c0c47d883add9494 data\minecraft\tags\item\enchantable\sharp_weapon.json
 de65c9281226ecd84b7936a1f70c53f75726ae10 data\minecraft\tags\item\axes.json
+25c2507dca14c190331ee5ef89023cca0ab32776 data\bunnycraft\tags\item\enchantable\accepts_loyalty.json
 e2e2997774c4a7994530b4f3c0c47d883add9494 data\minecraft\tags\item\enchantable\durability.json
 e2e2997774c4a7994530b4f3c0c47d883add9494 data\minecraft\tags\item\enchantable\fire_aspect.json
+1feebc4d4dfb8dd4b39ea79e961a1b31359e0ff3 data\bunnycraft\tags\item\enchantable\hoe.json
 e2c5c5b3b726b522959a404f23e75c6538b44e7c data\bunnycraft\tags\item\enchantable\spear.json
 fead63f8ed413399a46979ba9af2234c62dce118 data\minecraft\tags\item\swords.json
+8fc46487367693f1ba66bd158916fb0b774797f0 data\bunnycraft\tags\item\enchantable\accepts_generic_combat_enchants.json
+bdb4053d28def340c591bb6cd77b677cfe510db6 data\bunnycraft\tags\item\enchantable\pickaxe.json
