@@ -22,6 +22,8 @@ public class PickaxeItemMixin {
 
     //dont let intellij lie to you, all these class that say they are never used, override in the target mixin class
 
+    //TODO modify the damage and speed so it kinda mimics an axe speed but less base damage. may have to create a new class
+
     //copied from the mace class overrides pickaxeItems superclass
     @Unique
     public float getBonusAttackDamage(Entity target, float baseAttackDamage, DamageSource damageSource) {
