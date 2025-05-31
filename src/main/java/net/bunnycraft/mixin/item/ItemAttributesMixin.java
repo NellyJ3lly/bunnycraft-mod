@@ -143,8 +143,9 @@ public abstract class ItemAttributesMixin {
 
         if (item instanceof ToolItem toolItem && slot == EquipmentSlot.MAINHAND) {
             String material = toolItem.getMaterial().toString();
+            System.out.println(material);
 
-            if(material.equals("prismarine")) {
+            if(material.equals("PRISMARINE")) {
                 RegistryEntry<EntityAttribute> submergedminingspeed = EntityAttributes.PLAYER_SUBMERGED_MINING_SPEED;
 
                 EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
