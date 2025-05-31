@@ -41,6 +41,8 @@ public class SpearItem extends ToolItem implements ProjectileItem {
         speed = throwSpeed;
     }
 
+
+
     //helper method for getting the tool material
     public ToolMaterial getToolMaterial() {
         return super.getMaterial();

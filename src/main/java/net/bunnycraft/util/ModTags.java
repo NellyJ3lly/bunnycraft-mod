@@ -34,6 +34,8 @@ public class ModTags {
 
         public static final TagKey<Item> PICKAXE_ENCHANTABLE = createTag("enchantable/pickaxe");
 
+        public static final TagKey<Item> AXE_ENCHANTABLE = createTag("enchantable/axe");
+
         public static final TagKey<Item> SHOVEL_ENCHANTABLE = createTag("enchantable/shovel");
 
         public static final TagKey<Item> SHEAR_ENCHANTABLE = createTag("enchantable/shear");

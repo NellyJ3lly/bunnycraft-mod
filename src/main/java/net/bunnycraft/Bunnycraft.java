@@ -28,12 +28,25 @@ public class Bunnycraft implements ModInitializer {
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
 		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
 	}
+
+	//list of variables that you can tweak to change and balence different parts of the mod. for now im only gonna add ones that i think would be annoying to find/change
+
+	//basic damages, note these do not update vanilla tools yet. someone needs to do that
+	public static final int swordDmg = 3;
+	public static final float spearDmg = 3;
+	public static final float axeDmg = 6;
+	public static final float pickaxeDmg = 1;
+	public static final float shovelDmg = 1.5f;
+	public static final float hoeDmg = 0;
+
+	//range stats, note these are added to base range
+	public static final int pickaxeRange = 1;
+	public static final int swordRange = 0;
+	public static final int spearRange = 0;
+	public static final int axeRange = 0;
+	public static final int shovelRange = 1;
+	public static final int hoeRange = 3;
+
+
+	public static final float steelSlowdown = -0.05f; // this corresponds to 5 percent slowdown per armor piece
 }
-
-//list of classes modified when merging spearmod, check these for spear related errors
-
-//classes added to bunnycraft: PlayerEntityMixin, ItemRendererMixin, ModelLoaderMixin, ModEntities, SpearEntity, SpearModel, SpearRenderer, ModModelPredicates
-
-//classes merged from spearmod: Bunnycraft, BunnycraftClient, ModTags
-
-//deleted old SpearItem class and added mine

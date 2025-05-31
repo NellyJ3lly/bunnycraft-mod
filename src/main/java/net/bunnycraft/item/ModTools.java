@@ -15,97 +15,92 @@ public class ModTools  {
 
 
     //base tool damages, same as vanilla
-    public static final float pickaxeDmg = 1;
-    public static final int swordDmg = 3; // idk why this has to be an int, but if needed it should be changed to a float with a mixin
-    public static final float spearDmg = 3;
-    public static final float axeDmg = 6;
-    public static final float shovelDmg = 1.5f;
-    public static final float hoeDmg = 0;
+
 
     //always declare a new tool with these values, tweak the stats in the toolMaterial
 
 
     // WOODEN TOOLS
     public static final Item WOODEN_SPEAR = registerTool("wooden_spear", new SpearItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.WOOD, spearDmg, -2)), 1.2f, 2.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.WOOD, Bunnycraft.spearDmg, -2)), 1.2f, 2.5f));
 
     // STONE TOOLS
     public static final Item STONE_SPEAR = registerTool("stone_spear", new SpearItem(ToolMaterials.STONE, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.STONE, spearDmg, -2.2f)), 1.7f, 2f));
+            SpearItem.createAttributeModifiers(ToolMaterials.STONE, Bunnycraft.spearDmg, -2.2f)), 1.7f, 2f));
 
     // COPPER TOOLS
     public static  final Item COPPER_PICKAXE = registerTool("copper_pickaxe", new PickaxeItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
-            PickaxeItem.createAttributeModifiers(ModToolMaterials.COPPER, pickaxeDmg, -2.2f))));
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.COPPER, Bunnycraft.pickaxeDmg, -2.2f))));
 
     public static  final Item COPPER_SWORD = registerTool("copper_sword", new SwordItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
-            SwordItem.createAttributeModifiers(ModToolMaterials.COPPER, swordDmg, -2.2f))));
+            SwordItem.createAttributeModifiers(ModToolMaterials.COPPER, Bunnycraft.swordDmg, -2.2f))));
 
     public static final Item COPPER_SPEAR =registerTool("copper_spear", new SpearItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ModToolMaterials.COPPER, spearDmg, -2.2f)), 1.2f, 2.5f));
+            SpearItem.createAttributeModifiers(ModToolMaterials.COPPER, Bunnycraft.spearDmg, -2.2f)), 1.2f, 2.5f));
 
     public static  final Item COPPER_AXE = registerTool("copper_axe", new AxeItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
-            AxeItem.createAttributeModifiers(ModToolMaterials.COPPER, axeDmg, -2.6f))));
+            AxeItem.createAttributeModifiers(ModToolMaterials.COPPER, Bunnycraft.axeDmg, -2.6f))));
 
     public static  final Item COPPER_SHOVEL = registerTool("copper_shovel", new ShovelItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
-            ShovelItem.createAttributeModifiers(ModToolMaterials.COPPER, shovelDmg, -2.4f))));
+            ShovelItem.createAttributeModifiers(ModToolMaterials.COPPER, Bunnycraft.shovelDmg, -2.4f))));
 
     public static  final Item COPPER_HOE = registerTool("copper_hoe", new HoeItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
-            HoeItem.createAttributeModifiers(ModToolMaterials.COPPER, hoeDmg, -2.0f))));
+            HoeItem.createAttributeModifiers(ModToolMaterials.COPPER, Bunnycraft.hoeDmg, -2.0f))));
 
     // IRON TOOLS
     public static final Item IRON_SPEAR = registerTool("iron_spear", new SpearItem(ToolMaterials.IRON, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.IRON, spearDmg, -2.4f)), 1f, 2.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.IRON, Bunnycraft.spearDmg, -2.4f)), 1f, 2.5f));
 
     // GOLDEN TOOLS
     public static final Item GOLDEN_SPEAR = registerTool("golden_spear", new SpearItem(ToolMaterials.GOLD, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.GOLD, spearDmg, -2.6f)), .5f, 4.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.GOLD, Bunnycraft.spearDmg, -2.6f)), .5f, 4.5f));
 
     // DIAMOND TOOLS
     public static final Item DIAMOND_SPEAR = registerTool("diamond_spear", new SpearItem(ToolMaterials.DIAMOND, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.DIAMOND, spearDmg, -2.8f)), .5f, 3.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.DIAMOND, Bunnycraft.spearDmg, -2.8f)), .5f, 3.5f));
 
     // NETHERITE TOOLS
     public static final Item NETHERITE_SPEAR = registerTool("netherite_spear", new SpearItem(ToolMaterials.NETHERITE, new Item.Settings().fireproof().attributeModifiers(
-            SpearItem.createAttributeModifiers(ToolMaterials.NETHERITE, spearDmg, -3)), .2f, 4.5f));
+            SpearItem.createAttributeModifiers(ToolMaterials.NETHERITE, Bunnycraft.spearDmg, -3)), .2f, 4.5f));
 
 
     // STEEL TOOLS
     public static  final Item STEEL_PICKAXE = registerTool("steel_pickaxe", new PickaxeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            PickaxeItem.createAttributeModifiers(ModToolMaterials.STEEL, pickaxeDmg, -3f))));
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.STEEL, Bunnycraft.pickaxeDmg, -3f))));
 
     public static  final Item STEEL_SWORD = registerTool("steel_sword", new SwordItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            SwordItem.createAttributeModifiers(ModToolMaterials.STEEL, swordDmg, -3f))));
+            SwordItem.createAttributeModifiers(ModToolMaterials.STEEL, Bunnycraft.swordDmg, -3f))));
 
     public static final Item STEEL_SPEAR = registerTool("steel_spear", new SpearItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ModToolMaterials.STEEL, spearDmg, -2.8f)), .2f, 3.5f));
+            SpearItem.createAttributeModifiers(ModToolMaterials.STEEL, Bunnycraft.spearDmg, -2.8f)), .2f, 3.5f));
 
     public static  final Item STEEL_AXE = registerTool("steel_axe", new AxeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            AxeItem.createAttributeModifiers(ModToolMaterials.STEEL, axeDmg, -3.2f))));
+            AxeItem.createAttributeModifiers(ModToolMaterials.STEEL, Bunnycraft.axeDmg, -3.2f))));
 
     public static  final Item STEEL_SHOVEL = registerTool("steel_shovel", new ShovelItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            ShovelItem.createAttributeModifiers(ModToolMaterials.STEEL, shovelDmg, -3.2f))));
+            ShovelItem.createAttributeModifiers(ModToolMaterials.STEEL, Bunnycraft.shovelDmg, -3.2f))));
 
     public static  final Item STEEL_HOE = registerTool("steel_hoe", new HoeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            HoeItem.createAttributeModifiers(ModToolMaterials.STEEL, hoeDmg, -2.8f))));
+            HoeItem.createAttributeModifiers(ModToolMaterials.STEEL, Bunnycraft.hoeDmg, -2.8f))));
 
     // ROSE GOLD TOOLS
     public static  final Item ROSE_GOLD_PICKAXE = registerTool("rose_gold_pickaxe", new PickaxeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
-            PickaxeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, pickaxeDmg, -1f))));
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.pickaxeDmg, -1f))));
 
     public static  final Item ROSE_GOLD_SWORD = registerTool("rose_gold_sword", new SwordItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
-            SwordItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, swordDmg, -1f))));
+            SwordItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.swordDmg, -1f))));
 
     public static final Item ROSE_GOLD_SPEAR = registerTool("rose_gold_spear", new SpearItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, spearDmg, -1.2f)), .5f, 5f));
+            SpearItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.spearDmg, -1.2f)), .5f, 5f));
 
     public static  final Item ROSE_GOLD_AXE = registerTool("rose_gold_axe", new AxeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
-            AxeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, axeDmg, -1.4f))));
+            AxeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.axeDmg, -1.4f))));
 
     public static  final Item ROSE_GOLD_SHOVEL = registerTool("rose_gold_shovel", new ShovelItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
-            ShovelItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, shovelDmg, -1.4f))));
+            ShovelItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.shovelDmg, -1.4f))));
 
     public static  final Item ROSE_GOLD_HOE = registerTool("rose_gold_hoe", new HoeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
-            HoeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, hoeDmg, -0.8f))));
+            HoeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.hoeDmg, -0.8f))));
 
 
     public static Map<Integer, Item> pickaxeList;

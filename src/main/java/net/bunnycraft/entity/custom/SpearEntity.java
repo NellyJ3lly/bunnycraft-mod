@@ -1,5 +1,6 @@
 package net.bunnycraft.entity.custom;
 
+import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.entity.ModEntities;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
@@ -68,7 +69,7 @@ public class SpearEntity extends PersistentProjectileEntity {
         this.dataTracker.set(FIRE_ASPECT, this.getFireAspect(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
 
-        Damage = spearItem.getToolMaterial().getAttackDamage() + ModTools.spearDmg;
+        Damage = spearItem.getToolMaterial().getAttackDamage() + Bunnycraft.spearDmg;
 
         for(int i = 0; ModTools.spearList.get(i) != null; i++) {
 

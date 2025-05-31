@@ -78,6 +78,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.PICKAXE_ENCHANTABLE)
                 .addTag(ItemTags.PICKAXES);
 
+        getOrCreateTagBuilder(ModTags.Items.AXE_ENCHANTABLE)
+                .addTag(ItemTags.AXES);
+
         getOrCreateTagBuilder(ModTags.Items.SHOVEL_ENCHANTABLE)
                 .addTag(ItemTags.SHOVELS);
 
@@ -94,32 +97,45 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         //currently targeting this tag is bane_of_arthropods.json, fire_aspect.json, knockback.json, looting,json, sharpness.json, smite.json
 
-        getOrCreateTagBuilder(ModTags.Items.ACCEPTS_GENERIC_COMBAT_ENCHANTS) // might be broken? hoes, pickaxes, and shovels seem to rarely get the generic combat enchants idk why
+        getOrCreateTagBuilder(ModTags.Items.ACCEPTS_GENERIC_COMBAT_ENCHANTS)  // for an item to accept this it must also be added to sharp weapon enchantable
                 .addOptionalTag(ItemTags.SWORD_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.HOE_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.PICKAXE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.AXE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.SHOVEL_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.SHEAR_ENCHANTABLE);
+
+        getOrCreateTagBuilder(ItemTags.SHARP_WEAPON_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.HOE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.PICKAXE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.AXE_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.SHOVEL_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.SHEAR_ENCHANTABLE);
 
         getOrCreateTagBuilder(ModTags.Items.ACCEPTS_MACE_ENCHANTS)
-                .add(Items.MACE)
-                .addOptionalTag(ItemTags.PICKAXES);
+                .addOptionalTag(ItemTags.MACE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.PICKAXE_ENCHANTABLE);
 
         getOrCreateTagBuilder(ModTags.Items.ACCEPTS_SWEEPING_EDGE)
                 .addOptionalTag(ItemTags.SWORD_ENCHANTABLE)
-                .addOptionalTag(ItemTags.HOES);
+                .addOptionalTag(ModTags.Items.HOE_ENCHANTABLE);
 
         //vanilla tag that allows getting stuff like unbreaking
         getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE);
 
-
-        //additional tag definitons, i dont fully know why i need to define these but they are importand probably. they dont seem to effect what you can get in an enchanting table
         getOrCreateTagBuilder(ItemTags.FIRE_ASPECT_ENCHANTABLE)
-                .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE);
+                .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.HOE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.PICKAXE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.AXE_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.SHOVEL_ENCHANTABLE)
+                .addOptionalTag(ModTags.Items.SHEAR_ENCHANTABLE);
 
-        getOrCreateTagBuilder(ItemTags.SHARP_WEAPON_ENCHANTABLE)
-                .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE);
+
+
+
     }
 }

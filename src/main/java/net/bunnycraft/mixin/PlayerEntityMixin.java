@@ -1,7 +1,6 @@
 package net.bunnycraft.mixin;
 
 
-
 import net.bunnycraft.item.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;

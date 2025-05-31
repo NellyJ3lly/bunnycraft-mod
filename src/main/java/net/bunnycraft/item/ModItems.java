@@ -2,7 +2,10 @@ package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.SmithingTemplateItem;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -13,6 +16,8 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class ModItems {
+    public static final Identifier BASE_PLAYER_ENTITY_INTERACTION_RANGE_ID = Identifier.of(Bunnycraft.MOD_ID, "base_entity_interaction_range");
+
     public static  final Item ROSE_GOLD_INGOT = registerItem("rose_gold_ingot", new Item(new Item.Settings()));
     public static  final Item STEEL_INGOT = registerItem("steel_ingot", new Item(new Item.Settings()));
     public static  final Item PANCAKE_RABBIT = registerItem("pancake_rabbit",SmithingTemplateItem.of(Identifier.of(Bunnycraft.MOD_ID,"rabbit_trim"), FeatureFlags.VANILLA));

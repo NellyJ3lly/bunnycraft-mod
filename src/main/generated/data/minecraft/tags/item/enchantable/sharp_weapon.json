@@ -3,6 +3,26 @@
     {
       "id": "#bunnycraft:enchantable/spear",
       "required": false
+    },
+    {
+      "id": "#bunnycraft:enchantable/hoe",
+      "required": false
+    },
+    {
+      "id": "#bunnycraft:enchantable/pickaxe",
+      "required": false
+    },
+    {
+      "id": "#bunnycraft:enchantable/axe",
+      "required": false
+    },
+    {
+      "id": "#bunnycraft:enchantable/shovel",
+      "required": false
+    },
+    {
+      "id": "#bunnycraft:enchantable/shear",
+      "required": false
     }
   ]
 }
