@@ -1,4 +1,4 @@
-package net.bunnycraft.mixin;
+package net.bunnycraft.mixin.item;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;

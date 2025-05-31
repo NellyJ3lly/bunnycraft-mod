@@ -1,4 +1,4 @@
-package net.bunnycraft.mixin;
+package net.bunnycraft.mixin.entity;
 
 
 import net.bunnycraft.item.ModItems;

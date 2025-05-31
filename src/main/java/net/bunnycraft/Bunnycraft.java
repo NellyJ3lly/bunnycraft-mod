@@ -29,7 +29,7 @@ public class Bunnycraft implements ModInitializer {
 		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
 	}
 
-	//list of variables that you can tweak to change and balence different parts of the mod. for now im only gonna add ones that i think would be annoying to find/change
+	//list of variables that you can tweak to change and balance different parts of the mod. for now im only gonna add ones that i think would be annoying to find/change
 
 	//basic damages, note these do not update vanilla tools yet. someone needs to do that
 	public static final int swordDmg = 3;
@@ -48,5 +48,5 @@ public class Bunnycraft implements ModInitializer {
 	public static final int hoeRange = 3;
 
 
-	public static final float steelSlowdown = -0.05f; // this corresponds to 5 percent slowdown per armor piece
+	public static final float steelSlowdown = -0.07f; // this corresponds to a percent slowdown per armor piece
 }

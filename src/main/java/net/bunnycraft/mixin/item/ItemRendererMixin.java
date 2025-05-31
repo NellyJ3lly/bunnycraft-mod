@@ -1,4 +1,4 @@
-package net.bunnycraft.mixin;
+package net.bunnycraft.mixin.item;
 
 
 import com.llamalad7.mixinextras.sugar.Local;

@@ -1,8 +1,7 @@
-package net.bunnycraft.mixin;
+package net.bunnycraft.mixin.item;
 
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
-import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 
 import static net.minecraft.item.Items.register;

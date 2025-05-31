@@ -1,4 +1,4 @@
-package net.bunnycraft.mixin;
+package net.bunnycraft.mixin.item;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;

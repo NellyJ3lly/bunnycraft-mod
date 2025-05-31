@@ -11,35 +11,10 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "limit": {
-                "min": 1,
-                "max": 4
-              },
               "count": {
                 "type": "minecraft:uniform",
-                "value": 4,
                 "min": 1,
-                "max": 4
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:zombie_head",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:iron_ingot",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 2
+                "max": 6
               }
             }
           ]
@@ -50,28 +25,146 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:group",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "name": "minecraft:blue_wool"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "minecraft:light_blue_wool",
-              "functions": []
-            }
-          ],
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ingot",
+          "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
-                "max": 2
-              }
+                "max": 1
+              },
+              "add": true
             }
           ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 25
+        }
+      ],
+      "functions": [],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "#minecraft:is_badlands"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              },
+              "add": true
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 25
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "location": {
+              "biomes": "#minecraft:is_badlands"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:zombie_head",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 50
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type": "minecraft:zombie"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:zombie_head",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 50
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type": "minecraft:husk"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:light_blue_wool",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              },
+              "add": true,
+              "conditions": []
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 1
         }
       ],
       "functions": [],
@@ -89,54 +182,100 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:group",
-          "children": [
-            {
-              "type": "minecraft:group",
-              "children": [
-                {
-                  "type": "minecraft:item",
-                  "name": "minecraft:yellow_wool"
-                },
-                {
-                  "type": "minecraft:item",
-                  "name": "minecraft:brown_wool"
-                }
-              ]
-            }
-          ],
+          "type": "minecraft:item",
+          "name": "minecraft:blue_wool",
+          "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "type": "minecraft:uniform",
                 "min": 0,
-                "max": 2
-              }
+                "max": 1
+              },
+              "add": true,
+              "conditions": []
             }
-          ]
-        }
-      ],
-      "functions": [
+          ],
+          "conditions": []
+        },
         {
-          "function": "minecraft:set_count",
-          "count": {
-            "type": "minecraft:uniform",
-            "value": 2,
-            "min": 1,
-            "max": 1000
-          },
-          "add": true,
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "minecraft:shears"
-              }
-            }
-          ]
+          "type": "minecraft:empty",
+          "weight": 1
         }
       ],
+      "functions": [],
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type": "minecraft:zombie"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brown_wool",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              },
+              "add": true,
+              "conditions": []
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 1
+        }
+      ],
+      "functions": [],
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type": "minecraft:husk"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:yellow_wool",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0,
+                "max": 1
+              },
+              "add": true,
+              "conditions": []
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 1
+        }
+      ],
+      "functions": [],
       "conditions": [
         {
           "condition": "minecraft:entity_properties",
