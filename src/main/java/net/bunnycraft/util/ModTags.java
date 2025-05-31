@@ -18,6 +18,8 @@ public class ModTags {
         public static final TagKey<Block> NEEDS_ROSE_GOLD_TOOL = createTag("needs_rose_gold_tool");
         public static final TagKey<Block> INCORRECT_FOR_ROSE_GOLD_TOOL = createTag("incorrect_for_rose_gold_tool");
 
+        public static final TagKey<Block> NEEDS_PRISMARINE_TOOL = createTag("needs_prismarine_tool");
+        public static final TagKey<Block> INCORRECT_FOR_PRISMARINE_TOOL = createTag("incorrect_for_prismarine_tool");
 
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(Bunnycraft.MOD_ID,name));

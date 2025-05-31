@@ -39,12 +39,22 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .criterion(hasItem(ModItems.STEEL_INGOT), conditionsFromItem(ModItems.STEEL_INGOT));
 
         makePickaxe(ModTools.COPPER_PICKAXE,Items.COPPER_INGOT).offerTo(exporter);
-        makePickaxe(ModTools.STEEL_PICKAXE,ModItems.STEEL_INGOT).offerTo(exporter);
-        makePickaxe(ModTools.ROSE_GOLD_PICKAXE,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
-
         makeSword(ModTools.COPPER_SWORD,Items.COPPER_INGOT).offerTo(exporter);
+        makeAxe(ModTools.COPPER_AXE,Items.COPPER_INGOT).offerTo(exporter);
+        makeShovel(ModTools.COPPER_SHOVEL,Items.COPPER_INGOT).offerTo(exporter);
+        makeHoe(ModTools.COPPER_HOE,Items.COPPER_INGOT).offerTo(exporter);
+
+        makePickaxe(ModTools.STEEL_PICKAXE,ModItems.STEEL_INGOT).offerTo(exporter);
         makeSword(ModTools.STEEL_SWORD,ModItems.STEEL_INGOT).offerTo(exporter);
+        makeAxe(ModTools.STEEL_AXE,ModItems.STEEL_INGOT).offerTo(exporter);
+        makeShovel(ModTools.STEEL_SHOVEL,ModItems.STEEL_INGOT).offerTo(exporter);
+        makeHoe(ModTools.STEEL_HOE,ModItems.STEEL_INGOT).offerTo(exporter);
+
+        makePickaxe(ModTools.ROSE_GOLD_PICKAXE,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
         makeSword(ModTools.ROSE_GOLD_SWORD,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
+        makeAxe(ModTools.ROSE_GOLD_AXE,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
+        makeShovel(ModTools.ROSE_GOLD_SHOVEL,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
+        makeHoe(ModTools.ROSE_GOLD_HOE,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
 
         makeSpear(ModTools.WOODEN_SPEAR, "minecraft", "planks", Items.STICK).offerTo(exporter);
         makeSpear(ModTools.STONE_SPEAR, "minecraft", "stone_tool_materials", Items.COBBLESTONE).offerTo(exporter);
@@ -55,18 +65,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         upgradeToNetherite(ModTools.DIAMOND_SPEAR, ModTools.NETHERITE_SPEAR).offerTo(exporter, getItemPath(ModTools.NETHERITE_SPEAR) + "_smithing");
         makeSpear(ModTools.STEEL_SPEAR, ModItems.STEEL_INGOT).offerTo(exporter);
         makeSpear(ModTools.ROSE_GOLD_SPEAR, ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
-
-        makeAxe(ModTools.COPPER_AXE,Items.COPPER_INGOT).offerTo(exporter);
-        makeAxe(ModTools.STEEL_AXE,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeAxe(ModTools.ROSE_GOLD_AXE,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
-
-        makeShovel(ModTools.COPPER_SHOVEL,Items.COPPER_INGOT).offerTo(exporter);
-        makeShovel(ModTools.STEEL_SHOVEL,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeShovel(ModTools.ROSE_GOLD_SHOVEL,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
-
-        makeHoe(ModTools.COPPER_HOE,Items.COPPER_INGOT).offerTo(exporter);
-        makeHoe(ModTools.STEEL_HOE,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeHoe(ModTools.ROSE_GOLD_HOE,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
 
         offerSmithingTrimRecipe(exporter, ModItems.PANCAKE_RABBIT, Identifier.of(Bunnycraft.MOD_ID,"rabbit"));
     }

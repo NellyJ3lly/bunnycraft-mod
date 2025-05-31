@@ -42,10 +42,10 @@ public class Bunnycraft implements ModInitializer {
 	//range stats, note these are added to base range
 	public static final int pickaxeRange = 1;
 	public static final int swordRange = 0;
-	public static final int spearRange = 0;
+	public static final int spearRange = 3;
 	public static final int axeRange = 0;
 	public static final int shovelRange = 1;
-	public static final int hoeRange = 3;
+	public static final int hoeRange = 2;
 
 
 	public static final float steelSlowdown = -0.07f; // this corresponds to a percent slowdown per armor piece

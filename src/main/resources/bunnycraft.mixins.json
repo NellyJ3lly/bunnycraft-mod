@@ -3,18 +3,18 @@
   "package": "net.bunnycraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "entity.PlayerEntityMixin",
     "entity.ShearableZombieMixin",
-    "item.ItemAttributesMixin",
-    "item.ItemStatChangesMixin",
+    "entity.PlayerEntityMixin",
+    "item.ShearsBecomeSwordMixin",
     "item.PickaxeItemMixin",
-    "item.ShearsBecomeSwordMixin"
+    "item.ItemAttributesMixin",
+    "item.ItemStatChangesMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "ModelLoaderMixin",
-    "item.ItemRendererMixin"
+    "item/ItemRendererMixin",
+    "ModelLoaderMixin"
   ]
 }

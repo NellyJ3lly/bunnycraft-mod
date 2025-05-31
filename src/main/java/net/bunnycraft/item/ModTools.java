@@ -108,6 +108,26 @@ public class ModTools  {
             HoeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.hoeDmg, -0.8f))));
 
 
+    // PRISMARINE TOOLS
+    // haven't changed stats yet
+    public static  final Item PRISMARINE_PICKAXE = registerTool("prismarine_pickaxe", new PickaxeItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.pickaxeDmg, -1f))));
+
+    public static  final Item PRISMARINE_SWORD = registerTool("prismarine_sword", new SwordItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
+            SwordItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.swordDmg, -1f))));
+
+    public static final Item PRISMARINE_SPEAR = registerTool("prismarine_spear", new SpearItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
+            SpearItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.spearDmg, -1.2f)), .5f, 5f));
+
+    public static  final Item PRISMARINE_AXE = registerTool("prismarine_axe", new AxeItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
+            AxeItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.axeDmg, -1.4f))));
+
+    public static  final Item PRISMARINE_SHOVEL = registerTool("prismarine_shovel", new ShovelItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
+            ShovelItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.shovelDmg, -1.4f))));
+
+    public static  final Item PRISMARINE_HOE = registerTool("prismarine_hoe", new HoeItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
+            HoeItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.hoeDmg, -0.8f))));
+
     public static Map<Integer, Item> pickaxeList;
     public static Map<Integer, Item> swordList;
     public static Map<Integer, Item> spearList;

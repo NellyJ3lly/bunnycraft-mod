@@ -52,6 +52,14 @@ public class ModItemGroups {
                         entries.add(ModTools.STEEL_SHOVEL);
                         entries.add(ModTools.STEEL_SHEARS);
 
+                        entries.add(ModItems.BREEZE_BAR);
+
+                        entries.add(ModTools.PRISMARINE_PICKAXE);
+                        entries.add(ModTools.PRISMARINE_SWORD);
+                        entries.add(ModTools.PRISMARINE_AXE);
+                        entries.add(ModTools.PRISMARINE_HOE);
+                        entries.add(ModTools.PRISMARINE_SHOVEL);
+
                         entries.add(ModTools.WOODEN_SPEAR);
                         entries.add(ModTools.STONE_SPEAR);
                         entries.add(ModTools.COPPER_SPEAR);

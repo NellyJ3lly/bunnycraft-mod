@@ -2,6 +2,7 @@ package net.bunnycraft.mixin.item;
 
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.item.ModToolMaterials;
 import net.bunnycraft.item.custom.SpearItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -24,9 +25,6 @@ public abstract class ItemAttributesMixin {
 
     @Shadow
     public abstract Item getItem();
-
-
-
 
     @Inject(
             method = "applyAttributeModifiers(Lnet/minecraft/entity/EquipmentSlot;Ljava/util/function/BiConsumer;)V",
@@ -131,8 +129,6 @@ public abstract class ItemAttributesMixin {
         }
 
         if (item instanceof HoeItem toolItem && slot == EquipmentSlot.MAINHAND) {
-
-
                 RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE;
 
                 EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
@@ -143,6 +139,22 @@ public abstract class ItemAttributesMixin {
 
                 consumer.accept(rangeAttribute, rangeModifier);
 
+        }
+
+        if (item instanceof ToolItem toolItem && slot == EquipmentSlot.MAINHAND) {
+            String material = toolItem.getMaterial().toString();
+
+            if(material.equals("prismarine")) {
+                RegistryEntry<EntityAttribute> submergedminingspeed = EntityAttributes.PLAYER_SUBMERGED_MINING_SPEED;
+
+                EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
+                        Identifier.of(Bunnycraft.MOD_ID, toolItem.getTranslationKey() + "_submerged_mining_speed"),
+                        4,
+                        EntityAttributeModifier.Operation.ADD_VALUE
+                );
+
+                consumer.accept(submergedminingspeed, rangeModifier);
+            }
         }
 
         //makes steel armor slow you down
@@ -164,7 +176,6 @@ public abstract class ItemAttributesMixin {
 
                 consumer.accept(movementAttribute, movementModifier);
             }
-
         }
     }
 }
