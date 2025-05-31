@@ -35,7 +35,7 @@ public class Bunnycraft implements ModInitializer {
 	public static final int swordDmg = 3;
 	public static final float spearDmg = 3;
 	public static final float axeDmg = 6;
-	public static final float pickaxeDmg = 1;
+	public static final float pickaxeDmg = 5;
 	public static final float shovelDmg = 1.5f;
 	public static final float hoeDmg = 0;
 

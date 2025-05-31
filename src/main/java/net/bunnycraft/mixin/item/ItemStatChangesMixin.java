@@ -3,17 +3,25 @@ package net.bunnycraft.mixin.item;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import static net.minecraft.item.Items.register;
 
 @Mixin(Items.class)
 public class ItemStatChangesMixin {
+    @Unique
     private static final Item SHEARS;
+    @Unique
     private static final Item WOODEN_PICKAXE;
+    @Unique
     private static final Item STONE_PICKAXE;
+    @Unique
     private static final Item GOLDEN_PICKAXE;
+    @Unique
     private static final Item IRON_PICKAXE;
+    @Unique
     private static final Item DIAMOND_PICKAXE;
+    @Unique
     private static final Item NETHERITE_PICKAXE;
 
     static {
