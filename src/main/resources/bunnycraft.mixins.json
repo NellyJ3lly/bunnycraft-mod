@@ -4,9 +4,9 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "Brushable_Zombie",
-    "ItemAttributesMixin",
     "PickaxeItemMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "ItemAttributesMixin"
   ],
   "injectors": {
     "defaultRequire": 1
