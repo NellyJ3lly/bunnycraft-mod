@@ -11,7 +11,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Model;
 import net.minecraft.data.client.Models;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
@@ -48,6 +47,11 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_CHESTPLATE));
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_LEGGINGS));
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_BOOTS));
+
+        gen.registerArmor(((ArmorItem) ModArmors.COPPER_HELMET));
+        gen.registerArmor(((ArmorItem) ModArmors.COPPER_CHESTPLATE));
+        gen.registerArmor(((ArmorItem) ModArmors.COPPER_LEGGINGS));
+        gen.registerArmor(((ArmorItem) ModArmors.COPPER_BOOTS));
 
         gen.register(ModTools.STEEL_SHEARS,Models.HANDHELD);;
 

@@ -2,12 +2,10 @@ package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.item.custom.ModArmorItem;
-import net.bunnycraft.item.custom.SpearItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
-import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -28,6 +26,20 @@ public class ModArmors {
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42))));
 
 
+    public static final Item COPPER_HELMET = registerItem("copper_helmet",
+            new ModArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(42))));
+    public static final Item COPPER_CHESTPLATE = registerItem("copper_chestplate",
+            new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(42))));
+    public static final Item COPPER_LEGGINGS = registerItem("copper_leggings",
+            new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(42))));
+    public static final Item COPPER_BOOTS = registerItem("copper_boots",
+            new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42))));
+
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(Bunnycraft.MOD_ID,name), item);
     }
@@ -41,6 +53,11 @@ public class ModArmors {
             entries.add(STEEL_CHESTPLATE);
             entries.add(STEEL_LEGGINGS);
             entries.add(STEEL_BOOTS);
+
+            entries.add(COPPER_HELMET);
+            entries.add(COPPER_CHESTPLATE);
+            entries.add(COPPER_LEGGINGS);
+            entries.add(COPPER_BOOTS);
         });
     }
 }
