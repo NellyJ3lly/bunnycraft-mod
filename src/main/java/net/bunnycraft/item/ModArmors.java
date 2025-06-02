@@ -28,16 +28,16 @@ public class ModArmors {
 
     public static final Item COPPER_HELMET = registerItem("copper_helmet",
             new ModArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(42))));
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(16))));
     public static final Item COPPER_CHESTPLATE = registerItem("copper_chestplate",
             new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(42))));
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(16))));
     public static final Item COPPER_LEGGINGS = registerItem("copper_leggings",
             new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(42))));
+                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(16))));
     public static final Item COPPER_BOOTS = registerItem("copper_boots",
             new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42))));
+                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(16))));
 
     public static final Item DEALMAKER = registerItem("dealmaker",
             new ModArmorItem(ModArmorMaterials.DEALMAKER_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()

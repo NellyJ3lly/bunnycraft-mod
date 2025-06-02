@@ -153,11 +153,11 @@ public class ModTools  {
             listsRegistered = true;
         }
 
-        //careful when adding new tools because if the toolname ends with an existing tool like pickaxe ending in axe it causes conflicts if not handled
+        //careful when adding new tools because if the tool name ends with an existing tool like pickaxe ending in axe it causes conflicts if not handled
         if(name.endsWith("pickaxe")) {pickaxeList.put(pickaxeList.size(), item);}
         if(name.endsWith("sword")) {swordList.put(swordList.size(), item);}
         if(name.endsWith("spear")) {spearList.put(spearList.size(), item);}
-        if(name.endsWith("axe") && !name.endsWith("pickaxe")) {axeList.put(axeList.size(), item);}
+        if(name.endsWith("axe") && !name.endsWith("pickaxe")) {axeList.put(axeList.size(), item);} // see here conflicts handled
         if(name.endsWith("shovel")) {shovelList.put(shovelList.size(), item);}
         if(name.endsWith("hoe")) {hoeList.put(hoeList.size(), item);}
 

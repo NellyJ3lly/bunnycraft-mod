@@ -47,6 +47,7 @@ public class Bunnycraft implements ModInitializer {
 	public static final int shovelRange = 1;
 	public static final int hoeRange = 2;
 
+	public static final float shovelKnockback = 2; // base knockback for shovel
 
 	public static final float steelSlowdown = -0.07f; // this corresponds to a percent slowdown per armor piece
 }

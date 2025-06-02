@@ -68,6 +68,16 @@ public class ModItemGroups {
                         entries.add(ModTools.DIAMOND_SPEAR);
                         entries.add(ModTools.NETHERITE_SPEAR);
                         entries.add(ModTools.STEEL_SPEAR);
+
+                        entries.add(ModArmors.STEEL_HELMET);
+                        entries.add(ModArmors.STEEL_CHESTPLATE);
+                        entries.add(ModArmors.STEEL_LEGGINGS);
+                        entries.add(ModArmors.STEEL_BOOTS);
+
+                        entries.add(ModArmors.COPPER_HELMET);
+                        entries.add(ModArmors.COPPER_CHESTPLATE);
+                        entries.add(ModArmors.COPPER_LEGGINGS);
+                        entries.add(ModArmors.COPPER_BOOTS);
                     }).build());
 
     public static void registerItemGroups() {
