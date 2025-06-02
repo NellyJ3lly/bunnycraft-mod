@@ -116,8 +116,7 @@ public class ModTools  {
     public static  final Item PRISMARINE_SWORD = registerTool("prismarine_sword", new SwordItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
             SwordItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.swordDmg, -1f))));
 
-    public static final Item PRISMARINE_SPEAR = registerTool("prismarine_spear", new SpearItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
-            SpearItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.spearDmg, -1.2f)), .5f, 5f));
+    //prismarine spear is the trident
 
     public static  final Item PRISMARINE_AXE = registerTool("prismarine_axe", new AxeItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
             AxeItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.axeDmg, -1.4f))));

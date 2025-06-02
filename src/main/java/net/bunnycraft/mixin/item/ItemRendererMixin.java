@@ -33,6 +33,7 @@ public abstract class ItemRendererMixin {
     //specifys to render a different model if the item is in gui (inventory or something) on the ground or fixed (i think thats item frame)
     //otherwise it will render the model
     public BakedModel renderItem(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ModelTransformationMode renderMode) {
+
         if (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED) {
 
             if (stack.getItem().getDefaultStack().isIn(ModTags.Items.SPEARS)) {
