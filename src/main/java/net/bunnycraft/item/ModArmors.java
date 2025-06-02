@@ -39,6 +39,9 @@ public class ModArmors {
             new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42))));
 
+    public static final Item DEALMAKER = registerItem("dealmaker",
+            new ModArmorItem(ModArmorMaterials.DEALMAKER_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(25))));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(Bunnycraft.MOD_ID,name), item);

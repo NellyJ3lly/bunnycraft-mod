@@ -42,6 +42,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.DIAMOND_BUNNYCOIN, Models.GENERATED);
+        gen.register(ModItems.PIPIS, Models.GENERATED);
 
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_HELMET));
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_CHESTPLATE));
@@ -52,6 +53,8 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.COPPER_CHESTPLATE));
         gen.registerArmor(((ArmorItem) ModArmors.COPPER_LEGGINGS));
         gen.registerArmor(((ArmorItem) ModArmors.COPPER_BOOTS));
+
+        gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
 
         gen.register(ModTools.STEEL_SHEARS,Models.HANDHELD);;
 

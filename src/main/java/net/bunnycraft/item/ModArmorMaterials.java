@@ -57,6 +57,16 @@ public class ModArmorMaterials {
             }), 13, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ()-> Ingredient.ofItems(Items.COPPER_INGOT),
                     List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"copper"))),0.0f,0.0f));
 
+    public static final RegistryEntry<ArmorMaterial> DEALMAKER_MATERIAL = registerArmorMaterial("dealmaker",
+            () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS,0);
+                map.put(ArmorItem.Type.LEGGINGS,0);
+                map.put(ArmorItem.Type.CHESTPLATE,0);
+                map.put(ArmorItem.Type.HELMET,5);
+                map.put(ArmorItem.Type.BODY,0);
+            }), 20, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, ()-> Ingredient.ofItems(ModItems.PIPIS),
+                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"deal_maker"))),0.0f,0.0f));
+
 
     public static RegistryEntry<ArmorMaterial> registerArmorMaterial(String name, Supplier<ArmorMaterial> material) {
         return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.of(Bunnycraft.MOD_ID,name),material.get());

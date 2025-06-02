@@ -22,6 +22,7 @@ public class ModItems {
     public static  final Item STEEL_INGOT = registerItem("steel_ingot", new Item(new Item.Settings()));
     public static  final Item BREEZE_BAR = registerItem("breeze_bar", new Item(new Item.Settings()));
     public static  final Item PANCAKE_RABBIT = registerItem("pancake_rabbit",SmithingTemplateItem.of(Identifier.of(Bunnycraft.MOD_ID,"rabbit_trim"), FeatureFlags.VANILLA));
+    public static  final Item PIPIS = registerItem("pipis", new Item(new Item.Settings()));
 
     public static  final Item COPPER_BUNNYCOIN = registerItem("copper_bunnycoin", new Item(new Item.Settings()));
     public static  final Item GOLD_BUNNYCOIN = registerItem("gold_bunnycoin", new Item(new Item.Settings()));
