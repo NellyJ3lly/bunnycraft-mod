@@ -36,7 +36,17 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .pattern(" X")
                 .pattern("X ")
                 .input('X', ModItems.STEEL_INGOT)
-                .criterion(hasItem(ModItems.STEEL_INGOT), conditionsFromItem(ModItems.STEEL_INGOT));
+                .criterion(hasItem(ModItems.STEEL_INGOT), conditionsFromItem(ModItems.STEEL_INGOT)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.TRIDENT)
+                .pattern("-O-")
+                .pattern(" / ")
+                .pattern(" / ")
+                .input('-', Items.IRON_INGOT)
+                .input('/', Items.PRISMARINE_SHARD)
+                .input('O', Items.HEART_OF_THE_SEA)
+                .criterion(hasItem(Items.PRISMARINE), conditionsFromItem(Items.PRISMARINE))
+                .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter);
 
         makePickaxe(ModTools.COPPER_PICKAXE,Items.COPPER_INGOT).offerTo(exporter);
         makeSword(ModTools.COPPER_SWORD,Items.COPPER_INGOT).offerTo(exporter);

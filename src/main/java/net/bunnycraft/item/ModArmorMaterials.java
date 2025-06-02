@@ -3,6 +3,7 @@ package net.bunnycraft.item;
 import net.bunnycraft.Bunnycraft;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -22,10 +23,29 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.LEGGINGS,7);
                 map.put(ArmorItem.Type.CHESTPLATE,9);
                 map.put(ArmorItem.Type.HELMET,4);
-                map.put(ArmorItem.Type.BODY,16);
+                map.put(ArmorItem.Type.BODY,13);
             }), 13, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, ()-> Ingredient.ofItems(ModItems.STEEL_INGOT),
                     List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"steel"))),4.0f,0.2f));
 
+    public static final RegistryEntry<ArmorMaterial> ROSE_GOLD_ARMOR_MATERIAL = registerArmorMaterial("rose_gold",
+            () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS,3);
+                map.put(ArmorItem.Type.LEGGINGS,4);
+                map.put(ArmorItem.Type.CHESTPLATE,7);
+                map.put(ArmorItem.Type.HELMET,3);
+                map.put(ArmorItem.Type.BODY,10);
+            }), 30, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, ()-> Ingredient.ofItems(ModItems.ROSE_GOLD_INGOT),
+                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"rose_gold"))),0.0f,0.0f));
+
+    public static final RegistryEntry<ArmorMaterial> GUARDIAN_ARMOR_MATERIAL = registerArmorMaterial("guardian",
+            () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS,3);
+                map.put(ArmorItem.Type.LEGGINGS,6);
+                map.put(ArmorItem.Type.CHESTPLATE,8);
+                map.put(ArmorItem.Type.HELMET,3);
+                map.put(ArmorItem.Type.BODY,11);
+            }), 30, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, ()-> Ingredient.ofItems(Items.PRISMARINE),
+                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"guardian"))),1.0f,0.1f));
 
     public static final RegistryEntry<ArmorMaterial> COPPER_ARMOR_MATERIAL = registerArmorMaterial("copper",
             () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
@@ -34,8 +54,8 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.CHESTPLATE,9);
                 map.put(ArmorItem.Type.HELMET,4);
                 map.put(ArmorItem.Type.BODY,16);
-            }), 13, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ()-> Ingredient.ofItems(ModItems.STEEL_INGOT),
-                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"copper"))),4.0f,0.2f));
+            }), 13, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ()-> Ingredient.ofItems(Items.COPPER_INGOT),
+                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"copper"))),0.0f,0.0f));
 
 
     public static RegistryEntry<ArmorMaterial> registerArmorMaterial(String name, Supplier<ArmorMaterial> material) {
