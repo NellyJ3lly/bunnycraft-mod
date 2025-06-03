@@ -30,6 +30,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.PANCAKE_RABBIT_ORE, oreDrops(ModBlocks.PANCAKE_RABBIT_ORE, ModItems.PANCAKE_RABBIT));
         addDrop(ModBlocks.PANCAKE_RABBIT_BLOCK);
 
+        addDrop(ModBlocks.PANCAKE_RABBIT_ORE, oreDrops(ModBlocks.PANCAKE_RABBIT_ORE, ModItems.PANCAKE_RABBIT));
+
         addDrop(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
         addDrop(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
         addDrop(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);

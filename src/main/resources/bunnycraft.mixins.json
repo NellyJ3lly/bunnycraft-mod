@@ -5,9 +5,13 @@
   "mixins": [
     "entity.PlayerEntityMixin",
     "entity.ShearableZombieMixin",
+    "entity.ChickenLayLootTableMixin",
+    "entity.ModifiedBlocksMixin",
+    "entity.TurtleBrushingMixin",
     "item.ItemAttributesMixin",
     "item.ItemStatChangesMixin",
     "item.PickaxeItemMixin",
+    "item.CrossBowDamageIncreaseMixin",
     "item.ShearsBecomeSwordMixin"
   ],
   "injectors": {
