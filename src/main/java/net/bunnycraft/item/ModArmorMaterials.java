@@ -65,7 +65,7 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.HELMET,5);
                 map.put(ArmorItem.Type.BODY,0);
             }), 20, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, ()-> Ingredient.ofItems(ModItems.PIPIS),
-                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"deal_maker"))),0.0f,0.0f));
+                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"dealmaker"))),0.0f,0.0f));
 
 
     public static RegistryEntry<ArmorMaterial> registerArmorMaterial(String name, Supplier<ArmorMaterial> material) {

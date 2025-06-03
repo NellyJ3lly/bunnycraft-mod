@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-01T23:50:46.9708106	Bunnycraft/Model Definitions
+// 1.21.1	2025-06-03T00:13:00.4655718	Bunnycraft/Model Definitions
 9e904c36909eb0bc21e20c1634e704fe4bddd88c assets\bunnycraft\models\item\copper_helmet.json
 eea11ce326484c8947a084f8513a0a137c8f4a39 assets\bunnycraft\models\item\copper_leggings_copper_trim.json
 091fc7f0cb9518ccfd558c3b9029c3e6e4003289 assets\bunnycraft\models\item\copper_boots_iron_trim.json
@@ -30,8 +30,8 @@ b23604c2529289d133bd393e5eec2d48e3f66e23 assets\bunnycraft\models\item\steel_che
 2e603f95d4268dd650b29bdb48fbfba2be220949 assets\bunnycraft\models\item\prismarine_shovel.json
 39254d2b61f10206b7e3ae92a642332ac5f5b698 assets\bunnycraft\models\item\copper_boots_quartz_trim.json
 4c7d8256b50ea7e26ac2db08f8d375226b5671e2 assets\bunnycraft\models\item\steel_leggings_gold_trim.json
-bf078f3ac1dee6957db27536a11d5ef0b8af8d4c assets\bunnycraft\models\item\steel_spear.json
 7d64cae3b9d00ff48f2afaf6863d9ae235cbad2d assets\bunnycraft\models\item\steel_block.json
+bf078f3ac1dee6957db27536a11d5ef0b8af8d4c assets\bunnycraft\models\item\steel_spear.json
 7bcb8e3e1936f9aaf95597e39fd42c2c085d8f66 assets\bunnycraft\models\item\steel_leggings_copper_trim.json
 a7a3d429cf216e079ba59d990f08cda5e1ccfe36 assets\bunnycraft\models\item\copper_leggings_iron_trim.json
 1fb8db899863c34c139e11637956af494af64d39 assets\bunnycraft\models\item\steel_boots_emerald_trim.json
@@ -146,8 +146,8 @@ e35a8c8026efcb63012c72527e615ca249c998c2 assets\bunnycraft\models\item\stone_spe
 948472e3e62638c63909fd1dbe5045d7c9cf4435 assets\bunnycraft\models\item\steel_boots_lapis_trim.json
 34f25042e132395cd832bd865a71ea71906c5e40 assets\bunnycraft\models\item\steel_chestplate_diamond_trim.json
 e4071693a4364c641d0f6be025c74bc161d9e4f1 assets\bunnycraft\models\item\copper_helmet_lapis_trim.json
-c48ce900189b33dc3def920abf48658cd348e91e assets\bunnycraft\models\item\diamond_spear_throwing.json
 baee389cc4e3c225dbe31f6cf321e7bd230b0475 assets\bunnycraft\models\block\pancake_rabbit_ore.json
+c48ce900189b33dc3def920abf48658cd348e91e assets\bunnycraft\models\item\diamond_spear_throwing.json
 461f09bd00d8d65bac7665d77ce08a9496ba9c05 assets\bunnycraft\models\item\rose_gold_sword.json
 3414408a74e40a16f2f4d9fdb63d912b590c65c9 assets\bunnycraft\models\item\copper_spear_throwing.json
 f21a93d3f47d392d5e99c2e6fa4c83262877ef25 assets\bunnycraft\models\block\pancake_rabbit_block.json

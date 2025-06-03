@@ -1,5 +1,6 @@
-// 1.21.1	2025-06-01T23:50:46.927752	Bunnycraft/Recipes
+// 1.21.1	2025-06-03T00:13:00.4565637	Bunnycraft/Recipes
 3249c0cb0625165c692de9c0dda4e0fdb42f6a52 data\bunnycraft\recipe\prismarine_sword.json
+0c4e6e34ed4e0b8984ba2b6466cfa2996a861281 data\bunnycraft\recipe\dealmaker.json
 4c0e655e6b19881a94ec9d9bcb8e26c0335b1c89 data\bunnycraft\advancement\recipes\building_blocks\copper_bunnycoin.json
 8941ef53800f737ddfd7c96f238616b727098c5f data\bunnycraft\recipe\copper_shovel.json
 5cb3d8faedc73ce9bcc2114801a170ed3e52bbfd data\bunnycraft\advancement\recipes\tools\prismarine_sword.json
@@ -15,6 +16,7 @@ e761b8ff1b7ea8f5a9b5ae83b7d2b3100111110e data\bunnycraft\advancement\recipes\bui
 6fbb69522c20222dcec1de0fbd8a19d8e9844611 data\bunnycraft\advancement\recipes\tools\rose_gold_spear.json
 6cef6a2d22578dead851d942aefd0e3623dfe17c data\bunnycraft\advancement\recipes\decorations\pancake_rabbit_block.json
 fd8c7fa3ce49961f9e6365b8225b33ccf51de154 data\bunnycraft\advancement\recipes\building_blocks\steel_ingot.json
+d4c065262153d56b71e59584cb58cb798d5b0bc4 data\bunnycraft\advancement\recipes\tools\dealmaker.json
 3e1edf3aee69570d0e1714d8538a4b737ec4092a data\bunnycraft\advancement\recipes\tools\copper_axe.json
 90401f92d2e499b8f6d39370cf20b4fdfc549b13 data\bunnycraft\recipe\rose_gold_block.json
 ecd09d604d35f7fc5b20b514cda05e10b88c2e97 data\bunnycraft\advancement\recipes\tools\steel_hoe.json

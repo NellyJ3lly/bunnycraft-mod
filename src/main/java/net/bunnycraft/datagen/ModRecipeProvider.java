@@ -2,13 +2,16 @@ package net.bunnycraft.datagen;
 
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.util.ModArmorRecipes;
 import net.bunnycraft.util.ModToolRecipes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
@@ -16,7 +19,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRecipes {
+public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRecipes, ModArmorRecipes {
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -47,6 +50,8 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('O', Items.HEART_OF_THE_SEA)
                 .criterion(hasItem(Items.PRISMARINE), conditionsFromItem(Items.PRISMARINE))
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter);
+
+        makeHelmet(ModArmors.DEALMAKER,ModItems.PIPIS).offerTo(exporter);
 
         makePickaxe(ModTools.COPPER_PICKAXE,Items.COPPER_INGOT).offerTo(exporter);
         makeSword(ModTools.COPPER_SWORD,Items.COPPER_INGOT).offerTo(exporter);
