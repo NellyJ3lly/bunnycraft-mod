@@ -1,6 +1,6 @@
 package net.bunnycraft.datagen;
 
-import net.bunnycraft.item.ModArmors;
+import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.util.ModTags;

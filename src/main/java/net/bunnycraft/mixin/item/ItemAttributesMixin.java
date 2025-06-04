@@ -2,7 +2,6 @@ package net.bunnycraft.mixin.item;
 
 
 import net.bunnycraft.Bunnycraft;
-import net.bunnycraft.item.ModToolMaterials;
 import net.bunnycraft.item.custom.SpearItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;

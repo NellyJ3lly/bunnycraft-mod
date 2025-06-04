@@ -1,11 +1,11 @@
-package net.bunnycraft.item;
+package net.bunnycraft.item.tools;
 
 import com.google.common.base.Suppliers;
+import net.bunnycraft.item.ModItems;
 import net.bunnycraft.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.ToolMaterials;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.TagKey;
 

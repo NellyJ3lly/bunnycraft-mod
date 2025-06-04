@@ -1,9 +1,7 @@
-package net.bunnycraft.item.custom;
+package net.bunnycraft.item.armor;
 
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableMap;
-import net.bunnycraft.item.ModArmorMaterials;
-import net.minecraft.block.DispenserBlock;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.Entity;

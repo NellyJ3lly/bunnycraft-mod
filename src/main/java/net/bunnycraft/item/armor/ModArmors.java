@@ -1,7 +1,6 @@
-package net.bunnycraft.item;
+package net.bunnycraft.item.armor;
 
 import net.bunnycraft.Bunnycraft;
-import net.bunnycraft.item.custom.ModArmorItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;

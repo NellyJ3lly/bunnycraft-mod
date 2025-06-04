@@ -6,7 +6,6 @@
     "entity.PlayerEntityMixin",
     "entity.ShearableZombieMixin",
     "entity.ChickenLayLootTableMixin",
-    "entity.ModifiedBlocksMixin",
     "entity.TurtleBrushingMixin",
     "item.ItemAttributesMixin",
     "item.ItemStatChangesMixin",

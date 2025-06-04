@@ -2,6 +2,7 @@ package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.item.custom.SpearItem;
+import net.bunnycraft.item.tools.ModToolMaterials;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;

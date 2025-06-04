@@ -2,7 +2,7 @@ package net.bunnycraft;
 
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.entity.ModEntities;
-import net.bunnycraft.item.ModArmors;
+import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
@@ -26,7 +26,7 @@ public class Bunnycraft implements ModInitializer {
 		LOGGER.info("Hello Bunnycrafter!");
 
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
-		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
+//		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
 	}
 
 	//list of variables that you can tweak to change and balance different parts of the mod. for now im only gonna add ones that i think would be annoying to find/change

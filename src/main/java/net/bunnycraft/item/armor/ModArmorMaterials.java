@@ -1,6 +1,7 @@
-package net.bunnycraft.item;
+package net.bunnycraft.item.armor;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.item.ModItems;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;
