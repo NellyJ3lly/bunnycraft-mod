@@ -3,14 +3,15 @@
   "package": "net.bunnycraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "entity.ChickenLayLootTableMixin",
     "entity.PlayerEntityMixin",
     "entity.ShearableZombieMixin",
-    "entity.ChickenLayLootTableMixin",
     "entity.TurtleBrushingMixin",
+    "item.CauldronAlloyerMixin",
+    "item.CrossBowDamageIncreaseMixin",
     "item.ItemAttributesMixin",
     "item.ItemStatChangesMixin",
     "item.PickaxeItemMixin",
-    "item.CrossBowDamageIncreaseMixin",
     "item.ShearsBecomeSwordMixin"
   ],
   "injectors": {

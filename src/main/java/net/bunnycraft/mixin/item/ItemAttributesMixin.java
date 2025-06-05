@@ -36,6 +36,22 @@ public abstract class ItemAttributesMixin {
 
         Item item = this.getItem();
 
+        //makes shovels deal double knockback
+        if (item instanceof ShovelItem toolItem && slot == EquipmentSlot.MAINHAND) {
+
+
+            RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.GENERIC_ATTACK_KNOCKBACK;
+
+            EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
+                    Identifier.of(Bunnycraft.MOD_ID, toolItem.getTranslationKey() + "_knockback_id"),
+                    Bunnycraft.shovelKnockback,
+                    EntityAttributeModifier.Operation.ADD_VALUE
+            );
+
+            consumer.accept(rangeAttribute, rangeModifier);
+
+        }
+
         //changes range stats
         if (item instanceof SwordItem toolItem && slot == EquipmentSlot.MAINHAND) {
 

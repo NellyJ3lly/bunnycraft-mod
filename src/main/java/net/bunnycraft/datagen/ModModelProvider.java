@@ -4,9 +4,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
-import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.item.armor.ModArmors;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
@@ -43,6 +43,10 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.DIAMOND_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.PIPIS, Models.GENERATED);
+
+        gen.register(ModItems.MOLTEN_ROSE_GOLD, Models.GENERATED);
+        gen.register(ModItems.MOLTEN_STEEL, Models.GENERATED);
+        gen.register(ModItems.MOLD, Models.GENERATED);
 
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_HELMET));
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_CHESTPLATE));

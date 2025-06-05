@@ -79,6 +79,10 @@ public class ModItemGroups {
                         entries.add(ModArmors.COPPER_CHESTPLATE);
                         entries.add(ModArmors.COPPER_LEGGINGS);
                         entries.add(ModArmors.COPPER_BOOTS);
+
+                        entries.add(ModItems.MOLTEN_ROSE_GOLD);
+                        entries.add(ModItems.MOLTEN_STEEL);
+                        entries.add(ModItems.MOLD);
                     }).build());
 
     public static void registerItemGroups() {
