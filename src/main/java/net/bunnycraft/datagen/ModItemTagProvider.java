@@ -1,8 +1,8 @@
 package net.bunnycraft.datagen;
 
-import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -50,6 +50,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         for(int i = 0; ModTools.hoeList.get(i) != null; i++) {
             getOrCreateTagBuilder(ItemTags.HOES).add(ModTools.hoeList.get(i));
         }
+
+
 
 
         //trim tags

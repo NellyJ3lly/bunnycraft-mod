@@ -1,12 +1,15 @@
 package net.bunnycraft;
 
 import net.bunnycraft.block.ModBlocks;
+import net.bunnycraft.block.entity.ModBlockEntities;
+import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
 import net.bunnycraft.entity.ModEntities;
-import net.bunnycraft.item.armor.ModArmors;
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +26,26 @@ public class Bunnycraft implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModEntities.registerModEntities();
 		ModItemGroups.registerItemGroups();
+		ModBlockEntities.registerBlockEntities();
 		LOGGER.info("Hello Bunnycrafter!");
 
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
-//		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
+		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
+
+
+		//listens for when a block entity unloads, used for the CauldronAlloyer
+		ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> {
+			if (blockEntity instanceof CauldronAlloyerEntity cauldron) {
+				// clears the item displays so they dont persist past a restart, the block entity recreates them on load
+				cauldron.clearItemDisplays();
+			}
+		});
+
+		ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.register((blockEntity, world) -> {
+			if (blockEntity instanceof CauldronAlloyerEntity cauldron) {
+				cauldron.onServerChunkLoad();
+			}
+		});
 	}
 
 	//list of variables that you can tweak to change and balance different parts of the mod. for now im only gonna add ones that i think would be annoying to find/change

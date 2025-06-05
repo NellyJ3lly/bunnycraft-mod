@@ -2,15 +2,16 @@ package net.bunnycraft.datagen;
 
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
-import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.util.ModArmorRecipes;
 import net.bunnycraft.util.ModToolRecipes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
@@ -33,6 +34,9 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);
 
+        //offerCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ROSE_GOLD_BLOCK, ModItems.MOLTEN_ROSE_GOLD); // these havee duplicate recipe identifiers, idk how to fix
+        //offerCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.STEEL_BLOCK, ModItems.MOLTEN_STEEL);
+
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.STEEL_SHEARS)
                 .pattern(" X")
@@ -51,6 +55,18 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter);
 
         makeHelmet(ModArmors.DEALMAKER,ModItems.PIPIS).offerTo(exporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ROSE_GOLD_INGOT)
+                        .input(ModItems.MOLTEN_ROSE_GOLD)
+                        .input(ModItems.MOLD)
+                        .criterion(hasItem(ModItems.MOLTEN_ROSE_GOLD), conditionsFromItem(ModItems.MOLTEN_ROSE_GOLD))
+                        .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "rose_gold_ingot_casting"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.STEEL_INGOT)
+                .input(ModItems.MOLTEN_STEEL)
+                .input(ModItems.MOLD)
+                .criterion(hasItem(ModItems.MOLTEN_STEEL), conditionsFromItem(ModItems.MOLTEN_STEEL))
+                .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "steel_ingot_casting"));
 
         makePickaxe(ModTools.COPPER_PICKAXE,Items.COPPER_INGOT).offerTo(exporter);
         makeSword(ModTools.COPPER_SWORD,Items.COPPER_INGOT).offerTo(exporter);
