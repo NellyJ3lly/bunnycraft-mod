@@ -44,28 +44,30 @@ import java.util.function.Predicate;
 
 public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInventory {
 
-    //TODO possibly make the cauldron take your entire hand stack up to the maxStackPerItem variable
-
     // ---------------------------------------------------------------------------------------- CUSTOMIZABLE VARIABLES, use these to tweak stats, looks ect
     static final Map<String, Integer> getAlloyColor = Map.ofEntries(
             Map.entry("steel", 0x95FFFF), // the hex code of each alloy, leave 0x
-            Map.entry("rose_gold", 0xFFAFA4)
+            Map.entry("rose_gold", 0xFFAFA4),
+            Map.entry("netherite", 0x4F3D44)
     );
     static final Map<String, Item> getAlloyBucket = Map.ofEntries(
             Map.entry("empty", Items.BUCKET), // this is a precaution, if the code glitches then it should give the bucket back
             Map.entry("steel", ModItems.MOLTEN_STEEL), // what alloy returns what bucket item
-            Map.entry("rose_gold", ModItems.MOLTEN_ROSE_GOLD)
+            Map.entry("rose_gold", ModItems.MOLTEN_ROSE_GOLD),
+            Map.entry("netherite", ModItems.MOLTEN_NETHERITE)
     );
     static final Map<String, Integer> getAlloyConversionRate = Map.ofEntries(
-            Map.entry("steel", 2), // how much alloy is required before you can scoop out a single bucket
-            Map.entry("rose_gold", 1)
+            Map.entry("steel", 4), // how much alloy is required before you can scoop out a single bucket
+            Map.entry("rose_gold", 2),
+            Map.entry("netherite", 4)
     );
 
     public void tryAlloy() { // ----------------------------------- add new alloys here
 
-        //make sure the name is consistent, the final it is how many ticks it takes to complete the alloy
+        //make sure the name is consistent, the final is how many ticks it takes to complete the alloy
         trySpecificAlloy("rose_gold", 1, Items.COPPER_INGOT, Items.GOLD_INGOT, 80);
-        trySpecificAlloy("steel", 2, Items.DIAMOND, Items.IRON_INGOT, 140);
+        trySpecificAlloy("steel", 4, Items.DIAMOND, Items.IRON_INGOT, 160);
+        trySpecificAlloy("netherite", 4, Items.GOLD_INGOT, Items.NETHERITE_SCRAP, 140);
 
     }
 

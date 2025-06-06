@@ -25,6 +25,7 @@ public class ModItems {
 
     public static  final Item MOLTEN_ROSE_GOLD = registerItem("molten_rose_gold", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_STEEL = registerItem("molten_steel", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
+    public static  final Item MOLTEN_NETHERITE = registerItem("molten_netherite", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
 
     public static  final Item PANCAKE_RABBIT = registerItem("pancake_rabbit",SmithingTemplateItem.of(Identifier.of(Bunnycraft.MOD_ID,"rabbit_trim"), FeatureFlags.VANILLA));
 
@@ -67,8 +68,8 @@ public class ModItems {
             ingotList.put(0, Items.IRON_INGOT);
             ingotList.put(1, Items.COPPER_INGOT);
             ingotList.put(2, Items.GOLD_INGOT);
-            ingotList.put(3, Items.NETHERITE_INGOT);
-            ingotList.put(4, Items.DIAMOND);
+            ingotList.put(3, Items.DIAMOND);
+            ingotList.put(4, Items.NETHERITE_SCRAP);
             //add any other items that should be able to go into the cauldron NOT MOD ITEMS, those should register using this method
         }
 

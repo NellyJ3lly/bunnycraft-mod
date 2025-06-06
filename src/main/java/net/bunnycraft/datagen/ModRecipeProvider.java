@@ -9,6 +9,7 @@ import net.bunnycraft.util.ModArmorRecipes;
 import net.bunnycraft.util.ModToolRecipes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
@@ -37,7 +38,7 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MOLD, 8)
                 .pattern("OOO")
                 .input('O', Items.CLAY_BALL)
-                .criterion(hasItem(Items.CLAY_BALL), conditionsFromItem(Items.CLAY_BALL)).offerTo(exporter);
+                .criterion(hasItem(Items.CAULDRON), conditionsFromItem(Items.CAULDRON)).offerTo(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.STEEL_SHEARS)
                 .pattern(" X")
@@ -60,6 +61,14 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('X', ModItems.MOLTEN_STEEL)
                 .criterion(hasItem(ModItems.MOLTEN_STEEL), conditionsFromItem(ModItems.MOLTEN_STEEL))
                 .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "steel_molten_compacting"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Blocks.NETHERITE_BLOCK)
+                .pattern("XXX")
+                .pattern("XXX")
+                .pattern("XXX")
+                .input('X', ModItems.MOLTEN_NETHERITE)
+                .criterion(hasItem(ModItems.MOLTEN_NETHERITE), conditionsFromItem(ModItems.MOLTEN_NETHERITE))
+                .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "netherite_molten_compacting"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.TRIDENT)
                 .pattern("-O-")
