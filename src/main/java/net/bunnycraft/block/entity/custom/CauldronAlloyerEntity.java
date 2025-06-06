@@ -5,13 +5,16 @@ import net.bunnycraft.block.entity.ImplementedInventory;
 import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.entity.custom.AlloyLiquidEntity;
 import net.bunnycraft.item.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.DisplayEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventories;
@@ -25,6 +28,8 @@ import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.TypeFilter;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -34,18 +39,14 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.concurrent.Flow;
 import java.util.function.Predicate;
 
 public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInventory {
 
-
-
-
-
-
     //TODO possibly make the cauldron take your entire hand stack up to the maxStackPerItem variable
 
-    // ------------------------------------------------------------------- CUSTOMIZABLE VARIABLES, use these to tweak stats, looks ect
+    // ---------------------------------------------------------------------------------------- CUSTOMIZABLE VARIABLES, use these to tweak stats, looks ect
     static final Map<String, Integer> getAlloyColor = Map.ofEntries(
             Map.entry("steel", 0x95FFFF), // the hex code of each alloy, leave 0x
             Map.entry("rose_gold", 0xFFAFA4)
@@ -60,25 +61,31 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             Map.entry("rose_gold", 1)
     );
 
-    public void tryAlloy() { // add new alloys here
+    public void tryAlloy() { // ----------------------------------- add new alloys here
 
         //make sure the name is consistent, the final it is how many ticks it takes to complete the alloy
         trySpecificAlloy("rose_gold", 1, Items.COPPER_INGOT, Items.GOLD_INGOT, 80);
         trySpecificAlloy("steel", 2, Items.DIAMOND, Items.IRON_INGOT, 140);
 
+    }
 
+    private int checkForHeatFromBlocks(BlockPos pos) { // -----------  add new blocks that should provide heat here
+        int heat = 0;
+
+        heat += checkForHeat(pos, Fluids.LAVA, 1);
+
+        return heat;
     }
 
     private static final float fluidFullLevel = 0.9375f; // dont change this, it is vanilla value pulled from lavaCauldron
     private static final float fluidEmptyLevel = .242f;
 
-    private static final int maxStackPerItem = 8;
+    private static final int maxStackPerItem = 8; // adjust how high a stack in the cauldron can go as well as how high the fluid stack can go
 
     public void clientTick() { // particle stuff, adjust only multipliers!!!
 
-
-        if (alloying) {
-
+        assert this.getWorld() != null;
+        if (alloying && this.getWorld().random.nextDouble() < .5) { // this number is the chance that a particle spawns in a certain tick
 
             assert this.getWorld() != null;
             Random rand = this.getWorld().getRandom();
@@ -101,8 +108,10 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
 
-
     //-------------------------------------------------------------------- end of customizable variables
+
+
+
 
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
     private final Map<UUID, DelayedTask> scheduledTasks = new LinkedHashMap<>();
@@ -269,9 +278,11 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
 
     private void trySpecificAlloy(String name, int heat, Item ingredient1, Item ingredient2, int ticks) {
-        if (checkForHeat(this.getPos()) >= heat && checkForItems(ingredient1, ingredient2) && !this.alloying) {
+        if (checkForHeatFromBlocks(this.getPos()) >= heat && checkForItems(ingredient1, ingredient2) && !this.alloying) {
             if (this.currentAlloy.equals("empty") || this.currentAlloy.equals(name) && this.alloyAmount < maxStackPerItem) {
                 setAlloying(true);
+
+
 
                 scheduleTask(() -> {
                     this.getStack(0).decrement(1);
@@ -287,6 +298,8 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                         this.updateLiquidDisplay(this.currentAlloy, server, getFluidLevel(this.alloyAmount));
                         this.updateSlot0Display(this.getStack(0), server);
                         this.updateSlot1Display(this.getStack(1), server);
+
+                        server.playSound(null, this.getPos(), SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
                     }
 
                     tryAlloy();
@@ -317,15 +330,26 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             }
         }
 
+        assert this.getWorld() != null;
+
+        if (this.alloying && this.getWorld().random.nextDouble() < .1) {
+            if (this.getWorld() instanceof ServerWorld server) {
+                server.playSound(null, this.getPos(), SoundEvents.BLOCK_BLASTFURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, .7f, 1);
+            }
+        }
+
+        if (this.getWorld().random.nextDouble() < .005 && this.alloyAmount != 0) {
+            if (this.getWorld() instanceof ServerWorld server) {
+                server.playSound(null, this.getPos(), SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, .5f, .7f);
+            }
+        }
 
         // Create a list to hold tasks to be executed in this tick
         List<UUID> tasksToExecute = new ArrayList<>();
 
         // Iterate over the map to find tasks ready for execution
         // DO NOT modify scheduledTasks within this loop directly!
-        Iterator<Map.Entry<UUID, DelayedTask>> iterator = scheduledTasks.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<UUID, DelayedTask> entry = iterator.next();
+        for (Map.Entry<UUID, DelayedTask> entry : scheduledTasks.entrySet()) {
             DelayedTask task = entry.getValue();
 
             task.ticksRemaining--; // Decrement the remaining ticks
@@ -356,11 +380,11 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
         if (stack != null && ModItems.ingotList.containsValue(stack.getItem()) && !world.isClient()) { // if the item is a valid alloyable ingot
 
-            if(insertStack(stack.copyWithCount(1), player, world)) { // inserts the stack into the inventory
-                stack.decrement(1); // if it was successfully inserted then decrement the players stack
 
+            if(insertStack(stack, player, world)) { // inserts the stack into the inventory
                 tryAlloy(); // and check if an alloy recipe has been successfully created
             }
+
 
             this.markDirty(); // tells the game to save the data
 
@@ -480,35 +504,56 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         //if the inventory already has the stack, merge the stacks
         if (ItemStack.areItemsEqual(this.getStack(0), stack)) {
 
-            if (this.getStack(0).getCount() >= maxStackPerItem) {
+            if (this.getStack(0).getCount() >= maxStackPerItem) { // if theres no room return
                 return false;
+            } else if (maxStackPerItem - this.getStack(0).getCount() <= stack.getCount()){ // if player has more than enough or equal to enough insert the max amount possible
+                this.getStack(0).increment(maxStackPerItem - this.getStack(0).getCount());
+                stack.decrement(maxStackPerItem - this.getStack(0).getCount());
+                return true;
             } else {
-                this.getStack(0).increment(1);
+                this.getStack(0).increment(stack.getCount());
+                stack.copyAndEmpty();
                 return true;
             }
 
         } else if (ItemStack.areItemsEqual(this.getStack(1), stack)) {
 
-            if (this.getStack(1).getCount() >= maxStackPerItem) {
+            if (this.getStack(1).getCount() >= maxStackPerItem) { // if theres no room return
                 return false;
+            } else if (maxStackPerItem - this.getStack(1).getCount() <= stack.getCount()){ // if player has more than enough or equal to enough insert the max amount possible
+                this.getStack(1).increment(maxStackPerItem - this.getStack(1).getCount());
+                stack.decrement(maxStackPerItem - this.getStack(1).getCount());
+                return true;
             } else {
-                this.getStack(1).increment(1);
+                this.getStack(1).increment(stack.getCount());
+                stack.copyAndEmpty();
                 return true;
             }
 
         } else if (this.getStack(0).isEmpty()){
 
-            this.setStack(0, stack);
+            if (maxStackPerItem <= stack.getCount()) {
+                this.setStack(0, stack.copyWithCount(maxStackPerItem));
+                stack.decrement(maxStackPerItem);
+            } else {
+                this.setStack(0, stack.copyAndEmpty());
+            }
 
-            this.updateSlot0Display(stack, (ServerWorld) world);
+
+            this.updateSlot0Display(this.getStack(0), (ServerWorld) world);
 
             return true;
 
         } else if (this.getStack(1).isEmpty()) {
 
-            this.setStack(1, stack);
+            if (maxStackPerItem <= stack.getCount()) {
+                this.setStack(1, stack.copyWithCount(maxStackPerItem));
+                stack.decrement(maxStackPerItem);
+            } else {
+                this.setStack(1, stack.copyAndEmpty());
+            }
 
-            this.updateSlot1Display(stack, (ServerWorld) world);
+            this.updateSlot1Display(this.getStack(1), (ServerWorld) world);
 
             return true;
         } else {
@@ -521,41 +566,55 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     }
 
-    private int checkForHeat(BlockPos pos) {
+    private int checkForHeat(BlockPos pos, FlowableFluid thisFluid, int heatForBlock) {
 
         int heat = 0;
 
-        if (isLavaSource(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ()))) { // check below
-            heat++;
-        }
-
-        if (isLavaSource(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()))) { // check left
-            heat++;
-        }
-
-        if (isLavaSource(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()))) { // check right
-            heat++;
-        }
-
-        if (isLavaSource(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1))) { // check front
-            heat++;
-        }
-
-        if (isLavaSource(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1))) { // check back
-            heat++;
-        }
+        heat += isHotOrCold(new BlockPos(this.getPos().getX(), this.getPos().getY() - 1, this.getPos().getZ()), thisFluid, heatForBlock);
+        heat += isHotOrCold(new BlockPos(this.getPos().getX() - 1 , this.getPos().getY(), this.getPos().getZ()), thisFluid, heatForBlock);
+        heat += isHotOrCold(new BlockPos(this.getPos().getX() + 1, this.getPos().getY(), this.getPos().getZ()), thisFluid, heatForBlock);
+        heat += isHotOrCold(new BlockPos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ() - 1), thisFluid, heatForBlock);
+        heat += isHotOrCold(new BlockPos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ() + 1), thisFluid, heatForBlock);
 
         return heat;
 
     }
 
-    private boolean isLavaSource(BlockPos pos) {
+    private int checkForHeat(BlockPos pos, Block block, int heatForBlock) {
+
+        int heat = 0;
+
+        heat += isHotOrCold(new BlockPos(this.getPos().getX(), this.getPos().getY() - 1, this.getPos().getZ()), block, heatForBlock);
+        heat += isHotOrCold(new BlockPos(this.getPos().getX() - 1, this.getPos().getY(), this.getPos().getZ()), block, heatForBlock);
+        heat += isHotOrCold(new BlockPos(this.getPos().getX() + 1, this.getPos().getY(), this.getPos().getZ()), block, heatForBlock);
+        heat += isHotOrCold(new BlockPos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ() - 1), block, heatForBlock);
+        heat += isHotOrCold(new BlockPos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ() + 1), block, heatForBlock);
+
+        return heat;
+
+    }
+
+    private int isHotOrCold(BlockPos pos, FlowableFluid thisFluid, int heatForBlock) {
 
         assert this.getWorld() != null;
         BlockState block = this.getWorld().getBlockState(pos);
         FluidState fluid = block.getFluidState();
 
-        return fluid.isOf(Fluids.LAVA) && fluid.isStill();
+        if (fluid.isOf(thisFluid) && fluid.isStill()) {
+            return heatForBlock;
+        } else {
+            return 0;
+        }
+    }
+
+    private int isHotOrCold(BlockPos pos, Block block, int heatForBlock) {
+
+        assert this.getWorld() != null;
+        if (this.getWorld().getBlockState(pos).isOf(block)) {
+            return heatForBlock;
+        } else {
+            return 0;
+        }
     }
 
     private void updateLiquidDisplay(String liquid, ServerWorld world, float height) {
