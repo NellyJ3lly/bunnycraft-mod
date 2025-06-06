@@ -4,7 +4,7 @@ import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
 import net.bunnycraft.entity.ModEntities;
-import net.bunnycraft.item.ModArmors;
+import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;

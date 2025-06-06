@@ -54,7 +54,7 @@
   "block.bunnycraft.rose_gold_block": "supaa fancwy bluk",
   "block.bunnycraft.steel_block": "big pice of metel",
 
-  "item.bunnycraft.breeze_bar": "it wewwy WIMDYY",
+  "item.bunnycraft.breeze_bar": "winddd of bar",
 
   "item.bunnycraft.copper_helmet": "copurr hat",
   "item.bunnycraft.copper_chestplate": "copurr shirt",
@@ -67,5 +67,10 @@
   "item.bunnycraft.prismarine_sword": "water cuttor",
   "item.bunnycraft.prismarine_axe": "wator ack",
   "item.bunnycraft.prismarine_shovel": "wet spoon",
-  "item.bunnycraft.prismarine_hoe": "wet ho"
+  "item.bunnycraft.prismarine_hoe": "wet ho",
+
+  "item.bunnycraft.molten_rose_gold": "bucket wit really hot fancy metel",
+  "item.bunnycraft.molten_steel": "bucket with really hot metel",
+  "item.bunnycraft.pipis": "whaa even is dis thing???",
+  "item.bunnycraft.mold": "clay wit squimsh in te middle"
 }

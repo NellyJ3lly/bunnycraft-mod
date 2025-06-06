@@ -2,13 +2,17 @@
   "itemgroup.bunnycraft.group": "Bunnycraft",
 
   "item.bunnycraft.rose_gold_ingot": "Rose Gold Ingot",
+  "item.bunnycraft.molten_rose_gold": "Bucket of Molten Rose Gold",
   "block.bunnycraft.rose_gold_block": "Block of Rose Gold",
 
   "item.bunnycraft.steel_ingot": "Steel Ingot",
+  "item.bunnycraft.molten_steel": "Bucket of Molten Steel",
   "block.bunnycraft.steel_block": "Block of Steel",
 
   "item.bunnycraft.breeze_bar": "Breeze Bar",
   "item.bunnycraft.pancake_rabbit": "Pancake Rabbit",
+  "item.bunnycraft.pipis": "Pipis",
+  "item.bunnycraft.mold": "Clay Mold",
 
   "item.bunnycraft.copper_bunnycoin": "Copper Bunnycoin",
   "item.bunnycraft.gold_bunnycoin": "Gold Bunnycoin",

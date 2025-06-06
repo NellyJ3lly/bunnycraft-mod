@@ -431,6 +431,8 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
             this.markDirty();
 
+            tryAlloy();
+
             return true;
         }
         return false;
@@ -440,6 +442,16 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     public boolean returnItems(PlayerEntity player) {
 
         if (this.alloying) {
+
+            //gives the player all but 1 of each item
+            player.getInventory().insertStack(this.getStack(0).copyWithCount(this.getStack(0).getCount() - 1));
+            player.getInventory().insertStack(this.getStack(1).copyWithCount(this.getStack(1).getCount() - 1));
+
+            //gets rid of all but 1 of the items
+            this.getStack(0).decrement(this.getStack(0).getCount() - 1);
+            this.getStack(1).decrement(this.getStack(1).getCount() - 1);
+
+            //dont update the displays cause there still should be al least 1 of each item in there
 
             return false; // dont pass to default cauldron interaction
 
