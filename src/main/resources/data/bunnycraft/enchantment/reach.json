@@ -1,0 +1,45 @@
+{
+  "description": {
+    "translate": "enchantment.bunnycraft.reach"
+  },
+  "exclusive_set": "minecraft:efficiency",
+  "supported_items": "#minecraft:enchantable/mining",
+  "weight": 10,
+  "max_level": 5,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 10
+  },
+  "max_cost": {
+    "base": 51,
+    "per_level_above_first": 10
+  },
+  "anvil_cost": 1,
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "attribute": "minecraft:player.block_interaction_range",
+        "id": "bunnycraft:enchantment.block_reach",
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 1,
+          "per_level_above_first": 0.5
+        },
+        "operation": "add_value"
+      },
+      {
+        "attribute": "minecraft:player.entity_interaction_range",
+        "id": "bunnycraft:enchantment.entity_reach",
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 1,
+          "per_level_above_first": 0.5
+        },
+        "operation": "add_value"
+      }
+    ]
+  }
+}

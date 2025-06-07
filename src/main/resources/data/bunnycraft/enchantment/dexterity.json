@@ -1,0 +1,35 @@
+{
+  "exclusive_set": "#minecraft:exclusive_set/damage",
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.bunnycraft.dexterity"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.5,
+          "per_level_above_first": 0.5
+        },
+        "attribute": "minecraft:generic.attack_speed",
+        "id": "bunnycraft:enchantment.dexterity",
+        "operation": "add_value"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 51,
+    "per_level_above_first": 10
+  },
+  "max_level": 5,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/sword",
+  "weight": 10
+}

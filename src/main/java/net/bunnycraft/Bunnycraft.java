@@ -11,6 +11,7 @@ import net.bunnycraft.item.ModTools;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.component.type.BundleContentsComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,6 +68,4 @@ public class Bunnycraft implements ModInitializer {
 	public static final int hoeRange = 2;
 
 	public static final float shovelKnockback = 2; // base knockback for shovel
-
-	public static final float steelSlowdown = -0.07f; // this corresponds to a percent slowdown per armor piece
 }

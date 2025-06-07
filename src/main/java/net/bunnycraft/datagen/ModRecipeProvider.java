@@ -80,8 +80,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .criterion(hasItem(Items.PRISMARINE), conditionsFromItem(Items.PRISMARINE))
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter);
 
-        makeHelmet(ModArmors.DEALMAKER,ModItems.PIPIS).offerTo(exporter);
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ROSE_GOLD_INGOT)
                         .input(ModItems.MOLTEN_ROSE_GOLD)
                         .input(ModItems.MOLD)
@@ -129,5 +127,86 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         makeSpear(ModTools.ROSE_GOLD_SPEAR, ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
 
         offerSmithingTrimRecipe(exporter, ModItems.PANCAKE_RABBIT, Identifier.of(Bunnycraft.MOD_ID,"rabbit"));
+
+        makeHelmet(ModArmors.DEALMAKER,ModItems.PIPIS).offerTo(exporter);
+
+        makeHelmet(ModArmors.COPPER_HELMET,Items.COPPER_INGOT).offerTo(exporter);
+        makeChestplate(ModArmors.COPPER_CHESTPLATE,Items.COPPER_INGOT).offerTo(exporter);
+        makeLeggings(ModArmors.COPPER_LEGGINGS,Items.COPPER_INGOT).offerTo(exporter);
+        makeBoots(ModArmors.COPPER_BOOTS,Items.COPPER_INGOT).offerTo(exporter);
+
+        makeChestplate(ModArmors.TURTLE_CHESTPLATE,Items.TURTLE_SCUTE).offerTo(exporter);
+        makeLeggings(ModArmors.TURTLE_LEGGINGS,Items.TURTLE_SCUTE).offerTo(exporter);
+        makeBoots(ModArmors.TURTLE_BOOTS,Items.TURTLE_SCUTE).offerTo(exporter);
+
+        makeHelmet(ModArmors.ROSE_GOLD_HELMET,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
+        makeChestplate(ModArmors.ROSE_GOLD_CHESTPLATE,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
+        makeLeggings(ModArmors.ROSE_GOLD_LEGGINGS,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
+        makeBoots(ModArmors.ROSE_GOLD_BOOTS,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
+
+        makeHelmet(ModArmors.STEEL_HELMET,ModItems.STEEL_INGOT).offerTo(exporter);
+        makeChestplate(ModArmors.STEEL_CHESTPLATE,ModItems.STEEL_INGOT).offerTo(exporter);
+        makeLeggings(ModArmors.STEEL_LEGGINGS,ModItems.STEEL_INGOT).offerTo(exporter);
+        makeBoots(ModArmors.STEEL_BOOTS,ModItems.STEEL_INGOT).offerTo(exporter);
+
+        /// Guardian Armor
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.GUARDIAN_HELMET)
+                .pattern("/S/")
+                .pattern("/ /")
+                .input('/', Items.PRISMARINE_SHARD).input('S', Items.PRISMARINE_CRYSTALS)
+                .criterion(hasItem(Items.PRISMARINE), conditionsFromItem(Items.PRISMARINE)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.GUARDIAN_CHESTPLATE)
+                .pattern("O O")
+                .pattern("/H/")
+                .pattern("///")
+                .input('O', Items.NAUTILUS_SHELL).input('H', Items.HEART_OF_THE_SEA).input('/', Items.PRISMARINE_SHARD)
+                .criterion(hasItem(Items.PRISMARINE), conditionsFromItem(Items.PRISMARINE)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.GUARDIAN_LEGGINGS)
+                .pattern("///")
+                .pattern("/ /")
+                .pattern("/ /")
+                .input('/', Items.PRISMARINE_SHARD)
+                .criterion(hasItem(Items.PRISMARINE), conditionsFromItem(Items.PRISMARINE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.GUARDIAN_BOOTS)
+                .pattern("/ /")
+                .pattern("/ /")
+                .input('/', Items.PRISMARINE_SHARD)
+                .criterion(hasItem(Items.PRISMARINE), conditionsFromItem(Items.PRISMARINE)).offerTo(exporter);
+
+
+        /// Diving Armor
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.DIVING_HELMET)
+                .pattern("/R/")
+                .pattern("/G/")
+                .pattern("/R/")
+                .input('R', Items.REDSTONE).input('G', Items.GLASS).input('/', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.DIVING_CHESTPLATE)
+                .pattern("L L")
+                .pattern("/R/")
+                .pattern("L/L")
+                .input('R', Items.REDSTONE).input('L', Items.LEATHER).input('/', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.DIVING_LEGGINGS)
+                .pattern("LLL")
+                .pattern("/ /")
+                .pattern("L L")
+                .input('/', Items.COPPER_INGOT).input('L', Items.LEATHER)
+                .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.DIVING_BOOTS)
+                .pattern("L L")
+                .pattern("/ /")
+                .input('/', Items.COPPER_INGOT).input('L', Items.LEATHER)
+                .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER)).offerTo(exporter);
     }
 }

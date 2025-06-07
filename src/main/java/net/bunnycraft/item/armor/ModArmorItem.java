@@ -20,33 +20,14 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModArmorItem extends ArmorItem implements Equipment {
-    private final Supplier<AttributeModifiersComponent> attributeModifiers;
-
     private static final Map<RegistryEntry<ArmorMaterial>, List<StatusEffectInstance>> MATERIAL_TO_EFFECT_MAP =
             (new ImmutableMap.Builder<RegistryEntry<ArmorMaterial>, List<StatusEffectInstance>>())
                     .put(ModArmorMaterials.STEEL_ARMOR_MATERIAL,
-                            List.of(new StatusEffectInstance(StatusEffects.RESISTANCE, 400, 0, false, false))).build();
-
+                            List.of(new StatusEffectInstance(
+                                    StatusEffects.RESISTANCE, 400, 0, false, false))).build();
 
     public ModArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings) {
         super(material, type, settings);
-
-        this.attributeModifiers = Suppliers.memoize(() -> {
-            int i = ((ArmorMaterial)material.value()).getProtection(type);
-            float f = ((ArmorMaterial)material.value()).toughness();
-            AttributeModifiersComponent.Builder builder = AttributeModifiersComponent.builder();
-            AttributeModifierSlot attributeModifierSlot = AttributeModifierSlot.forEquipmentSlot(type.getEquipmentSlot());
-            Identifier identifier = Identifier.ofVanilla("armor." + type.getName());
-            builder.add(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(identifier, (double)i, EntityAttributeModifier.Operation.ADD_VALUE), attributeModifierSlot);
-            builder.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, new EntityAttributeModifier(identifier, (double)f, EntityAttributeModifier.Operation.ADD_VALUE), attributeModifierSlot);
-            builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(identifier, (double)f, EntityAttributeModifier.Operation.ADD_VALUE), attributeModifierSlot);
-            float g = ((ArmorMaterial)material.value()).knockbackResistance();
-            if (g > 0.0F) {
-                builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, new EntityAttributeModifier(identifier, (double)g, EntityAttributeModifier.Operation.ADD_VALUE), attributeModifierSlot);
-            }
-
-            return builder.build();
-        });;
     }
 
     @Override

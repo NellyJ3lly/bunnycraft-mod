@@ -16,12 +16,12 @@ public class ModEntities {
     //registers the spear entity
     public static final EntityType<SpearEntity> SPEAR = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Bunnycraft.MOD_ID, "spear_entity"),
             EntityType.Builder.<SpearEntity>create(SpearEntity::new, SpawnGroup.MISC)
-                    .dimensions(1.5f, 1.5f).build());
+                    .dimensions(0.8f, 0.8f).build());
 
     //registers the spear entity
     public static final EntityType<SpearEntity> ROSE_GOLD_SPEAR = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Bunnycraft.MOD_ID, "rose_gold_spear_entity"),
             EntityType.Builder.<SpearEntity>create(SpearEntity::new, SpawnGroup.MISC)
-                    .dimensions(1.5f, 1.5f).build());
+                    .dimensions(0.8f, 0.8f).build());
 
     public static final EntityType<AlloyLiquidEntity> ALLOY_LIQUID_ENTITY = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Bunnycraft.MOD_ID, "alloy_liquid_entity"),
             EntityType.Builder.<AlloyLiquidEntity>create(AlloyLiquidEntity::new, SpawnGroup.MISC)

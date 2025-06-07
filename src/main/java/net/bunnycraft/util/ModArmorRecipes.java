@@ -30,7 +30,7 @@ public interface ModArmorRecipes {
                 .criterion(hasItem(Ingot), conditionsFromItem(Ingot));
     }
 
-    default ShapedRecipeJsonBuilder MakeLeggings(Item Leggings, Item Ingot) {
+    default ShapedRecipeJsonBuilder makeLeggings(Item Leggings, Item Ingot) {
         return ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Leggings)
                 .pattern("XXX")
                 .pattern("X X")

@@ -1,31 +1,38 @@
 {
   "itemgroup.bunnycraft.group": "Bunnycraft",
 
-  "item.bunnycraft.rose_gold_ingot": "Rose Gold Ingot",
-  "item.bunnycraft.molten_rose_gold": "Bucket of Molten Rose Gold",
-  "block.bunnycraft.rose_gold_block": "Block of Rose Gold",
-
-  "item.bunnycraft.steel_ingot": "Steel Ingot",
-  "item.bunnycraft.molten_steel": "Bucket of Molten Steel",
-  "block.bunnycraft.steel_block": "Block of Steel",
-
-  "item.bunnycraft.molten_netherite": "Bucket of Molten Netherite",
-
-  "item.bunnycraft.breeze_bar": "Breeze Bar",
-  "item.bunnycraft.pancake_rabbit": "Pancake Rabbit",
-  "item.bunnycraft.pipis": "Pipis",
-  "item.bunnycraft.mold": "Clay Mold",
-
-  "item.bunnycraft.copper_bunnycoin": "Copper Bunnycoin",
-  "item.bunnycraft.gold_bunnycoin": "Gold Bunnycoin",
-  "item.bunnycraft.diamond_bunnycoin": "Diamond Bunnycoin",
-
   "block.bunnycraft.pancake_rabbit_ore": "Pancake Rabbit Ore",
   "block.bunnycraft.pancake_rabbit_block": "Pancake Rabbit Block",
 
   "block.bunnycraft.copper_bunnycoin_block": "Block of Copper Bunnycoins",
   "block.bunnycraft.gold_bunnycoin_block": "Block of Gold Bunnycoins",
   "block.bunnycraft.diamond_bunnycoin_block": "Block of Diamond Bunnycoins",
+
+  "block.bunnycraft.rose_gold_block": "Block of Rose Gold",
+  "block.bunnycraft.steel_block": "Block of Steel",
+
+  "enchantment.bunnycraft.dexterity": "Dexterity",
+  "enchantment.bunnycraft.reach": "Reach",
+  "enchantment.bunnycraft.spacious": "Spacious",
+  "enchantment.bunnycraft.weightless": "Weightless",
+
+  "tooltip.bunnycraft.empty_slot.instructions": "This item reserves a slot for your spear, Drop to delete",
+
+  "item.bunnycraft.rose_gold_ingot": "Rose Gold Ingot",
+  "item.bunnycraft.molten_rose_gold": "Bucket of Molten Rose Gold",
+
+  "item.bunnycraft.steel_ingot": "Steel Ingot",
+  "item.bunnycraft.molten_steel": "Bucket of Molten Steel",
+
+  "item.bunnycraft.molten_netherite": "Bucket of Molten Netherite",
+
+  "item.bunnycraft.breeze_bar": "Breeze Bar",
+  "item.bunnycraft.pancake_rabbit": "Pancake Rabbit",
+  "item.bunnycraft.mold": "Clay Mold",
+
+  "item.bunnycraft.copper_bunnycoin": "Copper Bunnycoin",
+  "item.bunnycraft.gold_bunnycoin": "Gold Bunnycoin",
+  "item.bunnycraft.diamond_bunnycoin": "Diamond Bunnycoin",
 
   "item.bunnycraft.copper_pickaxe": "Copper Pickaxe",
   "item.bunnycraft.copper_sword": "Copper Sword",
@@ -50,12 +57,31 @@
   "item.bunnycraft.steel_leggings": "Steel Leggings",
   "item.bunnycraft.steel_boots": "Steel Boots",
 
+  "item.bunnycraft.guardian_helmet": "Guardian helmet",
+  "item.bunnycraft.guardian_chestplate": "Guardian Chestplate",
+  "item.bunnycraft.guardian_leggings": "Guardian Leggings",
+  "item.bunnycraft.guardian_boots": "Guardian Boots",
+
+  "item.bunnycraft.turtle_chestplate": "Turtle Chestplate",
+  "item.bunnycraft.turtle_leggings": "Turtle Leggings",
+  "item.bunnycraft.turtle_boots": "Turtle Boots",
+
+  "item.bunnycraft.diving_helmet": "Diving helmet",
+  "item.bunnycraft.diving_chestplate": "Diving Chestplate",
+  "item.bunnycraft.diving_leggings": "Diving Leggings",
+  "item.bunnycraft.diving_boots": "Diving Boots",
+
   "item.bunnycraft.rose_gold_pickaxe": "Rose Gold Pickaxe",
   "item.bunnycraft.rose_gold_sword": "Rose Gold Sword",
   "item.bunnycraft.rose_gold_spear": "Rose Gold Spear",
   "item.bunnycraft.rose_gold_axe": "Rose Gold Axe",
   "item.bunnycraft.rose_gold_shovel": "Rose Gold Shovel",
   "item.bunnycraft.rose_gold_hoe": "Rose Gold Hoe",
+
+  "item.bunnycraft.rose_gold_helmet": "Rose Gold Helmet",
+  "item.bunnycraft.rose_gold_chestplate": "Rose Gold Chestplate",
+  "item.bunnycraft.rose_gold_leggings": "Rose Gold Leggings",
+  "item.bunnycraft.rose_gold_boots": "Rose Gold Boots",
 
   "item.bunnycraft.prismarine_pickaxe": "Prismarine Pickaxe",
   "item.bunnycraft.prismarine_sword": "Prismarine Sword",
@@ -73,5 +99,6 @@
   "item.bunnycraft.steel_spear": "Steel Spear",
   "item.bunnycraft.empty_spear_slot": "Spear Slot",
 
-  "tooltip.bunnycraft.empty_slot.instructions": "This item reserves a slot for your spear, Drop to delete"
+  "item.bunnycraft.pipis": "Pipis",
+  "item.bunnycraft.dealmaker": "Dealmaker"
 }

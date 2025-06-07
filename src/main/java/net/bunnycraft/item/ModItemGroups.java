@@ -70,19 +70,38 @@ public class ModItemGroups {
                         entries.add(ModTools.NETHERITE_SPEAR);
                         entries.add(ModTools.STEEL_SPEAR);
 
-                        entries.add(ModArmors.STEEL_HELMET);
-                        entries.add(ModArmors.STEEL_CHESTPLATE);
-                        entries.add(ModArmors.STEEL_LEGGINGS);
-                        entries.add(ModArmors.STEEL_BOOTS);
-
                         entries.add(ModArmors.COPPER_HELMET);
                         entries.add(ModArmors.COPPER_CHESTPLATE);
                         entries.add(ModArmors.COPPER_LEGGINGS);
                         entries.add(ModArmors.COPPER_BOOTS);
 
+                        entries.add(ModArmors.ROSE_GOLD_HELMET);
+                        entries.add(ModArmors.ROSE_GOLD_CHESTPLATE);
+                        entries.add(ModArmors.ROSE_GOLD_LEGGINGS);
+                        entries.add(ModArmors.ROSE_GOLD_BOOTS);
+
+                        entries.add(ModArmors.TURTLE_CHESTPLATE);
+                        entries.add(ModArmors.TURTLE_LEGGINGS);
+                        entries.add(ModArmors.TURTLE_BOOTS);
+
+                        entries.add(ModArmors.DIVING_HELMET);
+                        entries.add(ModArmors.DIVING_CHESTPLATE);
+                        entries.add(ModArmors.DIVING_LEGGINGS);
+                        entries.add(ModArmors.DIVING_BOOTS);
+
+                        entries.add(ModArmors.GUARDIAN_HELMET);
+                        entries.add(ModArmors.GUARDIAN_CHESTPLATE);
+                        entries.add(ModArmors.GUARDIAN_LEGGINGS);
+                        entries.add(ModArmors.GUARDIAN_BOOTS);
+
+                        entries.add(ModArmors.STEEL_HELMET);
+                        entries.add(ModArmors.STEEL_CHESTPLATE);
+                        entries.add(ModArmors.STEEL_LEGGINGS);
+                        entries.add(ModArmors.STEEL_BOOTS);
+
+                        entries.add(ModItems.MOLD);
                         entries.add(ModItems.MOLTEN_ROSE_GOLD);
                         entries.add(ModItems.MOLTEN_STEEL);
-                        entries.add(ModItems.MOLD);
                     }).build());
 
     public static void registerItemGroups() {

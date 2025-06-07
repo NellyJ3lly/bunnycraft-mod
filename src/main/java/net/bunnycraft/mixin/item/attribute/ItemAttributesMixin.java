@@ -1,4 +1,4 @@
-package net.bunnycraft.mixin.item;
+package net.bunnycraft.mixin.item.attribute;
 
 
 import net.bunnycraft.Bunnycraft;
@@ -38,7 +38,6 @@ public abstract class ItemAttributesMixin {
 
         //makes shovels deal double knockback
         if (item instanceof ShovelItem toolItem && slot == EquipmentSlot.MAINHAND) {
-
 
             RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.GENERIC_ATTACK_KNOCKBACK;
 
@@ -144,53 +143,31 @@ public abstract class ItemAttributesMixin {
         }
 
         if (item instanceof HoeItem toolItem && slot == EquipmentSlot.MAINHAND) {
-                RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE;
+            RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE;
 
-                EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
-                        Identifier.of(Bunnycraft.MOD_ID, toolItem.getTranslationKey() + "_range_id"),
-                        Bunnycraft.hoeRange,
-                        EntityAttributeModifier.Operation.ADD_VALUE
-                );
+            EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
+                    Identifier.of(Bunnycraft.MOD_ID, toolItem.getTranslationKey() + "_range_id"),
+                    Bunnycraft.hoeRange,
+                    EntityAttributeModifier.Operation.ADD_VALUE
+            );
 
-                consumer.accept(rangeAttribute, rangeModifier);
+            consumer.accept(rangeAttribute, rangeModifier);
 
         }
 
         if (item instanceof ToolItem toolItem && slot == EquipmentSlot.MAINHAND) {
             String material = toolItem.getMaterial().toString();
-            System.out.println(material);
 
             if(material.equals("PRISMARINE")) {
                 RegistryEntry<EntityAttribute> submergedminingspeed = EntityAttributes.PLAYER_SUBMERGED_MINING_SPEED;
 
                 EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
                         Identifier.of(Bunnycraft.MOD_ID, toolItem.getTranslationKey() + "_submerged_mining_speed"),
-                        4,
+                        1.8,
                         EntityAttributeModifier.Operation.ADD_VALUE
                 );
 
                 consumer.accept(submergedminingspeed, rangeModifier);
-            }
-        }
-
-        //makes steel armor slow you down
-        if (item instanceof ArmorItem armor && slot.isArmorSlot()) {
-
-
-            //gets the material name of the armor piece
-            String material = armor.getMaterial().getIdAsString().substring(11);
-
-            if(material.equals("steel")) {
-
-                RegistryEntry<EntityAttribute> movementAttribute = EntityAttributes.GENERIC_MOVEMENT_SPEED;
-
-                EntityAttributeModifier movementModifier = new EntityAttributeModifier(
-                        Identifier.of(Bunnycraft.MOD_ID, armor.getTranslationKey() + "_movement_id"), //ensures a unique identifier for each piece
-                        Bunnycraft.steelSlowdown,
-                        EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                );
-
-                consumer.accept(movementAttribute, movementModifier);
             }
         }
     }

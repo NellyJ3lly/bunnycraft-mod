@@ -1,0 +1,35 @@
+{
+  "exclusive_set": "minecraft:soul_speed",
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.bunnycraft.step_up"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "attribute": "minecraft:generic.step_height",
+        "id": "bunnycraft:enchantment.step_up",
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 1,
+          "per_level_above_first": 1
+        },
+        "operation": "add_value"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 10
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "feet"
+  ],
+  "supported_items": "#minecraft:enchantable/foot_armor",
+  "weight": 1
+}
