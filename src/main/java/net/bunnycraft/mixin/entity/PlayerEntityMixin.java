@@ -2,21 +2,23 @@ package net.bunnycraft.mixin.entity;
 
 
 import net.bunnycraft.item.ModItems;
+import net.bunnycraft.item.armor.ModArmors;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.EntityTypeTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
@@ -37,6 +39,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin (PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity{
+    private final PlayerAbilities abilities = new PlayerAbilities();
 
     @Unique
     private static final byte hoeSweepRange = 3; // change this to tweak how far the hoe sweeps, sword default is 1
@@ -57,6 +60,25 @@ public abstract class PlayerEntityMixin extends LivingEntity{
         }
     }
 
+    private boolean wearingDivingSuit() {
+        ItemStack helmet = this.getEquippedStack(EquipmentSlot.HEAD);
+        ItemStack chest = this.getEquippedStack(EquipmentSlot.CHEST);
+        ItemStack legs = this.getEquippedStack(EquipmentSlot.LEGS);
+        ItemStack feet = this.getEquippedStack(EquipmentSlot.FEET);
+
+        return
+                feet.isOf(ModArmors.DIVING_BOOTS) || legs.isOf(ModArmors.DIVING_LEGGINGS)
+                || chest.isOf(ModArmors.DIVING_CHESTPLATE) || legs.isOf(ModArmors.DIVING_HELMET) ;
+    }
+
+    /**
+     * @author Nelly
+     * @reason Disables swimming for the diving suit
+     */
+    @Overwrite
+    public boolean isSwimming() {
+        return !this.abilities.flying && !this.isSpectator() && !this.wearingDivingSuit() && super.isSwimming();
+    }
 
     @Shadow
     protected abstract float getDamageAgainst(Entity target, float baseDamage, DamageSource damageSource);
