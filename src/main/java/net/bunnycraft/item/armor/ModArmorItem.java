@@ -24,7 +24,10 @@ public class ModArmorItem extends ArmorItem implements Equipment {
             (new ImmutableMap.Builder<RegistryEntry<ArmorMaterial>, List<StatusEffectInstance>>())
                     .put(ModArmorMaterials.STEEL_ARMOR_MATERIAL,
                             List.of(new StatusEffectInstance(
-                                    StatusEffects.RESISTANCE, 400, 0, false, false))).build();
+                                    StatusEffects.RESISTANCE, 400, 0, false, false)))
+                    .put(ModArmorMaterials.ROSE_GOLD_ARMOR_MATERIAL,
+                            List.of(new StatusEffectInstance(
+                                    StatusEffects.REGENERATION, 1, 0, false, false))).build();
 
     public ModArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings) {
         super(material, type, settings);

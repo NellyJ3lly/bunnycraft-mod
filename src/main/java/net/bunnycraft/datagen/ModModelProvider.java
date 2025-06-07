@@ -49,6 +49,8 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.MOLTEN_NETHERITE, Models.GENERATED);
         gen.register(ModItems.MOLD, Models.GENERATED);
 
+        gen.register(ModTools.STEEL_SHEARS,Models.HANDHELD);
+
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_HELMET));
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_CHESTPLATE));
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_LEGGINGS));
@@ -59,9 +61,13 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.COPPER_LEGGINGS));
         gen.registerArmor(((ArmorItem) ModArmors.COPPER_BOOTS));
 
-        gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
+        gen.registerArmor(((ArmorItem) ModArmors.GUARDIAN_HELMET));
+        gen.registerArmor(((ArmorItem) ModArmors.GUARDIAN_CHESTPLATE));
+        gen.registerArmor(((ArmorItem) ModArmors.GUARDIAN_LEGGINGS));
+        gen.registerArmor(((ArmorItem) ModArmors.GUARDIAN_BOOTS));
 
-        gen.register(ModTools.STEEL_SHEARS,Models.HANDHELD);;
+
+        gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
 
         //add pickaxes
         for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {

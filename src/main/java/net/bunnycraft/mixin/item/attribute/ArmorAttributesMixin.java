@@ -133,7 +133,7 @@ public abstract class ArmorAttributesMixin {
                 if (slot == EquipmentSlot.LEGS || slot == EquipmentSlot.FEET) {
                     RegistryEntry<EntityAttribute> watereffiencyAttribute = EntityAttributes.GENERIC_WATER_MOVEMENT_EFFICIENCY;
                     EntityAttributeModifier watereffiencyModifier =
-                            Attribute(armor,"water_speed_id",0.25f, EntityAttributeModifier.Operation.ADD_VALUE);
+                            Attribute(armor,"water_speed_id",0.3f, EntityAttributeModifier.Operation.ADD_VALUE);
 
                     RegistryEntry<EntityAttribute> AttackAttribute = EntityAttributes.GENERIC_ATTACK_DAMAGE;
 
@@ -146,6 +146,14 @@ public abstract class ArmorAttributesMixin {
                 }
 
                 consumer.accept(GuardianmovementAttribute, GuardianMovement);
+            }
+
+            if(material.contains("rose_gold")) {
+                RegistryEntry<EntityAttribute> RosegoldHealthAttribute = EntityAttributes.GENERIC_MAX_HEALTH;
+                EntityAttributeModifier HealthBoostModifier =
+                        Attribute(armor,"health",2f, EntityAttributeModifier.Operation.ADD_VALUE);
+
+                consumer.accept(RosegoldHealthAttribute, HealthBoostModifier);
             }
         }
     }
