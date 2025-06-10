@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-07T11:41:44.2899267	Bunnycraft/Tags for minecraft:item
+// 1.21.1	2025-06-07T20:24:35.9398113	Bunnycraft/Tags for minecraft:item
 8fb2c86ef1e8e3e5c111578b51da91908ea5deb9 data\bunnycraft\tags\item\enchantable\shear.json
 f46bf1b668b37e24a0bdfd8d192f6faed34a2ddf data\minecraft\tags\item\trim_templates.json
 ba9125aa546790a0582445879c658b228dbb763c data\bunnycraft\tags\item\enchantable\axe.json
@@ -7,9 +7,9 @@ ba9125aa546790a0582445879c658b228dbb763c data\bunnycraft\tags\item\enchantable\a
 a1c2222abdb8af6a2b738854d7e940ed6b69340c data\minecraft\tags\item\shovels.json
 5e7c760621586934c47d721d06be94fdb2693f4e data\bunnycraft\tags\item\enchantable\shovel.json
 bc7a4f1d327f0c3286854888237365bd61e07fd4 data\minecraft\tags\item\trim_materials.json
+02928db5f3523d30ab626d889112509f76ac2ec7 data\minecraft\tags\item\hoes.json
 565a3694085afd1f0fdc011a21289ac9fe7cd81a data\bunnycraft\tags\item\spear.json
 e9b6d9bf22a964c2d3d00bea145af13501ccad50 data\minecraft\tags\item\pickaxes.json
-02928db5f3523d30ab626d889112509f76ac2ec7 data\minecraft\tags\item\hoes.json
 3ba3c72187fbfe96e09f409d79a532f2b2ff1a74 data\minecraft\tags\item\trimmable_armor.json
 f2f802158a14cd623f0aba1ce412496fe794c4e1 data\minecraft\tags\item\enchantable\sharp_weapon.json
 190a1d19ee517ea465c568ea89c61a06995d47c0 data\minecraft\tags\item\axes.json
