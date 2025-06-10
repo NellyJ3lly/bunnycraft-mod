@@ -7,13 +7,16 @@ import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.armor.ModArmors;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.client.color.item.ItemColorProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
@@ -66,7 +69,10 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.GUARDIAN_LEGGINGS));
         gen.registerArmor(((ArmorItem) ModArmors.GUARDIAN_BOOTS));
 
-
+        gen.registerArmor(((ArmorItem) ModArmors.DIVING_HELMET));
+        gen.registerArmor(((ArmorItem) ModArmors.DIVING_CHESTPLATE));
+        gen.registerArmor(((ArmorItem) ModArmors.DIVING_LEGGINGS));
+        gen.registerArmor(((ArmorItem) ModArmors.DIVING_BOOTS));
         gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
 
         //add pickaxes

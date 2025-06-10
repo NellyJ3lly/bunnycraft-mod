@@ -7,11 +7,11 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:egg",
-          "weight": 100
+          "weight": 40
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:acacia_sign",
+          "name": "bunnycraft:pipis",
           "weight": 1
         }
       ]

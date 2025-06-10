@@ -50,6 +50,7 @@ public abstract class ArmorAttributesMixin {
             //gets the material name of the armor piece
             String material = armor.getMaterial().getIdAsString();
 
+            // diving suit
             if(material.contains("diving")) {
                 RegistryEntry<EntityAttribute> movementAttribute = EntityAttributes.GENERIC_MOVEMENT_SPEED;
 
@@ -58,12 +59,12 @@ public abstract class ArmorAttributesMixin {
 
                 consumer.accept(movementAttribute, movementModifier);
 
-//                RegistryEntry<EntityAttribute> JumpAttribute = EntityAttributes.GENERIC_JUMP_STRENGTH;
-//
-//                EntityAttributeModifier JumpModifier =
-//                        Attribute(armor,"jump",0.1f, EntityAttributeModifier.Operation.ADD_VALUE);
-//
-//                consumer.accept(JumpAttribute, JumpModifier);
+                RegistryEntry<EntityAttribute> JumpAttribute = EntityAttributes.GENERIC_JUMP_STRENGTH;
+
+                EntityAttributeModifier JumpModifier =
+                        Attribute(armor,"jump",0.05f, EntityAttributeModifier.Operation.ADD_VALUE);
+
+                consumer.accept(JumpAttribute, JumpModifier);
 
                 RegistryEntry<EntityAttribute> WaterMiningAttribute = EntityAttributes.PLAYER_SUBMERGED_MINING_SPEED;
                 EntityAttributeModifier WaterMiningModifier =
@@ -79,7 +80,7 @@ public abstract class ArmorAttributesMixin {
 
                 RegistryEntry<EntityAttribute> WaterMovementAttribute = EntityAttributes.GENERIC_WATER_MOVEMENT_EFFICIENCY;
                 EntityAttributeModifier WaterMovementModifier =
-                        Attribute(armor,"water_efficiency",0.25f, EntityAttributeModifier.Operation.ADD_VALUE);
+                        Attribute(armor,"water_efficiency",0.3f, EntityAttributeModifier.Operation.ADD_VALUE);
 
                 consumer.accept(WaterMovementAttribute, WaterMovementModifier);
 
