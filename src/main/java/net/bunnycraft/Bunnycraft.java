@@ -4,14 +4,14 @@ import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
 import net.bunnycraft.entity.ModEntities;
-import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.item.armor.ModArmors;
+import net.bunnycraft.util.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.component.type.BundleContentsComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +28,7 @@ public class Bunnycraft implements ModInitializer {
 		ModEntities.registerModEntities();
 		ModItemGroups.registerItemGroups();
 		ModBlockEntities.registerBlockEntities();
+		ModScreenHandlers.registerModScreenHandlers();
 		LOGGER.info("Hello Bunnycrafter!");
 
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks

@@ -130,6 +130,7 @@ public class CauldronAlloyerMixin extends Block implements BlockEntityProvider {
     }
 
 
+
     @Unique
     protected boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
         super.onSyncedBlockEvent(state, world, pos, type, data);

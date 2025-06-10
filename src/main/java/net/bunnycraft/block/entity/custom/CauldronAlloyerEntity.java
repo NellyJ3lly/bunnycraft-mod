@@ -7,7 +7,6 @@ import net.bunnycraft.entity.custom.AlloyLiquidEntity;
 import net.bunnycraft.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.entity.Entity;
@@ -34,17 +33,24 @@ import net.minecraft.util.TypeFilter;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.concurrent.Flow;
 import java.util.function.Predicate;
 
 public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInventory {
 
-    // ---------------------------------------------------------------------------------------- CUSTOMIZABLE VARIABLES, use these to tweak stats, looks ect
+
+
+
+
+
+    //TODO add hopper support (check end of this class)
+
+    // ------------------------------------------------------------------- CUSTOMIZABLE VARIABLES, use these to tweak stats, looks ect
     static final Map<String, Integer> getAlloyColor = Map.ofEntries(
             Map.entry("steel", 0x95FFFF), // the hex code of each alloy, leave 0x
             Map.entry("rose_gold", 0xFFAFA4),
@@ -108,6 +114,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             );
         }
     }
+
 
 
     //-------------------------------------------------------------------- end of customizable variables
@@ -386,7 +393,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             if(insertStack(stack, player, world)) { // inserts the stack into the inventory
                 tryAlloy(); // and check if an alloy recipe has been successfully created
             }
-
 
             this.markDirty(); // tells the game to save the data
 
@@ -698,5 +704,18 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                 this.getWorld().updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), 3);
             }
         }
+    }
+
+    //these two methods prevent hopppers from inserting and removing items
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+        return false;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+
+        return false;
     }
 }

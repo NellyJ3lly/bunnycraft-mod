@@ -100,5 +100,9 @@
   "item.bunnycraft.empty_spear_slot": "Spear Slot",
 
   "item.bunnycraft.pipis": "Pipis",
-  "item.bunnycraft.dealmaker": "Dealmaker"
+  "item.bunnycraft.dealmaker": "Dealmaker",
+
+  "block.bunnycraft.enchanting_stand": "Enchanting Stand",
+
+  "container.bunnycraft.enchanting_gui_title": "Enchant"
 }

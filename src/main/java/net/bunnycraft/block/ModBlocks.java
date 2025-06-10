@@ -38,6 +38,9 @@ public class ModBlocks {
     public static final Block ROSE_GOLD_BLOCK = registerBlock("rose_gold_block",
             new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.METAL)));
 
+    public static final Block ENCHANTING_STAND = registerBlock("enchanting_stand",
+            new EnchantingStand(AbstractBlock.Settings.create().strength(3, 6).requiresTool().sounds(BlockSoundGroup.DEEPSLATE).nonOpaque()));
+
 
 
     private static Block registerBlock(String name, Block block) {
@@ -62,6 +65,8 @@ public class ModBlocks {
 
             entries.add(ModBlocks.ROSE_GOLD_BLOCK);
             entries.add(ModBlocks.STEEL_BLOCK);
+
+            entries.add(ModBlocks.ENCHANTING_STAND);
         });
     }
 }

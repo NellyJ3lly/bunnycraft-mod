@@ -102,6 +102,8 @@ public class ModItemGroups {
                         entries.add(ModItems.MOLD);
                         entries.add(ModItems.MOLTEN_ROSE_GOLD);
                         entries.add(ModItems.MOLTEN_STEEL);
+
+                        entries.add(ModBlocks.ENCHANTING_STAND);
                     }).build());
 
     public static void registerItemGroups() {

@@ -1,15 +1,11 @@
 package net.bunnycraft.mixin.entity;
 
 import it.unimi.dsi.fastutil.objects.ObjectListIterator;
-import net.bunnycraft.item.ModItems;
 import net.bunnycraft.util.ModLootTables;
-import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
@@ -21,11 +17,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(ChickenEntity.class)
-public class ChickenLayLootTableMixin extends AnimalEntity {
+public abstract class ChickenLayLootTableMixin extends AnimalEntity {
     public float flapProgress;
     public float maxWingDeviation;
     public float prevMaxWingDeviation;
@@ -39,6 +35,7 @@ public class ChickenLayLootTableMixin extends AnimalEntity {
         super(entityType, world);
     }
 
+    @Unique
     public boolean hasJockey() {
         return this.hasJockey;
     }
@@ -79,11 +76,11 @@ public class ChickenLayLootTableMixin extends AnimalEntity {
 
     }
 
-    @Override
+    /*@Override
     @Nullable
     public ChickenEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
         return (ChickenEntity)EntityType.CHICKEN.create(serverWorld);
-    }
+    }*/
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {

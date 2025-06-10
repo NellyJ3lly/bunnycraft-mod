@@ -74,5 +74,33 @@
   "item.bunnycraft.pipis": "whaa even is dis thing???",
   "item.bunnycraft.mold": "clay wit squimsh in te middle",
 
-  "item.bunnycraft.molten_netherite": "bucket wit REAOLLLYYY HOT old stuff"
+  "item.bunnycraft.molten_netherite": "bucket wit REAOLLLYYY HOT old stuff",
+
+  "enchantment.bunnycraft.dexterity": "presicion pawzz",
+  "enchantment.bunnycraft.reach": "Looong pawz",
+  "enchantment.bunnycraft.spacious": "biggor pouchezz",
+
+  "enchantment.bunnycraft.weightless": "easy carries",
+  "item.bunnycraft.guardian_helmet": "buff cat hat",
+  "item.bunnycraft.guardian_chestplate": "buff cat shirt",
+  "item.bunnycraft.guardian_leggings": "buff cat pantz",
+  "item.bunnycraft.guardian_boots": "buff cat pawz",
+
+  "item.bunnycraft.turtle_chestplate": "tortle shell",
+  "item.bunnycraft.turtle_leggings": "tortle leggies",
+  "item.bunnycraft.turtle_boots": "tortle paws",
+
+  "item.bunnycraft.diving_helmet": "swimmin hat",
+  "item.bunnycraft.diving_chestplate": "swimminn platez",
+  "item.bunnycraft.diving_leggings": "swimmin leggers",
+  "item.bunnycraft.diving_boots": "swimmin pawz",
+
+  "item.bunnycraft.rose_gold_helmet": "Fancy haat",
+  "item.bunnycraft.rose_gold_chestplate": "Fancy belly",
+  "item.bunnycraft.rose_gold_leggings": "Fancy Pants",
+  "item.bunnycraft.rose_gold_boots": "Fancy ketteh paws",
+  "item.bunnycraft.dealmaker": "scammer :(",
+
+  "block.bunnycraft.enchanting_stand": "stinkeey enchanten tabel",
+  "container.bunnycraft.enchanting_gui_title": "magicz oo"
 }
