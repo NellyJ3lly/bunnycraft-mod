@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-07T20:24:35.9398113	Bunnycraft/Tags for minecraft:item
+// 1.21.1	2025-06-10T00:21:43.0911486	Bunnycraft/Tags for minecraft:item
 8fb2c86ef1e8e3e5c111578b51da91908ea5deb9 data\bunnycraft\tags\item\enchantable\shear.json
 f46bf1b668b37e24a0bdfd8d192f6faed34a2ddf data\minecraft\tags\item\trim_templates.json
 ba9125aa546790a0582445879c658b228dbb763c data\bunnycraft\tags\item\enchantable\axe.json
@@ -14,8 +14,8 @@ e9b6d9bf22a964c2d3d00bea145af13501ccad50 data\minecraft\tags\item\pickaxes.json
 f2f802158a14cd623f0aba1ce412496fe794c4e1 data\minecraft\tags\item\enchantable\sharp_weapon.json
 190a1d19ee517ea465c568ea89c61a06995d47c0 data\minecraft\tags\item\axes.json
 25c2507dca14c190331ee5ef89023cca0ab32776 data\bunnycraft\tags\item\enchantable\accepts_loyalty.json
-e2e2997774c4a7994530b4f3c0c47d883add9494 data\minecraft\tags\item\enchantable\durability.json
 f2f802158a14cd623f0aba1ce412496fe794c4e1 data\minecraft\tags\item\enchantable\fire_aspect.json
+e2e2997774c4a7994530b4f3c0c47d883add9494 data\minecraft\tags\item\enchantable\durability.json
 1feebc4d4dfb8dd4b39ea79e961a1b31359e0ff3 data\bunnycraft\tags\item\enchantable\hoe.json
 1fd394483f2a00b9a8ab0958ddd595e23592b022 data\minecraft\tags\item\swords.json
 e2c5c5b3b726b522959a404f23e75c6538b44e7c data\bunnycraft\tags\item\enchantable\spear.json
