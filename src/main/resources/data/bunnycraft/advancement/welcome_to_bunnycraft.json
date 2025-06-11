@@ -9,6 +9,7 @@
     "show_toast": true,
     "announce_to_chat": true
   },
+  "parent": "bunnycraft:root",
   "criteria": {
     "tick": {
       "trigger": "minecraft:tick"
