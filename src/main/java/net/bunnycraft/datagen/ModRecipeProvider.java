@@ -35,6 +35,17 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);
 
+//        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.ENCHANTING_STAND)
+//                .pattern(" B ")
+//                .pattern("GDG")
+//                .pattern(" D ")
+//                .input('B', Items.BOOK)
+//                .input('D', Items.DEEPSLATE)
+//                .input('G', Items.BOOK)
+//                .criterion(hasItem(Items.BOOK), conditionsFromItem(Items.BOOK))
+//                .offerTo(exporter);
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MOLD, 8)
                 .pattern("OOO")
                 .input('O', Items.CLAY_BALL)

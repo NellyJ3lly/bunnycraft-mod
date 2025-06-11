@@ -110,9 +110,9 @@ public class EnchantingStandScreenHandler extends ScreenHandler {
                     int ix = 0;
 
                     for (BlockPos blockPos : EnchantingStand.POWER_PROVIDER_OFFSETS) {
-                        if (EnchantingStand.canAccessPowerProvider(world, pos, blockPos)) {
-                            ix++;
-                        }
+//                        if (EnchantingStand.canAccessPowerProvider(world, pos, blockPos)) {
+//                            ix++;
+//                        }
                     }
 
                     this.random.setSeed(this.seed.get());

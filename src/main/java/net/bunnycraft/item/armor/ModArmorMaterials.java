@@ -71,8 +71,8 @@ public class ModArmorMaterials {
     public static final RegistryEntry<ArmorMaterial> MOD_TURTLE_MATERIAL = registerArmorMaterial("mod_turtle",
             () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
                 map.put(ArmorItem.Type.BOOTS, 2);
-                map.put(ArmorItem.Type.LEGGINGS, 5);
-                map.put(ArmorItem.Type.CHESTPLATE, 6);
+                map.put(ArmorItem.Type.LEGGINGS, 4);
+                map.put(ArmorItem.Type.CHESTPLATE, 5);
                 map.put(ArmorItem.Type.HELMET, 2);
                 map.put(ArmorItem.Type.BODY, 5);
             }), 9, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, ()-> Ingredient.ofItems(Items.TURTLE_SCUTE),
