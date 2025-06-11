@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "id": "bunnycraft:pancake_rabbit"
+    },
+    "title": "Bunnycraft",
+    "description": "The achivements page for the bunnycraft mod!",
+    "background": "minecraft:textures/block/bamboo_block",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ],
+  "rewards": {
+
+  },
+  "sends_telemetry_event": false
+}
