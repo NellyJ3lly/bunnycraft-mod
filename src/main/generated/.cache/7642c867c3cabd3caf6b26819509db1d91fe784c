@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-07T20:24:35.9283022	Bunnycraft/Recipes
+// 1.21.1	2025-06-10T21:08:46.9163936	Bunnycraft/Recipes
 3249c0cb0625165c692de9c0dda4e0fdb42f6a52 data\bunnycraft\recipe\prismarine_sword.json
 5044efb94730430d8af259d61204cb37da51ba53 data\bunnycraft\advancement\recipes\tools\steel_leggings.json
 0edc85893d6a31eeae7e7413101f0dcedc9ddc7a data\bunnycraft\advancement\recipes\tools\copper_helmet.json
@@ -10,6 +10,7 @@ f1baf2f595fe44acd1bffd9b43192e16b49e1f33 data\bunnycraft\recipe\guardian_legging
 60889639dc3056b363b8471cc241380b82e05692 data\bunnycraft\recipe\diamond_bunnycoin_block.json
 12c4cf8ed54f53c3b13db84ed206210902cd585a data\bunnycraft\recipe\steel_spear.json
 076a5a9da64f46de311a26579b19b046163dfdb1 data\bunnycraft\recipe\steel_leggings.json
+6a86a688f242884eee975b552d203baaabe976c9 data\bunnycraft\recipe\enchanting_stand.json
 9a67439f8f121639307f73ea1cff266c25d87857 data\bunnycraft\advancement\recipes\tools\rose_gold_boots.json
 d4c065262153d56b71e59584cb58cb798d5b0bc4 data\bunnycraft\advancement\recipes\tools\dealmaker.json
 3e1edf3aee69570d0e1714d8538a4b737ec4092a data\bunnycraft\advancement\recipes\tools\copper_axe.json
@@ -108,8 +109,8 @@ f270d8704ec4ad84cb7f163d261e3bd98ffa41d3 data\bunnycraft\recipe\copper_helmet.js
 03f2f7a03edc9dd024499b1aa7788e83633371c8 data\bunnycraft\advancement\recipes\tools\iron_spear.json
 26da762bf6095a112db8178bff4c2319a38291ef data\bunnycraft\advancement\recipes\decorations\copper_bunnycoin_block.json
 4f102c1e64d7c6569183376c145c9f404ab6e3cb data\bunnycraft\advancement\recipes\decorations\steel_molten_compacting.json
-19648f1a85e722ce92c1b4121efdd2862ec0a6e3 data\bunnycraft\advancement\recipes\tools\copper_chestplate.json
 2aab341fcf90769ed5fc404eb545071d9137037c data\bunnycraft\recipe\turtle_boots.json
+19648f1a85e722ce92c1b4121efdd2862ec0a6e3 data\bunnycraft\advancement\recipes\tools\copper_chestplate.json
 5ce35b36ba3bf3da24a1680d60763546e4f75194 data\bunnycraft\recipe\diving_leggings.json
 c5c194564efb0cbcfac4edd8412712d29ddf9e56 data\bunnycraft\recipe\prismarine_shovel.json
 632696a3e3163698ce2a864ca440a0997b1cbdb6 data\bunnycraft\recipe\copper_pickaxe.json
@@ -139,6 +140,7 @@ f1e0356159170fdaf8b424435cfb0dc4c5d59035 data\bunnycraft\advancement\recipes\mis
 041a55a903f86de7232ad7ffe8e8f6bafcee8e0b data\bunnycraft\recipe\steel_ingot_casting.json
 4602eb5c863631b40bcb0274145e3baf04d7d320 data\bunnycraft\advancement\recipes\tools\steel_spear.json
 bad6c89a4b6e1137fb8616b198df833f25b8b700 data\bunnycraft\recipe\rose_gold_helmet.json
+19cae2cebd9db5e06a9e8341382a4d7f1407ef7c data\bunnycraft\advancement\recipes\decorations\enchanting_stand.json
 6fdfb6551ab12ddf3bf2869966d92d319cd80f41 data\bunnycraft\advancement\recipes\tools\copper_shovel.json
 78c91bca5db99d4eb68ad0fcc1cc959ea755c37c data\bunnycraft\recipe\golden_spear.json
 1f17854c2554759ff9e5bca3e591ce6bb13af3d8 data\bunnycraft\advancement\recipes\tools\trident.json

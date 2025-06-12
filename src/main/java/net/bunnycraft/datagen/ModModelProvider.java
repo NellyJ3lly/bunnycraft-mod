@@ -73,6 +73,16 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.DIVING_CHESTPLATE));
         gen.registerArmor(((ArmorItem) ModArmors.DIVING_LEGGINGS));
         gen.registerArmor(((ArmorItem) ModArmors.DIVING_BOOTS));
+
+        gen.registerArmor(((ArmorItem) ModArmors.ROSE_GOLD_HELMET));
+        gen.registerArmor(((ArmorItem) ModArmors.ROSE_GOLD_CHESTPLATE));
+        gen.registerArmor(((ArmorItem) ModArmors.ROSE_GOLD_LEGGINGS));
+        gen.registerArmor(((ArmorItem) ModArmors.ROSE_GOLD_BOOTS));
+
+        gen.registerArmor(((ArmorItem) ModArmors.TURTLE_CHESTPLATE));
+        gen.registerArmor(((ArmorItem) ModArmors.TURTLE_LEGGINGS));
+        gen.registerArmor(((ArmorItem) ModArmors.TURTLE_BOOTS));
+
         gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
 
         //add pickaxes

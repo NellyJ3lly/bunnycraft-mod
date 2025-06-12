@@ -123,7 +123,7 @@ public class SpearEntity extends PersistentProjectileEntity {
 
 
 
-        if (this.getWorld() instanceof ServerWorld server) {
+        if (this.getWorld() instanceof ServerWorld server && this.dataTracker.get(LOYALTY) > 0) {
 
             float simDist = server.getServer().getPlayerManager().getSimulationDistance();
             simDist *= .8f;

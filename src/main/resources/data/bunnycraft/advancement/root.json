@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "id": "bunnycraft:gold_bunnycoin"
+    },
+    "title": "Bunnycraft",
+    "description": "Bunny :3c",
+    "background": "minecraft:textures/block/bamboo_block.png",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ],
+  "rewards": {
+
+  },
+  "sends_telemetry_event": false
+}
