@@ -26,13 +26,13 @@ public class ModArmors {
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42))));
 
     public static final Item TURTLE_CHESTPLATE = registerItem("turtle_chestplate",
-            new ArmorItem(ArmorMaterials.TURTLE, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+            new ArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
                     .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(25))));
     public static final Item TURTLE_LEGGINGS = registerItem("turtle_leggings",
-            new ArmorItem(ArmorMaterials.TURTLE, ArmorItem.Type.LEGGINGS, new Item.Settings()
+            new ArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
                     .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(25))));
     public static final Item TURTLE_BOOTS = registerItem("turtle_boots",
-            new ArmorItem(ArmorMaterials.TURTLE, ArmorItem.Type.BOOTS, new Item.Settings()
+            new ArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(25))));
 
     public static final Item COPPER_HELMET = registerItem("copper_helmet",

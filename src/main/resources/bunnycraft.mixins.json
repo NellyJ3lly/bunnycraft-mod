@@ -8,10 +8,8 @@
     "entity.ShearableZombieMixin",
     "entity.TurtleBrushingMixin",
     "item.CauldronAlloyerMixin",
-    "item.CrossBowDamageIncreaseMixin",
     "item.attribute.ItemAttributesMixin",
     "item.attribute.ArmorAttributesMixin",
-    "item.ItemStatChangesMixin",
     "item.PickaxeItemMixin",
     "item.ShearsBecomeSwordMixin"
   ],
