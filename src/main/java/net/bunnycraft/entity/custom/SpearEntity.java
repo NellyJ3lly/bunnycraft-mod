@@ -60,7 +60,7 @@ public class SpearEntity extends PersistentProjectileEntity {
 
 
     //creates the entity from the item
-    public SpearEntity(World world, LivingEntity owner, ItemStack stack, SpearItem spearItem) {
+    public SpearEntity(World world, PlayerEntity owner, ItemStack stack, SpearItem spearItem) {
 
         //tells the super what entity it is
         super(stack.getItem().getTranslationKey().substring(16).equals("rose_gold_spear") ? ModEntities.ROSE_GOLD_SPEAR : ModEntities.SPEAR, owner, world, stack, null);
@@ -106,13 +106,11 @@ public class SpearEntity extends PersistentProjectileEntity {
     }
 
 
-
-
     //the tick function, mostly used for loyalty
     @Override
     public void tick() {
         //checks if the trident has fallen to the ground
-        if (this.inGroundTime > 4) {
+        if (this.inGroundTime > 1) {
             this.dealtDamage = true;
         }
 
@@ -120,6 +118,25 @@ public class SpearEntity extends PersistentProjectileEntity {
         //loyalty stuff copied from the trident class
         Entity entity = this.getOwner();
         int i = this.dataTracker.get(LOYALTY);
+
+        //returns spear if it goes beyond loaded chunks
+
+
+
+        if (this.getWorld() instanceof ServerWorld server) {
+
+            float simDist = server.getServer().getPlayerManager().getSimulationDistance();
+            simDist *= .8f;
+
+            if (this.squaredDistanceTo(entity) > Math.pow(16 * simDist, 2) && !this.dealtDamage) { // checks if the spear is almost outside of simulation distance
+
+                this.setVelocity(0, 0, 0);
+
+                this.dealtDamage = true; // stop and return before the chunk unloads
+
+            }
+        }
+
         if (i > 0 && (this.dealtDamage || this.isNoClip()) && entity != null) {
             if (!this.isOwnerAlive()) {
 
@@ -128,6 +145,7 @@ public class SpearEntity extends PersistentProjectileEntity {
                 }
 
                 this.discard();
+
 
             } else {
                 this.setNoClip(true);
@@ -145,6 +163,8 @@ public class SpearEntity extends PersistentProjectileEntity {
                 this.setVelocity(this.getVelocity().multiply(0.95).add(vec3d.normalize().multiply(d)));
 
             }
+
+
         }
 
         super.tick();
@@ -325,7 +345,9 @@ public class SpearEntity extends PersistentProjectileEntity {
     //TODO rewrite this so only the spears owner can pick it up if the spear has loyalty, pretty sure i fixed but check again anyway
     @Override
     protected boolean tryPickup(PlayerEntity player) {
-        if (player.isInCreativeMode()) {
+        if (!this.isOwner(player) && this.getLoyalty(this.getItemStack()) != 0) {
+            return false;
+        } else if (player.isInCreativeMode()) {
             return true;
         } else if (player.getInventory().containsAny(itemStack -> itemStack.isOf(ModItems.EMPTY_SPEAR_SLOT))) {
 

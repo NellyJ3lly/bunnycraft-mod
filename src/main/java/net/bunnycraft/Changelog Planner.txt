@@ -1,0 +1,12 @@
+
+Helps us plan the changes for next update and keep track of whats done and what needs work
+
+To Do:
+
+    add enchanting stand
+
+Done:
+
+    Spears will no longer be picked up by other players if they are returning via loyalty
+
+    Spears will no longer get stuck on the border of unloaded chunks
