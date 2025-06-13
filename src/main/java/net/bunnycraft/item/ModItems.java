@@ -70,6 +70,7 @@ public class ModItems {
             ingotList.put(2, Items.GOLD_INGOT);
             ingotList.put(3, Items.DIAMOND);
             ingotList.put(4, Items.NETHERITE_SCRAP);
+            ingotList.put(5, Items.DIRT); // used for a conversion recipe
             //add any other items that should be able to go into the cauldron NOT MOD ITEMS, those should register using this method
         }
 

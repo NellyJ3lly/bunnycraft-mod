@@ -75,6 +75,8 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         trySpecificAlloy("steel", 4, Items.DIAMOND, Items.IRON_INGOT, 160);
         trySpecificAlloy("netherite", 4, Items.GOLD_INGOT, Items.NETHERITE_SCRAP, 140);
 
+        tryConversion(1, Items.DIRT, Items.CLAY_BALL, 600); // conversions take 1 item and convert to another by heating
+
     }
 
     private int checkForHeatFromBlocks(BlockPos pos) { // -----------  add new blocks that should provide heat here
@@ -276,6 +278,26 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         return false;
     }
 
+    private boolean checkForConversionItems(Item input, Item output) {
+        if (this.getStack(0).isOf(input) && this.getStack(1).isOf(output)) {
+            if (this.getStack(1).getCount() < maxStackPerItem) {
+                return true;
+            }
+        }
+        if (this.getStack(1).isOf(input) && this.getStack(0).isOf(output)) {
+            if (this.getStack(0).getCount() < maxStackPerItem) {
+                return true;
+            }
+        }
+        if (this.getStack(0).isOf(input) && this.getStack(1).isEmpty()) {
+            return true;
+        }
+        if (this.getStack(1).isOf(input) && this.getStack(0).isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
     private float getFluidLevel(int alloyAmount) {
 
         float slope = (fluidFullLevel - fluidEmptyLevel) / maxStackPerItem;
@@ -285,6 +307,54 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
 
+    private void tryConversion(int heat, Item input, Item output, int ticks) {
+        if (checkForHeatFromBlocks(this.getPos()) >= heat && checkForConversionItems(input, output) && !this.alloying) {
+            if (this.currentAlloy.equals("empty")) {
+                setAlloying(true);
+
+
+
+                scheduleTask(() -> {
+                    if (this.getStack(0).isOf(input)) {
+
+                        this.getStack(0).decrement(1);
+
+                        if (this.getStack(1).isEmpty()) { // if theres no output then add the output otherwise increment it
+                            this.setStack(1, output.getDefaultStack().copyWithCount(1));
+                        } else {
+                            this.getStack(1).increment(1);
+                        }
+                    }
+
+                    if (this.getStack(1).isOf(input)) {
+
+                        this.getStack(1).decrement(1);
+
+                        if (this.getStack(0).isEmpty()) { // if theres no output then add the output otherwise increment it
+                            this.setStack(0, output.getDefaultStack().copyWithCount(1));
+                        } else {
+                            this.getStack(0).increment(1);
+                        }
+                    }
+
+
+                    setAlloying(false);
+
+                    if (this.getWorld() instanceof ServerWorld server) {
+                        this.updateSlot0Display(this.getStack(0), server);
+                        this.updateSlot1Display(this.getStack(1), server);
+
+                        server.playSound(null, this.getPos(), SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
+                    }
+
+                    tryAlloy();
+
+                    this.markDirty();
+
+                }, ticks);
+            }
+        }
+    }
 
     private void trySpecificAlloy(String name, int heat, Item ingredient1, Item ingredient2, int ticks) {
         if (checkForHeatFromBlocks(this.getPos()) >= heat && checkForItems(ingredient1, ingredient2) && !this.alloying) {
@@ -324,7 +394,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     //ticks the block on the server, which allows for animations and other stuff
     public void serverTick() {
-
 
         if (this.needsDisplayRefresh) {
             if (this.getWorld() instanceof ServerWorld server) {
@@ -507,7 +576,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     private boolean insertStack (ItemStack stack, PlayerEntity player, World world) {
 
-
+        Bunnycraft.LOGGER.info(String.valueOf(stack));
 
         //if the inventory already has the stack, merge the stacks
         if (ItemStack.areItemsEqual(this.getStack(0), stack)) {
@@ -515,8 +584,9 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             if (this.getStack(0).getCount() >= maxStackPerItem) { // if theres no room return
                 return false;
             } else if (maxStackPerItem - this.getStack(0).getCount() <= stack.getCount()){ // if player has more than enough or equal to enough insert the max amount possible
-                this.getStack(0).increment(maxStackPerItem - this.getStack(0).getCount());
                 stack.decrement(maxStackPerItem - this.getStack(0).getCount());
+                this.getStack(0).increment(maxStackPerItem - this.getStack(0).getCount());
+
                 return true;
             } else {
                 this.getStack(0).increment(stack.getCount());
@@ -529,8 +599,9 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             if (this.getStack(1).getCount() >= maxStackPerItem) { // if theres no room return
                 return false;
             } else if (maxStackPerItem - this.getStack(1).getCount() <= stack.getCount()){ // if player has more than enough or equal to enough insert the max amount possible
-                this.getStack(1).increment(maxStackPerItem - this.getStack(1).getCount());
                 stack.decrement(maxStackPerItem - this.getStack(1).getCount());
+                this.getStack(1).increment(maxStackPerItem - this.getStack(1).getCount());
+
                 return true;
             } else {
                 this.getStack(1).increment(stack.getCount());
