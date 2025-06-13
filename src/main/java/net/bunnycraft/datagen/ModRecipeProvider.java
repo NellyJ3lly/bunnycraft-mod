@@ -5,6 +5,7 @@ import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.armor.ModArmors;
+import net.bunnycraft.util.BunnycoinCrafting;
 import net.bunnycraft.util.ModArmorRecipes;
 import net.bunnycraft.util.ModToolRecipes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -32,8 +33,9 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.GOLD_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.GOLD_BUNNYCOIN_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.DIAMOND_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
 
-//        offer2x2CompactingRecipe(exporter, RecipeCategory.MISC, ModItems.COPPER_BUNNYCOIN, ModItems.GOLD_BUNNYCOIN);
-//        offer2x2CompactingRecipe(exporter, RecipeCategory.MISC, ModItems.GOLD_BUNNYCOIN, ModItems.DIAMOND_BUNNYCOIN);
+        BunnycoinCrafting.makeCoin(exporter,"copper_gold_conversion",ModItems.GOLD_BUNNYCOIN,ModItems.COPPER_BUNNYCOIN);
+        BunnycoinCrafting.makeCoin(exporter,"gold_diamond_conversion",ModItems.DIAMOND_BUNNYCOIN,ModItems.GOLD_BUNNYCOIN);
+
 
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);

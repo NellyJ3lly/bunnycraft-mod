@@ -14,7 +14,7 @@ import static net.minecraft.data.server.recipe.RecipeProvider.*;
 
 public interface ModArmorRecipes {
     default ShapedRecipeJsonBuilder makeHelmet(Item Helmet, Item Ingot) {
-        return ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Helmet)
+        return ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Helmet)
                 .pattern("XXX")
                 .pattern("X X")
                 .input('X', Ingot)
@@ -22,7 +22,7 @@ public interface ModArmorRecipes {
     }
 
     default ShapedRecipeJsonBuilder makeChestplate(Item Chestplate, Item Ingot) {
-        return ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Chestplate)
+        return ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Chestplate)
                 .pattern("X X")
                 .pattern("XXX")
                 .pattern("XXX")
@@ -31,7 +31,7 @@ public interface ModArmorRecipes {
     }
 
     default ShapedRecipeJsonBuilder makeLeggings(Item Leggings, Item Ingot) {
-        return ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Leggings)
+        return ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Leggings)
                 .pattern("XXX")
                 .pattern("X X")
                 .pattern("X X")
@@ -40,7 +40,7 @@ public interface ModArmorRecipes {
     }
 
     default ShapedRecipeJsonBuilder makeBoots(Item Boots, Item Ingot) {
-        return ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Boots)
+        return ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Boots)
                 .pattern("X X")
                 .pattern("X X")
                 .input('X', Ingot)
