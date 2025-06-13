@@ -8,10 +8,12 @@
     "entity.ShearableZombieMixin",
     "entity.TurtleBrushingMixin",
     "item.CauldronAlloyerMixin",
-    "item.attribute.ItemAttributesMixin",
-    "item.attribute.ArmorAttributesMixin",
+    "item.HoeItemMixin",
     "item.PickaxeItemMixin",
-    "item.ShearsBecomeSwordMixin"
+    "item.ShearsBecomeSwordMixin",
+    "item.ShovelItemMixin",
+    "item.attribute.ArmorAttributesMixin",
+    "item.attribute.ItemAttributesMixin"
   ],
   "injectors": {
     "defaultRequire": 1
