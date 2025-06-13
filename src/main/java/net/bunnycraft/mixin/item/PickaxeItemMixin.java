@@ -1,13 +1,18 @@
 package net.bunnycraft.mixin.item;
 
+import net.bunnycraft.Bunnycraft;
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.MiningToolItem;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -18,7 +23,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(PickaxeItem.class)
-public class PickaxeItemMixin {
+public class PickaxeItemMixin extends MiningToolItem {
+    public PickaxeItemMixin(ToolMaterial material, TagKey<Block> effectiveBlocks, Settings settings) {
+        super(material, effectiveBlocks, settings);
+    }
 
     //dont let intellij lie to you, all these class that say they are never used, override in the target mixin class
 
@@ -26,7 +34,9 @@ public class PickaxeItemMixin {
 
     //copied from the mace class overrides pickaxeItems superclass
     @Unique
+    @Override
     public float getBonusAttackDamage(Entity target, float baseAttackDamage, DamageSource damageSource) {
+        Bunnycraft.LOGGER.info("getting bonus damage");
         Entity var5 = damageSource.getSource();
         if (var5 instanceof LivingEntity livingEntity) {
             if (!shouldDealAdditionalDamage(livingEntity)) {
@@ -59,7 +69,9 @@ public class PickaxeItemMixin {
 
     //copied from mace overrides pickaxeItems superclass
     @Unique
+    @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        Bunnycraft.LOGGER.info("running post hit");
         if (attacker instanceof ServerPlayerEntity serverPlayerEntity && shouldDealAdditionalDamage(serverPlayerEntity)) {
             ServerWorld serverWorld = (ServerWorld)attacker.getWorld();
             if (serverPlayerEntity.shouldIgnoreFallDamageFromCurrentExplosion() && serverPlayerEntity.currentExplosionImpactPos != null) {
@@ -97,12 +109,18 @@ public class PickaxeItemMixin {
 
     @Unique
     private static boolean shouldDealAdditionalDamage(LivingEntity attacker) {
+        boolean bool = attacker.fallDistance > 1.5F && !attacker.isFallFlying();
+        Bunnycraft.LOGGER.info("checking if should deal more damage with result of " + bool);
+
         return attacker.fallDistance > 1.5F && !attacker.isFallFlying();
+
     }
 
     //also overrides
     @Unique
+    @Override
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        Bunnycraft.LOGGER.info("post damage an entity");
         stack.damage(1, attacker, EquipmentSlot.MAINHAND);
         if (shouldDealAdditionalDamage(attacker)) {
             attacker.onLanding();
