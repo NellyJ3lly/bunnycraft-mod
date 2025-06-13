@@ -1,0 +1,44 @@
+{
+  "parent": "bunnycraft:diving_suit",
+  "criteria": {
+    "brush_turtle": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:turtle"
+            }
+          }
+        ],
+        "item": {
+          "items": "minecraft:brush"
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.bunnycraft.brush_turtle.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:turtle_scute"
+    },
+    "title": {
+      "translate": "advancements.bunnycraft.brush_turtle.title"
+    },
+    "frame": "goal"
+  },
+  "requirements": [
+    [
+      "brush_turtle"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

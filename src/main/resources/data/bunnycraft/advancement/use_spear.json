@@ -1,0 +1,45 @@
+{
+  "parent": "bunnycraft:root",
+  "criteria": {
+    "shot_spear": {
+      "conditions": {
+        "damage": {
+          "type": {
+            "direct_entity": {
+              "type": "bunnycraft:spear_entity"
+            },
+            "tags": [
+              {
+                "expected": true,
+                "id": "minecraft:is_projectile"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "minecraft:player_hurt_entity"
+    }
+  },
+  "display": {
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.headshot.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bunnycraft:iron_spear"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.headshot.title"
+    },
+    "hidden": true
+  },
+  "requirements": [
+    [
+      "shot_spear"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -7,7 +7,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:egg",
-          "weight": 40
+          "weight": 100
         },
         {
           "type": "minecraft:item",

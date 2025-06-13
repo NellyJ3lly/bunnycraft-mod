@@ -104,5 +104,54 @@
 
   "block.bunnycraft.enchanting_stand": "Enchanting Stand",
 
-  "container.bunnycraft.enchanting_gui_title": "Enchant"
+  "container.bunnycraft.enchanting_gui_title": "Enchant",
+
+  "advancements.bunnycraft.root.title" : "Welcome to Bunnycraft!",
+  "advancements.bunnycraft.root.description" : "Welcome to our server! You get some money!",
+
+  "advancements.bunnycraft.obtain_cauldron.title" : "Try adding metals",
+  "advancements.bunnycraft.obtain_cauldron.description" : "Obtain the cauldron",
+
+  "advancements.bunnycraft.shear_zombie.title" : "Grooosssssss!!",
+  "advancements.bunnycraft.shear_zombie.description" : "Shear a zombie",
+
+  "advancements.bunnycraft.obtain_rose_gold.title" : "Fancy~",
+  "advancements.bunnycraft.obtain_rose_gold.description" : "Obtain rose gold through alloying gold and copper together",
+
+  "advancements.bunnycraft.obtain_steel.title" : "Tough!!!",
+  "advancements.bunnycraft.obtain_steel.description" : "Obtain steel through alloying iron and diamond together",
+
+  "advancements.bunnycraft.diving_suit.title" : "Diver Down",
+  "advancements.bunnycraft.diving_suit.description" : "Obtain a diving suit",
+
+  "advancements.bunnycraft.prismarine_tools.title" : "Sunken Treasure",
+  "advancements.bunnycraft.prismarine_tools.description" : "Obtain prismarine tools",
+
+  "advancements.bunnycraft.turtle_armor.title" : "Free Swimming",
+  "advancements.bunnycraft.turtle_armor.description" : "Obtain turtle armor",
+
+  "advancements.bunnycraft.guardian_armor.title" : "Guardian of the sea",
+  "advancements.bunnycraft.guardian_armor.description" : "Obtain guardian armor",
+
+  "advancements.bunnycraft.headshot.title" : "Headshot!",
+  "advancements.bunnycraft.headshot.description" : "Throw a spear",
+
+  "advancements.bunnycraft.rich_rabbit.title" : "Rich Rabbit!",
+  "advancements.bunnycraft.rich_rabbit.description" : "Obtain a stack of each bunnycoin block",
+
+  "advancements.bunnycraft.brush_turtle.title" : "Sea Scute",
+  "advancements.bunnycraft.brush_turtle.description" : "Brush a turtle",
+
+  "advancements.bunnycraft.who_needs_mold.title" : "Who needs a mold!!",
+  "advancements.bunnycraft.who_needs_mold.description" : "Craft a block of an alloyed metal out of molten alloy",
+
+  "advancements.bunnycraft.secrets.title" : "Find our secrets...",
+  "advancements.bunnycraft.secrets.description" : "There'll be many....",
+
+
+  "advancements.bunnycraft.pipis_obtain.title" : "[HYPERLINK BLOCKED]!!!",
+  "advancements.bunnycraft.pipis_obtain.description" : "WHY BE THE [Little Sponge] WHO HATES ITS [$4.99] LIFE WHEN YOU CAN BE A [BIG SHOT]!!!",
+
+  "advancements.bunnycraft.special_deal.title" : "[Specil] DEAL!!!",
+  "advancements.bunnycraft.special_deal.description" : "EV3RY  BUDDY  'S FAVORITE [[Number 1 Rated Salesman1997]]"
 }

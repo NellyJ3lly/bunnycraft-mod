@@ -1,0 +1,46 @@
+{
+  "parent": "bunnycraft:brush_turtle",
+  "criteria": {
+    "turtle_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:turtle_helmet"
+          },
+          {
+            "items": "bunnycraft:turtle_chestplate"
+          },
+          {
+            "items": "bunnycraft:turtle_leggings"
+          },
+          {
+            "items": "bunnycraft:turtle_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.turtle_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:turtle_helmet"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.turtle_armor.title"
+    },
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "turtle_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

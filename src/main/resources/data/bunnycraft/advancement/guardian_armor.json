@@ -1,0 +1,46 @@
+{
+  "parent": "bunnycraft:prismarine_tools",
+  "criteria": {
+    "guardian_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bunnycraft:guardian_helmet"
+          },
+          {
+            "items": "bunnycraft:guardian_chestplate"
+          },
+          {
+            "items": "bunnycraft:guardian_leggings"
+          },
+          {
+            "items": "bunnycraft:guardian_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {s
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.guardian_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bunnycraft:guardian_helmet"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.guardian_armor.title"
+    },
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "guardian_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

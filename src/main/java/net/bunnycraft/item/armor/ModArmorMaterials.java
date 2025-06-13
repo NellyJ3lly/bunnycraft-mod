@@ -83,7 +83,7 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.BOOTS,0);
                 map.put(ArmorItem.Type.LEGGINGS,0);
                 map.put(ArmorItem.Type.CHESTPLATE,0);
-                map.put(ArmorItem.Type.HELMET,5);
+                map.put(ArmorItem.Type.HELMET,1);
                 map.put(ArmorItem.Type.BODY,0);
             }), 20, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, ()-> Ingredient.ofItems(ModItems.PIPIS),
                     List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"dealmaker"))),0.0f,0.0f));

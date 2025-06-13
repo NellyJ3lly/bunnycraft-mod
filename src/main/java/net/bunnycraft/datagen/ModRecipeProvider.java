@@ -32,6 +32,9 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.GOLD_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.GOLD_BUNNYCOIN_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.DIAMOND_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
 
+//        offer2x2CompactingRecipe(exporter, RecipeCategory.MISC, ModItems.COPPER_BUNNYCOIN, ModItems.GOLD_BUNNYCOIN);
+//        offer2x2CompactingRecipe(exporter, RecipeCategory.MISC, ModItems.GOLD_BUNNYCOIN, ModItems.DIAMOND_BUNNYCOIN);
+
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);
 
@@ -44,7 +47,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
 //                .input('G', Items.BOOK)
 //                .criterion(hasItem(Items.BOOK), conditionsFromItem(Items.BOOK))
 //                .offerTo(exporter);
-
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MOLD, 8)
                 .pattern("OOO")

@@ -1,0 +1,43 @@
+{
+  "parent": "bunnycraft:alloying/obtain_cauldron",
+  "criteria": {
+    "craft_rose_gold_block": {
+      "conditions": {
+        "recipe_id": "bunnycraft:rose_gold_molten_compacting"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "craft_steel_block": {
+      "conditions": {
+        "recipe_id": "bunnycraft:steel_molten_compacting"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.who_needs_mold.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bunnycraft:molten_rose_gold"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.who_needs_mold.title"
+    },
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "craft_rose_gold_block",
+      "craft_steel_block"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "bunnycraft:root",
+  "criteria": {
+    "obtain_cauldron": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:cauldron"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.obtain_cauldron.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:cauldron"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.obtain_cauldron.title"
+    },
+    "hidden": true
+  },
+  "requirements": [
+    [
+      "obtain_cauldron"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

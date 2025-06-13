@@ -1,0 +1,46 @@
+{
+  "parent": "bunnycraft:root",
+  "criteria": {
+    "obtain_diving_suit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bunnycraft:diving_helmet"
+          },
+          {
+            "items": "bunnycraft:diving_chestplate"
+          },
+          {
+            "items": "bunnycraft:diving_leggings"
+          },
+          {
+            "items": "bunnycraft:diving_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.diving_suit.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bunnycraft:diving_helmet"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.diving_suit.title"
+    },
+    "hidden": true
+  },
+  "requirements": [
+    [
+      "obtain_diving_suit"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

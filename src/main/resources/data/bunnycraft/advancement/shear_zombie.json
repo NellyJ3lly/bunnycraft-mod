@@ -1,0 +1,44 @@
+{
+  "parent": "bunnycraft:root",
+  "criteria": {
+    "shear_zombie": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "#minecraft:zombies"
+            }
+          }
+        ],
+        "item": {
+          "items": "minecraft:shears"
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.bunnycraft.shear_zombie.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:rotten_flesh"
+    },
+    "title": {
+      "translate": "advancements.bunnycraft.shear_zombie.title"
+    },
+    "frame": "goal"
+  },
+  "requirements": [
+    [
+      "shear_zombie"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

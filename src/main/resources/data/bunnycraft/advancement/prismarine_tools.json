@@ -1,0 +1,37 @@
+{
+  "parent": "bunnycraft:diving_suit",
+  "criteria": {
+    "prismarine_tools": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bunnycraft:prismarine_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.prismarine_tools.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bunnycraft:prismarine_pickaxe"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.prismarine_tools.title"
+    },
+    "hidden": false
+  },
+  "requirements": [
+    [
+      "prismarine_tools"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

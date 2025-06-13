@@ -1,0 +1,37 @@
+{
+  "parent": "bunnycraft:alloying/obtain_rose_gold",
+  "criteria": {
+    "obtain_steel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bunnycraft:steel_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.obtain_steel.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bunnycraft:steel_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.obtain_steel.title"
+    },
+    "hidden": true
+  },
+  "requirements": [
+    [
+      "obtain_steel"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

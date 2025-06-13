@@ -1,0 +1,66 @@
+{
+  "parent": "bunnycraft:diving_suit",
+  "criteria": {
+    "copper_bunnycoin_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bunnycraft:copper_bunnycoin_block",
+            "count": 64
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "gold_bunnycoin_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bunnycraft:gold_bunnycoin_block",
+            "count": 64
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diamond_bunnycoin_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bunnycraft:diamond_bunnycoin_block",
+            "count": 64
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.rich_rabbit.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bunnycraft:diamond_bunnycoin_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.rich_rabbit.title"
+    },
+    "hidden": true
+  },
+  "requirements": [
+    [
+      "copper_bunnycoin_block"
+    ],
+    [
+      "gold_bunnycoin_block"
+    ],
+    [
+      "diamond_bunnycoin_block"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

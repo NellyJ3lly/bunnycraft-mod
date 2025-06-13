@@ -1,0 +1,37 @@
+{
+  "parent": "bunnycraft:alloying/obtain_cauldron",
+  "criteria": {
+    "obtain_rose_gold": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bunnycraft:rose_gold_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "frame": "task",
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bunnycraft.obtain_rose_gold.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "bunnycraft:rose_gold_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bunnycraft.obtain_rose_gold.title"
+    },
+    "hidden": true
+  },
+  "requirements": [
+    [
+      "obtain_rose_gold"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
