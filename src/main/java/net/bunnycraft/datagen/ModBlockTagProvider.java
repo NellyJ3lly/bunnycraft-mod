@@ -18,7 +18,21 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.PANCAKE_RABBIT_ORE)
-                .add(ModBlocks.PANCAKE_RABBIT_BLOCK);
+                .add(ModBlocks.PANCAKE_RABBIT_BLOCK)
+                .add(ModBlocks.COPPER_BUNNYCOIN_BLOCK)
+                .add(ModBlocks.GOLD_BUNNYCOIN_BLOCK)
+                .add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
+
+        getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
+                .add(ModBlocks.COPPER_BUNNYCOIN_BLOCK)
+                .add(ModBlocks.GOLD_BUNNYCOIN_BLOCK)
+                .add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
+
+        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
+                .add(ModBlocks.COPPER_BUNNYCOIN_BLOCK)
+                .add(ModBlocks.GOLD_BUNNYCOIN_BLOCK)
+                .add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
+        ;
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.PANCAKE_RABBIT_ORE)

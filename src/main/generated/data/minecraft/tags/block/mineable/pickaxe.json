@@ -1,6 +1,9 @@
 {
   "values": [
     "bunnycraft:pancake_rabbit_ore",
-    "bunnycraft:pancake_rabbit_block"
+    "bunnycraft:pancake_rabbit_block",
+    "bunnycraft:copper_bunnycoin_block",
+    "bunnycraft:gold_bunnycoin_block",
+    "bunnycraft:diamond_bunnycoin_block"
   ]
 }
