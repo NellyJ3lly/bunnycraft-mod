@@ -122,7 +122,7 @@ public class SpearItem extends ToolItem implements ProjectileItem {
 
 
                     //damages then removes the item if the player is not in creative
-                    if (!player.isInCreativeMode()) {
+                    if (!player.isInCreativeMode() && !world.isClient()) {
                         stack.damage(1, player, EquipmentSlot.MAINHAND);
                         player.getInventory().removeOne(stack);
 
@@ -132,10 +132,8 @@ public class SpearItem extends ToolItem implements ProjectileItem {
                             } else if (slot >= 0 && slot <= 36 ){
                                 player.getInventory().setStack(slot, ModItems.EMPTY_SPEAR_SLOT.getDefaultStack());
                             } // -2 means should skip because it doesnt have loyalty or it was client world
-                    }
 
-                    //create the entity idk why i need to check if the world is not client
-                    if (!world.isClient) {
+                        //creates the entity
 
                         //passes in all variables needed
                         SpearEntity thrownSpear = new SpearEntity(world, player, stack,this);
@@ -144,8 +142,9 @@ public class SpearItem extends ToolItem implements ProjectileItem {
 
                         //actually spawns in the entity
                         world.spawnEntity(thrownSpear);
-
                     }
+
+
                 }
             }
         }
