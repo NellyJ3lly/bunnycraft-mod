@@ -11,6 +11,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -21,6 +22,7 @@ import java.util.function.BiConsumer;
 @Mixin(ItemStack.class)
 public abstract class ArmorAttributesMixin {
 
+    @Unique
     public EntityAttributeModifier Attribute(Item item,String id, Float Value, EntityAttributeModifier.Operation Operation) {
         EntityAttributeModifier Modifier = new EntityAttributeModifier(
                 Identifier.of(Bunnycraft.MOD_ID, item.getTranslationKey() + id), //ensures a unique identifier for each piece
@@ -29,7 +31,7 @@ public abstract class ArmorAttributesMixin {
         );
 
         return Modifier;
-    };
+    }
 
     @Shadow
     public abstract Item getItem();
@@ -102,10 +104,6 @@ public abstract class ArmorAttributesMixin {
 
             // TURTLE
             if(material.contains("turtle")) {
-                RegistryEntry<EntityAttribute> TurtlemovementAttribute = EntityAttributes.GENERIC_MOVEMENT_SPEED;
-                EntityAttributeModifier TurtleMovement =
-                        Attribute(armor,"movement",-0.05f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-
                 if (slot == EquipmentSlot.HEAD) {
                     RegistryEntry<EntityAttribute> OxygenAttribute = EntityAttributes.GENERIC_OXYGEN_BONUS;
 
@@ -132,8 +130,6 @@ public abstract class ArmorAttributesMixin {
 
                     consumer.accept(watereffiencyAttribute, watereffiencyModifier);
                 }
-
-                consumer.accept(TurtlemovementAttribute, TurtleMovement);
             }
 
             if(material.contains("guardian")) {

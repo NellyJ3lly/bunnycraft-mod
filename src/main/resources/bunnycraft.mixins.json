@@ -3,9 +3,11 @@
   "package": "net.bunnycraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "block.DispenserUsesMoreShears",
     "entity.ChickenLayLootTableMixin",
     "entity.PlayerEntityMixin",
     "entity.ShearableZombieMixin",
+    "entity.SheepShearsTypeMixin",
     "entity.TurtleBrushingMixin",
     "item.CauldronAlloyerMixin",
     "item.HoeItemMixin",

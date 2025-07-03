@@ -27,7 +27,6 @@ public class ModTags {
     }
     public static class Items {
 
-        //the spear tag
         public static final TagKey<Item> SPEARS = createTag("spear");
 
         public static final TagKey<Item> SPEAR_ENCHANTABLE = createTag("enchantable/spear");

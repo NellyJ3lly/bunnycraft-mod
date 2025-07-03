@@ -87,7 +87,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .addTag(ItemTags.SHOVELS);
 
         getOrCreateTagBuilder(ModTags.Items.SHEAR_ENCHANTABLE)
-                .add(Items.SHEARS);
+                .add(Items.SHEARS)
+                .add(ModTools.STEEL_SHEARS);
 
 
         //makes loyalty go to tridents and spears by making loyalty.json target the loyalty compat tag
