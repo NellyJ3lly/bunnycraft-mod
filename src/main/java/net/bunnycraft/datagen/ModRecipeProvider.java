@@ -6,15 +6,18 @@ import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.armor.ModArmors;
 import net.bunnycraft.util.BunnycoinCrafting;
-import net.bunnycraft.util.ModArmorRecipes;
-import net.bunnycraft.util.ModToolRecipes;
+import net.bunnycraft.util.recipe.ModArmorRecipes;
+import net.bunnycraft.util.recipe.ModToolRecipes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
@@ -24,6 +27,15 @@ import java.util.concurrent.CompletableFuture;
 public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRecipes, ModArmorRecipes {
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
+    }
+
+    SmithingTransformRecipeJsonBuilder upgradeItem(Item Template, Item PieceToTransmute, Item AddonItem, Item result) {
+        return SmithingTransformRecipeJsonBuilder.create(
+                Ingredient.ofItems(Template),
+                        Ingredient.ofItems(PieceToTransmute),
+                        Ingredient.ofItems(AddonItem),
+                        RecipeCategory.TOOLS, result)
+                .criterion(hasItem(Template), conditionsFromItem(Template));
     }
 
     @Override
@@ -125,12 +137,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         makeShovel(ModTools.ROSE_GOLD_SHOVEL,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
         makeHoe(ModTools.ROSE_GOLD_HOE,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
 
-        makePickaxe(ModTools.STEEL_PICKAXE,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeSword(ModTools.STEEL_SWORD,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeAxe(ModTools.STEEL_AXE,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeShovel(ModTools.STEEL_SHOVEL,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeHoe(ModTools.STEEL_HOE,ModItems.STEEL_INGOT).offerTo(exporter);
-
         makeSpear(ModTools.WOODEN_SPEAR, "minecraft", "planks", Items.STICK).offerTo(exporter);
         makeSpear(ModTools.STONE_SPEAR, "minecraft", "stone_tool_materials", Items.COBBLESTONE).offerTo(exporter);
         makeSpear(ModTools.COPPER_SPEAR, Items.COPPER_INGOT).offerTo(exporter);
@@ -159,10 +165,18 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         makeLeggings(ModArmors.ROSE_GOLD_LEGGINGS,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
         makeBoots(ModArmors.ROSE_GOLD_BOOTS,ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
 
-        makeHelmet(ModArmors.STEEL_HELMET,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeChestplate(ModArmors.STEEL_CHESTPLATE,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeLeggings(ModArmors.STEEL_LEGGINGS,ModItems.STEEL_INGOT).offerTo(exporter);
-        makeBoots(ModArmors.STEEL_BOOTS,ModItems.STEEL_INGOT).offerTo(exporter);
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_HELMET,ModItems.STEEL_INGOT,ModArmors.STEEL_HELMET).offerTo(exporter,"diamond_helmet_to_steel");
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_CHESTPLATE,ModItems.STEEL_INGOT,ModArmors.STEEL_CHESTPLATE).offerTo(exporter,"diamond_chestplate_to_steel");
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_LEGGINGS,ModItems.STEEL_INGOT,ModArmors.STEEL_LEGGINGS).offerTo(exporter,"diamond_leggings_to_steel");
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_BOOTS,ModItems.STEEL_INGOT,ModArmors.STEEL_BOOTS).offerTo(exporter,"diamond_boots_to_steel");
+
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_PICKAXE,ModItems.STEEL_INGOT,ModTools.STEEL_PICKAXE).offerTo(exporter,"diamond_pickaxe_to_steel");
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_SWORD,ModItems.STEEL_INGOT,ModTools.STEEL_SWORD).offerTo(exporter,"diamond_sword_to_steel");
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_AXE,ModItems.STEEL_INGOT,ModTools.STEEL_AXE).offerTo(exporter,"diamond_axe_to_steel");
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_SHOVEL,ModItems.STEEL_INGOT,ModTools.STEEL_SHOVEL).offerTo(exporter,"diamond_shovel_to_steel");
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.DIAMOND_HOE,ModItems.STEEL_INGOT,ModTools.STEEL_HOE).offerTo(exporter,"diamond_hoe_to_steel");
+        upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,ModTools.DIAMOND_SPEAR,ModItems.STEEL_INGOT,ModTools.STEEL_SPEAR).offerTo(exporter,"diamond_spear_to_steel");
+
 
         /// Guardian Armor
 

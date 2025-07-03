@@ -41,6 +41,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.BREEZE_BAR, Models.GENERATED);
         gen.register(ModItems.ROSE_GOLD_INGOT, Models.GENERATED);
         gen.register(ModItems.PANCAKE_RABBIT, Models.GENERATED);
+        gen.register(ModItems.STEEL_UPGRADE_TEMPLATE, Models.GENERATED);
 
         gen.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);
@@ -52,7 +53,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.MOLTEN_NETHERITE, Models.GENERATED);
         gen.register(ModItems.MOLD, Models.GENERATED);
 
-        gen.register(ModTools.STEEL_SHEARS,Models.HANDHELD);
+        gen.register(ModTools.STEEL_SHEARS,Models.GENERATED);
 
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_HELMET));
         gen.registerArmor(((ArmorItem) ModArmors.STEEL_CHESTPLATE));

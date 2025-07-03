@@ -1,4 +1,4 @@
-package net.bunnycraft.util;
+package net.bunnycraft.util.recipe;
 
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;

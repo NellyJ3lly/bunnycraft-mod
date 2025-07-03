@@ -51,6 +51,7 @@ public class ModItemGroups {
 
                         entries.add(ModItems.STEEL_INGOT);
                         entries.add(ModBlocks.STEEL_BLOCK);
+                        entries.add(ModItems.STEEL_UPGRADE_TEMPLATE);
                         entries.add(ModTools.STEEL_PICKAXE);
                         entries.add(ModTools.STEEL_SWORD);
                         entries.add(ModTools.STEEL_AXE);
