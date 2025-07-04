@@ -54,7 +54,6 @@ public abstract class ItemAttributesMixin {
         //changes range stats
         if (item instanceof SwordItem toolItem && slot == EquipmentSlot.MAINHAND) {
 
-
             RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE;
 
             EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
@@ -68,7 +67,6 @@ public abstract class ItemAttributesMixin {
         }
 
         if (item instanceof SpearItem toolItem && slot == EquipmentSlot.MAINHAND) {
-
 
             RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE;
 
@@ -99,7 +97,6 @@ public abstract class ItemAttributesMixin {
 
         if (item instanceof AxeItem toolItem && slot == EquipmentSlot.MAINHAND) {
 
-
             RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE;
 
             EntityAttributeModifier rangeModifier = new EntityAttributeModifier(
@@ -124,11 +121,9 @@ public abstract class ItemAttributesMixin {
             );
 
             consumer.accept(rangeAttribute, rangeModifier);
-
         }
 
         if (item instanceof ShovelItem toolItem && slot == EquipmentSlot.MAINHAND) {
-
 
             RegistryEntry<EntityAttribute> rangeAttribute = EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE;
 

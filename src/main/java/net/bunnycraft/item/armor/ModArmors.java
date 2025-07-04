@@ -90,7 +90,7 @@ public class ModArmors {
 
     public static final Item DEALMAKER = registerItem("dealmaker",
             new ModArmorItem(ModArmorMaterials.DEALMAKER_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(6))) {
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(10))) {
                     @Override
                     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
                         tooltip.add(Text.translatable("tooltip.bunnycraft.dealmaker"));
