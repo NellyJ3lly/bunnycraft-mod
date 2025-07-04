@@ -5,6 +5,7 @@
   "mixins": [
     "block.DispenserUsesMoreShears",
     "entity.ChickenLayLootTableMixin",
+    "entity.DealmakerVillagerInteraction",
     "entity.PlayerEntityMixin",
     "entity.ShearableZombieMixin",
     "entity.SheepShearsTypeMixin",

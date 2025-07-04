@@ -160,5 +160,6 @@
   "advancements.bunnycraft.special_deal.title" : "[Specil] DEAL!!!",
   "advancements.bunnycraft.special_deal.description" : "EV3RY  BUDDY  'S FAVORITE [[Number 1 Rated Salesman1997]]",
   "tooltip.bunnycraft.shovel_knockback_info": "Double Knockback",
-  "tooltip.bunnycraft.hoe_sweeping_info": "Increased Sweeping"
+  "tooltip.bunnycraft.hoe_sweeping_info": "Increased Sweeping",
+  "tooltip.bunnycraft.dealmaker": "Wearing these [[LENSES]] grants you [[SPECIL DEALS]]!!!"
 }
