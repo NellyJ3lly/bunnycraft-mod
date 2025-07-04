@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +53,37 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         }
 
 
+        getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
+                .add(ModArmors.TURTLE_BOOTS)
+                .add(ModArmors.COPPER_BOOTS)
+                .add(ModArmors.ROSE_GOLD_BOOTS)
+                .add(ModArmors.GUARDIAN_BOOTS)
+                .add(ModArmors.DIVING_BOOTS)
+                .add(ModArmors.STEEL_BOOTS);
 
+        getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
+                .add(ModArmors.TURTLE_LEGGINGS)
+                .add(ModArmors.COPPER_LEGGINGS)
+                .add(ModArmors.ROSE_GOLD_LEGGINGS)
+                .add(ModArmors.GUARDIAN_LEGGINGS)
+                .add(ModArmors.DIVING_LEGGINGS)
+                .add(ModArmors.STEEL_LEGGINGS);
+
+        getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
+                .add(ModArmors.TURTLE_CHESTPLATE)
+                .add(ModArmors.COPPER_CHESTPLATE)
+                .add(ModArmors.ROSE_GOLD_CHESTPLATE)
+                .add(ModArmors.GUARDIAN_CHESTPLATE)
+                .add(ModArmors.DIVING_CHESTPLATE)
+                .add(ModArmors.STEEL_CHESTPLATE);
+
+        getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
+                .add(ModArmors.DEALMAKER)
+                .add(ModArmors.COPPER_HELMET)
+                .add(ModArmors.ROSE_GOLD_HELMET)
+                .add(ModArmors.GUARDIAN_HELMET)
+                .add(ModArmors.DIVING_HELMET)
+                .add(ModArmors.STEEL_HELMET);
 
         //trim tags
 
@@ -62,14 +93,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)
                 .add(ModItems.PANCAKE_RABBIT);
-
-        getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
-                .add(ModArmors.STEEL_HELMET)
-                .add(ModArmors.STEEL_CHESTPLATE)
-                .add(ModArmors.STEEL_LEGGINGS)
-                .add(ModArmors.STEEL_BOOTS);
-
-
 
         getOrCreateTagBuilder(ModTags.Items.SPEAR_ENCHANTABLE)
                 .addTag(ModTags.Items.SPEARS);
@@ -96,7 +119,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.ACCEPTS_LOYALTY)
                 .addOptionalTag(ItemTags.TRIDENT_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.SPEAR_ENCHANTABLE);
-
 
         //currently targeting this tag is bane_of_arthropods.json, fire_aspect.json, knockback.json, looting,json, sharpness.json, smite.json
 
@@ -136,9 +158,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .addOptionalTag(ModTags.Items.AXE_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.SHOVEL_ENCHANTABLE)
                 .addOptionalTag(ModTags.Items.SHEAR_ENCHANTABLE);
-
-
-
 
     }
 }
