@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-04T16:56:04.4538259	Bunnycraft/Model Definitions
+// 1.21.1	2025-07-04T19:28:33.1496525	Bunnycraft/Model Definitions
 e4071693a4364c641d0f6be025c74bc161d9e4f1 assets\bunnycraft\models\item\copper_helmet_lapis_trim.json
 88b146370085173f9fd80731752832e9707a7b57 assets\bunnycraft\models\item\guardian_helmet_quartz_trim.json
 97846d161c1040378b58e4de578c9d7894038ad1 assets\bunnycraft\models\item\diving_boots_quartz_trim.json
@@ -262,8 +262,8 @@ cbeabcdffc825bea403cb5eaaf0e572841daf5d5 assets\bunnycraft\models\item\steel_leg
 181b524b531a9d6cfafa92cacc07448cce217e9f assets\bunnycraft\models\item\diving_boots_diamond_trim.json
 e09d96e40243691b1366a76208d703468897a18a assets\bunnycraft\models\item\guardian_leggings_lapis_trim.json
 8efdb5004662d17a38824ab56f27ef760b2aad2a assets\bunnycraft\models\item\copper_leggings_gold_trim.json
-1d20b3161df4086d3f5ed2634a9745763af13eca assets\bunnycraft\models\item\diving_boots_iron_trim.json
 1d344a455573b126a4429476e1d969a14f45a900 assets\bunnycraft\models\item\turtle_chestplate_amethyst_trim.json
+1d20b3161df4086d3f5ed2634a9745763af13eca assets\bunnycraft\models\item\diving_boots_iron_trim.json
 af47ee7e39e4bd4a88351ea4c4d1334468d550fe assets\bunnycraft\models\item\steel_helmet_emerald_trim.json
 7b4f6fc71b291d93bb62d9c37570c4d6059cf48f assets\bunnycraft\models\item\rose_gold_chestplate_diamond_trim.json
 79529a29718dc389e6a2998458d35ded93b2f981 assets\bunnycraft\models\item\dealmaker_amethyst_trim.json

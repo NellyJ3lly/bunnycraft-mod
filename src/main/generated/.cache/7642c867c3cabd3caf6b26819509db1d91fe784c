@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-04T16:56:04.4465553	Bunnycraft/Recipes
+// 1.21.1	2025-07-04T19:28:33.1436468	Bunnycraft/Recipes
 e1b0fe400a9d0fcb364ee3e632fe1b80065f7cf7 data\bunnycraft\recipe\prismarine_pickaxe.json
 79e911581d2d343d81f72c5783fd9c160b502b31 data\bunnycraft\advancement\recipes\combat\turtle_chestplate.json
 4e294bdef337284f05e78a098f7b15e556f44cbd data\bunnycraft\recipe\diamond_spear_to_steel.json
@@ -46,6 +46,7 @@ e761b8ff1b7ea8f5a9b5ae83b7d2b3100111110e data\bunnycraft\advancement\recipes\bui
 d600e4db0985b98ed21dc0dbf0f6b4346d07f6dd data\bunnycraft\recipe\gold_bunnycoin_block.json
 ac9bb0caeeb27fc6982689918f819b5bfaaac839 data\bunnycraft\recipe\prismarine_axe.json
 1fc8ba8cb879e898c8bae7044041735dd3aa8011 data\bunnycraft\recipe\pancake_rabbit.json
+c7fbaa86d4be68b6b95e7c4cefbddf6984f7a1ee data\bunnycraft\advancement\recipes\misc\steel_upgrade_template.json
 676411e726cce5c9e91815f897257d37ba8e291c data\bunnycraft\recipe\diamond_hoe_to_steel.json
 07f99de640c4b83c240351fb0420a70625f9eca9 data\bunnycraft\recipe\copper_bunnycoin_block.json
 ba4764f97044f4272d748ae4be9da1e7c6f08e44 data\bunnycraft\recipe\copper_hoe.json
@@ -92,6 +93,7 @@ f8f15e4f6e2943ec4d4e6bf7a4ec8989009b903f data\bunnycraft\advancement\recipes\too
 af45fb8934b9270e7f0907508f70ed568c37e503 data\bunnycraft\advancement\recipes\tools\stone_spear.json
 fef66bc85c30b510f746a0c39a3cd597f0c030d0 data\bunnycraft\recipe\turtle_leggings.json
 a06d6d53c073440462825e4bc44bdfbd41e19dc0 data\bunnycraft\recipe\diamond_axe_to_steel.json
+5f7f55bf557bf7070c522a6515d53ae310506ba2 data\bunnycraft\recipe\steel_upgrade_template.json
 3249c0cb0625165c692de9c0dda4e0fdb42f6a52 data\bunnycraft\recipe\prismarine_sword.json
 5a88d395a7deb5e2e88a2c0781a707883fa9296f data\bunnycraft\advancement\recipes\combat\turtle_leggings.json
 495e68216c8c5ccdd5d1c546420fa89bd31d8155 data\bunnycraft\recipe\copper_spear.json
