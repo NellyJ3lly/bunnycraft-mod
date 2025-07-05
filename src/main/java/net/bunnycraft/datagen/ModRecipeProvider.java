@@ -107,6 +107,16 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .criterion(hasItem(Items.PRISMARINE), conditionsFromItem(Items.PRISMARINE))
                 .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter);
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.STEEL_UPGRADE_TEMPLATE,2)
+                .pattern("-T-")
+                .pattern("-S-")
+                .pattern("---")
+                .input('-', Items.IRON_INGOT)
+                .input('S', Items.DEEPSLATE)
+                .input('T',ModItems.STEEL_UPGRADE_TEMPLATE)
+                .criterion(hasItem(ModItems.STEEL_UPGRADE_TEMPLATE), conditionsFromItem(ModItems.STEEL_UPGRADE_TEMPLATE)).offerTo(exporter);
+
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ROSE_GOLD_INGOT)
                         .input(ModItems.MOLTEN_ROSE_GOLD)
                         .input(ModItems.MOLD)
