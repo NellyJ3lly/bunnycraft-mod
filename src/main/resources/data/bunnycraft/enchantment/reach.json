@@ -3,6 +3,7 @@
     "translate": "enchantment.bunnycraft.reach"
   },
   "exclusive_set": "minecraft:efficiency",
+  "primary_items": "#minecraft:enchantable/mining",
   "supported_items": "#minecraft:enchantable/mining",
   "weight": 10,
   "max_level": 5,

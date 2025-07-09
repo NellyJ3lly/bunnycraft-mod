@@ -30,6 +30,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#bunnycraft:enchantable/accepts_mace_enchants",
+  "supported_items": "#minecraft:enchantable/mace",
   "weight": 2
 }

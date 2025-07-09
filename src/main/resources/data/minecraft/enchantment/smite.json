@@ -34,10 +34,10 @@
     "base": 5,
     "per_level_above_first": 8
   },
-  "primary_items": "#bunnycraft:enchantable/accepts_generic_combat_enchants",
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#minecraft:enchantable/weapon",
+  "primary_items": "#minecraft:enchantable/weapon",
+  "supported_items": "#bunnycraft:enchantable/accepts_generic_combat_enchants",
   "weight": 5
 }

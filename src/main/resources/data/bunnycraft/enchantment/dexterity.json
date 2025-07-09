@@ -30,6 +30,7 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#minecraft:enchantable/sword",
+  "primary_items": "#minecraft:enchantable/sword",
+  "supported_items": "#bunnycraft:enchantable/accepts_generic_combat_enchants",
   "weight": 10
 }
