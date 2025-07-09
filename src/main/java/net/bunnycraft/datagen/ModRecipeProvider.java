@@ -81,6 +81,17 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                         .criterion(hasItem(ModItems.MOLTEN_ROSE_GOLD), conditionsFromItem(ModItems.MOLTEN_ROSE_GOLD))
                         .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "rose_gold_molten_compacting"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.VAULT_REWINDER)
+                .pattern(" X ")
+                .pattern("CIC")
+                .pattern(" X ")
+                .input('X', Items.REDSTONE)
+                .input('C', Items.COPPER_INGOT)
+                .input('I', Items.TRIAL_KEY)
+                .criterion(hasItem(Items.TRIAL_KEY), conditionsFromItem(Items.TRIAL_KEY))
+                .offerTo(exporter);
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK)
                 .pattern("XXX")
                 .pattern("XXX")

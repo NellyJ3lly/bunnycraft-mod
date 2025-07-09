@@ -22,6 +22,7 @@ public class ModItems {
     public static  final Item STEEL_INGOT = registerIngot("steel_ingot", new Item(new Item.Settings()));
     public static  final Item BREEZE_BAR = registerIngot("breeze_bar", new Item(new Item.Settings()));
     public static  final Item PIPIS = registerIngot("pipis", new Item(new Item.Settings()));
+    public static  final Item VAULT_REWINDER = registerIngot("vault_rewinder", new Item(new Item.Settings()));
 
     public static  final Item STEEL_UPGRADE_TEMPLATE = registerIngot("steel_upgrade_template", new Item(new Item.Settings()));
 

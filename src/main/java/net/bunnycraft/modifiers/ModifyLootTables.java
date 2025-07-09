@@ -1,10 +1,8 @@
-package net.bunnycraft.loottablemodifiers;
+package net.bunnycraft.modifiers;
 
 import net.bunnycraft.item.ModItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
-import net.minecraft.block.Blocks;
 import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;

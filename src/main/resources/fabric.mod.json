@@ -3,7 +3,7 @@
 	"id": "bunnycraft",
 	"version": "${version}",
 	"name": "Bunnycraft",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "The bunnycraft mod! adds various fun things to the game focusing on making progression not as linear",
 	"authors": [
 		"Nellybean",
 		"KandyCats",
@@ -46,5 +46,6 @@
 	},
 	"suggests": {
 		"another-mod": "*"
-	}
+	},
+	"accessWidener" : "bunnycraft.accesswidener"
 }

@@ -35,7 +35,6 @@ public class PickaxeItemMixin extends MiningToolItem {
         super(material, effectiveBlocks, settings);
     }
 
-
     //TODO modify the damage and speed so it kinda mimics an axe speed but less base damage. may have to create a new class
 
     @Unique

@@ -24,6 +24,7 @@ public class ModItemGroups {
                         entries.add(ModItems.COPPER_BUNNYCOIN);
                         entries.add(ModItems.GOLD_BUNNYCOIN);
                         entries.add(ModItems.DIAMOND_BUNNYCOIN);
+                        entries.add(ModItems.VAULT_REWINDER);
 
                         entries.add(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
                         entries.add(ModBlocks.GOLD_BUNNYCOIN_BLOCK);

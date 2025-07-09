@@ -4,6 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "block.DispenserUsesMoreShears",
+    "entity.VaultRewinderBlockEntity",
+    "block.VaultBlockRewinderUse",
     "entity.ChickenLayLootTableMixin",
     "entity.DealmakerLoseDurabilityOnTrade",
     "entity.DealmakerVillagerInteraction",
