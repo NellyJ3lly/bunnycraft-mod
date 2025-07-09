@@ -21,6 +21,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
                         entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
 
+                        entries.add(ModItems.BUNNYCENT);
                         entries.add(ModItems.COPPER_BUNNYCOIN);
                         entries.add(ModItems.GOLD_BUNNYCOIN);
                         entries.add(ModItems.DIAMOND_BUNNYCOIN);

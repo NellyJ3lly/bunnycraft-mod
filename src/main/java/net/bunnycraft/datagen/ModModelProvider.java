@@ -40,6 +40,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.PANCAKE_RABBIT, Models.GENERATED);
         gen.register(ModItems.STEEL_UPGRADE_TEMPLATE, Models.GENERATED);
 
+        gen.register(ModItems.BUNNYCENT, Models.GENERATED);
         gen.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.DIAMOND_BUNNYCOIN, Models.GENERATED);
