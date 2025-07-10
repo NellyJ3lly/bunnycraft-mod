@@ -3,8 +3,8 @@
   "package": "net.bunnycraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "block.BrushableBlockDropXP",
     "block.DispenserUsesMoreShears",
-    "entity.VaultRewinderBlockEntity",
     "block.VaultBlockRewinderUse",
     "entity.ChickenLayLootTableMixin",
     "entity.DealmakerLoseDurabilityOnTrade",
@@ -13,6 +13,7 @@
     "entity.ShearableZombieMixin",
     "entity.SheepShearsTypeMixin",
     "entity.TurtleBrushingMixin",
+    "entity.VaultRewinderBlockEntity",
     "item.CauldronAlloyerMixin",
     "item.HoeItemMixin",
     "item.PickaxeItemMixin",
