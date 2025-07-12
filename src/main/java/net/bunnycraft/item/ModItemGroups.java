@@ -17,16 +17,19 @@ public class ModItemGroups {
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.PANCAKE_RABBIT))
                     .displayName(Text.translatable("itemgroup.bunnycraft.group"))
                     .entries((displayContext, entries) -> {
-                        entries.add(ModItems.PANCAKE_RABBIT);
-                        entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
-                        entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
+
+                        entries.add(ModItems.VAULT_REWINDER);
+                        entries.add(ModTools.CLIMBING_CLAWS);
+
+                        entries.add(ModItems.MOLD);
+                        entries.add(ModItems.MOLTEN_ROSE_GOLD);
+                        entries.add(ModItems.MOLTEN_STEEL);
+
 
                         entries.add(ModItems.BUNNYCENT);
                         entries.add(ModItems.COPPER_BUNNYCOIN);
                         entries.add(ModItems.GOLD_BUNNYCOIN);
                         entries.add(ModItems.DIAMOND_BUNNYCOIN);
-                        entries.add(ModItems.VAULT_REWINDER);
-
                         entries.add(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
                         entries.add(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
                         entries.add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
@@ -36,12 +39,10 @@ public class ModItemGroups {
                         entries.add(ModTools.COPPER_AXE);
                         entries.add(ModTools.COPPER_HOE);
                         entries.add(ModTools.COPPER_SHOVEL);
-
-                        entries.add(ModTools.PRISMARINE_PICKAXE);
-                        entries.add(ModTools.PRISMARINE_SWORD);
-                        entries.add(ModTools.PRISMARINE_AXE);
-                        entries.add(ModTools.PRISMARINE_HOE);
-                        entries.add(ModTools.PRISMARINE_SHOVEL);
+                        entries.add(ModArmors.COPPER_HELMET);
+                        entries.add(ModArmors.COPPER_CHESTPLATE);
+                        entries.add(ModArmors.COPPER_LEGGINGS);
+                        entries.add(ModArmors.COPPER_BOOTS);
 
                         entries.add(ModItems.ROSE_GOLD_INGOT);
                         entries.add(ModBlocks.ROSE_GOLD_BLOCK);
@@ -50,6 +51,11 @@ public class ModItemGroups {
                         entries.add(ModTools.ROSE_GOLD_AXE);
                         entries.add(ModTools.ROSE_GOLD_HOE);
                         entries.add(ModTools.ROSE_GOLD_SHOVEL);
+                        entries.add(ModTools.ROSE_GOLD_SPEAR);
+                        entries.add(ModArmors.ROSE_GOLD_HELMET);
+                        entries.add(ModArmors.ROSE_GOLD_CHESTPLATE);
+                        entries.add(ModArmors.ROSE_GOLD_LEGGINGS);
+                        entries.add(ModArmors.ROSE_GOLD_BOOTS);
 
                         entries.add(ModItems.STEEL_INGOT);
                         entries.add(ModBlocks.STEEL_BLOCK);
@@ -60,28 +66,25 @@ public class ModItemGroups {
                         entries.add(ModTools.STEEL_HOE);
                         entries.add(ModTools.STEEL_SHOVEL);
                         entries.add(ModTools.STEEL_SHEARS);
-
-                        entries.add(ModItems.BREEZE_BAR);
+                        entries.add(ModTools.STEEL_SPEAR);
+                        entries.add(ModArmors.STEEL_HELMET);
+                        entries.add(ModArmors.STEEL_CHESTPLATE);
+                        entries.add(ModArmors.STEEL_LEGGINGS);
+                        entries.add(ModArmors.STEEL_BOOTS);
 
                         entries.add(ModTools.WOODEN_SPEAR);
                         entries.add(ModTools.STONE_SPEAR);
                         entries.add(ModTools.COPPER_SPEAR);
                         entries.add(ModTools.IRON_SPEAR);
                         entries.add(ModTools.GOLDEN_SPEAR);
-                        entries.add(ModTools.ROSE_GOLD_SPEAR);
                         entries.add(ModTools.DIAMOND_SPEAR);
                         entries.add(ModTools.NETHERITE_SPEAR);
-                        entries.add(ModTools.STEEL_SPEAR);
 
-                        entries.add(ModArmors.COPPER_HELMET);
-                        entries.add(ModArmors.COPPER_CHESTPLATE);
-                        entries.add(ModArmors.COPPER_LEGGINGS);
-                        entries.add(ModArmors.COPPER_BOOTS);
-
-                        entries.add(ModArmors.ROSE_GOLD_HELMET);
-                        entries.add(ModArmors.ROSE_GOLD_CHESTPLATE);
-                        entries.add(ModArmors.ROSE_GOLD_LEGGINGS);
-                        entries.add(ModArmors.ROSE_GOLD_BOOTS);
+                        entries.add(ModTools.PRISMARINE_PICKAXE);
+                        entries.add(ModTools.PRISMARINE_SWORD);
+                        entries.add(ModTools.PRISMARINE_AXE);
+                        entries.add(ModTools.PRISMARINE_HOE);
+                        entries.add(ModTools.PRISMARINE_SHOVEL);
 
                         entries.add(ModArmors.TURTLE_CHESTPLATE);
                         entries.add(ModArmors.TURTLE_LEGGINGS);
@@ -97,16 +100,10 @@ public class ModItemGroups {
                         entries.add(ModArmors.GUARDIAN_LEGGINGS);
                         entries.add(ModArmors.GUARDIAN_BOOTS);
 
-                        entries.add(ModArmors.STEEL_HELMET);
-                        entries.add(ModArmors.STEEL_CHESTPLATE);
-                        entries.add(ModArmors.STEEL_LEGGINGS);
-                        entries.add(ModArmors.STEEL_BOOTS);
-
-                        entries.add(ModItems.MOLD);
-                        entries.add(ModItems.MOLTEN_ROSE_GOLD);
-                        entries.add(ModItems.MOLTEN_STEEL);
-
                         entries.add(ModBlocks.ENCHANTING_STAND);
+                        entries.add(ModItems.PANCAKE_RABBIT);
+                        entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
+                        entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
                     }).build());
 
     public static void registerItemGroups() {

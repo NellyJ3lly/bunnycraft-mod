@@ -21,6 +21,7 @@ public class ModTools  {
 
     //always declare a new tool with these values, tweak the stats in the toolMaterial
 
+    public static final Item CLIMBING_CLAWS = registerTool("climbing_claws", new Item(new Item.Settings().maxDamage(325)));
 
     // WOODEN TOOLS
     public static final Item WOODEN_SPEAR = registerTool("wooden_spear", new SpearItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(

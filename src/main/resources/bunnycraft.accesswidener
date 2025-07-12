@@ -2,5 +2,9 @@ accessWidener v2 named
 
 accessible method net/minecraft/block/vault/VaultServerData hasRewardedPlayer (Lnet/minecraft/entity/player/PlayerEntity;)Z
 accessible field net/minecraft/block/vault/VaultServerData rewardedPlayers Ljava/util/Set;
+
 accessible method net/minecraft/util/math/intprovider/UniformIntProvider <init> (II)V
 accessible method net/minecraft/util/math/intprovider/UniformIntProvider get (Lnet/minecraft/util/math/random/Random;)I
+
+accessible field net/minecraft/entity/LivingEntity climbingPos Ljava/util/Optional;
+accessible method net/minecraft/entity/LivingEntity canEnterTrapdoor (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Z
