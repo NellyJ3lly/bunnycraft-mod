@@ -85,6 +85,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
 
+        gen.register(ModTools.CLIMBING_CLAW, Models.HANDHELD);
+
         //add pickaxes
         for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {
             gen.register(ModTools.pickaxeList.get(i), Models.HANDHELD);

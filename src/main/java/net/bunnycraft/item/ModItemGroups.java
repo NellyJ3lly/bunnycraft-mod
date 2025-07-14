@@ -19,7 +19,7 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
 
                         entries.add(ModItems.VAULT_REWINDER);
-                        entries.add(ModTools.CLIMBING_CLAWS);
+                        entries.add(ModTools.CLIMBING_CLAW);
 
                         entries.add(ModItems.MOLD);
                         entries.add(ModItems.MOLTEN_ROSE_GOLD);

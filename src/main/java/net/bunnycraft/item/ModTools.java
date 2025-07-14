@@ -1,6 +1,8 @@
 package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.component.ModComponents;
+import net.bunnycraft.item.custom.ClimbingClawItem;
 import net.bunnycraft.item.custom.SpearItem;
 import net.bunnycraft.item.tools.ModToolMaterials;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -18,10 +20,12 @@ public class ModTools  {
 
     //base tool damages, same as vanilla
 
-
     //always declare a new tool with these values, tweak the stats in the toolMaterial
 
-    public static final Item CLIMBING_CLAWS = registerTool("climbing_claws", new Item(new Item.Settings().maxDamage(325)));
+    public static final Item CLIMBING_CLAW = registerTool(
+            "climbing_claw",
+            new ClimbingClawItem(new Item.Settings().maxDamage(250).component(ModComponents.CAN_CLIMB_ON_BLOCK,false))
+    );
 
     // WOODEN TOOLS
     public static final Item WOODEN_SPEAR = registerTool("wooden_spear", new SpearItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
