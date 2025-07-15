@@ -17,9 +17,11 @@ public class BunnycraftDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModModelProvider::new);
-		pack.addProvider(ModLootTableProvider::new);
+		pack.addProvider(ModBlockLootTableProvider::new);
 		pack.addProvider(ModRegistryDataGenerator::new);
+		pack.addProvider(ModSimpleLootTableProvider::new);
 	}
+
 
 	@Override
 	public void buildRegistry(RegistryBuilder registryBuilder) {

@@ -19,9 +19,9 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModLootTableProvider extends FabricBlockLootTableProvider {
+public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
 
-    public ModLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    public ModBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
@@ -38,6 +38,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.ROSE_GOLD_BLOCK);
         addDrop(ModBlocks.STEEL_BLOCK);
+
+        addDrop(ModBlocks.PIPIS_BLOCK);
+        addDrop(ModBlocks.MS_PIPIS_BLOCK);
 
         addDrop(ModBlocks.ENCHANTING_STAND);
     }

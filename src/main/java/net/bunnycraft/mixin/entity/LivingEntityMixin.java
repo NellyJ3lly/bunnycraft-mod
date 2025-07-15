@@ -2,6 +2,7 @@ package net.bunnycraft.mixin.entity;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.item.ModTools;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
@@ -127,7 +128,8 @@ public abstract class LivingEntityMixin {
             at = @At("RETURN"),
             cancellable = true)
     public void DamageChanges(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
-        cir.setReturnValue(cir.getReturnValue() * 4);
+        amount = cir.getReturnValue();
+        cir.setReturnValue(amount);
     }
 
 //    public void swimUpward(TagKey<Fluid> fluid) {

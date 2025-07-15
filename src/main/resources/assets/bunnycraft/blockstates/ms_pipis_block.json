@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "bunnycraft:block/ms_pipis_block", "uvlock": false },
+    "facing=east":  { "model": "bunnycraft:block/ms_pipis_block", "y":  90, "uvlock": false },
+    "facing=south": { "model": "bunnycraft:block/ms_pipis_block", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "bunnycraft:block/ms_pipis_block", "y": 270, "uvlock": false }
+  }
+}

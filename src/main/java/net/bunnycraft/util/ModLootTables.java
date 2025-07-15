@@ -16,5 +16,6 @@ public class ModLootTables {
     }
 
     public static void registerLootTables(){
+        Bunnycraft.LOGGER.info("registering LootTables for " + Bunnycraft.MOD_ID);
     }
 }

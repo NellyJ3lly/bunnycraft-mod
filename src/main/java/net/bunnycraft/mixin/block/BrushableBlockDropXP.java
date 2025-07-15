@@ -24,6 +24,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BrushableBlockEntity.class)
 public class BrushableBlockDropXP extends BlockEntity {
 
+    @Unique
+    IntProvider size = UniformIntProvider.create(1,5);
+
     public BrushableBlockDropXP(BlockEntityType<?> type, BlockPos pos, BlockState state, IntProvider experienceDropped) {
         super(type, pos, state);
     }
@@ -34,9 +37,7 @@ public class BrushableBlockDropXP extends BlockEntity {
     )
     public void addXPAfterBrushing(PlayerEntity player, CallbackInfo ci) {
         if (this.world != null && this.world.getServer() != null) {
-            IntProvider size = UniformIntProvider.create(1,5);
-            int size2 = size.get(Random.create());
-            ExperienceOrbEntity.spawn((ServerWorld) this.world, Vec3d.ofCenter(pos), size2);
+            ExperienceOrbEntity.spawn((ServerWorld) this.world, Vec3d.ofCenter(pos), size.get(Random.create()));
         }
     }
 }

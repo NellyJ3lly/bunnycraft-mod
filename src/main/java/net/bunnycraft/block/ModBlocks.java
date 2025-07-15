@@ -20,8 +20,16 @@ public class ModBlocks {
             new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
                     AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block PANCAKE_RABBIT_BLOCK = registerBlock("pancake_rabbit_block",
-            new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
-                    AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.STONE)));
+            new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.STONE)));
+
+    public static final Block PIPIS_BLOCK = registerBlock("pipis_block",
+            new PipisBlock(AbstractBlock.Settings.create().strength(0f,1200f).nonOpaque().sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MS_PIPIS_BLOCK = registerBlock("ms_pipis_block",
+            new PipisBlock(AbstractBlock.Settings.create().strength(0f,1200f)
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.STONE)));
+
 
     // we will need to change the strengths and actual stuff to mine these blocks
     // for now I'm leaving it as is to focus on other things

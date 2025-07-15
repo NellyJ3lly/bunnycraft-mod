@@ -45,6 +45,10 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.GOLD_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.GOLD_BUNNYCOIN_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.DIAMOND_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
 
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.PIPIS, RecipeCategory.DECORATIONS, ModBlocks.PIPIS_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.MS_PIPIS, RecipeCategory.DECORATIONS, ModBlocks.MS_PIPIS_BLOCK);
+
+
         BunnycoinCrafting.makeCoin(exporter,"cent_copper_conversion",ModItems.COPPER_BUNNYCOIN,ModItems.BUNNYCENT);
         BunnycoinCrafting.makeCoin(exporter,"copper_gold_conversion",ModItems.GOLD_BUNNYCOIN,ModItems.COPPER_BUNNYCOIN);
         BunnycoinCrafting.makeCoin(exporter,"gold_diamond_conversion",ModItems.DIAMOND_BUNNYCOIN,ModItems.GOLD_BUNNYCOIN);

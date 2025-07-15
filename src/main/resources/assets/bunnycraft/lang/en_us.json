@@ -11,11 +11,6 @@
   "block.bunnycraft.rose_gold_block": "Block of Rose Gold",
   "block.bunnycraft.steel_block": "Block of Steel",
 
-  "enchantment.bunnycraft.dexterity": "Dexterity",
-  "enchantment.bunnycraft.reach": "Reach",
-  "enchantment.bunnycraft.spacious": "Spacious",
-  "enchantment.bunnycraft.weightless": "Weightless",
-
   "tooltip.bunnycraft.empty_slot.instructions": "This item reserves a slot for your spear, Drop to delete",
 
   "item.bunnycraft.rose_gold_ingot": "Rose Gold Ingot",
@@ -104,6 +99,9 @@
   "item.bunnycraft.empty_spear_slot": "Spear Slot",
 
   "item.bunnycraft.pipis": "Pipis",
+  "item.bunnycraft.ms_pipis": "Ms. Pipis",
+  "block.bunnycraft.pipis_block": "Block of Pipis",
+  "block.bunnycraft.ms_pipis_block": "Block of Ms. Pipis",
   "item.bunnycraft.dealmaker": "Dealmaker",
 
   "entity.bunnycraft.alloy_liquid_entity": "Liquid Metal",
@@ -111,6 +109,12 @@
   "block.bunnycraft.enchanting_stand": "Enchanting Stand",
 
   "container.bunnycraft.enchanting_gui_title": "Enchant",
+
+  "enchantment.bunnycraft.dexterity": "Dexterity",
+  "enchantment.bunnycraft.reach": "Reach",
+  "enchantment.bunnycraft.spacious": "Spacious",
+  "enchantment.bunnycraft.weightless": "Weightless",
+
 
   "tooltip.bunnycraft.pickaxe_fallen_block_info": "Damage per Block",
 

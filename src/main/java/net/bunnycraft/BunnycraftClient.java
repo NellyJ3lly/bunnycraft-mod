@@ -38,6 +38,7 @@ public class BunnycraftClient implements ClientModInitializer {
 
         BlockEntityRendererFactories.register(ModBlockEntities.ENCHANTING_STAND_ENTITY, EnchantingStandEntityRenderer :: new);
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ENCHANTING_STAND, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MS_PIPIS_BLOCK, RenderLayer.getCutout());
 
         //registers the screen for enchanting stand
         HandledScreens.register(ModScreenHandlers.ENCHANTING_STAND_SCREEN_HANDLER_TYPE, EnchantingStandScreen::new);
