@@ -83,33 +83,27 @@ public abstract class LivingEntityMixin {
     public boolean CanClimb() {
         if (!this.hasOneOrBothClaws()) {return false;}
 
-        // probably messy so we may change this later
-        boolean or = isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
-        boolean and = isStackClimbingClawThatClimbs(Hand.MAIN_HAND) && isStackClimbingClawThatClimbs(Hand.OFF_HAND);
-
-        return or || and;
+        return isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
     }
 
-    @Inject(
+    @ModifyReturnValue(
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
-            at = @At("TAIL"),
-            cancellable = true)
-    public void ClimbClawFunctionalityBunnycraft(CallbackInfoReturnable<Boolean> cir) {
+            at = @At("TAIL"))
+    public boolean ClimbClawFunctionalityBunnycraft(boolean original) {
         BlockPos blockPos = entity.getBlockPos();
 
-        if ((this.hasOneOrBothClaws() && entity.horizontalCollision && !this.onClimbableBlock())) {
-            if (this.CanClimb()) {
-               entity.climbingPos = Optional.of(blockPos);
-               cir.setReturnValue(true);
-           }
+        if (this.CanClimb()) {
+            entity.climbingPos = Optional.of(blockPos);
+            return true;
         }
+        return original;
     }
 
     @ModifyReturnValue(
             method = "Lnet/minecraft/entity/LivingEntity;applyClimbingSpeed(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;",
             at = @At("TAIL"))
     public Vec3d ClimbClawSpeed(Vec3d original) {
-        if (!this.hasOneOrBothClaws() || !this.CanClimb() || entity.isOnGround()) {return original;}
+        if (!this.CanClimb() || entity.isOnGround()) {return original;}
 
         Vec3d motion = original;
         double climbspeed = 1;

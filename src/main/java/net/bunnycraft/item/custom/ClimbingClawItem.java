@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.World;
 
 public class ClimbingClawItem extends Item {
@@ -36,20 +37,20 @@ public class ClimbingClawItem extends Item {
         if (!stack.isOf(ModTools.CLIMBING_CLAW) || !selected) {return;}
 
         if (entity instanceof LivingEntity livingentity) {
-            if (startPos == null) {startPos = livingentity.getBlockPos();}
-
+            if (startPos == null) {startPos = entity.getBlockPos();}
             HitResult hit = entity.raycast(1,0,false);
             stack.set(ModComponents.CAN_CLIMB_ON_BLOCK,CanClimb(hit,livingentity));
 
-            BlockPos currentpos = livingentity.getBlockPos();
+            if (!livingentity.isClimbing()) {return;}
 
-            boolean didYChange = startPos.getY() != currentpos.getY();
+            BlockPos currentPos = entity.getBlockPos();
 
-            if (livingentity.horizontalCollision && !livingentity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {
-                System.out.println("HELP ME");
-                stack.damage(1,livingentity,EquipmentSlot.MAINHAND);
-                startPos = null;
-            }
+            double YDiff = Math.abs(currentPos.getY() - startPos.getY());
+
+            if (YDiff < 3) {return;}
+            stack.damage(1,livingentity,EquipmentSlot.MAINHAND);
+
+            startPos = null;
         }
     }
 }
