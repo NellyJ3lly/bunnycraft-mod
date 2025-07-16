@@ -72,6 +72,15 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('O', Items.CLAY_BALL)
                 .criterion(hasItem(Items.CAULDRON), conditionsFromItem(Items.CAULDRON)).offerTo(exporter);
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.WOODEN_CANE, 1)
+                .pattern(" S ")
+                .pattern(" W ")
+                .pattern(" S ")
+                .input('W', Items.OAK_PLANKS)
+                .input('S', Items.STICK)
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK)).offerTo(exporter);
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.STEEL_SHEARS)
                 .pattern(" X")
                 .pattern("X ")

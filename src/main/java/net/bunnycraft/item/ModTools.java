@@ -2,11 +2,15 @@ package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.component.ModComponents;
+import net.bunnycraft.item.custom.CaneItem;
 import net.bunnycraft.item.custom.ClimbingClawItem;
 import net.bunnycraft.item.custom.SpearItem;
 import net.bunnycraft.item.tools.ModToolMaterials;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -26,6 +30,11 @@ public class ModTools  {
             "climbing_claw",
             new ClimbingClawItem(new Item.Settings().maxDamage(250).component(ModComponents.CAN_CLIMB_ON_BLOCK,false))
     );
+
+    public static final Item WOODEN_CANE = registerTool("wooden_cane",
+            new CaneItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
+                    CaneItem.createAttributeModifiers(ToolMaterials.WOOD,0.1f,1f,2,-3f,2f)
+            )));
 
     // WOODEN TOOLS
     public static final Item WOODEN_SPEAR = registerTool("wooden_spear", new SpearItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
@@ -92,7 +101,6 @@ public class ModTools  {
     // later make it so they always give 3 maybe a chance for 4 wool while shearingy
     public static  final Item STEEL_SHEARS = registerItem("steel_shears", new ShearsItem(new Item.Settings().attributeModifiers(
             SwordItem.createAttributeModifiers(ModToolMaterials.STEEL, 0, -1f)).maxDamage(714).component(DataComponentTypes.TOOL, ShearsItem.createToolComponent())));
-
 
     // ROSE GOLD TOOLS
     public static  final Item ROSE_GOLD_PICKAXE = registerTool("rose_gold_pickaxe", new PickaxeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(

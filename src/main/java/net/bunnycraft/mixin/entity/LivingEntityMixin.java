@@ -1,12 +1,15 @@
 package net.bunnycraft.mixin.entity;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.ModTools;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -30,6 +33,10 @@ public abstract class LivingEntityMixin {
     @Shadow public abstract boolean isHoldingOntoLadder();
 
     @Shadow public float forwardSpeed;
+    @Shadow protected boolean jumping;
+
+    @Shadow protected abstract void fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition);
+
     @Unique
     LivingEntity entity = (LivingEntity) (Object) this;
 
@@ -66,6 +73,23 @@ public abstract class LivingEntityMixin {
         return this.hasClimbingClaw() || this.hasBothClimbingClaws();
     }
 
+    @Unique
+    public boolean isStackClimbingClawThatClimbs(Hand hand) {
+        ItemStack stack = entity.getStackInHand(hand);
+        return stack.isOf(ModTools.CLIMBING_CLAW) && Boolean.TRUE.equals(stack.get(ModComponents.CAN_CLIMB_ON_BLOCK));
+    }
+
+    @Unique
+    public boolean CanClimb() {
+        if (!this.hasOneOrBothClaws()) {return false;}
+
+        // probably messy so we may change this later
+        boolean or = isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
+        boolean and = isStackClimbingClawThatClimbs(Hand.MAIN_HAND) && isStackClimbingClawThatClimbs(Hand.OFF_HAND);
+
+        return or || and;
+    }
+
     @Inject(
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
             at = @At("TAIL"),
@@ -73,9 +97,11 @@ public abstract class LivingEntityMixin {
     public void ClimbClawFunctionalityBunnycraft(CallbackInfoReturnable<Boolean> cir) {
         BlockPos blockPos = entity.getBlockPos();
 
-        if ((this.hasOneOrBothClaws()) && entity.horizontalCollision && !this.onClimbableBlock()) {
-            entity.climbingPos = Optional.of(blockPos);
-            cir.setReturnValue(true);
+        if ((this.hasOneOrBothClaws() && entity.horizontalCollision && !this.onClimbableBlock())) {
+            if (this.CanClimb()) {
+               entity.climbingPos = Optional.of(blockPos);
+               cir.setReturnValue(true);
+           }
         }
     }
 
@@ -83,7 +109,7 @@ public abstract class LivingEntityMixin {
             method = "Lnet/minecraft/entity/LivingEntity;applyClimbingSpeed(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;",
             at = @At("TAIL"))
     public Vec3d ClimbClawSpeed(Vec3d original) {
-        if (!this.hasOneOrBothClaws()) {return original;}
+        if (!this.hasOneOrBothClaws() || !this.CanClimb() || entity.isOnGround()) {return original;}
 
         Vec3d motion = original;
         double climbspeed = 1;
@@ -92,24 +118,18 @@ public abstract class LivingEntityMixin {
         double y = motion.y;
 
         if (motion.y < 0.0 && entity.isSneaking() && !entity.isOnGround() && !this.onClimbableBlock()) {
-            if (this.hasBothClimbingClaws()) {climbspeed = 0.25;} else {climbspeed = 0.5;}
-            x = 0;
-            z = 0;
-//            if (this.facingEastOrWest()) {
-//                z = motion.z;
-//            } else if (this.facingNorthOrSouth()) {
-//                x = motion.x;
-//            }
+            climbspeed = this.hasBothClimbingClaws() ? 0.25 : 0.5;
         }
 
         if (entity.isClimbing()) {
+            // probably a better way to do this, but it's fine
             // increases climbing speed based on whether you have both claws and/or on a block normally climbable
             if((this.hasBothClimbingClaws() && !this.onClimbableBlock())) {
-                climbspeed = 1.25;
+                climbspeed = 1.3;
             }
 
             if((this.hasClimbingClaw() && this.onClimbableBlock())) {
-                climbspeed = 1.25;
+                climbspeed = 1.3;
             }
 
 

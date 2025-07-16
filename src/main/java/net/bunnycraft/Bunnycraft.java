@@ -44,8 +44,6 @@ public class Bunnycraft implements ModInitializer {
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
 		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
 
-
-
 		//listens for when a block entity unloads, used for the CauldronAlloyer
 		ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> {
 			if (blockEntity instanceof CauldronAlloyerEntity cauldron) {
