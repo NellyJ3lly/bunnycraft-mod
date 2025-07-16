@@ -85,7 +85,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.TURTLE_BOOTS));
 
         gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
-        gen.register(ModTools.CLIMBING_CLAW, Models.HANDHELD);
+        gen.register(ModTools.CLIMBING_CLAW, Models.GENERATED);
         gen.register(ModTools.WOODEN_CANE, Models.HANDHELD);
 
         //add pickaxes

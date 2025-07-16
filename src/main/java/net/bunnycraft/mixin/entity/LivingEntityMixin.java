@@ -47,8 +47,7 @@ public abstract class LivingEntityMixin {
 
     @Unique
     public boolean hasClimbingClaw() {
-        return (entity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW)
-                || entity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW))
+        return (entity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW) || entity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW))
                 && !this.hasBothClimbingClaws();
     }
 
@@ -92,8 +91,13 @@ public abstract class LivingEntityMixin {
     public Vec3d ClimbClawSpeed(Vec3d original) {
         if (entity.isClimbing() && entity.horizontalCollision) {
             double climbspeed = 1;
-            if(this.hasClimbingClaw()) {climbspeed = 1.3;}
+            if(this.hasClimbingClaw() && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {
+                climbspeed = 1.5;
+            }
             if(this.hasBothClimbingClaws()) {climbspeed = 1.5;}
+            if(this.hasBothClimbingClaws() && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {
+                climbspeed = 2;
+            }
 
             return new Vec3d(original.x, original.y * climbspeed, original.z);
         } else if (original.y < 0.0 && entity.isSneaking() && this.CanClimb()) {

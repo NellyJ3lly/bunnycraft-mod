@@ -80,6 +80,13 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('S', Items.STICK)
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK)).offerTo(exporter);
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.CLIMBING_CLAW, 1)
+                .pattern("I I")
+                .pattern("LLL")
+                .input('I', Items.IRON_INGOT)
+                .input('L', Items.LEATHER)
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK)).offerTo(exporter);
+
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.STEEL_SHEARS)
                 .pattern(" X")
