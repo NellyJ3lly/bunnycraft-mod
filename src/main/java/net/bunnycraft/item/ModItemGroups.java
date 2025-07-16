@@ -3,6 +3,7 @@ package net.bunnycraft.item;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.armor.ModArmors;
+import net.bunnycraft.item.custom.CaneItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -17,10 +18,6 @@ public class ModItemGroups {
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.PANCAKE_RABBIT))
                     .displayName(Text.translatable("itemgroup.bunnycraft.group"))
                     .entries((displayContext, entries) -> {
-
-                        entries.add(ModItems.VAULT_REWINDER);
-                        entries.add(ModTools.CLIMBING_CLAW);
-
                         entries.add(ModItems.MOLD);
                         entries.add(ModItems.MOLTEN_ROSE_GOLD);
                         entries.add(ModItems.MOLTEN_STEEL);
@@ -71,6 +68,10 @@ public class ModItemGroups {
                         entries.add(ModArmors.STEEL_CHESTPLATE);
                         entries.add(ModArmors.STEEL_LEGGINGS);
                         entries.add(ModArmors.STEEL_BOOTS);
+
+                        entries.add(ModItems.VAULT_REWINDER);
+                        entries.add(ModTools.CLIMBING_CLAW);
+                        entries.add(ModTools.WOODEN_CANE);
 
                         entries.add(ModTools.WOODEN_SPEAR);
                         entries.add(ModTools.STONE_SPEAR);
