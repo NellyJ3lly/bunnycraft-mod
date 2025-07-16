@@ -39,16 +39,22 @@ public class ClimbingClawItem extends Item {
         if (entity instanceof LivingEntity livingentity) {
             if (startPos == null) {startPos = entity.getBlockPos();}
             HitResult hit = entity.raycast(1,0,false);
+            // checks if there's a proper block to climb on
             stack.set(ModComponents.CAN_CLIMB_ON_BLOCK,CanClimb(hit,livingentity));
 
-            if (!livingentity.isClimbing()) {return;}
+            if (Boolean.FALSE.equals(stack.get(ModComponents.CAN_CLIMB_ON_BLOCK)) || !livingentity.isClimbing() || livingentity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return;}
 
             BlockPos currentPos = entity.getBlockPos();
 
             double YDiff = Math.abs(currentPos.getY() - startPos.getY());
 
             if (YDiff < 3) {return;}
-            stack.damage(1,livingentity,EquipmentSlot.MAINHAND);
+            if (livingentity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW)) {
+                livingentity.getMainHandStack().damage(1,livingentity,EquipmentSlot.MAINHAND);
+            }
+            if (livingentity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW)) {
+                livingentity.getOffHandStack().damage(1,livingentity,EquipmentSlot.OFFHAND);
+            }
 
             startPos = null;
         }

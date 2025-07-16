@@ -90,13 +90,11 @@ public abstract class LivingEntityMixin {
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
             at = @At("TAIL"))
     public boolean ClimbClawFunctionalityBunnycraft(boolean original) {
-        BlockPos blockPos = entity.getBlockPos();
+        if (!this.CanClimb()) {return original;}
 
-        if (this.CanClimb()) {
-            entity.climbingPos = Optional.of(blockPos);
-            return true;
-        }
-        return original;
+        BlockPos blockPos = entity.getBlockPos();
+        entity.climbingPos = Optional.of(blockPos);
+        return true;
     }
 
     @ModifyReturnValue(
@@ -105,36 +103,17 @@ public abstract class LivingEntityMixin {
     public Vec3d ClimbClawSpeed(Vec3d original) {
         if (!this.CanClimb() || entity.isOnGround()) {return original;}
 
-        Vec3d motion = original;
         double climbspeed = 1;
-        double x = motion.x;
-        double z = motion.z;
-        double y = motion.y;
-
-        if (motion.y < 0.0 && entity.isSneaking() && !entity.isOnGround() && !this.onClimbableBlock()) {
-            climbspeed = this.hasBothClimbingClaws() ? 0.25 : 0.5;
-        }
+        double y = original.y;
 
         if (entity.isClimbing()) {
-            // probably a better way to do this, but it's fine
-            // increases climbing speed based on whether you have both claws and/or on a block normally climbable
-            if((this.hasBothClimbingClaws() && !this.onClimbableBlock())) {
-                climbspeed = 1.3;
-            }
+            if((this.hasBothClimbingClaws() && !this.onClimbableBlock())) {climbspeed = 1.3;}
+            if((this.hasClimbingClaw() && this.onClimbableBlock())) {climbspeed = 1.3;}
+            if((this.hasBothClimbingClaws() && this.onClimbableBlock())) {climbspeed = 1.5;}
 
-            if((this.hasClimbingClaw() && this.onClimbableBlock())) {
-                climbspeed = 1.3;
-            }
-
-
-            if((this.hasBothClimbingClaws() && this.onClimbableBlock())) {
-                climbspeed = 1.5;
-            }
+            return new Vec3d(original.x, y * climbspeed, original.z);
         }
-
-        motion = new Vec3d(x, y * climbspeed, z);
-
-        return motion;
+        return original;
     }
 
     @Inject(
