@@ -46,17 +46,6 @@ public abstract class LivingEntityMixin {
     }
 
     @Unique
-    public boolean facingNorthOrSouth() {
-        return entity.getFacing().equals(Direction.NORTH) || entity.getFacing().equals(Direction.SOUTH);
-    }
-
-    @Unique
-    public boolean facingEastOrWest() {
-        return entity.getFacing().equals(Direction.EAST) || entity.getFacing().equals(Direction.WEST);
-    }
-
-
-    @Unique
     public boolean hasClimbingClaw() {
         return (entity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW)
                 || entity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW))
@@ -101,29 +90,27 @@ public abstract class LivingEntityMixin {
             method = "Lnet/minecraft/entity/LivingEntity;applyClimbingSpeed(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;",
             at = @At("TAIL"))
     public Vec3d ClimbClawSpeed(Vec3d original) {
-        if (!this.CanClimb() || entity.isOnGround()) {return original;}
+        if (entity.isClimbing() && entity.horizontalCollision) {
+            double climbspeed = 1;
+            if(this.hasClimbingClaw()) {climbspeed = 1.3;}
+            if(this.hasBothClimbingClaws()) {climbspeed = 1.5;}
 
-        double climbspeed = 1;
-        double y = original.y;
-
-        if (entity.isClimbing()) {
-            if((this.hasBothClimbingClaws() && !this.onClimbableBlock())) {climbspeed = 1.3;}
-            if((this.hasClimbingClaw() && this.onClimbableBlock())) {climbspeed = 1.3;}
-            if((this.hasBothClimbingClaws() && this.onClimbableBlock())) {climbspeed = 1.5;}
-
-            return new Vec3d(original.x, y * climbspeed, original.z);
+            return new Vec3d(original.x, original.y * climbspeed, original.z);
+        } else if (original.y < 0.0 && entity.isSneaking() && this.CanClimb()) {
+            return new Vec3d(original.x, -0.25, original.z);
         }
+
         return original;
     }
 
-    @Inject(
-            method = "Lnet/minecraft/entity/LivingEntity;modifyAppliedDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
-            at = @At("RETURN"),
-            cancellable = true)
-    public void DamageChanges(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
-        amount = cir.getReturnValue();
-        cir.setReturnValue(amount);
-    }
+//    @Inject(
+//            method = "Lnet/minecraft/entity/LivingEntity;modifyAppliedDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
+//            at = @At("RETURN"),
+//            cancellable = true)
+//    public void DamageChanges(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
+//        amount = cir.getReturnValue();
+//        cir.setReturnValue(amount);
+//    }
 
 //    public void swimUpward(TagKey<Fluid> fluid) {
 //        entity.setVelocity(entity.getVelocity().add(0.0, 1F, 0.0));
