@@ -2,6 +2,10 @@ package net.bunnycraft.item.armor;
 
 import net.bunnycraft.Bunnycraft;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.component.type.AttributeModifierSlot;
+import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
@@ -9,12 +13,15 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+
 import java.util.List;
 
 public class ModArmors {
+    private static final Identifier MOVEMENT_SPEED_ID = Identifier.ofVanilla("generic_movement_speed");
+
 
     public static final Item STEEL_HELMET = registerItem("steel_helmet",
-            new ModArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+            new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
                     .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(42))));
     public static final Item STEEL_CHESTPLATE = registerItem("steel_chestplate",
             new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
@@ -37,7 +44,7 @@ public class ModArmors {
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(25))));
 
     public static final Item COPPER_HELMET = registerItem("copper_helmet",
-            new ModArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+            new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
                     .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(12))));
     public static final Item COPPER_CHESTPLATE = registerItem("copper_chestplate",
             new ArmorItem(ModArmorMaterials.COPPER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
@@ -50,7 +57,7 @@ public class ModArmors {
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(12))));
 
     public static final Item ROSE_GOLD_HELMET = registerItem("rose_gold_helmet",
-            new ModArmorItem(ModArmorMaterials.ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+            new ArmorItem(ModArmorMaterials.ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
                     .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(16))));
     public static final Item ROSE_GOLD_CHESTPLATE = registerItem("rose_gold_chestplate",
             new ArmorItem(ModArmorMaterials.ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
@@ -63,7 +70,7 @@ public class ModArmors {
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(16))));
 
     public static final Item GUARDIAN_HELMET = registerItem("guardian_helmet",
-            new ModArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+            new ArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
                     .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(28))));
     public static final Item GUARDIAN_CHESTPLATE = registerItem("guardian_chestplate",
             new ArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
@@ -76,7 +83,7 @@ public class ModArmors {
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(28))));
 
     public static final Item DIVING_HELMET = registerItem("diving_helmet",
-            new ModArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+            new ArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
                     .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(13))));
     public static final Item DIVING_CHESTPLATE = registerItem("diving_chestplate",
             new ArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()

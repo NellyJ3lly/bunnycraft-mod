@@ -27,14 +27,14 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.HELMET,3);
                 map.put(ArmorItem.Type.BODY,11);
             }), 13, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, ()-> Ingredient.ofItems(ModItems.STEEL_INGOT),
-                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"steel"))),4.0f,0.2f));
+                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"steel"))),3.0f,0.5f));
 
     public static final RegistryEntry<ArmorMaterial> ROSE_GOLD_ARMOR_MATERIAL = registerArmorMaterial("rose_gold",
             () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-                map.put(ArmorItem.Type.BOOTS,2);
-                map.put(ArmorItem.Type.LEGGINGS,4);
-                map.put(ArmorItem.Type.CHESTPLATE,6);
-                map.put(ArmorItem.Type.HELMET,2);
+                map.put(ArmorItem.Type.BOOTS,1);
+                map.put(ArmorItem.Type.LEGGINGS,3);
+                map.put(ArmorItem.Type.CHESTPLATE,4);
+                map.put(ArmorItem.Type.HELMET,1);
                 map.put(ArmorItem.Type.BODY,10);
             }), 30, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, ()-> Ingredient.ofItems(ModItems.ROSE_GOLD_INGOT),
                     List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"rose_gold"))),0.0f,0.0f));

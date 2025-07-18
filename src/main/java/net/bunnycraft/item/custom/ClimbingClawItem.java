@@ -4,6 +4,8 @@ import com.mojang.datafixers.types.templates.Check;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.util.ModTags;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -13,7 +15,6 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.World;
 
 public class ClimbingClawItem extends Item {
@@ -21,21 +22,20 @@ public class ClimbingClawItem extends Item {
         super(settings);
     }
 
-    public boolean IsAirOrClimbable(World world, BlockPos blockpos) {
-      return world.getBlockState(blockpos).isAir() || world.getBlockState(blockpos).isIn(BlockTags.CLIMBABLE);
-    };
+    public boolean CanClimb(HitResult hit,LivingEntity livingentity) {
+        boolean isClimbable = livingentity.getWorld().getBlockState(BlockPos.ofFloored(hit.getPos())).isIn(BlockTags.CLIMBABLE);
+        boolean hitIsBlockNotClimb = hit.getType() == HitResult.Type.BLOCK && !isClimbable;
 
-    public double BlockYChanged(Double OldY,Double NewY) {
-        return OldY - NewY;
-    }
+        BlockPos blockposatfeet = livingentity.getBlockPos();
+        BlockPos lookingatblockpos = BlockPos.ofFloored(hit.getPos().add(0,0,0));
 
-    public boolean CanClimb(HitResult hit, LivingEntity livingentity) {
-        return hit.getType() == HitResult.Type.BLOCK || livingentity.horizontalCollision;
-    }
+        BlockPos checkthisblock = new BlockPos(lookingatblockpos.getX(),blockposatfeet.getY(),lookingatblockpos.getZ());
+        BlockPos blockabove = checkthisblock.add(0,1,0);
 
-    public ItemStack GetClimbClawInHand(LivingEntity entity, Hand hand) {
-        if (!entity.getStackInHand(hand).isOf(ModTools.CLIMBING_CLAW)) {return null;}
-        return entity.getStackInHand(hand);
+        boolean blockNotAir = !(livingentity.getWorld().getBlockState(checkthisblock).isAir());
+        boolean aboveBlockAir = (livingentity.getWorld().getBlockState(blockabove).isAir());
+
+        return (hitIsBlockNotClimb || (blockNotAir && aboveBlockAir) || !aboveBlockAir);
     }
 
     BlockPos startPos;
@@ -45,7 +45,6 @@ public class ClimbingClawItem extends Item {
     }
 
     public void DamageStack(LivingEntity livingentity, Hand hand,EquipmentSlot equipmentSlot) {
-
         ItemStack stack = livingentity.getStackInHand(hand);
         if (CheckItemStack(stack,livingentity,hand)) {
             stack.damage(1,livingentity,equipmentSlot);
@@ -57,25 +56,23 @@ public class ClimbingClawItem extends Item {
         if (entity instanceof LivingEntity livingentity) {
             if (!CheckItemStack(stack,livingentity,Hand.MAIN_HAND) && !CheckItemStack(stack,livingentity,Hand.OFF_HAND)) {return;}
 
-            if (startPos == null) {startPos = entity.getBlockPos();}
+            if (startPos == null) {startPos = BlockPos.ofFloored(entity.getPos());}
 
             HitResult hit = livingentity.raycast(1,0,false);
 
             stack.set(ModComponents.CAN_CLIMB_ON_BLOCK,CanClimb(hit,livingentity));
-
-            if (Boolean.FALSE.equals(stack.get(ModComponents.CAN_CLIMB_ON_BLOCK)) || !livingentity.isClimbing() || livingentity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return;}
+            boolean OnClimbableBlock = livingentity.getWorld().getBlockState(livingentity.getBlockPos()).isIn(BlockTags.CLIMBABLE);
+            if (!livingentity.isClimbing() || OnClimbableBlock) {return;}
 
             BlockPos currentPos = livingentity.getBlockPos();
-
             double YDiff = Math.abs(currentPos.getY() - startPos.getY());
 
-            if (YDiff < 3) {return;}
+            if ((YDiff < 2)) {return;}
+
+            startPos = currentPos;
 
             DamageStack(livingentity,Hand.MAIN_HAND,EquipmentSlot.MAINHAND);
             DamageStack(livingentity,Hand.OFF_HAND,EquipmentSlot.OFFHAND);
-
-
-            startPos = null;
         }
     }
 }

@@ -3,47 +3,29 @@ package net.bunnycraft.mixin.entity;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.ModTools;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-    @Shadow public abstract Iterable<ItemStack> getHandItems();
-
-    @Shadow public abstract boolean isClimbing();
-
-    @Shadow public abstract boolean isSleeping();
-
-    @Shadow public abstract boolean isHoldingOntoLadder();
-
-    @Shadow public float forwardSpeed;
-    @Shadow protected boolean jumping;
-
-    @Shadow protected abstract void fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition);
 
     @Unique
     LivingEntity entity = (LivingEntity) (Object) this;
-
-    @Unique
-    public boolean onClimbableBlock() {
-        return entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE);
-    }
 
     @Unique
     public boolean hasClimbingClaw() {
@@ -74,11 +56,57 @@ public abstract class LivingEntityMixin {
         return isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
     }
 
+    @Unique
+    public double setClimbSpeedConditions() {
+        if(this.hasClimbingClaw() && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 1.5;}
+
+        if(this.hasBothClimbingClaws()) {return 1.5;}
+
+        if(this.hasBothClimbingClaws() && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 2;}
+
+        return 1;
+    }
+
+    @Unique
+    public int getArmorAmountofMaterial(String material) {
+        AtomicInteger ArmorAmount = new AtomicInteger();
+        entity.getAllArmorItems().forEach(stack -> {
+            if (stack.getItem() instanceof ArmorItem armorItem) {
+                if (armorItem.getMaterial().getIdAsString().contains(material)) {
+                    ArmorAmount.addAndGet(1);
+                }
+            }
+        });
+        return ArmorAmount.get();
+    };
+
+    @Unique
+    public float getSteelDamageReduction() {
+        float DamageReduction = 0.0f;
+
+        for (ItemStack stack : entity.getAllArmorItems()) {
+            if (stack.getItem() instanceof ArmorItem armorItem) {
+                String SlotType = armorItem.getSlotType().asString();
+                if (SlotType.contains("chest")) {
+                    DamageReduction += 0.1f;
+                }
+                if (SlotType.contains("legs")) {
+                    DamageReduction += 0.05f;
+                }
+                if (SlotType.contains("feet") || SlotType.contains("head")) {
+                    DamageReduction += 0.025f;
+                }
+            }
+        }
+
+        return DamageReduction;
+    };
+
     @ModifyReturnValue(
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
             at = @At("TAIL"))
     public boolean ClimbClawFunctionalityBunnycraft(boolean original) {
-        if (!this.CanClimb()) {return original;}
+        if (!this.CanClimb() || entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return original;}
 
         BlockPos blockPos = entity.getBlockPos();
         entity.climbingPos = Optional.of(blockPos);
@@ -90,33 +118,28 @@ public abstract class LivingEntityMixin {
             at = @At("TAIL"))
     public Vec3d ClimbClawSpeed(Vec3d original) {
         if (entity.isClimbing() && entity.horizontalCollision) {
-            double climbspeed = 1;
-            if(this.hasClimbingClaw() && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {
-                climbspeed = 1.5;
-            }
-            if(this.hasBothClimbingClaws()) {climbspeed = 1.5;}
-            if(this.hasBothClimbingClaws() && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {
-                climbspeed = 2;
-            }
+            double climbSpeed = setClimbSpeedConditions();
 
-            return new Vec3d(original.x, original.y * climbspeed, original.z);
-        } else if (original.y < 0.0 && entity.isSneaking() && this.CanClimb()) {
-            return new Vec3d(original.x, -0.25, original.z);
+            return new Vec3d(original.x, original.y * climbSpeed, original.z);
         }
 
         return original;
     }
 
-//    @Inject(
-//            method = "Lnet/minecraft/entity/LivingEntity;modifyAppliedDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
-//            at = @At("RETURN"),
-//            cancellable = true)
-//    public void DamageChanges(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
-//        amount = cir.getReturnValue();
-//        cir.setReturnValue(amount);
-//    }
-
+    @ModifyReturnValue(
+            method = "Lnet/minecraft/entity/LivingEntity;applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
+            at = @At("TAIL"))
+    public float BlockDamageWithArmor(float original) {
+        if (getArmorAmountofMaterial("armadillo") == 4 && entity.isSneaking()) {
+            return 0.0f;
+        }
+        if (getArmorAmountofMaterial("steel") > 0) {
+            return original - (original * getSteelDamageReduction());
+        }
+        return original;
+    }
+//
 //    public void swimUpward(TagKey<Fluid> fluid) {
-//        entity.setVelocity(entity.getVelocity().add(0.0, 1F, 0.0));
+//        entity.setVelocity(entity.getVelocity().add(0.0, 0.0F, 0.0));
 //    }
 }
