@@ -1,6 +1,8 @@
 package net.bunnycraft.mixin.entity;
 
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.armor.ModArmors;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -27,7 +29,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -60,6 +61,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         }
     }
 
+    @Unique
     private boolean wearingDivingSuit() {
         ItemStack helmet = this.getEquippedStack(EquipmentSlot.HEAD);
         ItemStack chest = this.getEquippedStack(EquipmentSlot.CHEST);
@@ -67,30 +69,29 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         ItemStack feet = this.getEquippedStack(EquipmentSlot.FEET);
 
         return
-                feet.isOf(ModArmors.DIVING_BOOTS) || legs.isOf(ModArmors.DIVING_LEGGINGS)
+                feet.isOf(ModArmors.DIVING_BOOTS) || helmet.isOf(ModArmors.DIVING_LEGGINGS)
                         || chest.isOf(ModArmors.DIVING_CHESTPLATE) || legs.isOf(ModArmors.DIVING_HELMET);
     }
 
-    /**
-     * @author Nelly
-     * @reason Disables swimming for the diving suit
-     */
-    @Overwrite
-    public boolean isSwimming() {
-        return !this.abilities.flying && !this.isSpectator() && !this.wearingDivingSuit() && super.isSwimming();
+    @ModifyReturnValue(
+            method = "Lnet/minecraft/entity/player/PlayerEntity;isSwimming()Z",
+            at = @At("RETURN")
+    )
+    public boolean isSwimming(boolean original) {
+        return original && !this.wearingDivingSuit();
     }
+
+
 
     @Shadow
     protected abstract float getDamageAgainst(Entity target, float baseDamage, DamageSource damageSource);
-
 
     @Inject(
             method = "attack",
             at = @At(value = "HEAD"),
             cancellable = true)
-
     public void attack(Entity target, CallbackInfo ci) { // kinda copies the original method but if its a hoe does extra stuff and cancels the original method
-
+        // not in my scope rn but we could probably change it to use a modifyreturnvalue or something else
         PlayerEntity player = (PlayerEntity) (Object) this;
 
         if (player.getStackInHand(Hand.MAIN_HAND).getItem() instanceof HoeItem) {

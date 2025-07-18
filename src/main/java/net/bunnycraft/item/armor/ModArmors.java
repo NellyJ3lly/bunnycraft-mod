@@ -4,6 +4,7 @@ import net.bunnycraft.Bunnycraft;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
@@ -21,26 +22,30 @@ public class ModArmors {
 
 
     public static final Item STEEL_HELMET = registerItem("steel_helmet",
-            new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(42))));
+            new ModArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(42))
+                    .attributeModifiers(SteelArmorItem.createAttributeModifiers(EquipmentSlot.HEAD,-0.02f))));
     public static final Item STEEL_CHESTPLATE = registerItem("steel_chestplate",
-            new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(42))));
+            new ModArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(42))
+                    .attributeModifiers(SteelArmorItem.createAttributeModifiers(EquipmentSlot.CHEST,-0.07f))));
     public static final Item STEEL_LEGGINGS = registerItem("steel_leggings",
-            new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(42))));
+            new ModArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(42))
+                    .attributeModifiers(SteelArmorItem.createAttributeModifiers(EquipmentSlot.LEGS,-0.04f))));
     public static final Item STEEL_BOOTS = registerItem("steel_boots",
-            new ArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42))));
+            new ModArmorItem(ModArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42))
+                    .attributeModifiers(SteelArmorItem.createAttributeModifiers(EquipmentSlot.FEET,-0.02f))));
 
     public static final Item TURTLE_CHESTPLATE = registerItem("turtle_chestplate",
-            new ArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+            new ModArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
                     .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(25))));
     public static final Item TURTLE_LEGGINGS = registerItem("turtle_leggings",
-            new ArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
+            new ModArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
                     .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(25))));
     public static final Item TURTLE_BOOTS = registerItem("turtle_boots",
-            new ArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
+            new ModArmorItem(ModArmorMaterials.MOD_TURTLE_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(25))));
 
     public static final Item COPPER_HELMET = registerItem("copper_helmet",

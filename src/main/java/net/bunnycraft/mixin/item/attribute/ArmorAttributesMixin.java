@@ -52,55 +52,46 @@ public abstract class ArmorAttributesMixin {
             //gets the material name of the armor piece
             String material = armor.getMaterial().getIdAsString();
 
-            // diving suit
-            if(material.contains("diving")) {
-                RegistryEntry<EntityAttribute> movementAttribute = EntityAttributes.GENERIC_MOVEMENT_SPEED;
-
-                EntityAttributeModifier movementModifier =
-                        Attribute(armor,"movement",-0.1f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-
-                consumer.accept(movementAttribute, movementModifier);
-
-                RegistryEntry<EntityAttribute> JumpAttribute = EntityAttributes.GENERIC_JUMP_STRENGTH;
-
-                EntityAttributeModifier JumpModifier =
-                        Attribute(armor,"jump",0.05f, EntityAttributeModifier.Operation.ADD_VALUE);
-
-                consumer.accept(JumpAttribute, JumpModifier);
-
-                RegistryEntry<EntityAttribute> WaterMiningAttribute = EntityAttributes.PLAYER_SUBMERGED_MINING_SPEED;
-                EntityAttributeModifier WaterMiningModifier =
-                        Attribute(armor,"water_mining",0.1f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-
-                consumer.accept(WaterMiningAttribute, WaterMiningModifier);
-
-                RegistryEntry<EntityAttribute> GravityAttribute = EntityAttributes.GENERIC_GRAVITY;
-                EntityAttributeModifier GravityModifer =
-                        Attribute(armor,"gravity",0.03f, EntityAttributeModifier.Operation.ADD_VALUE);
-
-                consumer.accept(GravityAttribute, GravityModifer);
-
-                RegistryEntry<EntityAttribute> WaterMovementAttribute = EntityAttributes.GENERIC_WATER_MOVEMENT_EFFICIENCY;
-                EntityAttributeModifier WaterMovementModifier =
-                        Attribute(armor,"water_efficiency",0.3f, EntityAttributeModifier.Operation.ADD_VALUE);
-
-                consumer.accept(WaterMovementAttribute, WaterMovementModifier);
-
-                RegistryEntry<EntityAttribute> OxygenBonusAttribute = EntityAttributes.GENERIC_OXYGEN_BONUS;
-                EntityAttributeModifier OxygenBonusModifier =
-                        Attribute(armor,"oxygen_bonus",2f, EntityAttributeModifier.Operation.ADD_VALUE);
-
-                consumer.accept(OxygenBonusAttribute, OxygenBonusModifier);
-            }
-
-            if(material.contains("steel")) {
-                RegistryEntry<EntityAttribute> movementAttribute = EntityAttributes.GENERIC_MOVEMENT_SPEED;
-
-                EntityAttributeModifier SteelModifer =
-                        Attribute(armor,"movement",-0.07f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-
-                consumer.accept(movementAttribute, SteelModifer);
-            }
+//            // diving suit
+//            if(material.contains("diving")) {
+//                RegistryEntry<EntityAttribute> movementAttribute = EntityAttributes.GENERIC_MOVEMENT_SPEED;
+//
+//                EntityAttributeModifier movementModifier =
+//                        Attribute(armor,"movement",-0.1f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+//
+//                consumer.accept(movementAttribute, movementModifier);
+//
+//                RegistryEntry<EntityAttribute> JumpAttribute = EntityAttributes.GENERIC_JUMP_STRENGTH;
+//
+//                EntityAttributeModifier JumpModifier =
+//                        Attribute(armor,"jump",0.05f, EntityAttributeModifier.Operation.ADD_VALUE);
+//
+//                consumer.accept(JumpAttribute, JumpModifier);
+//
+//                RegistryEntry<EntityAttribute> WaterMiningAttribute = EntityAttributes.PLAYER_SUBMERGED_MINING_SPEED;
+//                EntityAttributeModifier WaterMiningModifier =
+//                        Attribute(armor,"water_mining",0.1f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+//
+//                consumer.accept(WaterMiningAttribute, WaterMiningModifier);
+//
+//                RegistryEntry<EntityAttribute> GravityAttribute = EntityAttributes.GENERIC_GRAVITY;
+//                EntityAttributeModifier GravityModifer =
+//                        Attribute(armor,"gravity",0.03f, EntityAttributeModifier.Operation.ADD_VALUE);
+//
+//                consumer.accept(GravityAttribute, GravityModifer);
+//
+//                RegistryEntry<EntityAttribute> WaterMovementAttribute = EntityAttributes.GENERIC_WATER_MOVEMENT_EFFICIENCY;
+//                EntityAttributeModifier WaterMovementModifier =
+//                        Attribute(armor,"water_efficiency",0.3f, EntityAttributeModifier.Operation.ADD_VALUE);
+//
+//                consumer.accept(WaterMovementAttribute, WaterMovementModifier);
+//
+//                RegistryEntry<EntityAttribute> OxygenBonusAttribute = EntityAttributes.GENERIC_OXYGEN_BONUS;
+//                EntityAttributeModifier OxygenBonusModifier =
+//                        Attribute(armor,"oxygen_bonus",2f, EntityAttributeModifier.Operation.ADD_VALUE);
+//
+//                consumer.accept(OxygenBonusAttribute, OxygenBonusModifier);
+//            }
 
             // TURTLE
             if(material.contains("turtle")) {

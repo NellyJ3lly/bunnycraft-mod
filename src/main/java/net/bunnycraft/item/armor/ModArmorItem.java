@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public abstract class ModArmorItem extends ArmorItem implements Equipment {
+public class ModArmorItem extends ArmorItem implements Equipment {
     private static final Map<RegistryEntry<ArmorMaterial>, List<StatusEffectInstance>> MATERIAL_TO_EFFECT_MAP =
             (new ImmutableMap.Builder<RegistryEntry<ArmorMaterial>, List<StatusEffectInstance>>())
                     .put(ModArmorMaterials.ROSE_GOLD_ARMOR_MATERIAL,

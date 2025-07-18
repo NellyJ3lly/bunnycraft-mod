@@ -1,5 +1,6 @@
 package net.bunnycraft.mixin.entity;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.ModTools;
@@ -15,6 +16,9 @@ import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -138,8 +142,21 @@ public abstract class LivingEntityMixin {
         }
         return original;
     }
-//
-//    public void swimUpward(TagKey<Fluid> fluid) {
-//        entity.setVelocity(entity.getVelocity().add(0.0, 0.0F, 0.0));
-//    }
+
+    @ModifyExpressionValue(
+            method = "Lnet/minecraft/entity/LivingEntity;travel(Lnet/minecraft/util/math/Vec3d;)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;shouldSwimInFluids()Z")
+    )
+    public boolean disableSwimmingWithDivingSuit(boolean original) {
+        System.out.println(original);
+        return original && getArmorAmountofMaterial("diving") < 4;
+    }
+
+    @ModifyVariable(
+            method = "Lnet/minecraft/entity/LivingEntity;tickMovement()V",
+            at = @At(value = "STORE",ordinal = 0)
+    )
+    public boolean canJumpUnderwaterWithDivingSuit(boolean original) {
+        return original && getArmorAmountofMaterial("diving") < 4;
+    }
 }
