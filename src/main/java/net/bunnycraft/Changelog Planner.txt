@@ -26,6 +26,7 @@ Items and blocks
 - True
 
 Item Changes
+- Most Armor Attributes should show up on the armor itself now
 - Copper Boots has 2 armor points now
 - Dealmaker now reduces trade prices with villager, it also has a tooltip hinting towards this
 - Dealmaker durability from 220 -> 110
@@ -54,7 +55,7 @@ Misc Changes
 - Brushing a suspicious block will drop 1-5 experience points
 - Bunnycraft enchantments should show up in the enchanting table
 - The sniffer loot table should clutter inventory less and drop more useful items
-- Tools should hopefully see damage enchants less
+- Tools should hopefully see combat enchants less
 - Removed Husk dropping sand because of a datapack that already adds that
 - Removed Eye of Ender recipe from the mod using vanilla's instead
 
