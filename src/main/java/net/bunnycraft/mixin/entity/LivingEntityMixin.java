@@ -90,9 +90,10 @@ public abstract class LivingEntityMixin {
 
         for (ItemStack stack : entity.getAllArmorItems()) {
             if (stack.getItem() instanceof ArmorItem armorItem) {
+                if (!armorItem.getMaterial().getIdAsString().contains("steel")) {continue;}
                 String SlotType = armorItem.getSlotType().asString();
                 if (SlotType.contains("chest")) {
-                    DamageReduction += 0.1f;
+                    DamageReduction += 0.2f;
                 }
                 if (SlotType.contains("legs")) {
                     DamageReduction += 0.05f;
@@ -134,10 +135,13 @@ public abstract class LivingEntityMixin {
             method = "Lnet/minecraft/entity/LivingEntity;applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
             at = @At("TAIL"))
     public float BlockDamageWithArmor(float original) {
+        System.out.println("Original" + original);
         if (getArmorAmountofMaterial("armadillo") == 4 && entity.isSneaking()) {
             return 0.0f;
         }
         if (getArmorAmountofMaterial("steel") > 0) {
+            System.out.println("Reduction" + getSteelDamageReduction());
+            System.out.println("Total" + (original - (original * getSteelDamageReduction())));
             return original - (original * getSteelDamageReduction());
         }
         return original;

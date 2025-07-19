@@ -84,6 +84,11 @@ public class ModItemGroups {
                         entries.add(ModTools.PRISMARINE_HOE);
                         entries.add(ModTools.PRISMARINE_SHOVEL);
 
+                        entries.add(ModArmors.ARMADILLO_HELMET);
+                        entries.add(ModArmors.ARMADILLO_CHESTPLATE);
+                        entries.add(ModArmors.ARMADILLO_LEGGINGS);
+                        entries.add(ModArmors.ARMADILLO_BOOTS);
+
                         entries.add(ModArmors.TURTLE_CHESTPLATE);
                         entries.add(ModArmors.TURTLE_LEGGINGS);
                         entries.add(ModArmors.TURTLE_BOOTS);

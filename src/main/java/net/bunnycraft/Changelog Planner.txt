@@ -36,7 +36,7 @@ Item Changes
 - Diving suit now has 1 armor toughness per piece
 - Guardian Armor does not have knockback resistance anymore
 - Steel Recipes have been changed to use 1 steel diamond armor piece and 1 smithing template
-- Steel Armor can now reduce damage by a percent up to 20%
+- Steel Armor can now reduce damage by a percent up to 30%
 - Steel Armor stats are now the same as netherite besides the damage reduction bonus
 - Steel Armor slowdown is now based on the armor piece instead of being the same for all
 - Turtle Armor now has the same armor stats as iron
