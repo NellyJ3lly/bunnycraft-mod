@@ -1,10 +1,9 @@
 package net.bunnycraft.mixin.entity;
 
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.item.ModItems;
-import net.bunnycraft.item.armor.ModArmors;
+import net.bunnycraft.item.ModArmors;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributes;

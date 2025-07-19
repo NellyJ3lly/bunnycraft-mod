@@ -2,26 +2,13 @@
 
 > Items
 - Armadillo armor
-- True
 - @c4hexaplex 's song into music disc
 
 > Misc
 - Make pancake rabbit ore finally generate
-- Make tool changes work, show tool attributes
-- Using Phantom Membranes on item frames and banners will become invisible only showing items or their markings
 - Diving suit dying
-- Diving suit working as I originally intended
-- Rose gold gives health based on actions, is worse armor though
-- Steel armor stats is the same as netherite but it will have a 1/4 to resist damage
 - Prismarine tools dealing more damage to fire type mobs or mobs/entities on fire
-- Change alloyer interaction to only put one item at a time unless you sneak
-- Armor Attributes move from mixin to Armor Item Intilization
-
-> Loot tables
-- Add Nautilus Shells to cold ocean ruins
-
-
-
+- Armor Attributes move from mixin to Armor Item Intilization (diving suit and guardian armor is left)
 
 **COMPLETED**
 
@@ -36,6 +23,7 @@ Items and blocks
        - Having this item in either hand increases your step height by 1 and speed by 10%
        - This item has 4 attack damage but attacks slower with more entity reach
 - Pipis++
+- True
 
 Item Changes
 - Copper Boots has 2 armor points now
@@ -43,7 +31,8 @@ Item Changes
 - Dealmaker durability from 220 -> 110
 - Dealmaker now takes durability while trading
 - Dealmaker texture updated
-- Diving suit protection stats are the same as iro
+- Diving suit now lets you move in water like if you were on land
+- Diving suit protection stats are the same as iron
 - Diving suit now has 1 armor toughness per piece
 - Guardian Armor does not have knockback resistance anymore
 - Steel Recipes have been changed to use 1 steel diamond armor piece and 1 smithing template
@@ -52,7 +41,12 @@ Item Changes
 - Steel Armor slowdown is now based on the armor piece instead of being the same for all
 - Turtle Armor now has the same armor stats as iron
 - Turtle armor has no slowdown now
+- Turtle armor no longer has increased mining effiency underwater
+- Turtle armor is faster underwater
+- Turtle armor has less water breathing
 - Rose gold armor now has 1 less armor point for every piece except leggings
+- Rose gold armor now gives you 12 extra hearts instead of 8
+- Rose gold armor no longer has passive regeneration
 
 Misc Changes
 - Added Bottle of Enchanting Recipe

@@ -4,23 +4,21 @@ import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Equipment;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
-public class SteelArmorItem extends ArmorItem implements Equipment {
+public class TurtleArmorItem extends ArmorItem implements Equipment {
     private final Supplier<AttributeModifiersComponent> attributeModifiers;
 
-    public SteelArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings, float movement_speed) {
+    public TurtleArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings, float water_movement_speed) {
         super(material, type, settings);
 
-        final Identifier MOVEMENT_SPEED_ID = Identifier.of(type.asString() + "_movement_speed");
+        final Identifier WATER_MOVEMENT_SPEED_ID = Identifier.of(type.asString() + "_water_movement");
         this.attributeModifiers = Suppliers.memoize(() -> {
             int i = material.value().getProtection(type);
             float f = material.value().toughness();
@@ -34,8 +32,8 @@ public class SteelArmorItem extends ArmorItem implements Equipment {
                 builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, new EntityAttributeModifier(identifier, (double)g, EntityAttributeModifier.Operation.ADD_VALUE), attributeModifierSlot);
             }
 
-            builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED,
-                    new EntityAttributeModifier(MOVEMENT_SPEED_ID, movement_speed, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE),
+            builder.add(EntityAttributes.GENERIC_WATER_MOVEMENT_EFFICIENCY,
+                    new EntityAttributeModifier(WATER_MOVEMENT_SPEED_ID, water_movement_speed, EntityAttributeModifier.Operation.ADD_VALUE),
                     attributeModifierSlot
             );
 

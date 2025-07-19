@@ -148,7 +148,6 @@ public abstract class LivingEntityMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;shouldSwimInFluids()Z")
     )
     public boolean disableSwimmingWithDivingSuit(boolean original) {
-        System.out.println(original);
         return original && getArmorAmountofMaterial("diving") < 4;
     }
 

@@ -27,6 +27,8 @@ public class ModItems {
     public static  final Item VAULT_REWINDER = registerItem("vault_rewinder", new Item(new Item.Settings()));
     public static  final Item STEEL_UPGRADE_TEMPLATE = registerItem("steel_upgrade_template", new Item(new Item.Settings()));
 
+    public static  final Item TRUE = registerItem("true", new Item(new Item.Settings()));
+
     public static  final Item MOLTEN_ROSE_GOLD = registerItem("molten_rose_gold", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_STEEL = registerItem("molten_steel", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_NETHERITE = registerItem("molten_netherite", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));

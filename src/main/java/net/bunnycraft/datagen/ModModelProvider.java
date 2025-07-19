@@ -6,7 +6,7 @@ import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
-import net.bunnycraft.item.armor.ModArmors;
+import net.bunnycraft.item.ModArmors;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
@@ -87,6 +87,8 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
         gen.register(ModTools.CLIMBING_CLAW, Models.GENERATED);
         gen.register(ModTools.WOODEN_CANE, Models.HANDHELD);
+
+        gen.register(ModItems.TRUE, Models.GENERATED);
 
         //add pickaxes
         for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {

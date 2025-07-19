@@ -2,8 +2,6 @@ package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
-import net.bunnycraft.item.armor.ModArmors;
-import net.bunnycraft.item.custom.CaneItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -21,7 +19,6 @@ public class ModItemGroups {
                         entries.add(ModItems.MOLD);
                         entries.add(ModItems.MOLTEN_ROSE_GOLD);
                         entries.add(ModItems.MOLTEN_STEEL);
-
 
                         entries.add(ModItems.BUNNYCENT);
                         entries.add(ModItems.COPPER_BUNNYCOIN);
@@ -105,6 +102,7 @@ public class ModItemGroups {
                         entries.add(ModItems.PANCAKE_RABBIT);
                         entries.add(ModBlocks.PANCAKE_RABBIT_BLOCK);
                         entries.add(ModBlocks.PANCAKE_RABBIT_ORE);
+                        entries.add(ModItems.TRUE);
                     }).build());
 
     public static void registerItemGroups() {

@@ -93,36 +93,6 @@ public abstract class ArmorAttributesMixin {
 //                consumer.accept(OxygenBonusAttribute, OxygenBonusModifier);
 //            }
 
-            // TURTLE
-            if(material.contains("turtle")) {
-                if (slot == EquipmentSlot.HEAD) {
-                    RegistryEntry<EntityAttribute> OxygenAttribute = EntityAttributes.GENERIC_OXYGEN_BONUS;
-
-                    EntityAttributeModifier OxygenModifier =
-                            Attribute(armor,"oxygen_bonus",1f, EntityAttributeModifier.Operation.ADD_VALUE);
-
-                    consumer.accept(OxygenAttribute, OxygenModifier);
-                }
-
-                if (slot == EquipmentSlot.CHEST) {
-                    RegistryEntry<EntityAttribute> waterMiningAttribute = EntityAttributes.PLAYER_SUBMERGED_MINING_SPEED;
-
-                    EntityAttributeModifier waterMiningModifier =
-                            Attribute(armor,"water_mining_id",0.5f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-
-                    consumer.accept(waterMiningAttribute, waterMiningModifier);
-                }
-
-                if (slot == EquipmentSlot.LEGS || slot == EquipmentSlot.FEET) {
-                    RegistryEntry<EntityAttribute> watereffiencyAttribute = EntityAttributes.GENERIC_WATER_MOVEMENT_EFFICIENCY;
-
-                    EntityAttributeModifier watereffiencyModifier =
-                            Attribute(armor,"water_speed_id",0.5f, EntityAttributeModifier.Operation.ADD_VALUE);
-
-                    consumer.accept(watereffiencyAttribute, watereffiencyModifier);
-                }
-            }
-
             if(material.contains("guardian")) {
                 RegistryEntry<EntityAttribute> GuardianmovementAttribute = EntityAttributes.GENERIC_MOVEMENT_SPEED;
                 EntityAttributeModifier GuardianMovement =
@@ -174,14 +144,6 @@ public abstract class ArmorAttributesMixin {
                 }
 
                 consumer.accept(GuardianmovementAttribute, GuardianMovement);
-            }
-
-            if(material.contains("rose_gold")) {
-                RegistryEntry<EntityAttribute> RosegoldHealthAttribute = EntityAttributes.GENERIC_MAX_HEALTH;
-                EntityAttributeModifier HealthBoostModifier =
-                        Attribute(armor,"health",2f, EntityAttributeModifier.Operation.ADD_VALUE);
-
-                consumer.accept(RosegoldHealthAttribute, HealthBoostModifier);
             }
         }
     }

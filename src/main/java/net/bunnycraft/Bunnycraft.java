@@ -8,16 +8,12 @@ import net.bunnycraft.entity.ModEntities;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
-import net.bunnycraft.item.armor.ModArmors;
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.modifiers.ModifyLootTables;
 import net.bunnycraft.util.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.component.ComponentType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

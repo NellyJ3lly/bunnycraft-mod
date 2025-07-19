@@ -4,7 +4,7 @@ import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
-import net.bunnycraft.item.armor.ModArmors;
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.util.BunnycoinCrafting;
 import net.bunnycraft.util.recipe.ModArmorRecipes;
 import net.bunnycraft.util.recipe.ModToolRecipes;

@@ -4,24 +4,22 @@ import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Equipment;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
-public class SteelArmorItem extends ArmorItem implements Equipment {
+public class RoseGoldArmorItem extends ArmorItem implements Equipment {
     private final Supplier<AttributeModifiersComponent> attributeModifiers;
 
-    public SteelArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings, float movement_speed) {
+    public RoseGoldArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings, float health_bonus) {
         super(material, type, settings);
 
-        final Identifier MOVEMENT_SPEED_ID = Identifier.of(type.asString() + "_movement_speed");
         this.attributeModifiers = Suppliers.memoize(() -> {
+            final Identifier HEALTH_BONUS_ID = Identifier.of(type.asString() + ".health_bonus");
             int i = material.value().getProtection(type);
             float f = material.value().toughness();
             AttributeModifiersComponent.Builder builder = AttributeModifiersComponent.builder();
@@ -34,8 +32,8 @@ public class SteelArmorItem extends ArmorItem implements Equipment {
                 builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, new EntityAttributeModifier(identifier, (double)g, EntityAttributeModifier.Operation.ADD_VALUE), attributeModifierSlot);
             }
 
-            builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED,
-                    new EntityAttributeModifier(MOVEMENT_SPEED_ID, movement_speed, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE),
+            builder.add(EntityAttributes.GENERIC_MAX_HEALTH,
+                    new EntityAttributeModifier(HEALTH_BONUS_ID, health_bonus, EntityAttributeModifier.Operation.ADD_VALUE),
                     attributeModifierSlot
             );
 
