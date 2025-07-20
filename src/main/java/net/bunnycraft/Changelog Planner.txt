@@ -32,7 +32,7 @@ Item Changes
 - Dealmaker durability from 220 -> 110
 - Dealmaker now takes durability while trading
 - Dealmaker texture updated
-- Dealmaker now has no armor
+- Dealmaker now has -2 armor points
 - Diving suit now lets you move in water like if you were on land
 - Diving suit protection stats are the same as iron
 - Diving suit now has 1 armor toughness per piece
