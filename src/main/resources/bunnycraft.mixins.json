@@ -20,7 +20,6 @@
     "item.PickaxeItemMixin",
     "item.ShearsBecomeSwordMixin",
     "item.ShovelItemMixin",
-    "item.attribute.ArmorAttributesMixin",
     "item.attribute.ItemAttributesMixin"
   ],
   "injectors": {

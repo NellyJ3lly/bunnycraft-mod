@@ -23,6 +23,7 @@ public class ModArmorItem extends ArmorItem implements Equipment {
     }
 
     public void AddAttributeModifierToBuilder(String id,float value,RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier.Operation operation,AttributeModifiersComponent.Builder builder) {
+        if (value == 0.0) {return;}
         AttributeModifierSlot attributeModifierSlot = AttributeModifierSlot.forEquipmentSlot(type.getEquipmentSlot());
         Identifier identifier = Identifier.of("bunnycraft.",attributeModifierSlot.asString() + "." + id);
         builder.add(attribute, new EntityAttributeModifier(identifier,value,operation), attributeModifierSlot);

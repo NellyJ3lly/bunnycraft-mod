@@ -79,30 +79,38 @@ public class ModArmors {
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(16)),2f));
 
     public static final Item GUARDIAN_HELMET = registerItem("guardian_helmet",
-            new ArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(28))));
+            new GuardianArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(28)),
+                    0,5,0,0));
     public static final Item GUARDIAN_CHESTPLATE = registerItem("guardian_chestplate",
-            new ArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(28))));
+            new GuardianArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(28)),
+                    0,0,0.25f,-0.075f));
     public static final Item GUARDIAN_LEGGINGS = registerItem("guardian_leggings",
-            new ArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(28))));
+            new GuardianArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(28)),
+                    0.4f,0,0f,-0.025f));
     public static final Item GUARDIAN_BOOTS = registerItem("guardian_boots",
-            new ArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(28))));
+            new GuardianArmorItem(ModArmorMaterials.GUARDIAN_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(28)),
+                    0.4f,0,0,-0.005f));
 
     public static final Item DIVING_HELMET = registerItem("diving_helmet",
-            new ArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(13))));
+            new DivingArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(13)),
+                    0,10,0,0.0f,0f));
     public static final Item DIVING_CHESTPLATE = registerItem("diving_chestplate",
-            new ArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(13))));
+            new DivingArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(13)),
+                    0.0f,0,2f,-0.1f,-0.025f));
     public static final Item DIVING_LEGGINGS = registerItem("diving_leggings",
-            new ArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(13))));
+            new DivingArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(13)),
+                    0.5f,0,0f,-0.05f,-0.025f));
     public static final Item DIVING_BOOTS = registerItem("diving_boots",
-            new ArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
-                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(13))));
+            new DivingArmorItem(ModArmorMaterials.DIVING_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(13)),
+                    0.5f,0,0,-0.025f,-0.01f));
 
     public static final Item DEALMAKER = registerItem("dealmaker",
             new ArmorItem(ModArmorMaterials.DEALMAKER_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()

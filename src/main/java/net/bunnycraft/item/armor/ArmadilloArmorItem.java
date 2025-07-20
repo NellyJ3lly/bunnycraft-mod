@@ -36,10 +36,6 @@ public class ArmadilloArmorItem extends ModArmorItem implements Equipment {
         });
     }
 
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        System.out.println(stack);
-    }
-
     public AttributeModifiersComponent getAttributeModifiers() {
         return this.attributeModifiers.get();
     }

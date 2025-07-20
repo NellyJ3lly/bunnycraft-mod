@@ -2,26 +2,26 @@
 
 > Items
 - Armadillo armor
-- @c4hexaplex 's song into music disc
+- @c4hexaplex's song into music disc
 
 > Misc
-- Make pancake rabbit ore finally generate
-- Diving suit dying
-- Prismarine tools dealing more damage to fire type mobs or mobs/entities on fire
-- Armor Attributes move from mixin to Armor Item Intilization (diving suit and guardian armor is left)
+- Make tool attributes show
 
 **COMPLETED**
 
 Items and blocks
+- Armadillo armor
+    - The armor is intended to be between iron and diamond
+    - The chestplate lets you take no damage when you sneak
 - Bunnycent Added
 - Climbing Claw Added
-         - These are claws that let you climb any block like a ladder, you can have it either in your mainhand or offhand, you can also have it in both hands and gain increased climbing speed. you also have increased climbing speed while climbing an already climbable block. It will take 1 durability for every block you climb up.
+    - These are claws that let you climb any block like a ladder, you can have it either in your mainhand or offhand, you can also have it in both hands and gain increased climbing speed. you also have increased climbing speed while climbing an already climbable block. It will take 1 durability for every block you climb up.
 - Steel Template added
 - Vault Rewinder Added
-         - Crafted with a trial key, 2 redstone and 2 copper ingots you can go up to a vault and make it forget you ever looted from it.
+    - Crafted with a trial key, 2 redstone and 2 copper ingots you can go up to a vault and make it forget you ever looted from it.
 - Wooden Cane
-       - Having this item in either hand increases your step height by 1 and speed by 10%
-       - This item has 4 attack damage but attacks slower with more entity reach
+    - Having this item in either hand increases your step height by 1 and speed by 10%
+    - This item has 4 attack damage but attacks slower with more entity reach
 - Pipis++
 - True
 
@@ -32,10 +32,13 @@ Item Changes
 - Dealmaker durability from 220 -> 110
 - Dealmaker now takes durability while trading
 - Dealmaker texture updated
+- Dealmaker now has no armor
 - Diving suit now lets you move in water like if you were on land
 - Diving suit protection stats are the same as iron
 - Diving suit now has 1 armor toughness per piece
+- Diving suit stats have completely changed
 - Guardian Armor does not have knockback resistance anymore
+- Guardian armor stats have completely changed
 - Steel Recipes have been changed to use 1 steel diamond armor piece and 1 smithing template
 - Steel Armor can now reduce damage by a percent up to 30%
 - Steel Armor stats are now the same as netherite besides the damage reduction bonus

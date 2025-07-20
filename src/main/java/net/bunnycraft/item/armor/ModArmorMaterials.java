@@ -62,8 +62,8 @@ public class ModArmorMaterials {
     public static final RegistryEntry<ArmorMaterial> DIVING_MATERIAL = registerArmorMaterial("diving",
             () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
                 map.put(ArmorItem.Type.BOOTS, 2);
-                map.put(ArmorItem.Type.LEGGINGS, 5);
-                map.put(ArmorItem.Type.CHESTPLATE, 6);
+                map.put(ArmorItem.Type.LEGGINGS, 3);
+                map.put(ArmorItem.Type.CHESTPLATE, 5);
                 map.put(ArmorItem.Type.HELMET, 3);
                 map.put(ArmorItem.Type.BODY, 8);
             }), 13, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ()-> Ingredient.ofItems(Items.COPPER_INGOT),
@@ -84,7 +84,7 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.BOOTS,0);
                 map.put(ArmorItem.Type.LEGGINGS,0);
                 map.put(ArmorItem.Type.CHESTPLATE,0);
-                map.put(ArmorItem.Type.HELMET,1);
+                map.put(ArmorItem.Type.HELMET,0);
                 map.put(ArmorItem.Type.BODY,0);
             }), 20, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, ()-> Ingredient.ofItems(ModItems.PIPIS),
                     List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"dealmaker"))),0.0f,0f));

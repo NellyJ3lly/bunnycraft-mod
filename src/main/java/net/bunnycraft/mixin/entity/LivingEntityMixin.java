@@ -3,7 +3,10 @@ package net.bunnycraft.mixin.entity;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.component.ModComponents;
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.item.armor.ModArmorItem;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ArmorItem;
@@ -73,15 +76,16 @@ public abstract class LivingEntityMixin {
 
     @Unique
     public int getArmorAmountofMaterial(String material) {
-        AtomicInteger ArmorAmount = new AtomicInteger();
-        entity.getAllArmorItems().forEach(stack -> {
+        int ArmorAmount = 0;
+
+        for (ItemStack stack : entity.getAllArmorItems()) {
             if (stack.getItem() instanceof ArmorItem armorItem) {
-                if (armorItem.getMaterial().getIdAsString().contains(material)) {
-                    ArmorAmount.addAndGet(1);
-                }
+                if (!armorItem.getMaterial().getIdAsString().contains(material)) {continue;}
+                ArmorAmount++;
             }
-        });
-        return ArmorAmount.get();
+        }
+
+        return ArmorAmount;
     };
 
     @Unique
@@ -135,13 +139,10 @@ public abstract class LivingEntityMixin {
             method = "Lnet/minecraft/entity/LivingEntity;applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
             at = @At("TAIL"))
     public float BlockDamageWithArmor(float original) {
-        System.out.println("Original" + original);
-        if (getArmorAmountofMaterial("armadillo") == 4 && entity.isSneaking()) {
+        if (entity.getEquippedStack(EquipmentSlot.CHEST).isOf(ModArmors.ARMADILLO_CHESTPLATE) && entity.isSneaking()) {
             return 0.0f;
         }
         if (getArmorAmountofMaterial("steel") > 0) {
-            System.out.println("Reduction" + getSteelDamageReduction());
-            System.out.println("Total" + (original - (original * getSteelDamageReduction())));
             return original - (original * getSteelDamageReduction());
         }
         return original;
