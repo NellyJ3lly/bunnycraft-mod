@@ -1,6 +1,7 @@
 package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
@@ -28,6 +29,7 @@ public class ModItems {
     public static  final Item STEEL_UPGRADE_TEMPLATE = registerItem("steel_upgrade_template", new Item(new Item.Settings()));
 
     public static  final Item TRUE = registerItem("true", new Item(new Item.Settings()));
+    public static  final Item POINT_LIGHT_MUSIC_DISC = registerItem("point_light_music_disc", new Item(new Item.Settings().jukeboxPlayable(ModSounds.POINT_LIGHT_KEY).maxCount(1)));
 
     public static  final Item MOLTEN_ROSE_GOLD = registerItem("molten_rose_gold", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_STEEL = registerItem("molten_steel", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
@@ -79,6 +81,7 @@ public class ModItems {
             ingotList.put(4, Items.NETHERITE_SCRAP);
             ingotList.put(5, Items.DIRT); // used for a conversion recipe
             //add any other items that should be able to go into the cauldron NOT MOD ITEMS, those should register using this method
+            // we should probably change this to just use item tags instead
         }
 
         assert ingotList != null;

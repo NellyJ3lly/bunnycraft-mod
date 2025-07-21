@@ -8,6 +8,8 @@ import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.armor.ModArmorItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
@@ -109,13 +111,37 @@ public abstract class LivingEntityMixin {
         }
 
         return DamageReduction;
-    };
+    }
+
+    @Unique
+    public float getArmadilloArmorDamageReduction() {
+        float DamageReduction = 0.0f;
+
+        for (ItemStack stack : entity.getAllArmorItems()) {
+            if (stack.getItem() instanceof ArmorItem armorItem) {
+                if (!armorItem.getMaterial().getIdAsString().contains("armadillo")) {continue;}
+                String SlotType = armorItem.getSlotType().asString();
+                if (SlotType.contains("chest")) {
+                    DamageReduction += 0.4f;
+                }
+                if (SlotType.contains("legs")) {
+                    DamageReduction += 0.3f;
+                }
+                if (SlotType.contains("feet") || SlotType.contains("head")) {
+                    DamageReduction += 0.1f;
+                }
+            }
+        }
+
+        return DamageReduction;
+    }
+
 
     @ModifyReturnValue(
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
             at = @At("TAIL"))
     public boolean ClimbClawFunctionalityBunnycraft(boolean original) {
-        if (!this.CanClimb() || entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return original;}
+        if (!this.CanClimb() || entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE) || entity.getBlockStateAtPos().isAir()) {return original;}
 
         BlockPos blockPos = entity.getBlockPos();
         entity.climbingPos = Optional.of(blockPos);
@@ -139,8 +165,9 @@ public abstract class LivingEntityMixin {
             method = "Lnet/minecraft/entity/LivingEntity;applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
             at = @At("TAIL"))
     public float BlockDamageWithArmor(float original) {
-        if (entity.getEquippedStack(EquipmentSlot.CHEST).isOf(ModArmors.ARMADILLO_CHESTPLATE) && entity.isSneaking()) {
-            return 0.0f;
+        if (getArmorAmountofMaterial("armadillo") > 0 && entity.isSneaking() && entity.isOnGround()) {
+//            if (getArmorAmountofMaterial("armadillo") == 4) {return 0.0f;}
+            return original - (original * getArmadilloArmorDamageReduction());
         }
         if (getArmorAmountofMaterial("steel") > 0) {
             return original - (original * getSteelDamageReduction());

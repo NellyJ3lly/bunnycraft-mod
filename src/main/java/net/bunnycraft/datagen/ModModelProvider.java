@@ -75,6 +75,11 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.DIVING_LEGGINGS));
         gen.registerArmor(((ArmorItem) ModArmors.DIVING_BOOTS));
 
+        gen.registerArmor(((ArmorItem) ModArmors.ARMADILLO_HELMET));
+        gen.registerArmor(((ArmorItem) ModArmors.ARMADILLO_CHESTPLATE));
+        gen.registerArmor(((ArmorItem) ModArmors.ARMADILLO_LEGGINGS));
+        gen.registerArmor(((ArmorItem) ModArmors.ARMADILLO_BOOTS));
+
         gen.registerArmor(((ArmorItem) ModArmors.ROSE_GOLD_HELMET));
         gen.registerArmor(((ArmorItem) ModArmors.ROSE_GOLD_CHESTPLATE));
         gen.registerArmor(((ArmorItem) ModArmors.ROSE_GOLD_LEGGINGS));
@@ -89,6 +94,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModTools.WOODEN_CANE, Models.HANDHELD);
 
         gen.register(ModItems.TRUE, Models.GENERATED);
+        gen.register(ModItems.POINT_LIGHT_MUSIC_DISC, Models.GENERATED);
 
         //add pickaxes
         for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {

@@ -25,6 +25,9 @@
   "item.bunnycraft.pancake_rabbit": "Pancake Rabbit",
   "item.bunnycraft.mold": "Clay Mold",
 
+  "item.bunnycraft.point_light_music_disc": "Music Disc",
+  "item.bunnycraft.point_light_music_disc.desc": "C4HexaPlex - Point Light",
+
   "item.bunnycraft.bunnycent": "Bunnycent",
   "item.bunnycraft.copper_bunnycoin": "Copper Bunnycoin",
   "item.bunnycraft.gold_bunnycoin": "Gold Bunnycoin",
@@ -82,6 +85,11 @@
   "item.bunnycraft.rose_gold_leggings": "Rose Gold Leggings",
   "item.bunnycraft.rose_gold_boots": "Rose Gold Boots",
 
+  "item.bunnycraft.armadillo_helmet": "Armadillo helmet",
+  "item.bunnycraft.armadillo_chestplate": "Armadillo Chestplate",
+  "item.bunnycraft.armadillo_leggings": "Armadillo Leggings",
+  "item.bunnycraft.armadillo_boots": "Armadillo Boots",
+
   "item.bunnycraft.prismarine_pickaxe": "Prismarine Pickaxe",
   "item.bunnycraft.prismarine_sword": "Prismarine Sword",
   "item.bunnycraft.prismarine_axe": "Prismarine Axe",
@@ -89,6 +97,7 @@
   "item.bunnycraft.prismarine_hoe": "Prismarine Hoe",
 
   "item.bunnycraft.climbing_claw": "Climbing Claw",
+  "item.bunnycraft.wooden_cane": "Wooden Cane",
   "item.bunnycraft.wooden_spear": "Wooden Spear",
   "item.bunnycraft.stone_spear": "Stone Spear",
   "item.bunnycraft.copper_spear": "Copper Spear",
@@ -104,6 +113,7 @@
   "block.bunnycraft.pipis_block": "Block of Pipis",
   "block.bunnycraft.ms_pipis_block": "Block of Ms. Pipis",
   "item.bunnycraft.dealmaker": "Dealmaker",
+  "item.bunnycraft.true": "True...",
 
   "entity.bunnycraft.alloy_liquid_entity": "Liquid Metal",
 

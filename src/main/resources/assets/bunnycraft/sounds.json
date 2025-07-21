@@ -1,0 +1,7 @@
+{
+  "point_light" : {
+    "sounds": [
+      {"name": "bunnycraft:point_light","stream": true}
+    ]
+  }
+}

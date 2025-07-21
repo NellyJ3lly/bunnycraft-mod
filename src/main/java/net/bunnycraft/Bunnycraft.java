@@ -10,6 +10,7 @@ import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.modifiers.ModifyLootTables;
+import net.bunnycraft.sound.ModSounds;
 import net.bunnycraft.util.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
@@ -34,8 +35,10 @@ public class Bunnycraft implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerModScreenHandlers();
+		ModSounds.registerSounds();
+
 		ModifyLootTables.modifyLootTables();
-		LOGGER.info("Hello Bunnycrafter!");
+		LOGGER.info("Bunnycraft Loading Complete!");
 
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
 		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);

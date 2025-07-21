@@ -1,45 +1,47 @@
-**TO DO**
-
-> Items
-- Armadillo armor
-- @c4hexaplex's song into music disc
-
-> Misc
-- Make tool attributes show
-
 **COMPLETED**
 
 Items and blocks
 - Armadillo armor
     - The armor is intended to be between iron and diamond
-    - The chestplate lets you take no damage when you sneak
+    - When sneaking you'll gain damage resistance up to 90%
 - Bunnycent Added
+     - Crafted from 1 Copper bunnycoin
+     - 4 Bunnycents adds up to 1 copper bunnycoin
 - Climbing Claw Added
     - These are claws that let you climb any block like a ladder, you can have it either in your mainhand or offhand, you can also have it in both hands and gain increased climbing speed. you also have increased climbing speed while climbing an already climbable block. It will take 1 durability for every block you climb up.
+    - Texture made by LittleViolone
+- Point Light Music disc
+    - Song and texture created by C4HexaPlex
 - Steel Template added
+    - Used for steel recipes how netherite smithing templates are
 - Vault Rewinder Added
     - Crafted with a trial key, 2 redstone and 2 copper ingots you can go up to a vault and make it forget you ever looted from it.
 - Wooden Cane
     - Having this item in either hand increases your step height by 1 and speed by 10%
     - This item has 4 attack damage but attacks slower with more entity reach
 - Pipis++
+    - !!!
 - True
+    - Obtained by winning a court case
 
 Item Changes
 - Most Armor Attributes should show up on the armor itself now
 - Copper Boots has 2 armor points now
-- Dealmaker now reduces trade prices with villager, it also has a tooltip hinting towards this
-- Dealmaker durability from 220 -> 110
-- Dealmaker now takes durability while trading
-- Dealmaker texture updated
-- Dealmaker now has -2 armor points
-- Diving suit now lets you move in water like if you were on land
-- Diving suit protection stats are the same as iron
-- Diving suit now has 1 armor toughness per piece
-- Diving suit stats have completely changed
-- Guardian Armor does not have knockback resistance anymore
-- Guardian armor stats have completely changed
-- Steel Recipes have been changed to use 1 steel diamond armor piece and 1 smithing template
+- Dealmaker
+    - Gives Discounts on trade prices, takes durability after a trade
+    - Reduced Durability from 220 -> 110
+    - Updated Texture
+    - Armor points 5 -> -2
+ - Diving Suit
+    - Lets you move on water like if you were on land
+    - Protection stats are the same as iron now
+    - each piece has 1 armor toughness
+    - Other stats completely changed
+- Guradian Armor
+    - removed knockback resistance
+    - Other stats have been completely changed
+- Steel Recipes have been changed to use 1 steel, iron armor/tool and 1 smithing template
+- Steel Armor
 - Steel Armor can now reduce damage by a percent up to 30%
 - Steel Armor stats are now the same as netherite besides the damage reduction bonus
 - Steel Armor slowdown is now based on the armor piece instead of being the same for all

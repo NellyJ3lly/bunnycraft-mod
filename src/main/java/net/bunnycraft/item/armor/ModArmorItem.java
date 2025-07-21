@@ -22,11 +22,15 @@ public class ModArmorItem extends ArmorItem implements Equipment {
                 this.BaseAttributeModifiersComponent().build());
     }
 
+    public EntityAttributeModifier createModArmorAttribute(Identifier identifier,float value, EntityAttributeModifier.Operation operation) {
+        return new EntityAttributeModifier(identifier,value,operation);
+    }
+
     public void AddAttributeModifierToBuilder(String id,float value,RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier.Operation operation,AttributeModifiersComponent.Builder builder) {
         if (value == 0.0) {return;}
         AttributeModifierSlot attributeModifierSlot = AttributeModifierSlot.forEquipmentSlot(type.getEquipmentSlot());
         Identifier identifier = Identifier.of("bunnycraft.",attributeModifierSlot.asString() + "." + id);
-        builder.add(attribute, new EntityAttributeModifier(identifier,value,operation), attributeModifierSlot);
+        builder.add(attribute, createModArmorAttribute(identifier,value,operation), attributeModifierSlot);
     }
 
     public AttributeModifiersComponent.Builder BaseAttributeModifiersComponent() {
