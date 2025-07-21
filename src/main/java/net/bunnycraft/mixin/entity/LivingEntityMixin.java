@@ -62,7 +62,9 @@ public abstract class LivingEntityMixin {
     public boolean CanClimb() {
         if (!this.hasOneOrBothClaws()) {return false;}
 
-        return isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
+        boolean StackCanClimb = isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
+
+        return StackCanClimb && entity.getBlockStateAtPos().isAir();
     }
 
     @Unique
@@ -141,7 +143,7 @@ public abstract class LivingEntityMixin {
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
             at = @At("TAIL"))
     public boolean ClimbClawFunctionalityBunnycraft(boolean original) {
-        if (!this.CanClimb() || entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE) || entity.getBlockStateAtPos().isAir()) {return original;}
+        if (!this.CanClimb() || entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return original;}
 
         BlockPos blockPos = entity.getBlockPos();
         entity.climbingPos = Optional.of(blockPos);
