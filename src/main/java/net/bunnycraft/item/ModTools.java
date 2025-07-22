@@ -46,7 +46,7 @@ public class ModTools  {
 
     // COPPER TOOLS
     public static  final Item COPPER_PICKAXE = registerTool("copper_pickaxe", new PickaxeItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
-            PickaxeItem.createAttributeModifiers(ModToolMaterials.COPPER, Bunnycraft.pickaxeDmg, -2.2f))));
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.COPPER, 1f, -2.2f))));
 
     public static  final Item COPPER_SWORD = registerTool("copper_sword", new SwordItem(ModToolMaterials.COPPER, new Item.Settings().attributeModifiers(
             SwordItem.createAttributeModifiers(ModToolMaterials.COPPER, Bunnycraft.swordDmg, -2.2f))));
@@ -81,7 +81,7 @@ public class ModTools  {
 
     // STEEL TOOLS
     public static  final Item STEEL_PICKAXE = registerTool("steel_pickaxe", new PickaxeItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
-            PickaxeItem.createAttributeModifiers(ModToolMaterials.STEEL, Bunnycraft.pickaxeDmg, -3f))));
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.STEEL, 3.5f, -3.4f))));
 
     public static  final Item STEEL_SWORD = registerTool("steel_sword", new SwordItem(ModToolMaterials.STEEL, new Item.Settings().attributeModifiers(
             SwordItem.createAttributeModifiers(ModToolMaterials.STEEL, Bunnycraft.swordDmg, -3f))));
@@ -104,7 +104,7 @@ public class ModTools  {
 
     // ROSE GOLD TOOLS
     public static  final Item ROSE_GOLD_PICKAXE = registerTool("rose_gold_pickaxe", new PickaxeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
-            PickaxeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.pickaxeDmg, -1f))));
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, 1.5f, -1.2f))));
 
     public static  final Item ROSE_GOLD_SWORD = registerTool("rose_gold_sword", new SwordItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
             SwordItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.swordDmg, -1f))));
@@ -121,11 +121,10 @@ public class ModTools  {
     public static  final Item ROSE_GOLD_HOE = registerTool("rose_gold_hoe", new HoeItem(ModToolMaterials.ROSE_GOLD, new Item.Settings().attributeModifiers(
             HoeItem.createAttributeModifiers(ModToolMaterials.ROSE_GOLD, Bunnycraft.hoeDmg, -0.8f))));
 
-
     // PRISMARINE TOOLS
     // haven't changed stats yet
     public static  final Item PRISMARINE_PICKAXE = registerTool("prismarine_pickaxe", new PickaxeItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
-            PickaxeItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.pickaxeDmg, -1f))));
+            PickaxeItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, 0.5f, -1f))));
 
     public static  final Item PRISMARINE_SWORD = registerTool("prismarine_sword", new SwordItem(ModToolMaterials.PRISMARINE, new Item.Settings().attributeModifiers(
             SwordItem.createAttributeModifiers(ModToolMaterials.PRISMARINE, Bunnycraft.swordDmg, -1f))));
