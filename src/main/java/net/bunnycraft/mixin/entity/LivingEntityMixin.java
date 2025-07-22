@@ -62,9 +62,7 @@ public abstract class LivingEntityMixin {
     public boolean CanClimb() {
         if (!this.hasOneOrBothClaws()) {return false;}
 
-        boolean StackCanClimb = isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
-
-        return StackCanClimb && entity.getBlockStateAtPos().isAir();
+        return isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
     }
 
     @Unique

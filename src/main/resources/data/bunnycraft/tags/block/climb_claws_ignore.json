@@ -1,5 +1,12 @@
 {
   "values": [
-    "minecraft:air"
+    "#minecraft:climbable",
+    "#minecraft:flowers",
+    "#minecraft:coral_plants",
+    "#minecraft:crops",
+    "minecraft:seagrass",
+    "minecraft:kelp",
+    "minecraft:short_grass",
+    "minecraft:tall_grass"
   ]
 }
