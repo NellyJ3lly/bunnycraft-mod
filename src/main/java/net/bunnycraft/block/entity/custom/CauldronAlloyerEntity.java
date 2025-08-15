@@ -4,13 +4,12 @@ import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.entity.ImplementedInventory;
 import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.entity.custom.AlloyLiquidEntity;
+import net.bunnycraft.interfaces.CauldronAlloyerHeatInterface;
 import net.bunnycraft.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.decoration.DisplayEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
@@ -29,6 +28,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.TypeFilter;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -43,7 +43,7 @@ import java.util.function.Predicate;
 
 public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInventory {
 
-
+    //DO NOT MODIFY TOTALHEAT DIRECTLY instead use setHeat so that it gets clamped and avoids out of bounds errors
 
 
 
@@ -70,12 +70,31 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     public void tryAlloy() { // ----------------------------------- add new alloys here
 
+        this.setHeat(checkForHeatFromBlocks(this.getPos()));
+
         //make sure the name is consistent, the final is how many ticks it takes to complete the alloy
         trySpecificAlloy("rose_gold", 1, Items.COPPER_INGOT, Items.GOLD_INGOT, 80);
         trySpecificAlloy("steel", 4, Items.DIAMOND, Items.IRON_INGOT, 160);
         trySpecificAlloy("netherite", 4, Items.GOLD_INGOT, Items.NETHERITE_SCRAP, 140);
 
         tryConversion(1, Items.DIRT, Items.CLAY_BALL, 600); // conversions take 1 item and convert to another by heating
+
+        BlockState state = this.getCachedState();
+
+        assert this.getWorld() != null;
+
+        //gets the heat from the blockstate
+        IntProperty heatProperty = ( (CauldronAlloyerHeatInterface) state.getBlock()).bunnycraft$getHEAT();
+        int visualHeat = state.get(heatProperty);
+
+        //get the logical heat from internally
+        int actualHeat = this.getHeat();
+
+
+        if (visualHeat != actualHeat) {
+            //sets the blockstate
+            this.getWorld().setBlockState(this.getPos(), state.with(heatProperty, this.getHeat()), 3);
+        }
 
     }
 
@@ -122,10 +141,31 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     //-------------------------------------------------------------------- end of customizable variables
 
 
-
+    // internal variables
 
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
     private final Map<UUID, DelayedTask> scheduledTasks = new LinkedHashMap<>();
+
+    private String currentAlloy = "empty";
+    private int alloyAmount = 0;
+    private int totalHeat;
+
+    private boolean needsDisplayRefresh = false;
+
+    private boolean alloying;
+
+
+    //--------------------------------------------------------------------- get information for renderer methods
+
+    public int getHeat() {
+        return totalHeat;
+    }
+
+    private void setHeat(int heat) {
+        totalHeat = Math.clamp(heat, 0, 6);
+    }
+
+    //----------------------------------------------------------------------end get methods
 
     // Inner class to represent a task with its delay
     private static class DelayedTask {
@@ -151,12 +191,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
 
-    private String currentAlloy = "empty";
-    private int alloyAmount = 0;
 
-    private boolean needsDisplayRefresh = false;
-
-    private boolean alloying;
 
     DisplayEntity.ItemDisplayEntity itemDisplay;
     DisplayEntity.ItemDisplayEntity itemDisplay2;
@@ -308,7 +343,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
 
     private void tryConversion(int heat, Item input, Item output, int ticks) {
-        if (checkForHeatFromBlocks(this.getPos()) >= heat && checkForConversionItems(input, output) && !this.alloying) {
+        if (totalHeat >= heat && checkForConversionItems(input, output) && !this.alloying) {
             if (this.currentAlloy.equals("empty")) {
                 setAlloying(true);
 
@@ -357,7 +392,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
     private void trySpecificAlloy(String name, int heat, Item ingredient1, Item ingredient2, int ticks) {
-        if (checkForHeatFromBlocks(this.getPos()) >= heat && checkForItems(ingredient1, ingredient2) && !this.alloying) {
+        if (totalHeat >= heat && checkForItems(ingredient1, ingredient2) && !this.alloying) {
             if (this.currentAlloy.equals("empty") || this.currentAlloy.equals(name) && this.alloyAmount < maxStackPerItem) {
                 setAlloying(true);
 
@@ -408,7 +443,11 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             }
         }
 
-        assert this.getWorld() != null;
+
+
+
+
+
 
         if (this.alloying && this.getWorld().random.nextDouble() < .1) {
             if (this.getWorld() instanceof ServerWorld server) {
@@ -574,7 +613,10 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         }
     }
 
+
     private boolean insertStack (ItemStack stack, PlayerEntity player, World world) {
+
+
 
         Bunnycraft.LOGGER.info(String.valueOf(stack));
 
@@ -593,6 +635,8 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                 stack.copyAndEmpty();
                 return true;
             }
+
+
 
         } else if (ItemStack.areItemsEqual(this.getStack(1), stack)) {
 
@@ -641,6 +685,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
             return false;
         }
+
 
 
     }
@@ -697,7 +742,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
     private void updateLiquidDisplay(String liquid, ServerWorld world, float height) {
-
+/*
         BlockPos currentPos = this.getPos();
 
         if (liquid.equals("empty")) {
@@ -713,11 +758,11 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             }
             this.liquidDisplay.requestTeleport(currentPos.getX() + 0.5, currentPos.getY() + height, currentPos.getZ() + 0.5);
             this.liquidDisplay.setHueColor(getAlloyColor.get(liquid));
-        }
+        }*/
     }
 
     private void updateSlot0Display(ItemStack itemStack, ServerWorld world) {
-        BlockPos currentPos = this.getPos();
+        /*BlockPos currentPos = this.getPos();
 
         // Handle itemDisplay (for slot 0)
         if (itemStack.isEmpty()) {
@@ -735,11 +780,11 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.itemDisplay.setItemStack(itemStack);
 
             this.itemDisplay.setTransformationMode(ModelTransformationMode.GROUND);
-        }
+        }*/
     }
 
     private void updateSlot1Display(ItemStack itemStack, ServerWorld world) {
-        BlockPos currentPos = this.getPos();
+        /*BlockPos currentPos = this.getPos();
 
         // Handle itemDisplay2 (for slot 1)
         if (itemStack.isEmpty()) {
@@ -758,7 +803,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
             this.itemDisplay2.setTransformationMode(ModelTransformationMode.GROUND);
 
-        }
+        }*/
     }
 
 
@@ -789,4 +834,10 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
         return false;
     }
+
+
+    /*@Override
+    public void markDirty() {
+        Bunnycraft.LOGGER.info("marking cauldron dirty");
+    }*/
 }

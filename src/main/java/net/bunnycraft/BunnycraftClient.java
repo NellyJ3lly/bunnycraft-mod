@@ -2,6 +2,7 @@ package net.bunnycraft;
 
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.block.entity.ModBlockEntities;
+import net.bunnycraft.block.entity.custom.CauldronAlloyerEntityRenderer;
 import net.bunnycraft.block.entity.custom.EnchantingStandEntityRenderer;
 import net.bunnycraft.block.entity.custom.EnchantingStandScreen;
 import net.bunnycraft.entity.ModEntities;
@@ -37,6 +38,8 @@ public class BunnycraftClient implements ClientModInitializer {
 
 
         BlockEntityRendererFactories.register(ModBlockEntities.ENCHANTING_STAND_ENTITY, EnchantingStandEntityRenderer :: new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CAULDRON_ALLOYER_ENTITY, CauldronAlloyerEntityRenderer :: new);
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ENCHANTING_STAND, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MS_PIPIS_BLOCK, RenderLayer.getCutout());
 

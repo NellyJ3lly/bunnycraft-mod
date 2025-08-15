@@ -31,6 +31,8 @@ public class ModItems {
     public static  final Item TRUE = registerItem("true", new Item(new Item.Settings()));
     public static  final Item POINT_LIGHT_MUSIC_DISC = registerItem("point_light_music_disc", new Item(new Item.Settings().jukeboxPlayable(ModSounds.POINT_LIGHT_KEY).maxCount(1)));
 
+    //add muisic for glass arcs by james primate, add muisic for maybe its all ok by uranium exposure (if you didnt write this dont worry about it)
+
     public static  final Item MOLTEN_ROSE_GOLD = registerItem("molten_rose_gold", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_STEEL = registerItem("molten_steel", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_NETHERITE = registerItem("molten_netherite", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
