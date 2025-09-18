@@ -1,5 +1,6 @@
 package net.bunnycraft.block.entity.custom;
 
+import net.bunnycraft.Bunnycraft;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
@@ -10,7 +11,9 @@ import net.minecraft.client.render.block.BlockRenderManager;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.BakedModel;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.ItemStack;
 
 
 /*
@@ -20,7 +23,7 @@ public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<Cauldr
 
     //---------------------------------------------------------------------------------------------------------- Variables for the heating Appearance
 
-    //variable that stores the fully hot color. format should start with 0x and a hex color following.
+    private ItemStack item;
 
     private final BlockRenderManager blockRenderManager;
     private final BlockModelRenderer blockModelRenderer;
@@ -68,6 +71,21 @@ public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<Cauldr
                 overlay
         );
 
+        //render the first item
+        item = blockEntity.getItem(0);
+
+        matrices.translate(0.5, 1, 0.5);
+
+        MinecraftClient.getInstance().getItemRenderer().renderItem(
+                item,
+                ModelTransformationMode.GROUND,
+                light,
+                overlay,
+                matrices,
+                vertexConsumers,
+                blockEntity.getWorld(),
+                0
+        );
 
         matrices.pop();
     }

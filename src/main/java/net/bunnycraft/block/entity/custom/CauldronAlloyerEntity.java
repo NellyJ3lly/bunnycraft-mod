@@ -6,6 +6,9 @@ import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.entity.custom.AlloyLiquidEntity;
 import net.bunnycraft.interfaces.CauldronAlloyerHeatInterface;
 import net.bunnycraft.item.ModItems;
+import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -25,6 +28,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -40,6 +44,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Predicate;
+
+import static net.minecraft.item.Item.getRawId;
 
 public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInventory {
 
@@ -70,6 +76,8 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     public void tryAlloy() { // ----------------------------------- add new alloys here
 
+
+
         this.setHeat(checkForHeatFromBlocks(this.getPos()));
 
         //make sure the name is consistent, the final is how many ticks it takes to complete the alloy
@@ -96,6 +104,16 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.getWorld().setBlockState(this.getPos(), state.with(heatProperty, this.getHeat()), 3);
         }
 
+        // sends a packet to clients to notify of what items are in the cauldron and a blockpos to identify which cauldron
+        // used in the renderer
+        if (this.getWorld() instanceof ServerWorld server) {
+
+            CauldronAlloyerS2CPayload payload = new CauldronAlloyerS2CPayload(new int[] {Item.getRawId(this.getStack(0).getItem()), Item.getRawId(this.getStack(1).getItem())}, this.getPos());
+
+            for (ServerPlayerEntity player : PlayerLookup.world( server )) {
+                ServerPlayNetworking.send(player, payload);
+            }
+        }
     }
 
     private int checkForHeatFromBlocks(BlockPos pos) { // -----------  add new blocks that should provide heat here
@@ -161,11 +179,32 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         return totalHeat;
     }
 
+    private ItemStack[] clientRenderItem = {ItemStack.EMPTY, ItemStack.EMPTY};
+
+    public ItemStack getItem(int slot) {
+        //this method is only called on the client from the renderer, it must be updated to retrive the
+        //item stack from the server and return it
+
+        if (slot == 0 || slot == 1) {
+            return clientRenderItem[slot];
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    public void setClientRenderItems(int slot, ItemStack item) {
+
+        clientRenderItem[slot] = item;
+
+    }
+
+    //----------------------------------------------------------------------end get methods
+
     private void setHeat(int heat) {
         totalHeat = Math.clamp(heat, 0, 6);
     }
 
-    //----------------------------------------------------------------------end get methods
+
 
     // Inner class to represent a task with its delay
     private static class DelayedTask {

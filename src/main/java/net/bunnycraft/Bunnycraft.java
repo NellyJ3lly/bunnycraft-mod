@@ -10,10 +10,12 @@ import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.modifiers.ModifyLootTables;
+import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
 import net.bunnycraft.sound.ModSounds;
 import net.bunnycraft.util.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +40,7 @@ public class Bunnycraft implements ModInitializer {
 		ModSounds.registerSounds();
 
 		ModifyLootTables.modifyLootTables();
-		LOGGER.info("Bunnycraft Loading Complete!");
+
 
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
 		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
@@ -56,6 +58,11 @@ public class Bunnycraft implements ModInitializer {
 				cauldron.onServerChunkLoad();
 			}
 		});
+
+        // registers the payload for the cauldron to send info to the client so the renderer can display the correct item
+        PayloadTypeRegistry.playS2C().register(CauldronAlloyerS2CPayload.ID, CauldronAlloyerS2CPayload.CODEC);
+
+        LOGGER.info("Bunnycraft Loading Complete!");
 	}
 
 	//list of variables that you can tweak to change and balance different parts of the mod. for now im only gonna add ones that i think would be annoying to find/change
