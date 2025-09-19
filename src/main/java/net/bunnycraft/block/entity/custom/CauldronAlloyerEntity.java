@@ -598,7 +598,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.setStack(1, ItemStack.EMPTY);
 
 
-            updateDisplays(ItemStack.EMPTY, ItemStack.EMPTY);
+            updateDisplays(ItemStack.EMPTY, ItemStack.EMPTY, "empty", fluidEmptyLevel);
 
             return false;
         } else {
@@ -733,14 +733,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     private void updateDisplays() {
         updateDisplays(this.getStack(0), this.getStack(1), this.currentAlloy, getFluidLevel(this.alloyAmount));
-    }
-
-    private void updateDisplays(ItemStack item1, ItemStack item2) {
-        updateDisplays(item1, item2, this.currentAlloy, getFluidLevel(this.alloyAmount));
-    }
-
-    private void updateDisplays(String fluid, float fluidLevel) {
-        updateDisplays(this.getStack(0), this.getStack(1), fluid, fluidLevel);
     }
 
     private void updateDisplays(ItemStack item1, ItemStack item2, String fluid, float fluidLevel) {
