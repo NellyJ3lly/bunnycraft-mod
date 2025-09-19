@@ -2,7 +2,6 @@ package net.bunnycraft.entity;
 
 
 import net.bunnycraft.Bunnycraft;
-import net.bunnycraft.entity.custom.AlloyLiquidEntity;
 import net.bunnycraft.entity.custom.SpearEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -23,9 +22,6 @@ public class ModEntities {
             EntityType.Builder.<SpearEntity>create(SpearEntity::new, SpawnGroup.MISC)
                     .dimensions(0.8f, 0.8f).build());
 
-    public static final EntityType<AlloyLiquidEntity> ALLOY_LIQUID_ENTITY = Registry.register(Registries.ENTITY_TYPE, Identifier.of(Bunnycraft.MOD_ID, "alloy_liquid_entity"),
-            EntityType.Builder.<AlloyLiquidEntity>create(AlloyLiquidEntity::new, SpawnGroup.MISC)
-                    .dimensions(1, .1f).build());
 
     //dummy event for initializing the class
     public static void registerModEntities() {
