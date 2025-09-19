@@ -137,7 +137,6 @@ public class CauldronAlloyerMixin extends Block implements BlockEntityProvider, 
         if(state.getBlock() != newState.getBlock()) {
             CauldronAlloyerEntity blockEntity = (CauldronAlloyerEntity) world.getBlockEntity(pos);
             if(blockEntity != null) {
-                blockEntity.clearItemDisplays();
                 ItemScatterer.spawn(world, pos, blockEntity);
                 world.updateComparators(pos, this);
             }

@@ -7,7 +7,10 @@ import net.bunnycraft.block.entity.custom.CauldronAlloyerEntityRenderer;
 import net.bunnycraft.block.entity.custom.EnchantingStandEntityRenderer;
 import net.bunnycraft.block.entity.custom.EnchantingStandScreen;
 import net.bunnycraft.entity.ModEntities;
-import net.bunnycraft.entity.custom.*;
+import net.bunnycraft.entity.custom.RoseGoldSpearModel;
+import net.bunnycraft.entity.custom.RoseGoldSpearRenderer;
+import net.bunnycraft.entity.custom.SpearModel;
+import net.bunnycraft.entity.custom.SpearRenderer;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
 import net.bunnycraft.util.ModModelPredicates;
 import net.bunnycraft.util.ModScreenHandlers;
@@ -41,7 +44,6 @@ public class BunnycraftClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(RoseGoldSpearModel.ROSE_GOLD_SPEAR, RoseGoldSpearModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.ROSE_GOLD_SPEAR, RoseGoldSpearRenderer::new);
 
-        EntityRendererRegistry.register(ModEntities.ALLOY_LIQUID_ENTITY, AlloyLiquidRenderer::new);
 
 
         BlockEntityRendererFactories.register(ModBlockEntities.ENCHANTING_STAND_ENTITY, EnchantingStandEntityRenderer :: new);
@@ -64,6 +66,8 @@ public class BunnycraftClient implements ClientModInitializer {
             }
 
             int[] items = payload.items();
+            int color = payload.fluidColor();
+            float level = payload.fluidLevel();
             BlockPos pos = payload.pos();
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
@@ -73,6 +77,11 @@ public class BunnycraftClient implements ClientModInitializer {
 
                 cauldronEntity.setClientRenderItems(0, Item.byRawId(items[0]).getDefaultStack());
                 cauldronEntity.setClientRenderItems(1, Item.byRawId(items[1]).getDefaultStack());
+
+                cauldronEntity.setClientRenderColor(color);
+
+                cauldronEntity.setClientFluidLevel(level);
+
 
             }
 

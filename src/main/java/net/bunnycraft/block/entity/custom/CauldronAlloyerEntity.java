@@ -3,7 +3,6 @@ package net.bunnycraft.block.entity.custom;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.entity.ImplementedInventory;
 import net.bunnycraft.block.entity.ModBlockEntities;
-import net.bunnycraft.entity.custom.AlloyLiquidEntity;
 import net.bunnycraft.interfaces.CauldronAlloyerHeatInterface;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
@@ -12,8 +11,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.decoration.DisplayEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
@@ -33,19 +30,14 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.TypeFilter;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.function.Predicate;
-
-import static net.minecraft.item.Item.getRawId;
 
 public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInventory {
 
@@ -57,8 +49,9 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     //TODO add hopper support (check end of this class)
 
     // ------------------------------------------------------------------- CUSTOMIZABLE VARIABLES, use these to tweak stats, looks ect
-    static final Map<String, Integer> getAlloyColor = Map.ofEntries(
-            Map.entry("steel", 0x95FFFF), // the hex code of each alloy, leave 0x
+    static final Map<String, Integer> alloyColor = Map.ofEntries(
+            Map.entry("empty", 0x000000), // the hex code of each alloy, leave 0x
+            Map.entry("steel", 0x95FFFF),
             Map.entry("rose_gold", 0xFFAFA4),
             Map.entry("netherite", 0x4F3D44)
     );
@@ -104,16 +97,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.getWorld().setBlockState(this.getPos(), state.with(heatProperty, this.getHeat()), 3);
         }
 
-        // sends a packet to clients to notify of what items are in the cauldron and a blockpos to identify which cauldron
-        // used in the renderer
-        if (this.getWorld() instanceof ServerWorld server) {
-
-            CauldronAlloyerS2CPayload payload = new CauldronAlloyerS2CPayload(new int[] {Item.getRawId(this.getStack(0).getItem()), Item.getRawId(this.getStack(1).getItem())}, this.getPos());
-
-            for (ServerPlayerEntity player : PlayerLookup.world( server )) {
-                ServerPlayNetworking.send(player, payload);
-            }
-        }
     }
 
     private int checkForHeatFromBlocks(BlockPos pos) { // -----------  add new blocks that should provide heat here
@@ -180,8 +163,10 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
     private ItemStack[] clientRenderItem = {ItemStack.EMPTY, ItemStack.EMPTY};
+    private int clientFluidColor = 0x000000;
+    private float clientFluidLevel = fluidEmptyLevel;
 
-    public ItemStack getItem(int slot) {
+    public ItemStack getRenderItem(int slot) {
         //this method is only called on the client from the renderer, it must be updated to retrive the
         //item stack from the server and return it
 
@@ -191,11 +176,26 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             return ItemStack.EMPTY;
         }
     }
-
     public void setClientRenderItems(int slot, ItemStack item) {
 
         clientRenderItem[slot] = item;
 
+    }
+
+
+    public int getClientFluidColor() {
+        return clientFluidColor;
+    }
+    public void setClientRenderColor(int color) {
+        clientFluidColor = color;
+    }
+
+
+    public float getClientFluidLevel() {
+        return clientFluidLevel;
+    }
+    public void setClientFluidLevel(float level) {
+        clientFluidLevel = level;
     }
 
     //----------------------------------------------------------------------end get methods
@@ -231,10 +231,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
 
 
-
-    DisplayEntity.ItemDisplayEntity itemDisplay;
-    DisplayEntity.ItemDisplayEntity itemDisplay2;
-    AlloyLiquidEntity liquidDisplay;
 
     public CauldronAlloyerEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CAULDRON_ALLOYER_ENTITY, pos, state);
@@ -302,44 +298,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         nbt.putBoolean("alloying", this.alloying);
         return nbt;
 
-    }
-
-    public void clearItemDisplays() {
-
-        this.scheduledTasks.clear();
-
-        setAlloying(false);
-
-        double x = this.getPos().getX();
-        double y = this.getPos().getY();
-        double z = this.getPos().getZ();
-
-        //gets all entities used for displays in the cauldron and kills them, helps in case a crash occurred and there are leftover entites with no reference
-
-        Box searchBox = new Box(x, y, z, x + 1.0, y + 1.0, z + 1.0).expand(1);
-        Predicate<Entity> filterPredicate = entity -> {
-            boolean isRelevantType = entity instanceof AlloyLiquidEntity || entity instanceof DisplayEntity.ItemDisplayEntity;
-            boolean isHere = entity.getBlockPos().equals(this.pos) || entity.getPos().isInRange(this.pos.toCenterPos(), 1.5);
-            boolean isNotPlayer = !(entity instanceof PlayerEntity); // Important safety check, never get rid of the player
-
-            return isRelevantType && isHere && isNotPlayer;
-        };
-
-
-        if (this.getWorld() instanceof ServerWorld server) {
-            List<Entity> foundEntities = server.getEntitiesByType(TypeFilter.instanceOf(Entity.class), searchBox, filterPredicate);
-
-            for (Entity entity : foundEntities) {
-                entity.discard();
-            }
-
-            this.itemDisplay = null;
-            this.itemDisplay2 = null;
-            this.liquidDisplay = null;
-        }
-
-
-        this.markDirty();
     }
 
     private boolean checkForItems(Item item1, Item item2) {
@@ -415,8 +373,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                     setAlloying(false);
 
                     if (this.getWorld() instanceof ServerWorld server) {
-                        this.updateSlot0Display(this.getStack(0), server);
-                        this.updateSlot1Display(this.getStack(1), server);
+                        this.needsDisplayRefresh = true;
 
                         server.playSound(null, this.getPos(), SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
                     }
@@ -448,9 +405,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                     setAlloying(false);
 
                     if (this.getWorld() instanceof ServerWorld server) {
-                        this.updateLiquidDisplay(this.currentAlloy, server, getFluidLevel(this.alloyAmount));
-                        this.updateSlot0Display(this.getStack(0), server);
-                        this.updateSlot1Display(this.getStack(1), server);
+                        this.needsDisplayRefresh = true;
 
                         server.playSound(null, this.getPos(), SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
                     }
@@ -472,11 +427,15 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         if (this.needsDisplayRefresh) {
             if (this.getWorld() instanceof ServerWorld server) {
                 this.needsDisplayRefresh = false;
-                clearItemDisplays();
 
-                updateSlot0Display(this.getStack(0), server);
-                updateSlot1Display(this.getStack(1), server);
-                updateLiquidDisplay(this.currentAlloy, server, getFluidLevel(this.alloyAmount));
+                this.scheduledTasks.clear();
+
+                setAlloying(false);
+
+                this.markDirty();
+
+                updateDisplays();
+
 
                 tryAlloy();
             }
@@ -552,9 +511,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                 if(this.alloyAmount == 0) {
                     this.currentAlloy = "empty";
 
-                    if (this.getWorld() instanceof ServerWorld server) {
-                        updateLiquidDisplay(this.currentAlloy, server, 0);
-                    }
+                    this.needsDisplayRefresh = true;
                 }
             }
 
@@ -604,9 +561,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.alloyAmount -= getAlloyConversionRate.get(this.currentAlloy);
 
 
-            if (this.getWorld() instanceof ServerWorld server) {
-                updateLiquidDisplay(this.currentAlloy, server, getFluidLevel(this.alloyAmount));
-            }
+            this.needsDisplayRefresh = true;
 
             this.markDirty();
 
@@ -643,8 +598,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.setStack(1, ItemStack.EMPTY);
 
 
-            this.updateSlot0Display(ItemStack.EMPTY, (ServerWorld) this.getWorld());
-            this.updateSlot1Display(ItemStack.EMPTY, (ServerWorld) this.getWorld());
+            updateDisplays(ItemStack.EMPTY, ItemStack.EMPTY);
 
             return false;
         } else {
@@ -655,9 +609,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     private boolean insertStack (ItemStack stack, PlayerEntity player, World world) {
 
-
-
-        Bunnycraft.LOGGER.info(String.valueOf(stack));
 
         //if the inventory already has the stack, merge the stacks
         if (ItemStack.areItemsEqual(this.getStack(0), stack)) {
@@ -702,7 +653,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             }
 
 
-            this.updateSlot0Display(this.getStack(0), (ServerWorld) world);
+            this.needsDisplayRefresh = true;
 
             return true;
 
@@ -715,7 +666,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                 this.setStack(1, stack.copyAndEmpty());
             }
 
-            this.updateSlot1Display(this.getStack(1), (ServerWorld) world);
+            this.needsDisplayRefresh = true;
 
             return true;
         } else {
@@ -780,69 +731,31 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         }
     }
 
-    private void updateLiquidDisplay(String liquid, ServerWorld world, float height) {
-/*
-        BlockPos currentPos = this.getPos();
-
-        if (liquid.equals("empty")) {
-            if (this.liquidDisplay != null) {
-                this.liquidDisplay.discard();
-                this.liquidDisplay = null;
-            }
-        } else {
-            if (this.liquidDisplay == null) {
-                this.liquidDisplay = new AlloyLiquidEntity(world, currentPos.getX() + 0.5, currentPos.getY() + height, currentPos.getZ() + 0.5, getAlloyColor.get(liquid));
-
-                world.spawnEntity(this.liquidDisplay);
-            }
-            this.liquidDisplay.requestTeleport(currentPos.getX() + 0.5, currentPos.getY() + height, currentPos.getZ() + 0.5);
-            this.liquidDisplay.setHueColor(getAlloyColor.get(liquid));
-        }*/
+    private void updateDisplays() {
+        updateDisplays(this.getStack(0), this.getStack(1), this.currentAlloy, getFluidLevel(this.alloyAmount));
     }
 
-    private void updateSlot0Display(ItemStack itemStack, ServerWorld world) {
-        /*BlockPos currentPos = this.getPos();
-
-        // Handle itemDisplay (for slot 0)
-        if (itemStack.isEmpty()) {
-            if (this.itemDisplay != null) {
-                this.itemDisplay.discard();
-                this.itemDisplay = null;
-            }
-        } else {
-            if (this.itemDisplay == null) {
-                this.itemDisplay = new DisplayEntity.ItemDisplayEntity(EntityType.ITEM_DISPLAY, world);
-
-                this.itemDisplay.refreshPositionAndAngles(currentPos.getX() + 0.5, currentPos.getY() + 0.25, currentPos.getZ() + 0.5, 30, 90);
-                world.spawnEntity(this.itemDisplay);
-            }
-            this.itemDisplay.setItemStack(itemStack);
-
-            this.itemDisplay.setTransformationMode(ModelTransformationMode.GROUND);
-        }*/
+    private void updateDisplays(ItemStack item1, ItemStack item2) {
+        updateDisplays(item1, item2, this.currentAlloy, getFluidLevel(this.alloyAmount));
     }
 
-    private void updateSlot1Display(ItemStack itemStack, ServerWorld world) {
-        /*BlockPos currentPos = this.getPos();
+    private void updateDisplays(String fluid, float fluidLevel) {
+        updateDisplays(this.getStack(0), this.getStack(1), fluid, fluidLevel);
+    }
 
-        // Handle itemDisplay2 (for slot 1)
-        if (itemStack.isEmpty()) {
-            if (this.itemDisplay2 != null) {
-                this.itemDisplay2.discard();
-                this.itemDisplay2 = null;
+    private void updateDisplays(ItemStack item1, ItemStack item2, String fluid, float fluidLevel) {
+
+        // sends a packet to clients to notify of what items are in the cauldron and a blockpos to identify which cauldron
+        // used in the renderer
+        if (this.getWorld() instanceof ServerWorld server) {
+
+            CauldronAlloyerS2CPayload payload = new CauldronAlloyerS2CPayload(new int[] {Item.getRawId(item1.getItem()), Item.getRawId(item2.getItem())}, alloyColor.get(fluid), fluidLevel, this.getPos());
+
+            for (ServerPlayerEntity player : PlayerLookup.world( server )) {
+                ServerPlayNetworking.send(player, payload);
             }
-        } else {
-            if (this.itemDisplay2 == null) {
-                this.itemDisplay2 = new DisplayEntity.ItemDisplayEntity(EntityType.ITEM_DISPLAY, world);
+        }
 
-                this.itemDisplay2.refreshPositionAndAngles(currentPos.getX() + 0.5, currentPos.getY() + 0.3, currentPos.getZ() + 0.3, -20, 80);
-                world.spawnEntity(this.itemDisplay2);
-            }
-            this.itemDisplay2.setItemStack(itemStack);
-
-            this.itemDisplay2.setTransformationMode(ModelTransformationMode.GROUND);
-
-        }*/
     }
 
 
@@ -874,9 +787,4 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         return false;
     }
 
-
-    /*@Override
-    public void markDirty() {
-        Bunnycraft.LOGGER.info("marking cauldron dirty");
-    }*/
 }

@@ -1,8 +1,9 @@
 package net.bunnycraft.block.entity.custom;
 
-import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.BunnycraftClient;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -12,8 +13,13 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
+import net.minecraft.client.texture.Sprite;
+import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
+import net.minecraft.screen.PlayerScreenHandler;
+import net.minecraft.util.math.RotationAxis;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 
 
 /*
@@ -22,8 +28,6 @@ import net.minecraft.item.ItemStack;
 public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<CauldronAlloyerEntity> {
 
     //---------------------------------------------------------------------------------------------------------- Variables for the heating Appearance
-
-    private ItemStack item;
 
     private final BlockRenderManager blockRenderManager;
     private final BlockModelRenderer blockModelRenderer;
@@ -51,9 +55,8 @@ public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<Cauldr
 
         matrices.push();
 
-        // Get the appropriate VertexConsumer for the block layer (e.g., solid, cutout)
+        // Get the appropriate VertexConsumer for the block layer
         // For most blocks, the solid layer is appropriate.
-        // You might need to adjust this based on your block's render type.
         VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getSolid());
 
         //render the block
@@ -71,13 +74,60 @@ public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<Cauldr
                 overlay
         );
 
-        //render the first item
-        item = blockEntity.getItem(0);
+        matrices.pop();
 
-        matrices.translate(0.5, 1, 0.5);
+        //render the liquid layer ----------------------------------------------------------------------------------------------------------
+
+        matrices.push();
+
+        matrices.translate(.5, blockEntity.getClientFluidLevel(), .5);
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
+
+        SpriteAtlasTexture blockAtlas = MinecraftClient.getInstance().getBakedModelManager().getAtlas(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE);
+
+        Sprite sprite = blockAtlas.getSprite(BunnycraftClient.GRAYSCALE_LAVA_ID);
+
+        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE));
+
+        MatrixStack.Entry matrixEntry = matrices.peek();
+        Matrix4f positionMatrix = matrixEntry.getPositionMatrix();
+        Matrix3f normalMatrix = matrixEntry.getNormalMatrix();
+
+
+        int hexColor = blockEntity.getClientFluidColor();
+
+        int r = (hexColor >> 16) & 0xFF;
+        int g = (hexColor >> 8) & 0xFF;
+        int b = hexColor & 0xFF;
+        int a = 255;
+
+        float minU = sprite.getMinU();
+        float maxU = sprite.getMaxU();
+        float minV = sprite.getMinV();
+        float maxV = sprite.getMaxV();
+
+        // Top-Left vertex
+        addVertex(vertexConsumer, positionMatrix, normalMatrix, -.5f,  .5f, 0f, r, g, b, a, minU, minV, light); // Use sprite's minU, minV
+        // Bottom-Left vertex
+        addVertex(vertexConsumer, positionMatrix, normalMatrix, -.5f, -.5f, 0f, r, g, b, a, minU, maxV, light); // Use sprite's minU, maxV
+        // Bottom-Right vertex
+        addVertex(vertexConsumer, positionMatrix, normalMatrix,  .5f, -.5f, 0f, r, g, b, a, maxU, maxV, light); // Use sprite's maxU, maxV
+        // Top-Right vertex
+        addVertex(vertexConsumer, positionMatrix, normalMatrix,  .5f,  .5f, 0f, r, g, b, a, maxU, minV, light); // Use sprite's maxU, minV
+
+        matrices.pop();
+
+
+        //render the first item ------------------------------------------------------------------------------------------------------
+        matrices.push();
+
+        matrices.translate(0.5, .25, 0.5);
+
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(30));
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
 
         MinecraftClient.getInstance().getItemRenderer().renderItem(
-                item,
+                blockEntity.getRenderItem(0),
                 ModelTransformationMode.GROUND,
                 light,
                 overlay,
@@ -88,5 +138,41 @@ public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<Cauldr
         );
 
         matrices.pop();
+
+
+        //render the second item ---------------------------------------------------------
+        matrices.push();
+
+        matrices.translate(0.5, .3, 0.3);
+
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-20));
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(80));
+
+        MinecraftClient.getInstance().getItemRenderer().renderItem(
+                blockEntity.getRenderItem(1),
+                ModelTransformationMode.GROUND,
+                light,
+                overlay,
+                matrices,
+                vertexConsumers,
+                blockEntity.getWorld(),
+                0
+        );
+
+        matrices.pop();
+
+
+    }
+
+    private void addVertex(VertexConsumer consumer, Matrix4f positionMatrix, Matrix3f normalMatrix,
+                           float x, float y, float z,
+                           int r, int g, int b, int a,
+                           float u, float v, int light) {
+        consumer.vertex(positionMatrix, x, y, z)       // Position
+                .color(r, g, b, a)                     // Color (can tint texture)
+                .texture(u, v)                         // UV Texture coordinates
+                .overlay(OverlayTexture.DEFAULT_UV)    // Overlay (for damage flash, etc. DEFAULT_UV = no overlay)
+                .light(light)                          // Lightmap (for scene lighting)
+                .normal( 0f, 0f, 1f);  // Normal vector (for lighting direction, (0,0,1) is facing positive Z in local space)
     }
 }
