@@ -5,8 +5,7 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "minecraft:egg",
+          "type": "minecraft:empty",
           "weight": 1000
         },
         {
@@ -26,7 +25,7 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 3
+          "weight": 1
         },
         {
           "type": "minecraft:item",
@@ -37,9 +36,9 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 0,
-                "max": 2
+                "max": 1
               },
-              "add": true
+              "add": false
             }
           ]
         }
