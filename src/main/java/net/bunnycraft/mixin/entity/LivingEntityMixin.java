@@ -55,7 +55,9 @@ public abstract class LivingEntityMixin {
     @Unique
     public boolean isStackClimbingClawThatClimbs(Hand hand) {
         ItemStack stack = entity.getStackInHand(hand);
-        return stack.isOf(ModTools.CLIMBING_CLAW) && Boolean.TRUE.equals(stack.get(ModComponents.CAN_CLIMB_ON_BLOCK));
+        return stack.isOf(ModTools.CLIMBING_CLAW)
+                &&
+                (Boolean.TRUE.equals(stack.get(ModComponents.DAMAGE_WHILE_CLIMBING)) || Boolean.TRUE.equals(stack.get(ModComponents.CAN_CLIMB_ON_BLOCK)));
     }
 
     @Unique
@@ -140,7 +142,7 @@ public abstract class LivingEntityMixin {
     @ModifyReturnValue(
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
             at = @At("TAIL"))
-    public boolean ClimbClawFunctionalityBunnycraft(boolean original) {
+    public boolean Bunnycraft$LetClimbClawClimb(boolean original) {
         if (!this.CanClimb() || entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return original;}
 
         BlockPos blockPos = entity.getBlockPos();
@@ -149,20 +151,26 @@ public abstract class LivingEntityMixin {
     }
 
     @ModifyReturnValue(
-            method = "Lnet/minecraft/entity/LivingEntity;applyClimbingSpeed(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;",
+            method = "applyClimbingSpeed(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;",
             at = @At("TAIL"))
-    public Vec3d ClimbClawSpeed(Vec3d original) {
-        if (entity.isClimbing() && entity.horizontalCollision) {
+    public Vec3d Bunnycraft$ApplyClimbingClawSpeed(Vec3d originalMotion) {
+        ItemStack stack = entity.getStackInHand(Hand.MAIN_HAND);
+
+        if (entity.isClimbing() && stack.getComponents().contains(ModComponents.DAMAGE_WHILE_CLIMBING)) {
             double climbSpeed = setClimbSpeedConditions();
 
-            return new Vec3d(original.x, original.y * climbSpeed, original.z);
+            if (entity.isSneaking() && originalMotion.y < 0.0) {
+                climbSpeed = 0;
+            }
+
+            return new Vec3d(originalMotion.x, originalMotion.y * climbSpeed, originalMotion.z);
         }
 
-        return original;
+        return originalMotion;
     }
 
     @ModifyReturnValue(
-            method = "Lnet/minecraft/entity/LivingEntity;applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
+            method = "applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F",
             at = @At("TAIL"))
     public float BlockDamageWithArmor(float original) {
         if (getArmorAmountofMaterial("armadillo") > 0 && entity.isSneaking() && entity.isOnGround()) {
@@ -176,7 +184,7 @@ public abstract class LivingEntityMixin {
     }
 
     @ModifyExpressionValue(
-            method = "Lnet/minecraft/entity/LivingEntity;travel(Lnet/minecraft/util/math/Vec3d;)V",
+            method = "travel(Lnet/minecraft/util/math/Vec3d;)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;shouldSwimInFluids()Z")
     )
     public boolean disableSwimmingWithDivingSuit(boolean original) {
@@ -184,7 +192,7 @@ public abstract class LivingEntityMixin {
     }
 
     @ModifyVariable(
-            method = "Lnet/minecraft/entity/LivingEntity;tickMovement()V",
+            method = "tickMovement()V",
             at = @At(value = "STORE",ordinal = 0)
     )
     public boolean canJumpUnderwaterWithDivingSuit(boolean original) {

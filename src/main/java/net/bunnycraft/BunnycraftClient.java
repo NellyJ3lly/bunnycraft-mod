@@ -6,12 +6,15 @@ import net.bunnycraft.block.entity.custom.EnchantingStandEntityRenderer;
 import net.bunnycraft.block.entity.custom.EnchantingStandScreen;
 import net.bunnycraft.entity.ModEntities;
 import net.bunnycraft.entity.custom.*;
+import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.util.ModModelPredicates;
 import net.bunnycraft.util.ModScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
@@ -20,6 +23,7 @@ import net.minecraft.util.Identifier;
 public class BunnycraftClient implements ClientModInitializer {
 
     public static final Identifier GRAYSCALE_LAVA_ID = Identifier.of(Bunnycraft.MOD_ID, "block/alloy_liquid");
+
 
     @Override
     public void onInitializeClient() {
@@ -42,6 +46,7 @@ public class BunnycraftClient implements ClientModInitializer {
 
         //registers the screen for enchanting stand
         HandledScreens.register(ModScreenHandlers.ENCHANTING_STAND_SCREEN_HANDLER_TYPE, EnchantingStandScreen::new);
+
 
     }
 }

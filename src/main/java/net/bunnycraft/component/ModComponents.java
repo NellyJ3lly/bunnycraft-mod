@@ -14,6 +14,12 @@ public class ModComponents {
             ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
     );
 
+    public static final ComponentType<Boolean> DAMAGE_WHILE_CLIMBING = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(Bunnycraft.MOD_ID, "damage_while_climbing"),
+            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+    );
+
     public static void registerComponents() {
         Bunnycraft.LOGGER.info("Registering Components for" + Bunnycraft.MOD_ID);
     }

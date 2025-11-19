@@ -1,34 +1,49 @@
 package net.bunnycraft.item.custom;
 
-import com.mojang.datafixers.types.templates.Check;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.util.ModTags;
-import net.minecraft.block.Block;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockStateRaycastContext;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
+import java.util.function.Predicate;
+
 public class ClimbingClawItem extends Item {
+    private BlockPos startPos;
+    private final float RayDistance = 0.5f;
+
     public ClimbingClawItem(Settings settings) {
         super(settings);
     }
 
-    private BlockPos startPos;
-    private final float RayDistance = 0.5f;
+    public boolean CheckItemStack(ItemStack stack, LivingEntity livingentity,Hand hand) {
+        return stack.isOf(ModTools.CLIMBING_CLAW) && livingentity.getStackInHand(hand) == stack;
+    }
+
+    public void DamageStack(LivingEntity livingentity, Hand hand,EquipmentSlot equipmentSlot) {
+        ItemStack stack = livingentity.getStackInHand(hand);
+        if (CheckItemStack(stack,livingentity,hand)) {
+            stack.damage(1,livingentity,equipmentSlot);
+        }
+    }
 
     public BlockState GetBlockState(LivingEntity livingentity,HitResult hit) {
         return livingentity.getWorld().getBlockState(BlockPos.ofFloored(hit.getPos()));
@@ -48,6 +63,7 @@ public class ClimbingClawItem extends Item {
     }
 
     public boolean CanClimb(LivingEntity livingentity) {
+        World world = livingentity.getWorld();
 
         HitResult hit = livingentity.raycast(RayDistance,0,false);
 
@@ -59,36 +75,42 @@ public class ClimbingClawItem extends Item {
         return canClimbBlock || CheckBlocksIfCanClimb(livingentity,hit);
     }
 
-    public boolean CheckItemStack(ItemStack stack, LivingEntity livingentity,Hand hand) {
-        return stack.isOf(ModTools.CLIMBING_CLAW) && livingentity.getStackInHand(hand) == stack;
-    }
-
-    public void DamageStack(LivingEntity livingentity, Hand hand,EquipmentSlot equipmentSlot) {
-        ItemStack stack = livingentity.getStackInHand(hand);
-        if (CheckItemStack(stack,livingentity,hand)) {
-            stack.damage(1,livingentity,equipmentSlot);
+    public void DamageClaws(LivingEntity livingEntity) {
+        if (startPos == null) {
+            startPos = BlockPos.ofFloored(livingEntity.getPos());
         }
+
+        if (!livingEntity.isClimbing()) {return;}
+
+        BlockPos currentPos = livingEntity.getBlockPos();
+        double YDiff = Math.abs(currentPos.getY() - startPos.getY());
+
+        if ((YDiff < 2)) {return;}
+
+        startPos = currentPos;
+
+        DamageStack(livingEntity, Hand.MAIN_HAND, EquipmentSlot.MAINHAND);
+        DamageStack(livingEntity, Hand.OFF_HAND, EquipmentSlot.OFFHAND);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (entity instanceof LivingEntity livingentity) {
-            if (!CheckItemStack(stack,livingentity,Hand.MAIN_HAND) && !CheckItemStack(stack,livingentity,Hand.OFF_HAND)) {return;}
+        if (entity instanceof LivingEntity livingEntity) {
+            if (!CheckItemStack(stack, livingEntity, Hand.MAIN_HAND) && !CheckItemStack(stack, livingEntity, Hand.OFF_HAND)) {
+                return;
+            }
 
-            if (startPos == null) {startPos = BlockPos.ofFloored(entity.getPos());}
+            if (world.isClient) {
+                HorizontalCollisionPayload payload = new HorizontalCollisionPayload(livingEntity.horizontalCollision);
 
-            stack.set(ModComponents.CAN_CLIMB_ON_BLOCK,CanClimb(livingentity));
-            if (!livingentity.isClimbing()) {return;}
-
-            BlockPos currentPos = livingentity.getBlockPos();
-            double YDiff = Math.abs(currentPos.getY() - startPos.getY());
-
-            if ((YDiff < 2)) {return;}
-
-            startPos = currentPos;
-
-            DamageStack(livingentity,Hand.MAIN_HAND,EquipmentSlot.MAINHAND);
-            DamageStack(livingentity,Hand.OFF_HAND,EquipmentSlot.OFFHAND);
+                ClientPlayNetworking.send(payload);
+            }
+            if (!world.isClient) {
+                if (stack.getComponents().contains(ModComponents.DAMAGE_WHILE_CLIMBING)) {
+                    DamageClaws(livingEntity);
+                }
+                stack.set(ModComponents.CAN_CLIMB_ON_BLOCK,CanClimb(livingEntity));
+            }
         }
     }
 }

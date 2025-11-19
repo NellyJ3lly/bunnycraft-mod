@@ -9,12 +9,21 @@ import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.ModArmors;
+import net.bunnycraft.item.custom.ClimbingClawItem;
 import net.bunnycraft.modifiers.ModifyLootTables;
+import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.sound.ModSounds;
 import net.bunnycraft.util.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +31,13 @@ public class Bunnycraft implements ModInitializer {
 	public static final String MOD_ID = "bunnycraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+	public void ClimbingClaws(PlayerEntity entity,boolean horizontalCollision) {
+		ItemStack claws = entity.getStackInHand(Hand.MAIN_HAND);
 
+		if (claws.isOf(ModTools.CLIMBING_CLAW)) {
+			claws.set(ModComponents.DAMAGE_WHILE_CLIMBING,horizontalCollision);
+		}
+	}
 
 	@Override
 	public void onInitialize() {
@@ -36,9 +51,7 @@ public class Bunnycraft implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerModScreenHandlers();
 		ModSounds.registerSounds();
-
 		ModifyLootTables.modifyLootTables();
-		LOGGER.info("Bunnycraft Loading Complete!");
 
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
 		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
@@ -56,6 +69,18 @@ public class Bunnycraft implements ModInitializer {
 				cauldron.onServerChunkLoad();
 			}
 		});
+
+		PayloadTypeRegistry.playC2S().register(HorizontalCollisionPayload.ID,HorizontalCollisionPayload.CODEC);
+
+		ServerPlayNetworking.registerGlobalReceiver(
+				HorizontalCollisionPayload.ID,(payload,context) -> {
+					PlayerEntity entity = context.player().getWorld().getPlayerByUuid(context.player().getUuid());
+                    assert entity != null;
+					ClimbingClaws(entity, payload.horizontalCollision());
+			}
+		);
+
+		LOGGER.info("Bunnycraft Loading Complete!");
 	}
 
 	//list of variables that you can tweak to change and balance different parts of the mod. for now im only gonna add ones that i think would be annoying to find/change
