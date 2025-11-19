@@ -1,13 +1,11 @@
-package net.bunnycraft.mixin.item;
+package net.bunnycraft.mixin.block;
 
 //this class modifys the empty cauldron and turns it into the alloyer. i did this instead of a new cauldron state because the alloyer would use the same behavior map as the empty cauldron
 
 import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CauldronBlock;
+import net.bunnycraft.interfaces.CauldronAlloyerHeatInterface;
+import net.minecraft.block.*;
 import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -16,6 +14,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
@@ -28,17 +28,58 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.gen.Invoker;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin (CauldronBlock.class)
-public class CauldronAlloyerMixin extends Block implements BlockEntityProvider {
+public class CauldronAlloyerMixin extends Block implements BlockEntityProvider, CauldronAlloyerHeatInterface {
+
+    //lets me gain access to the protected method setDefaultState within CauldronBlocks parent class Block
+    @Mixin(value = Block.class, remap = false)
+    public interface BlockInvoker {
+        @Invoker("setDefaultState")
+        void invokeSetDefaultState(BlockState state);
+    }
+
+    //adds the heat property to the cauldrons blockstate
+    @Unique
+    private static final IntProperty bunnycraft$HEAT = IntProperty.of("heat", 0, 6);
+    @Override
+    public IntProperty bunnycraft$getHEAT() {
+        return bunnycraft$HEAT;
+    }
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(bunnycraft$HEAT);
+    }
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void injectDefaultState(AbstractBlock.Settings settings, CallbackInfo ci) {
+        //allows access to init methods
+        Block thisBlock = (Block) (Object) this;
+
+        ((BlockInvoker) this).invokeSetDefaultState(thisBlock.getDefaultState().with(bunnycraft$HEAT, 0));
+    }
 
     public CauldronAlloyerMixin(Settings settings) {
+
         super(settings);
+
+        setDefaultState(this.stateManager.getDefaultState().with(bunnycraft$HEAT, 0));
     }
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new CauldronAlloyerEntity(pos, state);
+    }
+
+    //tells the game to not render the block so the custom renderer can do that
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        // This tells Minecraft to skip rendering the default block model
+        // and hand off all rendering responsibility to the BlockEntityRenderer.
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     //overrides
@@ -96,7 +137,6 @@ public class CauldronAlloyerMixin extends Block implements BlockEntityProvider {
         if(state.getBlock() != newState.getBlock()) {
             CauldronAlloyerEntity blockEntity = (CauldronAlloyerEntity) world.getBlockEntity(pos);
             if(blockEntity != null) {
-                blockEntity.clearItemDisplays();
                 ItemScatterer.spawn(world, pos, blockEntity);
                 world.updateComparators(pos, this);
             }
@@ -139,11 +179,23 @@ public class CauldronAlloyerMixin extends Block implements BlockEntityProvider {
     }
 
     @Override
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos, boolean movedByPiston) {
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         if (world.isClient()) {
             return;
         }
 
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+
+        if (blockEntity instanceof CauldronAlloyerEntity cauldronAlloyer) {
+            cauldronAlloyer.tryAlloy();
+        }
+    }
+
+    @Override
+    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos, boolean movedByPiston) {
+        if (world.isClient()) {
+            return;
+        }
         BlockEntity blockEntity = world.getBlockEntity(pos);
 
         if (blockEntity instanceof CauldronAlloyerEntity cauldronAlloyer) {

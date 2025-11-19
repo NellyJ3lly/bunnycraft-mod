@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "heat=0": {
+      "model": "minecraft:block/cauldron"
+    },
+    "heat=1": {
+      "model": "bunnycraft:block/cauldron_h1"
+    },
+    "heat=2": {
+      "model": "bunnycraft:block/cauldron_h2"
+    },
+    "heat=3": {
+      "model": "bunnycraft:block/cauldron_h3"
+    },
+    "heat=4": {
+      "model": "bunnycraft:block/cauldron_h4"
+    },
+    "heat=5": {
+      "model": "bunnycraft:block/cauldron_h5"
+    },
+    "heat=6": {
+      "model": "bunnycraft:block/cauldron_h6"
+    }
+  }
+}

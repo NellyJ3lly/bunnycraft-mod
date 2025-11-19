@@ -12,10 +12,12 @@ import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.custom.ClimbingClawItem;
 import net.bunnycraft.modifiers.ModifyLootTables;
 import net.bunnycraft.networking.HorizontalCollisionPayload;
+import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
 import net.bunnycraft.sound.ModSounds;
 import net.bunnycraft.util.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -51,18 +53,12 @@ public class Bunnycraft implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerModScreenHandlers();
 		ModSounds.registerSounds();
+
 		ModifyLootTables.modifyLootTables();
+		LOGGER.info("Bunnycraft Loading Complete!");
 
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
 		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
-
-		//listens for when a block entity unloads, used for the CauldronAlloyer
-		ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> {
-			if (blockEntity instanceof CauldronAlloyerEntity cauldron) {
-				// clears the item displays so they dont persist past a restart, the block entity recreates them on load
-				cauldron.clearItemDisplays();
-			}
-		});
 
 		ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.register((blockEntity, world) -> {
 			if (blockEntity instanceof CauldronAlloyerEntity cauldron) {
@@ -81,6 +77,11 @@ public class Bunnycraft implements ModInitializer {
 		);
 
 		LOGGER.info("Bunnycraft Loading Complete!");
+
+        // registers the payload for the cauldron to send info to the client so the renderer can display the correct item
+        PayloadTypeRegistry.playS2C().register(CauldronAlloyerS2CPayload.ID, CauldronAlloyerS2CPayload.CODEC);
+
+        LOGGER.info("Bunnycraft Loading Complete!");
 	}
 
 	//list of variables that you can tweak to change and balance different parts of the mod. for now im only gonna add ones that i think would be annoying to find/change

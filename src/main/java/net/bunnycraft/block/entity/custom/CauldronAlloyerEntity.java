@@ -3,15 +3,14 @@ package net.bunnycraft.block.entity.custom;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.entity.ImplementedInventory;
 import net.bunnycraft.block.entity.ModBlockEntities;
-import net.bunnycraft.entity.custom.AlloyLiquidEntity;
+import net.bunnycraft.interfaces.CauldronAlloyerHeatInterface;
 import net.bunnycraft.item.ModItems;
+import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.decoration.DisplayEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
@@ -26,24 +25,23 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.TypeFilter;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInventory {
 
-
+    //DO NOT MODIFY TOTALHEAT DIRECTLY instead use setHeat so that it gets clamped and avoids out of bounds errors
 
 
 
@@ -51,8 +49,9 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     //TODO add hopper support (check end of this class)
 
     // ------------------------------------------------------------------- CUSTOMIZABLE VARIABLES, use these to tweak stats, looks ect
-    static final Map<String, Integer> getAlloyColor = Map.ofEntries(
-            Map.entry("steel", 0x95FFFF), // the hex code of each alloy, leave 0x
+    static final Map<String, Integer> alloyColor = Map.ofEntries(
+            Map.entry("empty", 0x000000), // the hex code of each alloy, leave 0x
+            Map.entry("steel", 0x95FFFF),
             Map.entry("rose_gold", 0xFFAFA4),
             Map.entry("netherite", 0x4F3D44)
     );
@@ -70,12 +69,33 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     public void tryAlloy() { // ----------------------------------- add new alloys here
 
+
+
+        this.setHeat(checkForHeatFromBlocks(this.getPos()));
+
         //make sure the name is consistent, the final is how many ticks it takes to complete the alloy
         trySpecificAlloy("rose_gold", 1, Items.COPPER_INGOT, Items.GOLD_INGOT, 80);
         trySpecificAlloy("steel", 4, Items.DIAMOND, Items.IRON_INGOT, 160);
         trySpecificAlloy("netherite", 4, Items.GOLD_INGOT, Items.NETHERITE_SCRAP, 140);
 
         tryConversion(1, Items.DIRT, Items.CLAY_BALL, 600); // conversions take 1 item and convert to another by heating
+
+        BlockState state = this.getCachedState();
+
+        assert this.getWorld() != null;
+
+        //gets the heat from the blockstate
+        IntProperty heatProperty = ( (CauldronAlloyerHeatInterface) state.getBlock()).bunnycraft$getHEAT();
+        int visualHeat = state.get(heatProperty);
+
+        //get the logical heat from internally
+        int actualHeat = this.getHeat();
+
+
+        if (visualHeat != actualHeat) {
+            //sets the blockstate
+            this.getWorld().setBlockState(this.getPos(), state.with(heatProperty, this.getHeat()), 3);
+        }
 
     }
 
@@ -122,10 +142,69 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     //-------------------------------------------------------------------- end of customizable variables
 
 
-
+    // internal variables
 
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
     private final Map<UUID, DelayedTask> scheduledTasks = new LinkedHashMap<>();
+
+    private String currentAlloy = "empty";
+    private int alloyAmount = 0;
+    private int totalHeat;
+
+    private boolean needsDisplayRefresh = false;
+
+    private boolean alloying;
+
+
+    //--------------------------------------------------------------------- get information for renderer methods
+
+    public int getHeat() {
+        return totalHeat;
+    }
+
+    private ItemStack[] clientRenderItem = {ItemStack.EMPTY, ItemStack.EMPTY};
+    private int clientFluidColor = 0x000000;
+    private float clientFluidLevel = fluidEmptyLevel;
+
+    public ItemStack getRenderItem(int slot) {
+        //this method is only called on the client from the renderer, it must be updated to retrive the
+        //item stack from the server and return it
+
+        if (slot == 0 || slot == 1) {
+            return clientRenderItem[slot];
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+    public void setClientRenderItems(int slot, ItemStack item) {
+
+        clientRenderItem[slot] = item;
+
+    }
+
+
+    public int getClientFluidColor() {
+        return clientFluidColor;
+    }
+    public void setClientRenderColor(int color) {
+        clientFluidColor = color;
+    }
+
+
+    public float getClientFluidLevel() {
+        return clientFluidLevel;
+    }
+    public void setClientFluidLevel(float level) {
+        clientFluidLevel = level;
+    }
+
+    //----------------------------------------------------------------------end get methods
+
+    private void setHeat(int heat) {
+        totalHeat = Math.clamp(heat, 0, 6);
+    }
+
+
 
     // Inner class to represent a task with its delay
     private static class DelayedTask {
@@ -151,16 +230,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
 
-    private String currentAlloy = "empty";
-    private int alloyAmount = 0;
 
-    private boolean needsDisplayRefresh = false;
-
-    private boolean alloying;
-
-    DisplayEntity.ItemDisplayEntity itemDisplay;
-    DisplayEntity.ItemDisplayEntity itemDisplay2;
-    AlloyLiquidEntity liquidDisplay;
 
     public CauldronAlloyerEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CAULDRON_ALLOYER_ENTITY, pos, state);
@@ -230,44 +300,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     }
 
-    public void clearItemDisplays() {
-
-        this.scheduledTasks.clear();
-
-        setAlloying(false);
-
-        double x = this.getPos().getX();
-        double y = this.getPos().getY();
-        double z = this.getPos().getZ();
-
-        //gets all entities used for displays in the cauldron and kills them, helps in case a crash occurred and there are leftover entites with no reference
-
-        Box searchBox = new Box(x, y, z, x + 1.0, y + 1.0, z + 1.0).expand(1);
-        Predicate<Entity> filterPredicate = entity -> {
-            boolean isRelevantType = entity instanceof AlloyLiquidEntity || entity instanceof DisplayEntity.ItemDisplayEntity;
-            boolean isHere = entity.getBlockPos().equals(this.pos) || entity.getPos().isInRange(this.pos.toCenterPos(), 1.5);
-            boolean isNotPlayer = !(entity instanceof PlayerEntity); // Important safety check, never get rid of the player
-
-            return isRelevantType && isHere && isNotPlayer;
-        };
-
-
-        if (this.getWorld() instanceof ServerWorld server) {
-            List<Entity> foundEntities = server.getEntitiesByType(TypeFilter.instanceOf(Entity.class), searchBox, filterPredicate);
-
-            for (Entity entity : foundEntities) {
-                entity.discard();
-            }
-
-            this.itemDisplay = null;
-            this.itemDisplay2 = null;
-            this.liquidDisplay = null;
-        }
-
-
-        this.markDirty();
-    }
-
     private boolean checkForItems(Item item1, Item item2) {
         if (this.getStack(0).isOf(item1) && this.getStack(1).isOf(item2)) {
             return true;
@@ -308,7 +340,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
 
     private void tryConversion(int heat, Item input, Item output, int ticks) {
-        if (checkForHeatFromBlocks(this.getPos()) >= heat && checkForConversionItems(input, output) && !this.alloying) {
+        if (totalHeat >= heat && checkForConversionItems(input, output) && !this.alloying) {
             if (this.currentAlloy.equals("empty")) {
                 setAlloying(true);
 
@@ -341,8 +373,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                     setAlloying(false);
 
                     if (this.getWorld() instanceof ServerWorld server) {
-                        this.updateSlot0Display(this.getStack(0), server);
-                        this.updateSlot1Display(this.getStack(1), server);
+                        this.needsDisplayRefresh = true;
 
                         server.playSound(null, this.getPos(), SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
                     }
@@ -357,7 +388,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
     private void trySpecificAlloy(String name, int heat, Item ingredient1, Item ingredient2, int ticks) {
-        if (checkForHeatFromBlocks(this.getPos()) >= heat && checkForItems(ingredient1, ingredient2) && !this.alloying) {
+        if (totalHeat >= heat && checkForItems(ingredient1, ingredient2) && !this.alloying) {
             if (this.currentAlloy.equals("empty") || this.currentAlloy.equals(name) && this.alloyAmount < maxStackPerItem) {
                 setAlloying(true);
 
@@ -374,9 +405,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                     setAlloying(false);
 
                     if (this.getWorld() instanceof ServerWorld server) {
-                        this.updateLiquidDisplay(this.currentAlloy, server, getFluidLevel(this.alloyAmount));
-                        this.updateSlot0Display(this.getStack(0), server);
-                        this.updateSlot1Display(this.getStack(1), server);
+                        this.needsDisplayRefresh = true;
 
                         server.playSound(null, this.getPos(), SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
                     }
@@ -398,17 +427,25 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         if (this.needsDisplayRefresh) {
             if (this.getWorld() instanceof ServerWorld server) {
                 this.needsDisplayRefresh = false;
-                clearItemDisplays();
 
-                updateSlot0Display(this.getStack(0), server);
-                updateSlot1Display(this.getStack(1), server);
-                updateLiquidDisplay(this.currentAlloy, server, getFluidLevel(this.alloyAmount));
+                this.scheduledTasks.clear();
+
+                setAlloying(false);
+
+                this.markDirty();
+
+                updateDisplays();
+
 
                 tryAlloy();
             }
         }
 
-        assert this.getWorld() != null;
+
+
+
+
+
 
         if (this.alloying && this.getWorld().random.nextDouble() < .1) {
             if (this.getWorld() instanceof ServerWorld server) {
@@ -474,9 +511,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                 if(this.alloyAmount == 0) {
                     this.currentAlloy = "empty";
 
-                    if (this.getWorld() instanceof ServerWorld server) {
-                        updateLiquidDisplay(this.currentAlloy, server, 0);
-                    }
+                    this.needsDisplayRefresh = true;
                 }
             }
 
@@ -526,9 +561,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.alloyAmount -= getAlloyConversionRate.get(this.currentAlloy);
 
 
-            if (this.getWorld() instanceof ServerWorld server) {
-                updateLiquidDisplay(this.currentAlloy, server, getFluidLevel(this.alloyAmount));
-            }
+            this.needsDisplayRefresh = true;
 
             this.markDirty();
 
@@ -565,8 +598,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.setStack(1, ItemStack.EMPTY);
 
 
-            this.updateSlot0Display(ItemStack.EMPTY, (ServerWorld) this.getWorld());
-            this.updateSlot1Display(ItemStack.EMPTY, (ServerWorld) this.getWorld());
+            updateDisplays(ItemStack.EMPTY, ItemStack.EMPTY, "empty", fluidEmptyLevel);
 
             return false;
         } else {
@@ -574,9 +606,9 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         }
     }
 
+
     private boolean insertStack (ItemStack stack, PlayerEntity player, World world) {
 
-        Bunnycraft.LOGGER.info(String.valueOf(stack));
 
         //if the inventory already has the stack, merge the stacks
         if (ItemStack.areItemsEqual(this.getStack(0), stack)) {
@@ -593,6 +625,8 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                 stack.copyAndEmpty();
                 return true;
             }
+
+
 
         } else if (ItemStack.areItemsEqual(this.getStack(1), stack)) {
 
@@ -619,7 +653,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             }
 
 
-            this.updateSlot0Display(this.getStack(0), (ServerWorld) world);
+            this.needsDisplayRefresh = true;
 
             return true;
 
@@ -632,7 +666,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                 this.setStack(1, stack.copyAndEmpty());
             }
 
-            this.updateSlot1Display(this.getStack(1), (ServerWorld) world);
+            this.needsDisplayRefresh = true;
 
             return true;
         } else {
@@ -641,6 +675,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
             return false;
         }
+
 
 
     }
@@ -696,69 +731,23 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         }
     }
 
-    private void updateLiquidDisplay(String liquid, ServerWorld world, float height) {
-
-        BlockPos currentPos = this.getPos();
-
-        if (liquid.equals("empty")) {
-            if (this.liquidDisplay != null) {
-                this.liquidDisplay.discard();
-                this.liquidDisplay = null;
-            }
-        } else {
-            if (this.liquidDisplay == null) {
-                this.liquidDisplay = new AlloyLiquidEntity(world, currentPos.getX() + 0.5, currentPos.getY() + height, currentPos.getZ() + 0.5, getAlloyColor.get(liquid));
-
-                world.spawnEntity(this.liquidDisplay);
-            }
-            this.liquidDisplay.requestTeleport(currentPos.getX() + 0.5, currentPos.getY() + height, currentPos.getZ() + 0.5);
-            this.liquidDisplay.setHueColor(getAlloyColor.get(liquid));
-        }
+    private void updateDisplays() {
+        updateDisplays(this.getStack(0), this.getStack(1), this.currentAlloy, getFluidLevel(this.alloyAmount));
     }
 
-    private void updateSlot0Display(ItemStack itemStack, ServerWorld world) {
-        BlockPos currentPos = this.getPos();
+    private void updateDisplays(ItemStack item1, ItemStack item2, String fluid, float fluidLevel) {
 
-        // Handle itemDisplay (for slot 0)
-        if (itemStack.isEmpty()) {
-            if (this.itemDisplay != null) {
-                this.itemDisplay.discard();
-                this.itemDisplay = null;
+        // sends a packet to clients to notify of what items are in the cauldron and a blockpos to identify which cauldron
+        // used in the renderer
+        if (this.getWorld() instanceof ServerWorld server) {
+
+            CauldronAlloyerS2CPayload payload = new CauldronAlloyerS2CPayload(new int[] {Item.getRawId(item1.getItem()), Item.getRawId(item2.getItem())}, alloyColor.get(fluid), fluidLevel, this.getPos());
+
+            for (ServerPlayerEntity player : PlayerLookup.world( server )) {
+                ServerPlayNetworking.send(player, payload);
             }
-        } else {
-            if (this.itemDisplay == null) {
-                this.itemDisplay = new DisplayEntity.ItemDisplayEntity(EntityType.ITEM_DISPLAY, world);
-
-                this.itemDisplay.refreshPositionAndAngles(currentPos.getX() + 0.5, currentPos.getY() + 0.25, currentPos.getZ() + 0.5, 30, 90);
-                world.spawnEntity(this.itemDisplay);
-            }
-            this.itemDisplay.setItemStack(itemStack);
-
-            this.itemDisplay.setTransformationMode(ModelTransformationMode.GROUND);
         }
-    }
 
-    private void updateSlot1Display(ItemStack itemStack, ServerWorld world) {
-        BlockPos currentPos = this.getPos();
-
-        // Handle itemDisplay2 (for slot 1)
-        if (itemStack.isEmpty()) {
-            if (this.itemDisplay2 != null) {
-                this.itemDisplay2.discard();
-                this.itemDisplay2 = null;
-            }
-        } else {
-            if (this.itemDisplay2 == null) {
-                this.itemDisplay2 = new DisplayEntity.ItemDisplayEntity(EntityType.ITEM_DISPLAY, world);
-
-                this.itemDisplay2.refreshPositionAndAngles(currentPos.getX() + 0.5, currentPos.getY() + 0.3, currentPos.getZ() + 0.3, -20, 80);
-                world.spawnEntity(this.itemDisplay2);
-            }
-            this.itemDisplay2.setItemStack(itemStack);
-
-            this.itemDisplay2.setTransformationMode(ModelTransformationMode.GROUND);
-
-        }
     }
 
 
@@ -789,4 +778,5 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
         return false;
     }
+
 }

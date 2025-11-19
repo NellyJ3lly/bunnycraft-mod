@@ -4,6 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "block.BrushableBlockDropXP",
+    "block.CauldronAlloyerMixin",
+    "block.CauldronAlloyerMixin$BlockInvoker",
     "block.DispenserUsesMoreShears",
     "block.VaultBlockRewinderUse",
     "entity.ChickenLayLootTableMixin",
@@ -15,7 +17,6 @@
     "entity.SheepShearsTypeMixin",
     "entity.TurtleBrushingMixin",
     "entity.VaultRewinderBlockEntity",
-    "item.CauldronAlloyerMixin",
     "item.HoeItemMixin",
     "item.PickaxeItemMixin",
     "item.ShearsBecomeSwordMixin",

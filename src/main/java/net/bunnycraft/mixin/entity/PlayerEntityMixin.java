@@ -2,8 +2,8 @@ package net.bunnycraft.mixin.entity;
 
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModArmors;
+import net.bunnycraft.item.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -42,7 +42,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private final PlayerAbilities abilities = new PlayerAbilities();
 
     @Unique
-    private static final byte hoeSweepRange = 3; // change this to tweak how far the hoe sweeps, sword default is 1
+    private static final byte hoeSweepRange = 4; // change this to tweak how far the hoe sweeps, sword default is 1
 
     //this doesnt matter and should be ignored, simply gives me access to protected variables in LivingEntity
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
@@ -174,7 +174,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                                 if (bl4 != 0) { // changed condition from checking if bl4 is true (originally was a boolean)
                                     float l = 1.0F + (float) player.getAttributeValue(EntityAttributes.PLAYER_SWEEPING_DAMAGE_RATIO) * f;
 
-                                    for (LivingEntity livingEntity3 : player.getWorld().getNonSpectatingEntities(LivingEntity.class, target.getBoundingBox().expand(bl4, 0.25, bl4))) { // changed bounding box numbers to use bl4 which is increased if its a hoe
+                                    for (LivingEntity livingEntity3 : player.getWorld().getNonSpectatingEntities(LivingEntity.class, target.getBoundingBox().expand(bl4, 1, bl4))) { // changed bounding box numbers to use bl4 which is increased if its a hoe
                                         if (livingEntity3 != player
                                                 && livingEntity3 != target
                                                 && !player.isTeammate(livingEntity3)
