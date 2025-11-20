@@ -28,7 +28,7 @@ import java.util.function.Predicate;
 
 public class ClimbingClawItem extends Item {
     private BlockPos startPos;
-    private final float RayDistance = 0.5f;
+    private final float RayDistance = 0.75f;
 
     public ClimbingClawItem(Settings settings) {
         super(settings);
@@ -63,8 +63,6 @@ public class ClimbingClawItem extends Item {
     }
 
     public boolean CanClimb(LivingEntity livingentity) {
-        World world = livingentity.getWorld();
-
         HitResult hit = livingentity.raycast(RayDistance,0,false);
 
         boolean hitIsBlock = hit.getType() == HitResult.Type.BLOCK;
