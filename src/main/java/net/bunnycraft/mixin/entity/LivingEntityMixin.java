@@ -1,34 +1,21 @@
 package net.bunnycraft.mixin.entity;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.component.ModComponents;
-import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModTools;
-import net.bunnycraft.item.armor.ModArmorItem;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -183,19 +170,26 @@ public abstract class LivingEntityMixin {
         return original;
     }
 
-    @ModifyExpressionValue(
-            method = "travel(Lnet/minecraft/util/math/Vec3d;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;shouldSwimInFluids()Z")
-    )
-    public boolean disableSwimmingWithDivingSuit(boolean original) {
-        return original && getArmorAmountofMaterial("diving") < 4;
-    }
+    @Inject(
+            method = "applyFluidMovingSpeed(DZLnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;",
+            at = @At("RETURN"),
+            cancellable = true
+            )
+    public void FluidMovmeentSpeed(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
+        if (gravity != 0.0 && !entity.isSprinting()) {
+            if (getArmorAmountofMaterial("diving") == 4) {
+                cir.cancel();
+                System.out.println("1: " + (motion.y + 0.005) + "gravity: " + (motion.y - gravity/4.0));
 
-    @ModifyVariable(
-            method = "tickMovement()V",
-            at = @At(value = "STORE",ordinal = 0)
-    )
-    public boolean canJumpUnderwaterWithDivingSuit(boolean original) {
-        return original && getArmorAmountofMaterial("diving") < 4;
+                double d;
+                if (falling && Math.abs(motion.y - 0.005) >= 0.001 && Math.abs(motion.y - gravity / 4.0) < 0.001) {
+                    d = -0.0000;
+                } else {
+                    d = motion.y-gravity/4;
+                }
+
+                cir.setReturnValue(new Vec3d(motion.x,d,motion.z));
+            }
+        }
     }
 }
