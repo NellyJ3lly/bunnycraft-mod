@@ -10,6 +10,7 @@ import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
@@ -36,13 +37,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin (CauldronBlock.class)
 public class CauldronAlloyerMixin extends Block implements BlockEntityProvider, CauldronAlloyerHeatInterface {
 
-    //lets me gain access to the protected method setDefaultState within CauldronBlocks parent class Block
-    @Mixin(value = Block.class, remap = false)
-    public interface BlockInvoker {
-        @Invoker("setDefaultState")
-        void invokeSetDefaultState(BlockState state);
-    }
-
     //adds the heat property to the cauldrons blockstate
     @Unique
     private static final IntProperty bunnycraft$HEAT = IntProperty.of("heat", 0, 6);
@@ -54,12 +48,13 @@ public class CauldronAlloyerMixin extends Block implements BlockEntityProvider, 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(bunnycraft$HEAT);
     }
+
     @Inject(method = "<init>", at = @At("TAIL"))
     private void injectDefaultState(AbstractBlock.Settings settings, CallbackInfo ci) {
         //allows access to init methods
         Block thisBlock = (Block) (Object) this;
 
-        ((BlockInvoker) this).invokeSetDefaultState(thisBlock.getDefaultState().with(bunnycraft$HEAT, 0));
+        BlockState with = thisBlock.getDefaultState().with(bunnycraft$HEAT, 0);
     }
 
     public CauldronAlloyerMixin(Settings settings) {
@@ -101,9 +96,6 @@ public class CauldronAlloyerMixin extends Block implements BlockEntityProvider, 
     //called when a player uses this cauldron.
     @Unique
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-
-
-
         if (player.getMainHandStack().isEmpty()) {
             CauldronAlloyerEntity block = getBlockEntity(world, pos);
             block.use(null, player, world); // calling this with null returns all items from the cauldron
@@ -115,9 +107,9 @@ public class CauldronAlloyerMixin extends Block implements BlockEntityProvider, 
 
     @Unique
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-
         //checks if the item is an ingot used for alloying
-        if (!stack.isEmpty() && !player.isInSneakingPose()) {
+        if (!stack.isEmpty()) {
+            System.out.println(player.isSneaking());
             if (getBlockEntity(world, pos).use(stack, player, world)) { // checks if it can pass to deefault cauldron interaction, will not pass if the items were not returned
 
                 //if the item is not in the alloy list do default cauldron behavior

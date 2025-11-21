@@ -30,6 +30,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.util.Hand;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -42,9 +43,6 @@ import java.util.*;
 public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInventory {
 
     //DO NOT MODIFY TOTALHEAT DIRECTLY instead use setHeat so that it gets clamped and avoids out of bounds errors
-
-
-
 
     //TODO add hopper support (check end of this class)
 
@@ -69,8 +67,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     public void tryAlloy() { // ----------------------------------- add new alloys here
 
-
-
         this.setHeat(checkForHeatFromBlocks(this.getPos()));
 
         //make sure the name is consistent, the final is how many ticks it takes to complete the alloy
@@ -91,12 +87,10 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         //get the logical heat from internally
         int actualHeat = this.getHeat();
 
-
         if (visualHeat != actualHeat) {
             //sets the blockstate
             this.getWorld().setBlockState(this.getPos(), state.with(heatProperty, this.getHeat()), 3);
         }
-
     }
 
     private int checkForHeatFromBlocks(BlockPos pos) { // -----------  add new blocks that should provide heat here
@@ -392,8 +386,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             if (this.currentAlloy.equals("empty") || this.currentAlloy.equals(name) && this.alloyAmount < maxStackPerItem) {
                 setAlloying(true);
 
-
-
                 scheduleTask(() -> {
                     this.getStack(0).decrement(1);
                     this.getStack(1).decrement(1);
@@ -419,11 +411,8 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         }
     }
 
-
-
     //ticks the block on the server, which allows for animations and other stuff
     public void serverTick() {
-
         if (this.needsDisplayRefresh) {
             if (this.getWorld() instanceof ServerWorld server) {
                 this.needsDisplayRefresh = false;
@@ -441,15 +430,12 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             }
         }
 
-
-
-
-
-
-
-        if (this.alloying && this.getWorld().random.nextDouble() < .1) {
-            if (this.getWorld() instanceof ServerWorld server) {
-                server.playSound(null, this.getPos(), SoundEvents.BLOCK_BLASTFURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, .7f, 1);
+        assert this.getWorld() != null;
+        if (this.alloying) {
+            if (this.getWorld().random.nextDouble() < .1) {
+                if (this.getWorld() instanceof ServerWorld server) {
+                    server.playSound(null, this.getPos(), SoundEvents.BLOCK_BLASTFURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, .7f, 1);
+                }
             }
         }
 
@@ -490,11 +476,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
     public boolean use ( @Nullable ItemStack stack, PlayerEntity player, World world) {
-
-
-
         if (stack != null && ModItems.ingotList.containsValue(stack.getItem()) && !world.isClient()) { // if the item is a valid alloyable ingot
-
 
             if(insertStack(stack, player, world)) { // inserts the stack into the inventory
                 tryAlloy(); // and check if an alloy recipe has been successfully created
@@ -507,7 +489,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         } else if (stack != null && stack.isOf(Items.BUCKET) && !world.isClient() && this.alloyAmount >= getAlloyConversionRate.get(this.currentAlloy)) { // if the item is an empty bucket
 
             if (returnLiquids(player, stack)) {
-
                 if(this.alloyAmount == 0) {
                     this.currentAlloy = "empty";
 
@@ -524,7 +505,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         } else {
             return false;
         }
-
     }
 
     private boolean returnLiquids (PlayerEntity player, ItemStack stack) {
@@ -538,8 +518,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
             successfullyInserted = true;
         } else {
-
-
             //inserts the item
             if(player.getInventory().getEmptySlot() != -1) { // if its -1 then theres no space for a new item
 
@@ -572,9 +550,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         return false;
     }
 
-
     public boolean returnItems(PlayerEntity player) {
-
         if (this.alloying) {
 
             //gives the player all but 1 of each item
@@ -598,7 +574,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.setStack(1, ItemStack.EMPTY);
 
 
-            updateDisplays(ItemStack.EMPTY, ItemStack.EMPTY, "empty", fluidEmptyLevel);
+            updateDisplays(ItemStack.EMPTY, ItemStack.EMPTY, this.currentAlloy, this.getFluidLevel(this.alloyAmount));
 
             return false;
         } else {
@@ -606,69 +582,62 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         }
     }
 
+    private boolean addStackif1orMore(ItemStack stack,PlayerEntity player,int Slot) {
+        if (this.getStack(Slot).getCount() >= maxStackPerItem) {
+            return false;
+        } else {
+            // this check currently doesn't work
+            // it's cause it doesn't like when you hold an item and sneak right click on a block
+            if (player.isSneaking()) {
+                if (maxStackPerItem - this.getStack(0).getCount() <= stack.getCount()) {
+                    stack.decrement(maxStackPerItem - this.getStack(0).getCount());
+                    this.getStack(Slot).increment(maxStackPerItem - this.getStack(Slot).getCount());
+
+                    return true;
+                } else {
+                    this.getStack(0).increment(stack.getCount());
+                    stack.copyAndEmpty();
+                    return true;
+                }
+            } else {
+                stack.decrement(1);
+                this.getStack(Slot).increment(1);
+
+                return true;
+            }
+        }
+    }
+
+    private boolean addStackifEmpty(ItemStack stack,PlayerEntity player,int Slot) {
+        if (maxStackPerItem <= stack.getCount()) {
+            System.out.println(player.isInSneakingPose());
+            if (player.isSprinting()) {
+                this.setStack(Slot, stack.copyWithCount(maxStackPerItem));
+                stack.decrement(maxStackPerItem);
+            } else {
+                this.setStack(Slot, stack.copyWithCount(1));
+                stack.decrement(1);
+            }
+        } else {
+            this.setStack(Slot, stack.copyAndEmpty());
+        }
+
+        this.needsDisplayRefresh = true;
+
+        return true;
+    }
 
     private boolean insertStack (ItemStack stack, PlayerEntity player, World world) {
 
-
         //if the inventory already has the stack, merge the stacks
         if (ItemStack.areItemsEqual(this.getStack(0), stack)) {
-
-            if (this.getStack(0).getCount() >= maxStackPerItem) { // if theres no room return
-                return false;
-            } else if (maxStackPerItem - this.getStack(0).getCount() <= stack.getCount()){ // if player has more than enough or equal to enough insert the max amount possible
-                stack.decrement(maxStackPerItem - this.getStack(0).getCount());
-                this.getStack(0).increment(maxStackPerItem - this.getStack(0).getCount());
-
-                return true;
-            } else {
-                this.getStack(0).increment(stack.getCount());
-                stack.copyAndEmpty();
-                return true;
-            }
-
-
-
+            return addStackif1orMore(stack,player,0);
         } else if (ItemStack.areItemsEqual(this.getStack(1), stack)) {
-
-            if (this.getStack(1).getCount() >= maxStackPerItem) { // if theres no room return
-                return false;
-            } else if (maxStackPerItem - this.getStack(1).getCount() <= stack.getCount()){ // if player has more than enough or equal to enough insert the max amount possible
-                stack.decrement(maxStackPerItem - this.getStack(1).getCount());
-                this.getStack(1).increment(maxStackPerItem - this.getStack(1).getCount());
-
-                return true;
-            } else {
-                this.getStack(1).increment(stack.getCount());
-                stack.copyAndEmpty();
-                return true;
-            }
-
+            return addStackif1orMore(stack,player,1);
         } else if (this.getStack(0).isEmpty()){
-
-            if (maxStackPerItem <= stack.getCount()) {
-                this.setStack(0, stack.copyWithCount(maxStackPerItem));
-                stack.decrement(maxStackPerItem);
-            } else {
-                this.setStack(0, stack.copyAndEmpty());
-            }
-
-
-            this.needsDisplayRefresh = true;
-
-            return true;
-
+            return addStackifEmpty(stack,player,0);
         } else if (this.getStack(1).isEmpty()) {
-
-            if (maxStackPerItem <= stack.getCount()) {
-                this.setStack(1, stack.copyWithCount(maxStackPerItem));
-                stack.decrement(maxStackPerItem);
-            } else {
-                this.setStack(1, stack.copyAndEmpty());
-            }
-
-            this.needsDisplayRefresh = true;
-
-            return true;
+            return addStackifEmpty(stack,player,1);
         } else {
 
             returnItems(player);

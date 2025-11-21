@@ -5,7 +5,6 @@
   "mixins": [
     "block.BrushableBlockDropXP",
     "block.CauldronAlloyerMixin",
-    "block.CauldronAlloyerMixin$BlockInvoker",
     "block.DispenserUsesMoreShears",
     "block.VaultBlockRewinderUse",
     "entity.ChickenLayLootTableMixin",
