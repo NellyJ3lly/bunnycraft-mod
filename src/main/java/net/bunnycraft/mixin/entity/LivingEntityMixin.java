@@ -175,20 +175,27 @@ public abstract class LivingEntityMixin {
             at = @At("RETURN"),
             cancellable = true
             )
-    public void FluidMovmeentSpeed(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
-        if (gravity != 0.0 && !entity.isSprinting()) {
-            if (getArmorAmountofMaterial("diving") == 4) {
+    public void Bunnycraft$DivingSuitWaterMovement(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
+        double SprintBonus = 0.0;
+
+        if (entity.isSprinting()) {
+            SprintBonus = 0.02;
+        }
+
+        if (gravity != 0.0) {
+            if (getArmorAmountofMaterial("diving") > 0) {
                 cir.cancel();
-                System.out.println("1: " + (motion.y + 0.005) + "gravity: " + (motion.y - gravity/4.0));
 
                 double d;
-                if (falling && Math.abs(motion.y - 0.005) >= 0.001 && Math.abs(motion.y - gravity / 4.0) < 0.001) {
-                    d = -0.0000;
+                if (falling && Math.abs(motion.y) < 0) {
+                    // the max number should go up to 0.2
+                    d = -(0.0 + ((double) (getArmorAmountofMaterial("diving") / 4) /5));
                 } else {
-                    d = motion.y-gravity/4;
+                    // 16 should go down to 3 with an entire set
+                    d = (motion.y-gravity/((double) 16 /getArmorAmountofMaterial("diving") -1));
                 }
 
-                cir.setReturnValue(new Vec3d(motion.x,d,motion.z));
+                cir.setReturnValue(new Vec3d(motion.x,d + SprintBonus,motion.z));
             }
         }
     }
