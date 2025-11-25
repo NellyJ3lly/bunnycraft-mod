@@ -3,16 +3,18 @@ package net.bunnycraft.mixin.entity;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.ModTools;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Hand;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
@@ -20,24 +22,25 @@ import java.util.Optional;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
+    @Shadow public Hand preferredHand;
+    @Shadow @Final private DefaultedList<ItemStack> syncedArmorStacks;
     @Unique
     LivingEntity entity = (LivingEntity) (Object) this;
 
     @Unique
-    public boolean hasClimbingClaw() {
-        return (entity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW) || entity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW))
-                && !this.hasBothClimbingClaws();
-    }
+    public int getClimbingClaws() {
+      int NumOfClaws = 0;
 
-    @Unique
-    public boolean hasBothClimbingClaws() {
-        return entity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW) && entity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW);
-    }
+      if (entity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW)) {
+          NumOfClaws++;
+        }
 
-    @Unique
-    public boolean hasOneOrBothClaws() {
-        return this.hasClimbingClaw() || this.hasBothClimbingClaws();
-    }
+        if (entity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW)) {
+            NumOfClaws++;
+        }
+
+      return NumOfClaws;
+    };
 
     @Unique
     public boolean isStackClimbingClawThatClimbs(Hand hand) {
@@ -49,18 +52,18 @@ public abstract class LivingEntityMixin {
 
     @Unique
     public boolean CanClimb() {
-        if (!this.hasOneOrBothClaws()) {return false;}
+        if (this.getClimbingClaws() == 0) {return false;}
 
         return isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
     }
 
     @Unique
     public double setClimbSpeedConditions() {
-        if(this.hasClimbingClaw() && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 1.5;}
+        if(this.getClimbingClaws() == 1 && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 1.5;}
 
-        if(this.hasBothClimbingClaws()) {return 1.5;}
+        if(this.getClimbingClaws() == 2) {return 1.5;}
 
-        if(this.hasBothClimbingClaws() && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 2;}
+        if(this.getClimbingClaws() == 2 && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 2;}
 
         return 1;
     }
@@ -176,26 +179,31 @@ public abstract class LivingEntityMixin {
             cancellable = true
             )
     public void Bunnycraft$DivingSuitWaterMovement(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
-        double SprintBonus = 0.0;
-
-        if (entity.isSprinting()) {
-            SprintBonus = 0.02;
-        }
+        double d = motion.y;
 
         if (gravity != 0.0) {
-            if (getArmorAmountofMaterial("diving") > 0) {
+            if (getArmorAmountofMaterial("diving") >= 1) {
+                double SprintBonus = 0.0;
+
+                if (entity.isSprinting()) {
+                    SprintBonus = 0.02;
+                }
+
                 cir.cancel();
 
-                double d;
                 if (falling && Math.abs(motion.y) < 0) {
                     // the max number should go up to 0.2
-                    d = -(0.0 + ((double) (getArmorAmountofMaterial("diving") / 4) /5));
+                    d = -(0.0 + ((double) (getArmorAmountofMaterial("diving")/4)/5));
                 } else {
                     // 16 should go down to 3 with an entire set
                     d = (motion.y-gravity/((double) 16 /getArmorAmountofMaterial("diving") -1));
                 }
 
-                cir.setReturnValue(new Vec3d(motion.x,d + SprintBonus,motion.z));
+                d += SprintBonus;
+                cir.setReturnValue(new Vec3d(motion.x,d,motion.z));
+            }
+            if (getArmorAmountofMaterial("guardian") == 4) {
+                cir.setReturnValue(new Vec3d(motion.x,d,motion.z));
             }
         }
     }
