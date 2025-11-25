@@ -8,10 +8,8 @@ import net.minecraft.block.entity.VaultBlockEntity;
 import net.minecraft.block.enums.VaultState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
@@ -29,19 +27,19 @@ import static net.minecraft.block.VaultBlock.VAULT_STATE;
 public class VaultBlockRewinderUse {
 
     @Inject(
-          method = "Lnet/minecraft/block/VaultBlock;onUseWithItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ItemActionResult;",
-          at = @At("HEAD")
-    )
+          method = "onUseWithItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ItemActionResult;",
+          at = @At("HEAD"),
+            cancellable = true)
     public void Bunnycraft$RewinderUse(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ItemActionResult> cir) {
         if (!stack.isEmpty() && state.get(VAULT_STATE) == VaultState.INACTIVE) {
             if (stack.isOf(ModItems.VAULT_REWINDER)) {
-                if (world instanceof ServerWorld) {
-                    ServerWorld serverWorld = (ServerWorld)world;
-                    BlockEntity var10 = serverWorld.getBlockEntity(pos);
-                    if (var10 instanceof VaultBlockEntity) {
-                        VaultBlockEntity vaultBlockEntity = (VaultBlockEntity)var10;
+                if (world instanceof ServerWorld serverWorld) {
+                    BlockEntity blockEntity = serverWorld.getBlockEntity(pos);
+
+                    if (blockEntity instanceof VaultBlockEntity vaultBlockEntity) {
                         VaultBlockEntity.Server.tryUnlock(serverWorld, pos, state, vaultBlockEntity.getConfig(), vaultBlockEntity.getServerData(), vaultBlockEntity.getSharedData(), player, stack);
                         serverWorld.playSound(null,pos, SoundEvents.BLOCK_VAULT_ACTIVATE, SoundCategory.BLOCKS,1f,0.3f);
+                        cir.setReturnValue(ItemActionResult.SUCCESS);
                     }
                 }
             }
