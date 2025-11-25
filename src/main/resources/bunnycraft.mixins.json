@@ -16,7 +16,7 @@
     "entity.ShearableZombieMixin",
     "entity.SheepShearsTypeMixin",
     "entity.TurtleBrushingMixin",
-    "entity.VaultRewinderBlockEntity",
+    "block.VaultRewinderBlockEntity",
     "item.HoeItemMixin",
     "item.PickaxeItemMixin",
     "item.ShearsBecomeSwordMixin",

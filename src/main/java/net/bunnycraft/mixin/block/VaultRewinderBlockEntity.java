@@ -1,20 +1,16 @@
-package net.bunnycraft.mixin.entity;
+package net.bunnycraft.mixin.block;
 
 import net.bunnycraft.item.ModItems;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.VaultBlock;
 import net.minecraft.block.entity.VaultBlockEntity;
 import net.minecraft.block.enums.VaultState;
 import net.minecraft.block.vault.VaultConfig;
 import net.minecraft.block.vault.VaultServerData;
 import net.minecraft.block.vault.VaultSharedData;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.LootTables;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
