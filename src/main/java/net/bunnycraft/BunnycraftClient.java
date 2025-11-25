@@ -105,10 +105,7 @@ public class BunnycraftClient implements ClientModInitializer {
                 cauldronEntity.setClientRenderColor(color);
 
                 cauldronEntity.setClientFluidLevel(level);
-
-
             }
-
         });
 
     }
