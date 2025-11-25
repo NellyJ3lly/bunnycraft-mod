@@ -193,10 +193,10 @@ public abstract class LivingEntityMixin {
 
                 if (falling && Math.abs(motion.y) < 0) {
                     // the max number should go up to 0.2
-                    d = -(0.0 + ((double) (getArmorAmountofMaterial("diving")/4)/5));
+                    d = -(0.0 + ((double) (getArmorAmountofMaterial("diving")/4)/4));
                 } else {
-                    // 16 should go down to 3 with an entire set
-                    d = (motion.y-gravity/((double) 16 /getArmorAmountofMaterial("diving") -1));
+                    // 16 should go down to 1 with an entire set
+                    d = (motion.y-gravity/((double) 16 /getArmorAmountofMaterial("diving")));
                 }
 
                 d += SprintBonus;
