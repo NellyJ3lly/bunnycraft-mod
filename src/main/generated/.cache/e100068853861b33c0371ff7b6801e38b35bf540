@@ -1,5 +1,6 @@
-// 1.21.1	2025-07-20T20:28:17.6123078	Bunnycraft/Tags for minecraft:item
+// 1.21.1	2025-11-22T16:30:16.0909346	Bunnycraft/Tags for minecraft:item
 33f18e6f36653245c27806c7d52c6eca1cd7896f data\minecraft\tags\item\leg_armor.json
+d7c0160318ce643642b294b2f56cc21749c640d7 data\minecraft\tags\item\dyeable.json
 565a3694085afd1f0fdc011a21289ac9fe7cd81a data\bunnycraft\tags\item\spear.json
 1e3da397e6d39daf1ace6745429d2320603dfc78 data\bunnycraft\tags\item\enchantable\accepts_generic_combat_enchants.json
 e2e2997774c4a7994530b4f3c0c47d883add9494 data\minecraft\tags\item\enchantable\durability.json

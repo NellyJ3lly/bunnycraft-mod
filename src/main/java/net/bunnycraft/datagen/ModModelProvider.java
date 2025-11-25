@@ -22,8 +22,6 @@ public class ModModelProvider extends FabricModelProvider {
         super(output);
     }
 
-
-
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         BlockStateModelGenerator.BlockTexturePool pancakerabbittexturepool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.PANCAKE_RABBIT_BLOCK);
@@ -31,6 +29,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ROSE_GOLD_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STEEL_BLOCK);
     }
+
 
     @Override
     public void generateItemModels(ItemModelGenerator gen) {

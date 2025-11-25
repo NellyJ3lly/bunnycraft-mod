@@ -55,7 +55,6 @@ public class Bunnycraft implements ModInitializer {
 		ModSounds.registerSounds();
 
 		ModifyLootTables.modifyLootTables();
-		LOGGER.info("Bunnycraft Loading Complete!");
 
 		//allows the wood spear to be used as fuel for a burn time of 200 ticks
 		FuelRegistry.INSTANCE.add(ModTools.WOODEN_SPEAR, 200);
@@ -75,8 +74,6 @@ public class Bunnycraft implements ModInitializer {
 					ClimbingClaws(entity, payload.horizontalCollision());
 			}
 		);
-
-		LOGGER.info("Bunnycraft Loading Complete!");
 
         // registers the payload for the cauldron to send info to the client so the renderer can display the correct item
         PayloadTypeRegistry.playS2C().register(CauldronAlloyerS2CPayload.ID, CauldronAlloyerS2CPayload.CODEC);

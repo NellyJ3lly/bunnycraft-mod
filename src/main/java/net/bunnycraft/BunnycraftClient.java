@@ -8,6 +8,8 @@ import net.bunnycraft.block.entity.custom.EnchantingStandEntityRenderer;
 import net.bunnycraft.block.entity.custom.EnchantingStandScreen;
 import net.bunnycraft.entity.ModEntities;
 import net.bunnycraft.entity.custom.*;
+import net.bunnycraft.item.ModArmors;
+import net.bunnycraft.item.armor.ModArmorItem;
 import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.entity.custom.RoseGoldSpearModel;
 import net.bunnycraft.entity.custom.RoseGoldSpearRenderer;
@@ -19,6 +21,7 @@ import net.bunnycraft.util.ModScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
@@ -28,14 +31,26 @@ import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.List;
+
+import static net.minecraft.component.type.DyedColorComponent.getColor;
 
 public class BunnycraftClient implements ClientModInitializer {
 
     public static final Identifier GRAYSCALE_LAVA_ID = Identifier.of(Bunnycraft.MOD_ID, "block/alloy_liquid");
 
+    public static final int DIVING_SUIT_DEFAULT = 0xFF825234;
+
+    public static final List<Item> DIVING_SUIT_PIECES = List.of(
+            ModArmors.DIVING_BOOTS,
+            ModArmors.DIVING_CHESTPLATE,
+            ModArmors.DIVING_LEGGINGS
+    );
 
     @Override
     public void onInitializeClient() {
@@ -60,6 +75,10 @@ public class BunnycraftClient implements ClientModInitializer {
         //registers the screen for enchanting stand
         HandledScreens.register(ModScreenHandlers.ENCHANTING_STAND_SCREEN_HANDLER_TYPE, EnchantingStandScreen::new);
 
+        DIVING_SUIT_PIECES.forEach(item -> {
+            ColorProviderRegistry.ITEM.register(
+                    (stack, tintIndex) -> tintIndex > 0 ? -1 : getColor(stack, DIVING_SUIT_DEFAULT), item);
+        });
 
         //recives the packet which tells which cauldron has what items and processes the data
         ClientPlayNetworking.registerGlobalReceiver(CauldronAlloyerS2CPayload.ID, (payload, context) -> {

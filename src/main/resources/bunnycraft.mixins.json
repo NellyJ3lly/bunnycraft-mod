@@ -7,6 +7,7 @@
     "block.CauldronAlloyerMixin",
     "block.DispenserUsesMoreShears",
     "block.VaultBlockRewinderUse",
+    "datagen.ItemModelGeneratorMixin",
     "entity.ChickenLayLootTableMixin",
     "entity.DealmakerLoseDurabilityOnTrade",
     "entity.DealmakerVillagerInteraction",

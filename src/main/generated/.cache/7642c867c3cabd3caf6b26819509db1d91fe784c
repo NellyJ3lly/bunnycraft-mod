@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-20T20:28:17.6043003	Bunnycraft/Recipes
+// 1.21.1	2025-11-22T16:30:16.0829243	Bunnycraft/Recipes
 e1b0fe400a9d0fcb364ee3e632fe1b80065f7cf7 data\bunnycraft\recipe\prismarine_pickaxe.json
 79e911581d2d343d81f72c5783fd9c160b502b31 data\bunnycraft\advancement\recipes\combat\turtle_chestplate.json
 3b9cccfb642542d7f7b53deb0d905ef0766437f3 data\bunnycraft\recipe\iron_boots_to_steel.json
@@ -40,7 +40,7 @@ f295b0913e3bb2bea7c3bca864369bfa8b435daa data\bunnycraft\recipe\turtle_chestplat
 c5c194564efb0cbcfac4edd8412712d29ddf9e56 data\bunnycraft\recipe\prismarine_shovel.json
 5cf5199b4082437a1711fa5ba2d7a3ff24652009 data\bunnycraft\recipe\iron_leggings_to_steel.json
 265001584a87a69cffb339ff3f78ad2088bb7d1e data\bunnycraft\recipe\wooden_spear.json
-2a759467c739bac0b547f1a026d8fd27ac60a5e2 data\bunnycraft\recipe\point_light_music_disc.json
+7cfb490d9e8aec27ac929b5df9a8432bd5d297e1 data\bunnycraft\recipe\point_light_music_disc.json
 49e576ad3b1d06a9f67b6f8ae2952e4cd0f1651f data\bunnycraft\recipe\rose_gold_molten_compacting.json
 1a3cf51b05e4e3d816ec52e87b80ba4b21b9dfbc data\bunnycraft\recipe\trident.json
 7f81d39fe7e3ad03e33b7a595af1f53b7c1b62c7 data\bunnycraft\recipe\pipis_block.json

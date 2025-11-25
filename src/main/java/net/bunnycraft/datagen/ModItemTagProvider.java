@@ -51,6 +51,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
             getOrCreateTagBuilder(ItemTags.HOES).add(ModTools.hoeList.get(i));
         }
 
+        getOrCreateTagBuilder(ItemTags.DYEABLE)
+                .add(ModArmors.DIVING_BOOTS)
+                .add(ModArmors.DIVING_LEGGINGS)
+                .add(ModArmors.DIVING_CHESTPLATE);
 
         getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
                 .add(ModArmors.TURTLE_BOOTS)

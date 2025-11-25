@@ -67,7 +67,10 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.HELMET, 3);
                 map.put(ArmorItem.Type.BODY, 8);
             }), 13, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ()-> Ingredient.ofItems(Items.COPPER_INGOT),
-                    List.of(new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"diving"))),1f,0.1f));
+                    List.of(
+                            new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"diving"),"",true),
+                            new ArmorMaterial.Layer(Identifier.of(Bunnycraft.MOD_ID,"diving"),"_overlay",false)),
+                    1f,0.1f));
 
     public static final RegistryEntry<ArmorMaterial> MOD_TURTLE_MATERIAL = registerArmorMaterial("mod_turtle",
             () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {

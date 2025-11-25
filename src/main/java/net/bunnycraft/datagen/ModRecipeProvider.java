@@ -233,6 +233,8 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.SHEARS,ModItems.STEEL_INGOT,ModTools.STEEL_SHEARS).offerTo(exporter,"iron_shear_to_steel");
 
 
+
+
         /// Guardian Armor
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModArmors.GUARDIAN_HELMET)
