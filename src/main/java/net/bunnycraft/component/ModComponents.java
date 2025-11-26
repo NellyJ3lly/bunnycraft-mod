@@ -14,9 +14,9 @@ public class ModComponents {
             ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
     );
 
-    public static final ComponentType<Boolean> DAMAGE_WHILE_CLIMBING = Registry.register(
+    public static final ComponentType<Boolean> HORIZONTAL_COLLISION = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(Bunnycraft.MOD_ID, "damage_while_climbing"),
+            Identifier.of(Bunnycraft.MOD_ID, "horizontal_collision"),
             ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
     );
 

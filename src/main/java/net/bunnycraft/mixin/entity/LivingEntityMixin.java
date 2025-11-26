@@ -3,7 +3,6 @@ package net.bunnycraft.mixin.entity;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.ModTools;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
@@ -14,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
@@ -26,47 +24,6 @@ public abstract class LivingEntityMixin {
     @Shadow @Final private DefaultedList<ItemStack> syncedArmorStacks;
     @Unique
     LivingEntity entity = (LivingEntity) (Object) this;
-
-    @Unique
-    public int getClimbingClaws() {
-      int NumOfClaws = 0;
-
-      if (entity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW)) {
-          NumOfClaws++;
-        }
-
-        if (entity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW)) {
-            NumOfClaws++;
-        }
-
-      return NumOfClaws;
-    };
-
-    @Unique
-    public boolean isStackClimbingClawThatClimbs(Hand hand) {
-        ItemStack stack = entity.getStackInHand(hand);
-        return stack.isOf(ModTools.CLIMBING_CLAW)
-                &&
-                (Boolean.TRUE.equals(stack.get(ModComponents.DAMAGE_WHILE_CLIMBING)) || Boolean.TRUE.equals(stack.get(ModComponents.CAN_CLIMB_ON_BLOCK)));
-    }
-
-    @Unique
-    public boolean CanClimb() {
-        if (this.getClimbingClaws() == 0) {return false;}
-
-        return isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
-    }
-
-    @Unique
-    public double setClimbSpeedConditions() {
-        if(this.getClimbingClaws() == 1 && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 1.5;}
-
-        if(this.getClimbingClaws() == 2) {return 1.5;}
-
-        if(this.getClimbingClaws() == 2 && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 2;}
-
-        return 1;
-    }
 
     @Unique
     public int getArmorAmountofMaterial(String material) {
@@ -128,6 +85,38 @@ public abstract class LivingEntityMixin {
         return DamageReduction;
     }
 
+    @Unique
+    public int getClimbingClaws() {
+        int NumOfClaws = 0;
+
+        if (entity.getMainHandStack().isOf(ModTools.CLIMBING_CLAW)) {
+            NumOfClaws++;
+        }
+
+        if (entity.getOffHandStack().isOf(ModTools.CLIMBING_CLAW)) {
+            NumOfClaws++;
+        }
+
+        return NumOfClaws;
+    };
+
+    @Unique
+    public boolean isStackClimbingClawThatClimbs(Hand hand) {
+        ItemStack stack = entity.getStackInHand(hand);
+
+        boolean hasClimbingClaw = stack.isOf(ModTools.CLIMBING_CLAW);
+        boolean isColliding = (Boolean.TRUE.equals(stack.get(ModComponents.HORIZONTAL_COLLISION))
+                || Boolean.TRUE.equals(stack.get(ModComponents.CAN_CLIMB_ON_BLOCK)));
+
+        return hasClimbingClaw && isColliding;
+    }
+
+    @Unique
+    public boolean CanClimb() {
+        if (this.getClimbingClaws() == 0) {return false;}
+
+        return isStackClimbingClawThatClimbs(Hand.MAIN_HAND) || isStackClimbingClawThatClimbs(Hand.OFF_HAND);
+    }
 
     @ModifyReturnValue(
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
@@ -140,13 +129,24 @@ public abstract class LivingEntityMixin {
         return true;
     }
 
+    @Unique
+    public double setClimbSpeedConditions() {
+        if(this.getClimbingClaws() == 1 && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 1.5;}
+
+        if(this.getClimbingClaws() == 2) {return 1.5;}
+
+        if(this.getClimbingClaws() == 2 && entity.getBlockStateAtPos().isIn(BlockTags.CLIMBABLE)) {return 2;}
+
+        return 1;
+    }
+
     @ModifyReturnValue(
             method = "applyClimbingSpeed(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;",
             at = @At("TAIL"))
     public Vec3d Bunnycraft$ApplyClimbingClawSpeed(Vec3d originalMotion) {
         ItemStack stack = entity.getStackInHand(Hand.MAIN_HAND);
 
-        if (entity.isClimbing() && stack.getComponents().contains(ModComponents.DAMAGE_WHILE_CLIMBING)) {
+        if (entity.isClimbing() && stack.getComponents().contains(ModComponents.HORIZONTAL_COLLISION)) {
             double climbSpeed = setClimbSpeedConditions();
 
             if (entity.isSneaking() && originalMotion.y < 0.0) {

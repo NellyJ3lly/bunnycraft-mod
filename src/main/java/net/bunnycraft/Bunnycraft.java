@@ -37,7 +37,7 @@ public class Bunnycraft implements ModInitializer {
 		ItemStack claws = entity.getStackInHand(Hand.MAIN_HAND);
 
 		if (claws.isOf(ModTools.CLIMBING_CLAW)) {
-			claws.set(ModComponents.DAMAGE_WHILE_CLIMBING,horizontalCollision);
+			claws.set(ModComponents.HORIZONTAL_COLLISION,horizontalCollision);
 		}
 	}
 

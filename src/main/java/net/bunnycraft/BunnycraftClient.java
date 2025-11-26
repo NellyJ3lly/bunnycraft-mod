@@ -7,10 +7,7 @@ import net.bunnycraft.block.entity.custom.CauldronAlloyerEntityRenderer;
 import net.bunnycraft.block.entity.custom.EnchantingStandEntityRenderer;
 import net.bunnycraft.block.entity.custom.EnchantingStandScreen;
 import net.bunnycraft.entity.ModEntities;
-import net.bunnycraft.entity.custom.*;
 import net.bunnycraft.item.ModArmors;
-import net.bunnycraft.item.armor.ModArmorItem;
-import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.entity.custom.RoseGoldSpearModel;
 import net.bunnycraft.entity.custom.RoseGoldSpearRenderer;
 import net.bunnycraft.entity.custom.SpearModel;
@@ -24,14 +21,11 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.event.player.UseEntityCallback;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -63,8 +57,6 @@ public class BunnycraftClient implements ClientModInitializer {
 
         EntityModelLayerRegistry.registerModelLayer(RoseGoldSpearModel.ROSE_GOLD_SPEAR, RoseGoldSpearModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.ROSE_GOLD_SPEAR, RoseGoldSpearRenderer::new);
-
-
 
         BlockEntityRendererFactories.register(ModBlockEntities.ENCHANTING_STAND_ENTITY, EnchantingStandEntityRenderer :: new);
         BlockEntityRendererFactories.register(ModBlockEntities.CAULDRON_ALLOYER_ENTITY, CauldronAlloyerEntityRenderer :: new);

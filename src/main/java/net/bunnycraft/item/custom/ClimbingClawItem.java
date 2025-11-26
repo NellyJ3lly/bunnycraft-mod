@@ -5,30 +5,20 @@ import net.bunnycraft.item.ModTools;
 import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.util.ModTags;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockStateRaycastContext;
-import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
-
-import java.util.function.Predicate;
 
 public class ClimbingClawItem extends Item {
     private BlockPos startPos;
-    private final float RayDistance = 0.75f;
+    private final float rayDistance = 1f;
 
     public ClimbingClawItem(Settings settings) {
         super(settings);
@@ -47,7 +37,7 @@ public class ClimbingClawItem extends Item {
 
     public BlockState GetBlockState(LivingEntity livingentity,HitResult hit) {
         return livingentity.getWorld().getBlockState(BlockPos.ofFloored(hit.getPos()));
-    };
+    }
 
     public boolean CheckBlocksIfCanClimb(LivingEntity livingentity, HitResult hit) {
         BlockPos blockposatfeet = livingentity.getBlockPos();
@@ -62,8 +52,8 @@ public class ClimbingClawItem extends Item {
         return blockNotAir || !aboveBlockAir;
     }
 
-    public boolean CanClimb(LivingEntity livingentity) {
-        HitResult hit = livingentity.raycast(RayDistance,0,false);
+    public boolean CanClimb(LivingEntity livingentity, World world) {
+        HitResult hit = livingentity.raycast(rayDistance,0,false);
 
         boolean hitIsBlock = hit.getType() == HitResult.Type.BLOCK;
         boolean BlockIgnoredbyClimbClaw = !GetBlockState(livingentity,hit).isIn(ModTags.Blocks.CLIMB_CLAWS_IGNORE);
@@ -104,10 +94,10 @@ public class ClimbingClawItem extends Item {
                 ClientPlayNetworking.send(payload);
             }
             if (!world.isClient) {
-                if (stack.getComponents().contains(ModComponents.DAMAGE_WHILE_CLIMBING)) {
+                if (stack.getComponents().contains(ModComponents.HORIZONTAL_COLLISION)) {
                     DamageClaws(livingEntity);
                 }
-                stack.set(ModComponents.CAN_CLIMB_ON_BLOCK,CanClimb(livingEntity));
+                stack.set(ModComponents.CAN_CLIMB_ON_BLOCK,CanClimb(livingEntity,world));
             }
         }
     }
