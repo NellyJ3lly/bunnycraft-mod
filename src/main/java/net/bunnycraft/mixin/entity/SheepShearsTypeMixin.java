@@ -38,7 +38,7 @@ public class SheepShearsTypeMixin extends AnimalEntity implements Shearable {
     }
 
     @Unique
-    public ItemStack ShearUsed;
+    public ItemStack ShearUsed = null;
 
     @Inject(
             method = "interactMob(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResult;",
@@ -48,7 +48,7 @@ public class SheepShearsTypeMixin extends AnimalEntity implements Shearable {
     public void Bunnycraft$ChangeToTag(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.isIn(ModTags.Items.SHEAR_ENCHANTABLE)) {
-            ShearUsed = itemStack;
+            this.ShearUsed = itemStack;
             cir.cancel();
             this.sheared(SoundCategory.PLAYERS);
             this.emitGameEvent(GameEvent.SHEAR, player);
@@ -62,7 +62,9 @@ public class SheepShearsTypeMixin extends AnimalEntity implements Shearable {
             constant = @Constant(intValue = 1,ordinal = 1)
     )
     public int Bunnycraft$SteelShearsMore(int originalValue) {
-        if (ShearUsed.isOf(ModTools.STEEL_SHEARS)) {
+        if (this.ShearUsed == null) {return originalValue;}
+
+        if (this.ShearUsed.isOf(ModTools.STEEL_SHEARS)) {
             return 2 + this.random.nextInt(3);
         } else {
             return originalValue;
