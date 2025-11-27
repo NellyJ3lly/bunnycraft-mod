@@ -9,3 +9,4 @@ accessible method net/minecraft/util/math/intprovider/UniformIntProvider get (Ln
 accessible field net/minecraft/entity/LivingEntity climbingPos Ljava/util/Optional;
 accessible method net/minecraft/entity/LivingEntity canEnterTrapdoor (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Z
 
+accessible field net/minecraft/block/SculkVeinBlock allGrowTypeGrower Lnet/minecraft/block/LichenGrower;
