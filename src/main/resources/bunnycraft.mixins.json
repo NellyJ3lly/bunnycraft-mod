@@ -6,7 +6,7 @@
     "block.BrushableBlockDropXP",
     "block.CauldronAlloyerMixin",
     "block.DispenserUsesMoreShears",
-    "block.SculkSpreadManagerMixin",
+    "block.SculkVeinBlockMixin",
     "block.VaultBlockRewinderUse",
     "block.entity.VaultRewinderBlockEntity",
     "datagen.ItemModelGeneratorMixin",

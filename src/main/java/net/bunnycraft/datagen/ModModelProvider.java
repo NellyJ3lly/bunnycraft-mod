@@ -28,6 +28,13 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PANCAKE_RABBIT_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ROSE_GOLD_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STEEL_BLOCK);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BUDDING_ECHO);
+
+        blockStateModelGenerator.registerAmethyst(ModBlocks.ECHO_CLUSTER);
+        blockStateModelGenerator.registerAmethyst(ModBlocks.LARGE_ECHO_BUD);
+        blockStateModelGenerator.registerAmethyst(ModBlocks.MEDIUM_ECHO_BUD);
+        blockStateModelGenerator.registerAmethyst(ModBlocks.SMALL_ECHO_BUD);
     }
 
 
@@ -38,6 +45,12 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.ROSE_GOLD_INGOT, Models.GENERATED);
         gen.register(ModItems.PANCAKE_RABBIT, Models.GENERATED);
         gen.register(ModItems.STEEL_UPGRADE_TEMPLATE, Models.GENERATED);
+
+        gen.register(Item.fromBlock(ModBlocks.ECHO_CLUSTER), Models.GENERATED);
+        gen.register(Item.fromBlock(ModBlocks.LARGE_ECHO_BUD), Models.GENERATED);
+        gen.register(Item.fromBlock(ModBlocks.MEDIUM_ECHO_BUD), Models.GENERATED);
+        gen.register(Item.fromBlock(ModBlocks.SMALL_ECHO_BUD), Models.GENERATED);
+
 
         gen.register(ModItems.BUNNYCENT, Models.GENERATED);
         gen.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);

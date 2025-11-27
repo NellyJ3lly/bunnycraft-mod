@@ -1,4 +1,4 @@
-package net.bunnycraft.mixin.block;
+package net.bunnycraft.mixin.block.entity;
 
 import net.bunnycraft.item.ModItems;
 import net.minecraft.block.BlockState;

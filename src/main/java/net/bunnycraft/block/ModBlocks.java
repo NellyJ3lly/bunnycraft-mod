@@ -2,9 +2,8 @@ package net.bunnycraft.block;
 
 import net.bunnycraft.Bunnycraft;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.ExperienceDroppingBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -45,6 +44,18 @@ public class ModBlocks {
 
     public static final Block ROSE_GOLD_BLOCK = registerBlock("rose_gold_block",
             new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.METAL)));
+
+    public static final Block BUDDING_ECHO = registerBlock("budding_echo", new BuddingEchoBlock(
+            AbstractBlock.Settings.create().mapColor(MapColor.BLUE).ticksRandomly().strength(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block ECHO_CLUSTER = registerBlock("echo_cluster",
+            new AmethystClusterBlock(7.0F, 3.0F,
+                    AbstractBlock.Settings.create().solid().nonOpaque().mapColor(MapColor.BLUE).sounds(BlockSoundGroup.AMETHYST_CLUSTER)
+                            .strength(1.5F).luminance((state) -> 2)
+                            .pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block LARGE_ECHO_BUD = registerBlock("large_echo_bud", new AmethystClusterBlock(5.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 4)));
+    public static final Block MEDIUM_ECHO_BUD = registerBlock("medium_echo_bud", new AmethystClusterBlock(4.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 2)));
+    public static final Block SMALL_ECHO_BUD = registerBlock("small_echo_bud", new AmethystClusterBlock(3.0F, 4.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 1)));
 
     public static final Block ENCHANTING_STAND = registerBlock("enchanting_stand",
             new EnchantingStand(AbstractBlock.Settings.create().strength(3, 6).requiresTool().sounds(BlockSoundGroup.DEEPSLATE).nonOpaque()));

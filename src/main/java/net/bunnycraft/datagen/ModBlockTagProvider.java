@@ -24,7 +24,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.GOLD_BUNNYCOIN_BLOCK)
                 .add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK)
                 .add(ModBlocks.ROSE_GOLD_BLOCK)
-                .add(ModBlocks.STEEL_BLOCK);
+                .add(ModBlocks.STEEL_BLOCK)
+                .add(ModBlocks.BUDDING_ECHO)
+                .add(ModBlocks.ECHO_CLUSTER);
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(ModBlocks.COPPER_BUNNYCOIN_BLOCK)
@@ -41,7 +43,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.PANCAKE_RABBIT_ORE)
                 .add(ModBlocks.PANCAKE_RABBIT_BLOCK)
                 .add(ModBlocks.ROSE_GOLD_BLOCK)
-                .add(ModBlocks.STEEL_BLOCK);
+                .add(ModBlocks.STEEL_BLOCK)
+                .add(ModBlocks.BUDDING_ECHO)
+                .add(ModBlocks.ECHO_CLUSTER);
 
         getOrCreateTagBuilder(ModTags.Blocks.NEEDS_COPPER_TOOL)
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
