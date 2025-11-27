@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
@@ -32,6 +33,8 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.PANCAKE_RABBIT_ORE, oreDrops(ModBlocks.PANCAKE_RABBIT_ORE, ModItems.PANCAKE_RABBIT));
 
+        addDrop(ModBlocks.ECHO_CLUSTER, oreDrops(ModBlocks.ECHO_CLUSTER, Items.ECHO_SHARD));
+
         addDrop(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
         addDrop(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
         addDrop(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
@@ -43,6 +46,12 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MS_PIPIS_BLOCK);
 
         addDrop(ModBlocks.ENCHANTING_STAND);
+
+        addDrop(ModBlocks.SCULK_WOOD);
+        addDrop(ModBlocks.SCULK_LOG);
+        addDrop(ModBlocks.STRIPPED_SCULK_LOG);
+        addDrop(ModBlocks.STRIPPED_SCULK_WOOD);
+        addDrop(ModBlocks.SCULK_PLANKS);
     }
 
     public LootTable.Builder multipleOreDrops(Block drop, Item item, float minDrops, float maxDrops) {

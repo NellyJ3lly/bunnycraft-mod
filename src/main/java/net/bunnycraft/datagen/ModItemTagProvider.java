@@ -1,16 +1,23 @@
 package net.bunnycraft.datagen;
 
+import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
 
+import javax.swing.text.html.HTML;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import static com.ibm.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
@@ -18,38 +25,23 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         super(output, completableFuture);
     }
 
+    protected void createLists(Map<Integer, Item> list, TagKey<Item> Tag) {
+        for(int i = 0; list.get(i) != null; i++) {
+            getOrCreateTagBuilder(Tag).add(list.get(i));
+        }
+    }
+
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+        createLists(ModTools.pickaxeList,ItemTags.PICKAXES);
+        createLists(ModTools.swordList,ItemTags.SWORDS);
+        createLists(ModTools.spearList,ModTags.Items.SPEARS);
+        createLists(ModTools.shovelList,ItemTags.SHOVELS);
+        createLists(ModTools.axeList,ItemTags.AXES);
+        createLists(ModTools.hoeList,ItemTags.HOES);
 
-        //add pickaxes
-        for(int i = 0; ModTools.pickaxeList.get(i) != null; i++) {
-            getOrCreateTagBuilder(ItemTags.PICKAXES).add(ModTools.pickaxeList.get(i));
-        }
-
-        //add swords
-        for(int i = 0; ModTools.swordList.get(i) != null; i++) {
-            getOrCreateTagBuilder(ItemTags.SWORDS).add(ModTools.swordList.get(i));
-        }
-
-        //add spears
-        for(int i = 0; ModTools.spearList.get(i) != null; i++) {
-            getOrCreateTagBuilder(ModTags.Items.SPEARS).add(ModTools.spearList.get(i));
-        }
-
-        //add axes
-        for(int i = 0; ModTools.axeList.get(i) != null; i++) {
-            getOrCreateTagBuilder(ItemTags.AXES).add(ModTools.axeList.get(i));
-        }
-
-        //add shovels
-        for(int i = 0; ModTools.shovelList.get(i) != null; i++) {
-            getOrCreateTagBuilder(ItemTags.SHOVELS).add(ModTools.shovelList.get(i));
-        }
-
-        //add hoes
-        for(int i = 0; ModTools.hoeList.get(i) != null; i++) {
-            getOrCreateTagBuilder(ItemTags.HOES).add(ModTools.hoeList.get(i));
-        }
+        getOrCreateTagBuilder(ItemTags.PLANKS)
+                .add(ModBlocks.SCULK_PLANKS.asItem());
 
         getOrCreateTagBuilder(ItemTags.DYEABLE)
                 .add(ModArmors.DIVING_BOOTS)

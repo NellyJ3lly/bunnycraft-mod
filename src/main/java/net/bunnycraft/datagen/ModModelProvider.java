@@ -35,6 +35,12 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerAmethyst(ModBlocks.LARGE_ECHO_BUD);
         blockStateModelGenerator.registerAmethyst(ModBlocks.MEDIUM_ECHO_BUD);
         blockStateModelGenerator.registerAmethyst(ModBlocks.SMALL_ECHO_BUD);
+
+        blockStateModelGenerator.registerLog(ModBlocks.SCULK_LOG).log(ModBlocks.SCULK_LOG).wood(ModBlocks.SCULK_WOOD);
+        blockStateModelGenerator.registerLog(ModBlocks.STRIPPED_SCULK_LOG).log(ModBlocks.STRIPPED_SCULK_LOG).wood(ModBlocks.STRIPPED_SCULK_WOOD);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SCULK_PLANKS);
+        blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.SCULK_SAPLING,BlockStateModelGenerator.TintType.NOT_TINTED);
     }
 
 

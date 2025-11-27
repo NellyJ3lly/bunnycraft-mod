@@ -3,6 +3,7 @@ package net.bunnycraft.block;
 import net.bunnycraft.Bunnycraft;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -11,7 +12,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+
+import static net.minecraft.block.Blocks.createLogBlock;
 
 public class ModBlocks {
 
@@ -49,18 +54,25 @@ public class ModBlocks {
             AbstractBlock.Settings.create().mapColor(MapColor.BLUE).ticksRandomly().strength(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block ECHO_CLUSTER = registerBlock("echo_cluster",
-            new AmethystClusterBlock(7.0F, 3.0F,
+            new EchoClusterBlock(7.0F, 3.0F,
                     AbstractBlock.Settings.create().solid().nonOpaque().mapColor(MapColor.BLUE).sounds(BlockSoundGroup.AMETHYST_CLUSTER)
                             .strength(1.5F).luminance((state) -> 2)
                             .pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block LARGE_ECHO_BUD = registerBlock("large_echo_bud", new AmethystClusterBlock(5.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 4)));
-    public static final Block MEDIUM_ECHO_BUD = registerBlock("medium_echo_bud", new AmethystClusterBlock(4.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 2)));
-    public static final Block SMALL_ECHO_BUD = registerBlock("small_echo_bud", new AmethystClusterBlock(3.0F, 4.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 1)));
+    public static final Block LARGE_ECHO_BUD = registerBlock("large_echo_bud", new EchoClusterBlock(5.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 4)));
+    public static final Block MEDIUM_ECHO_BUD = registerBlock("medium_echo_bud", new EchoClusterBlock(4.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 2)));
+    public static final Block SMALL_ECHO_BUD = registerBlock("small_echo_bud", new EchoClusterBlock(3.0F, 4.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 1)));
+
+    public static final Block SCULK_SAPLING = registerBlock("sculk_sapling", new SaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block SCULK_LOG = registerBlock("sculk_log",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block SCULK_WOOD = registerBlock("sculk_wood",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
+    public static final Block STRIPPED_SCULK_LOG = registerBlock("stripped_sculk_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final Block STRIPPED_SCULK_WOOD = registerBlock("stripped_sculk_wood",new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
+
+    public static final Block SCULK_PLANKS = registerBlock("sculk_planks", new Block(AbstractBlock.Settings.create().mapColor(MapColor.BLUE).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
 
     public static final Block ENCHANTING_STAND = registerBlock("enchanting_stand",
             new EnchantingStand(AbstractBlock.Settings.create().strength(3, 6).requiresTool().sounds(BlockSoundGroup.DEEPSLATE).nonOpaque()));
-
-
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
