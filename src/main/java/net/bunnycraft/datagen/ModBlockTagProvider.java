@@ -64,6 +64,13 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.PRESSURE_PLATES).add(ModBlocks.SCULK_WOOD_FENCE);
         getOrCreateTagBuilder(BlockTags.BUTTONS).add(ModBlocks.SCULK_WOOD_FENCE);
 
-        getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE).add(Blocks.OAK_SAPLING   );
+        getOrCreateTagBuilder(BlockTags.STAIRS)
+                .add(ModBlocks.ECHO_BRICK_STAIRS)
+                .add(ModBlocks.SCULK_WOOD_STAIRS);
+        getOrCreateTagBuilder(BlockTags.SLABS)
+                .add(ModBlocks.ECHO_BRICK_SLAB)
+                .add(ModBlocks.SCULK_WOOD_SLAB);
+        getOrCreateTagBuilder(BlockTags.WALLS)
+                .add(ModBlocks.ECHO_BRICK_WALL);
     }
 }

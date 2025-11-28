@@ -45,6 +45,13 @@ public abstract class SculkVeinBlockMixin {
                     Block.pushEntitiesUpBeforeBlockChange(blockState2, blockState3, world, blockPos);
                     world.playSound((PlayerEntity) null, blockPos, SoundEvents.BLOCK_SCULK_SPREAD, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
+                if (blockState2.isOf(Blocks.AMETHYST_BLOCK)) {
+                    cir.cancel();
+                    BlockState blockState3 = ModBlocks.ECHO_BLOCK.getDefaultState();
+                    world.setBlockState(blockPos, blockState3, 3);
+                    Block.pushEntitiesUpBeforeBlockChange(blockState2, blockState3, world, blockPos);
+                    world.playSound((PlayerEntity) null, blockPos, SoundEvents.BLOCK_SCULK_SPREAD, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                }
                 if (blockState2.isOf(Blocks.OAK_SAPLING)) {
                     cir.cancel();
                     BlockState blockState3 = ModBlocks.SCULK_WOOD_SAPLING.getDefaultState();

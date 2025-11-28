@@ -110,6 +110,12 @@ public class ModItemGroups {
                         entries.add(ModItems.TRUE);
                         entries.add(ModBlocks.ENCHANTING_STAND);
 
+                        entries.add(ModBlocks.ECHO_BLOCK);
+                        entries.add(ModBlocks.ECHO_BRICK);
+                        entries.add(ModBlocks.ECHO_BRICK_STAIRS);
+                        entries.add(ModBlocks.ECHO_BRICK_SLAB);
+                        entries.add(ModBlocks.ECHO_BRICK_WALL);
+                        entries.add(ModBlocks.CHISELED_ECHO_BLOCK);
                         entries.add(ModBlocks.BUDDING_ECHO);
                         entries.add(ModBlocks.ECHO_CLUSTER);
                         entries.add(ModBlocks.LARGE_ECHO_BUD);
