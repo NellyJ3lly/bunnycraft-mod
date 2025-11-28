@@ -25,6 +25,7 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         BlockStateModelGenerator.BlockTexturePool pancakerabbittexturepool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.PANCAKE_RABBIT_BLOCK);
+        BlockStateModelGenerator.BlockTexturePool sculkwoodplanktexturepool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.SCULK_WOOD_PLANKS);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PANCAKE_RABBIT_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ROSE_GOLD_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STEEL_BLOCK);
@@ -36,11 +37,19 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerAmethyst(ModBlocks.MEDIUM_ECHO_BUD);
         blockStateModelGenerator.registerAmethyst(ModBlocks.SMALL_ECHO_BUD);
 
-        blockStateModelGenerator.registerLog(ModBlocks.SCULK_LOG).log(ModBlocks.SCULK_LOG).wood(ModBlocks.SCULK_WOOD);
-        blockStateModelGenerator.registerLog(ModBlocks.STRIPPED_SCULK_LOG).log(ModBlocks.STRIPPED_SCULK_LOG).wood(ModBlocks.STRIPPED_SCULK_WOOD);
+        blockStateModelGenerator.registerLog(ModBlocks.SCULK_WOOD_LOG).log(ModBlocks.SCULK_WOOD_LOG).wood(ModBlocks.SCULK_WOOD_WOOD);
+        blockStateModelGenerator.registerLog(ModBlocks.STRIPPED_SCULK_WOOD_LOG).log(ModBlocks.STRIPPED_SCULK_WOOD_LOG).wood(ModBlocks.STRIPPED_SCULK_WOOD_WOOD);
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SCULK_PLANKS);
-        blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.SCULK_SAPLING,BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerDoor(ModBlocks.SCULK_WOOD_DOOR);
+        blockStateModelGenerator.registerTrapdoor(ModBlocks.SCULK_WOOD_TRAPDOOR);
+        sculkwoodplanktexturepool.stairs(ModBlocks.SCULK_WOOD_STAIRS);
+        sculkwoodplanktexturepool.slab(ModBlocks.SCULK_WOOD_SLAB);
+        sculkwoodplanktexturepool.button(ModBlocks.SCULK_WOOD_BUTTON);
+        sculkwoodplanktexturepool.pressurePlate(ModBlocks.SCULK_WOOD_PRESSURE_PLATE);
+        sculkwoodplanktexturepool.fence(ModBlocks.SCULK_WOOD_FENCE);
+        sculkwoodplanktexturepool.fenceGate(ModBlocks.SCULK_WOOD_FENCE_GATE);
+
+        blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.SCULK_WOOD_SAPLING,BlockStateModelGenerator.TintType.NOT_TINTED);
     }
 
 

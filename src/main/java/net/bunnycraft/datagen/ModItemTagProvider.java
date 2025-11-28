@@ -41,7 +41,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         createLists(ModTools.hoeList,ItemTags.HOES);
 
         getOrCreateTagBuilder(ItemTags.PLANKS)
-                .add(ModBlocks.SCULK_PLANKS.asItem());
+                .add(ModBlocks.SCULK_WOOD_PLANKS.asItem());
 
         getOrCreateTagBuilder(ItemTags.DYEABLE)
                 .add(ModArmors.DIVING_BOOTS)

@@ -62,14 +62,23 @@ public class ModBlocks {
     public static final Block MEDIUM_ECHO_BUD = registerBlock("medium_echo_bud", new EchoClusterBlock(4.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 2)));
     public static final Block SMALL_ECHO_BUD = registerBlock("small_echo_bud", new EchoClusterBlock(3.0F, 4.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 1)));
 
-    public static final Block SCULK_SAPLING = registerBlock("sculk_sapling", new SaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block SCULK_WOOD_SAPLING = registerBlock("sculk_wood_sapling", new SaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
 
-    public static final Block SCULK_LOG = registerBlock("sculk_log",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
-    public static final Block SCULK_WOOD = registerBlock("sculk_wood",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
-    public static final Block STRIPPED_SCULK_LOG = registerBlock("stripped_sculk_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_LOG)));
-    public static final Block STRIPPED_SCULK_WOOD = registerBlock("stripped_sculk_wood",new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final Block SCULK_WOOD_LOG = registerBlock("sculk_wood_log",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block SCULK_WOOD_WOOD = registerBlock("sculk_wood_wood",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
+    public static final Block STRIPPED_SCULK_WOOD_LOG = registerBlock("stripped_sculk_wood_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final Block STRIPPED_SCULK_WOOD_WOOD = registerBlock("stripped_sculk_wood_wood",new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
 
-    public static final Block SCULK_PLANKS = registerBlock("sculk_planks", new Block(AbstractBlock.Settings.create().mapColor(MapColor.BLUE).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block SCULK_WOOD_PLANKS = registerBlock("sculk_wood_planks", new Block(AbstractBlock.Settings.create().mapColor(MapColor.BLUE).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+
+    public static final Block SCULK_WOOD_DOOR = registerBlock("sculk_wood_door", new DoorBlock(BlockSetType.OAK,AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block SCULK_WOOD_TRAPDOOR = registerBlock("sculk_wood_trapdoor", new TrapdoorBlock(BlockSetType.OAK,AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block SCULK_WOOD_STAIRS = registerBlock("sculk_wood_stairs", new StairsBlock(ModBlocks.SCULK_WOOD_PLANKS.getDefaultState(),AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block SCULK_WOOD_SLAB = registerBlock("sculk_wood_slab", new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block SCULK_WOOD_BUTTON = registerBlock("sculk_wood_button", new ButtonBlock(BlockSetType.OAK,2,AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block SCULK_WOOD_PRESSURE_PLATE = registerBlock("sculk_wood_pressure_plate", new PressurePlateBlock(BlockSetType.OAK,AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block SCULK_WOOD_FENCE = registerBlock("sculk_wood_fence", new FenceBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block SCULK_WOOD_FENCE_GATE = registerBlock("sculk_wood_fence_gate", new FenceGateBlock(WoodType.OAK,AbstractBlock.Settings.create().strength(2f).requiresTool()));
 
     public static final Block ENCHANTING_STAND = registerBlock("enchanting_stand",
             new EnchantingStand(AbstractBlock.Settings.create().strength(3, 6).requiresTool().sounds(BlockSoundGroup.DEEPSLATE).nonOpaque()));

@@ -109,15 +109,25 @@ public class ModItemGroups {
 
                         entries.add(ModItems.TRUE);
                         entries.add(ModBlocks.ENCHANTING_STAND);
+
                         entries.add(ModBlocks.BUDDING_ECHO);
                         entries.add(ModBlocks.ECHO_CLUSTER);
                         entries.add(ModBlocks.LARGE_ECHO_BUD);
                         entries.add(ModBlocks.MEDIUM_ECHO_BUD);
                         entries.add(ModBlocks.SMALL_ECHO_BUD);
-                        entries.add(ModBlocks.SCULK_SAPLING);
-                        entries.add(ModBlocks.SCULK_LOG);
-                        entries.add(ModBlocks.STRIPPED_SCULK_LOG);
-                        entries.add(ModBlocks.SCULK_PLANKS);
+
+                        entries.add(ModBlocks.SCULK_WOOD_SAPLING);
+                        entries.add(ModBlocks.SCULK_WOOD_LOG);
+                        entries.add(ModBlocks.STRIPPED_SCULK_WOOD_LOG);
+                        entries.add(ModBlocks.SCULK_WOOD_PLANKS);
+                        entries.add(ModBlocks.SCULK_WOOD_DOOR);
+                        entries.add(ModBlocks.SCULK_WOOD_TRAPDOOR);
+                        entries.add(ModBlocks.SCULK_WOOD_STAIRS);
+                        entries.add(ModBlocks.SCULK_WOOD_SLAB);
+                        entries.add(ModBlocks.SCULK_WOOD_BUTTON);
+                        entries.add(ModBlocks.SCULK_WOOD_PRESSURE_PLATE);
+                        entries.add(ModBlocks.SCULK_WOOD_FENCE);
+                        entries.add(ModBlocks.SCULK_WOOD_FENCE_GATE);
                     }).build());
 
     public static void registerItemGroups() {

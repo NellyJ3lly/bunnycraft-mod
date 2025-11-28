@@ -47,11 +47,11 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.ENCHANTING_STAND);
 
-        addDrop(ModBlocks.SCULK_WOOD);
-        addDrop(ModBlocks.SCULK_LOG);
-        addDrop(ModBlocks.STRIPPED_SCULK_LOG);
-        addDrop(ModBlocks.STRIPPED_SCULK_WOOD);
-        addDrop(ModBlocks.SCULK_PLANKS);
+        addDrop(ModBlocks.SCULK_WOOD_WOOD);
+        addDrop(ModBlocks.SCULK_WOOD_LOG);
+        addDrop(ModBlocks.STRIPPED_SCULK_WOOD_LOG);
+        addDrop(ModBlocks.STRIPPED_SCULK_WOOD_WOOD);
+        addDrop(ModBlocks.SCULK_WOOD_PLANKS);
     }
 
     public LootTable.Builder multipleOreDrops(Block drop, Item item, float minDrops, float maxDrops) {
