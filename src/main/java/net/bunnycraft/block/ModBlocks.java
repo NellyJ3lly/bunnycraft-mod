@@ -19,7 +19,6 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import static net.minecraft.block.Blocks.createLogBlock;
 
 public class ModBlocks {
-
     public static final Block PANCAKE_RABBIT_ORE = registerBlock("pancake_rabbit_ore",
             new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
                     AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.STONE)));
@@ -62,7 +61,7 @@ public class ModBlocks {
     public static final Block MEDIUM_ECHO_BUD = registerBlock("medium_echo_bud", new EchoClusterBlock(4.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 2)));
     public static final Block SMALL_ECHO_BUD = registerBlock("small_echo_bud", new EchoClusterBlock(3.0F, 4.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 1)));
 
-    public static final Block SCULK_WOOD_SAPLING = registerBlock("sculk_wood_sapling", new SaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block SCULK_WOOD_SAPLING = registerBlock("sculk_wood_sapling", new SculkSaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block SCULK_WOOD_LOG = registerBlock("sculk_wood_log",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
     public static final Block SCULK_WOOD_WOOD = registerBlock("sculk_wood_wood",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
@@ -75,8 +74,8 @@ public class ModBlocks {
     public static final Block SCULK_WOOD_TRAPDOOR = registerBlock("sculk_wood_trapdoor", new TrapdoorBlock(BlockSetType.OAK,AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
     public static final Block SCULK_WOOD_STAIRS = registerBlock("sculk_wood_stairs", new StairsBlock(ModBlocks.SCULK_WOOD_PLANKS.getDefaultState(),AbstractBlock.Settings.create().strength(2f).requiresTool()));
     public static final Block SCULK_WOOD_SLAB = registerBlock("sculk_wood_slab", new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block SCULK_WOOD_BUTTON = registerBlock("sculk_wood_button", new ButtonBlock(BlockSetType.OAK,2,AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block SCULK_WOOD_PRESSURE_PLATE = registerBlock("sculk_wood_pressure_plate", new PressurePlateBlock(BlockSetType.OAK,AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block SCULK_WOOD_BUTTON = registerBlock("sculk_wood_button", new ButtonBlock(BlockSetType.OAK,4,AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
+    public static final Block SCULK_WOOD_PRESSURE_PLATE = registerBlock("sculk_wood_pressure_plate", new PressurePlateBlock(BlockSetType.OAK,AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
     public static final Block SCULK_WOOD_FENCE = registerBlock("sculk_wood_fence", new FenceBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
     public static final Block SCULK_WOOD_FENCE_GATE = registerBlock("sculk_wood_fence_gate", new FenceGateBlock(WoodType.OAK,AbstractBlock.Settings.create().strength(2f).requiresTool()));
 

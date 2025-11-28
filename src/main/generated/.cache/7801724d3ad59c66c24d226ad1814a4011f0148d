@@ -1,7 +1,7 @@
-// 1.21.1	2025-11-27T17:32:52.5867362	Bunnycraft/Block Loot Tables
+// 1.21.1	2025-11-27T23:30:20.4549239	Bunnycraft/Block Loot Tables
 f310afbb2188ee5d811091bd3ec61b7ba0f68f88 data\bunnycraft\loot_table\blocks\pancake_rabbit_ore.json
-e3ac84bb7cc86b4a886ce591fd69513852192232 data\bunnycraft\loot_table\blocks\sculk_wood_log.json
 2ae620ffd5ddd776d87c0bbc989f918cc7fdad39 data\bunnycraft\loot_table\blocks\stripped_sculk_wood_wood.json
+e3ac84bb7cc86b4a886ce591fd69513852192232 data\bunnycraft\loot_table\blocks\sculk_wood_log.json
 93de846c1f236fe920207eb46ef12fb959aaa1f2 data\bunnycraft\loot_table\blocks\stripped_sculk_wood_log.json
 36c2bbd5093ce0e6d03415e22c88049a624593ef data\bunnycraft\loot_table\blocks\gold_bunnycoin_block.json
 514514706d4401dd6a04d93204e9bdb99a9c6a68 data\bunnycraft\loot_table\blocks\diamond_bunnycoin_block.json

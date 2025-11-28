@@ -6,6 +6,8 @@
     "block.BrushableBlockDropXP",
     "block.CauldronAlloyerMixin",
     "block.DispenserUsesMoreShears",
+    "block.SculkSpreadManager$CursorMixin",
+    "block.SculkSpreadManagerMixin",
     "block.SculkVeinBlockMixin",
     "block.VaultBlockRewinderUse",
     "block.entity.VaultRewinderBlockEntity",

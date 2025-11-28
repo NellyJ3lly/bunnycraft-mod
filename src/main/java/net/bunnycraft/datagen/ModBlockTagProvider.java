@@ -4,6 +4,7 @@ import net.bunnycraft.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.bunnycraft.util.ModTags;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -62,5 +63,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(ModBlocks.SCULK_WOOD_FENCE);
         getOrCreateTagBuilder(BlockTags.PRESSURE_PLATES).add(ModBlocks.SCULK_WOOD_FENCE);
         getOrCreateTagBuilder(BlockTags.BUTTONS).add(ModBlocks.SCULK_WOOD_FENCE);
+
+        getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE).add(Blocks.OAK_SAPLING   );
     }
 }
