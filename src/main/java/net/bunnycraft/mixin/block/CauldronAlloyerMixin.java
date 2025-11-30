@@ -109,7 +109,6 @@ public class CauldronAlloyerMixin extends Block implements BlockEntityProvider, 
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         //checks if the item is an ingot used for alloying
         if (!stack.isEmpty()) {
-            System.out.println(player.isSneaking());
             if (getBlockEntity(world, pos).use(stack, player, world)) { // checks if it can pass to deefault cauldron interaction, will not pass if the items were not returned
 
                 //if the item is not in the alloy list do default cauldron behavior

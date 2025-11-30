@@ -2,6 +2,7 @@ package net.bunnycraft.block.entity.custom;
 
 import net.bunnycraft.BunnycraftClient;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -18,6 +19,8 @@ import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
@@ -38,6 +41,29 @@ public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<Cauldr
         this.blockRenderManager = MinecraftClient.getInstance().getBlockRenderManager();
     }
 
+    public void itemRender(int Slot,Vec3d translation, int RotateX, int RotateY, CauldronAlloyerEntity blockEntity, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        matrices.push();
+
+        matrices.translate(translation.x,translation.y,translation.z);
+
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(RotateX));
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(RotateY));
+
+        MinecraftClient.getInstance().getItemRenderer().renderItem(
+                blockEntity.getRenderItem(Slot),
+                ModelTransformationMode.GROUND,
+                light,
+                overlay,
+                matrices,
+                vertexConsumers,
+                blockEntity.getWorld(),
+                0
+        );
+
+        matrices.pop();
+    }
+
+
     /*
      * This is the main rendering method.
      *
@@ -57,7 +83,7 @@ public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<Cauldr
 
         // Get the appropriate VertexConsumer for the block layer
         // For most blocks, the solid layer is appropriate.
-        VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getSolid());
+        VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getCutout());
 
         //render the block
         BakedModel model = blockRenderManager.getModel(blockState);
@@ -117,51 +143,42 @@ public class CauldronAlloyerEntityRenderer implements BlockEntityRenderer<Cauldr
 
         matrices.pop();
 
-
-        //render the first item ------------------------------------------------------------------------------------------------------
-        matrices.push();
-
-        matrices.translate(0.5, .25, 0.5);
-
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(30));
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
-
-        MinecraftClient.getInstance().getItemRenderer().renderItem(
-                blockEntity.getRenderItem(0),
-                ModelTransformationMode.GROUND,
-                light,
-                overlay,
-                matrices,
-                vertexConsumers,
-                blockEntity.getWorld(),
-                0
-        );
-
-        matrices.pop();
+        //render the first slot ------------------------------------------------------------------------------------------------------
+//
+//        if (blockEntity.getItems().get(0).getCount() == 0) {
+//            System.out.println("NONE");
+//        }
 
 
-        //render the second item ---------------------------------------------------------
-        matrices.push();
+        int rotateX = 0;
+        int rotateY = 90;
+        double y = 0.25;
+        double x = 0.5;
 
-        matrices.translate(0.5, .3, 0.3);
+        for (int i = 0; i < blockEntity.getItems().get(0).getCount(); i++) {
+            rotateX += 30;
+            rotateY += 1;
+            y += 0.02;
+            x += 0.01;
 
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-20));
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(80));
+            Vec3d Zero2Position = new Vec3d(x,y,0.5);
 
-        MinecraftClient.getInstance().getItemRenderer().renderItem(
-                blockEntity.getRenderItem(1),
-                ModelTransformationMode.GROUND,
-                light,
-                overlay,
-                matrices,
-                vertexConsumers,
-                blockEntity.getWorld(),
-                0
-        );
-
-        matrices.pop();
+            itemRender(0, Zero2Position,rotateX, rotateY,blockEntity,matrices,vertexConsumers,light, overlay);
+        }
 
 
+        //render the second slot ---------------------------------------------------------
+
+        for (int i = 0; i < blockEntity.getItems().get(1).getCount(); i++) {
+            rotateX += 30;
+            rotateY += 1;
+            y += 0.02;
+            x += 0.01;
+
+            Vec3d Zero2Position = new Vec3d(0.5,y,0.5);
+
+            itemRender(1, Zero2Position,rotateX, rotateY,blockEntity,matrices,vertexConsumers,light, overlay);
+        }
     }
 
     private void addVertex(VertexConsumer consumer, Matrix4f positionMatrix, Matrix3f normalMatrix,
