@@ -1,64 +1,22 @@
 package net.bunnycraft.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.SculkSpreadManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WorldAccess;
 
-import static net.minecraft.block.AbstractBlock.createCodec;
-
-
-public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSpreadable{
-    public static final MapCodec<BuddingEchoBlock> CODEC = createCodec(BuddingEchoBlock::new);
-
-    public static final int GROW_CHANCE = 5;
-    private static final Direction[] DIRECTIONS = Direction.values();
-
-    public MapCodec<BuddingEchoBlock> getCodec() {
-        return CODEC;
+public class SculkSpreadableBlock extends Block implements SculkSpreadable {
+    public SculkSpreadableBlock(Settings settings) {
+        super(settings);
     }
 
-    public BuddingEchoBlock(AbstractBlock.Settings settings) {
-        super(ConstantIntProvider.create(4), settings);
-    }
-
-    protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (random.nextInt(GROW_CHANCE) == 0) {
-            Direction direction = DIRECTIONS[random.nextInt(DIRECTIONS.length)];
-            BlockPos blockPos = pos.offset(direction);
-            BlockState blockState = world.getBlockState(blockPos);
-            Block block = null;
-            if (canGrowIn(blockState)) {
-                block = ModBlocks.SMALL_ECHO_BUD;
-            } else if ((blockState.isOf(ModBlocks.SMALL_ECHO_BUD) && blockState.get(AmethystClusterBlock.FACING) == direction) || state.isOf(Blocks.SCULK_VEIN)) {
-                block = ModBlocks.MEDIUM_ECHO_BUD;
-            } else if (blockState.isOf(ModBlocks.MEDIUM_ECHO_BUD) && blockState.get(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.LARGE_ECHO_BUD;
-            } else if (blockState.isOf(ModBlocks.LARGE_ECHO_BUD) && blockState.get(AmethystClusterBlock.FACING) == direction) {
-                block = ModBlocks.ECHO_CLUSTER;
-            }
-
-            if (block != null) {
-                BlockState blockState2 = (BlockState)((BlockState)block.getDefaultState().with(AmethystClusterBlock.FACING, direction)).with(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getFluid() == Fluids.WATER);
-                world.setBlockState(blockPos, blockState2);
-            }
-        }
-    }
-
-    public static boolean canGrowIn(BlockState state) {
-        return state.isAir() || state.isOf(Blocks.WATER) && state.getFluidState().getLevel() == 8;
-    }
-
+    @Override
     public int spread(SculkSpreadManager.Cursor cursor, WorldAccess world, BlockPos catalystPos, Random random, SculkSpreadManager spreadManager, boolean shouldConvertToBlock) {
         int i = cursor.getCharge();
         if (i != 0 && random.nextInt(spreadManager.getSpreadChance()) == 0) {
@@ -82,6 +40,7 @@ public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSp
         }
     }
 
+
     private static int getDecay(SculkSpreadManager spreadManager, BlockPos cursorPos, BlockPos catalystPos, int charge) {
         int i = spreadManager.getMaxDistance();
         float f = MathHelper.square((float)Math.sqrt(cursorPos.getSquaredDistance(catalystPos)) - (float)i);
@@ -93,7 +52,7 @@ public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSp
     private BlockState getExtraBlockState(WorldAccess world, BlockPos pos, Random random, boolean allowShrieker) {
         BlockState blockState;
         if (random.nextInt(11) == 0) {
-            blockState = (BlockState)Blocks.SCULK_SHRIEKER.getDefaultState().with(SculkShriekerBlock.CAN_SUMMON, allowShrieker);
+            blockState = (BlockState) Blocks.SCULK_SHRIEKER.getDefaultState().with(SculkShriekerBlock.CAN_SUMMON, allowShrieker);
         } else {
             blockState = Blocks.SCULK_SENSOR.getDefaultState();
         }
@@ -121,9 +80,5 @@ public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSp
         } else {
             return false;
         }
-    }
-
-    public boolean shouldConvertToSpreadable() {
-        return false;
     }
 }

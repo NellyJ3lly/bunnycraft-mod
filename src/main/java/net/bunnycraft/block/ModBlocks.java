@@ -51,11 +51,10 @@ public class ModBlocks {
 
     public static final Block BUDDING_ECHO = registerBlock("budding_echo", new BuddingEchoBlock(
             AbstractBlock.Settings.create().mapColor(MapColor.BLUE).ticksRandomly().strength(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().pistonBehavior(PistonBehavior.DESTROY)));
-
     public static final Block ECHO_BLOCK = registerBlock("echo_block",
-            new Block(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+            new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
     public static final Block ECHO_BRICK = registerBlock("echo_brick",
-            new Block(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
+            new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
     public static final Block ECHO_BRICK_STAIRS = registerBlock("echo_brick_stairs",
             new StairsBlock(ModBlocks.ECHO_BRICK.getDefaultState(),AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
     public static final Block ECHO_BRICK_SLAB = registerBlock("echo_brick_slab",
@@ -63,17 +62,17 @@ public class ModBlocks {
     public static final Block ECHO_BRICK_WALL = registerBlock("echo_brick_wall",
             new WallBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
     public static final Block CHISELED_ECHO_BLOCK = registerBlock("chiseled_echo_block",
-            new Block(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
+            new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
 
 
     public static final Block ECHO_CLUSTER = registerBlock("echo_cluster",
             new EchoClusterBlock(7.0F, 3.0F,
                     AbstractBlock.Settings.create().solid().nonOpaque().mapColor(MapColor.BLUE).sounds(BlockSoundGroup.AMETHYST_CLUSTER)
-                            .strength(1.5F).luminance((state) -> 2)
-                            .pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block LARGE_ECHO_BUD = registerBlock("large_echo_bud", new EchoClusterBlock(5.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 4)));
-    public static final Block MEDIUM_ECHO_BUD = registerBlock("medium_echo_bud", new EchoClusterBlock(4.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 2)));
-    public static final Block SMALL_ECHO_BUD = registerBlock("small_echo_bud", new EchoClusterBlock(3.0F, 4.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD).luminance((state) -> 1)));
+                            .strength(1.5F).luminance((state) -> 3)
+                            .pistonBehavior(PistonBehavior.DESTROY), 4));
+    public static final Block LARGE_ECHO_BUD = registerBlock("large_echo_bud", new EchoClusterBlock(5.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD).luminance((state) -> 2), 3));
+    public static final Block MEDIUM_ECHO_BUD = registerBlock("medium_echo_bud", new EchoClusterBlock(4.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 1), 2));
+    public static final Block SMALL_ECHO_BUD = registerBlock("small_echo_bud", new EchoClusterBlock(3.0F, 4.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD), 1));
 
     public static final Block SCULK_WOOD_SAPLING = registerBlock("sculk_wood_sapling", new SculkSaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
 
