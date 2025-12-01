@@ -10,3 +10,10 @@ accessible field net/minecraft/entity/LivingEntity climbingPos Ljava/util/Option
 accessible method net/minecraft/entity/LivingEntity canEnterTrapdoor (Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Z
 
 accessible field net/minecraft/block/SculkVeinBlock allGrowTypeGrower Lnet/minecraft/block/LichenGrower;
+
+accessible method net/minecraft/block/SculkBlock getExtraBlockState (Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;Z)Lnet/minecraft/block/BlockState;
+accessible method net/minecraft/block/SculkBlock getDecay (Lnet/minecraft/block/entity/SculkSpreadManager;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;I)I
+accessible class net/minecraft/block/SculkVeinBlock$SculkVeinGrowChecker
+accessible method net/minecraft/block/SculkVeinBlock convertToBlock (Lnet/minecraft/block/entity/SculkSpreadManager;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)Z
+accessible field net/minecraft/block/entity/SculkSpreadManager$Cursor charge I
+accessible field net/minecraft/block/entity/SculkSpreadManager worldGen Z
