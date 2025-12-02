@@ -1,19 +1,14 @@
 package net.bunnycraft.mixin.block;
 
+import net.bunnycraft.block.ModBlocks;
 import net.minecraft.block.*;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
-
-import java.util.List;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(targets = "net.minecraft.block.SculkVeinBlock$SculkVeinGrowChecker")
 class SculkVeinGrowCheckerMixin extends LichenGrower.LichenGrowChecker {
@@ -22,47 +17,16 @@ class SculkVeinGrowCheckerMixin extends LichenGrower.LichenGrowChecker {
         super(lichen);
     }
 
-    @Unique
-    List<BlockPos> directions = List.of(
-      new BlockPos(1,0,0),
-            new BlockPos(-1,0,0),
-            new BlockPos(0,0,-1)
-    );
-
-//    public BlockState CheckForConversion(BlockView world,BlockPos pos) {
-//        directions.forEach(blockpos ->{
-//
-//
-//            world.getBlockState()
-//        });
-//    };
-
-    /**
-     * @author
-     * @reason
-     */
-    @Overwrite
-    public boolean canGrow(BlockView world, BlockPos pos, BlockPos growPos, Direction direction, BlockState state) {
+    @Inject(
+            method = "canGrow(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;Lnet/minecraft/block/BlockState;)Z",
+            at = @At("HEAD"),
+            cancellable = true)
+    public void canGrow(BlockView world, BlockPos pos, BlockPos growPos, Direction direction, BlockState state, CallbackInfoReturnable<Boolean> cir) {
             BlockState blockState = world.getBlockState(growPos.offset(direction));
-            if (!blockState.isOf(Blocks.SCULK) && !blockState.isOf(Blocks.SCULK_CATALYST) && !blockState.isOf(Blocks.MOVING_PISTON)) {
-                if (pos.getManhattanDistance(growPos) == 2) {
-                    BlockPos blockPos = pos.offset(direction.getOpposite());
 
-                    if (world.getBlockState(blockPos).isSideSolidFullSquare(world, blockPos, direction)) {
-                        return false;
-                    }
-                }
-
-                FluidState fluidState = state.getFluidState();
-                if (!fluidState.isEmpty() && !fluidState.isOf(Fluids.WATER)) {
-                    return false;
-                } else if (state.isIn(BlockTags.FIRE)) {
-                    return false;
-                } else {
-                    return state.isReplaceable() || super.canGrow(world, pos, growPos, direction, state);
-                }
-            } else {
-                return false;
-            }
+        if (blockState.isOf(ModBlocks.BUDDING_ECHO)) {
+            cir.cancel();
+            cir.setReturnValue(false);
+        }
     }
 }

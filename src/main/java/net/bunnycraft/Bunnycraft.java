@@ -5,6 +5,7 @@ import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.entity.ModEntities;
+import net.bunnycraft.interfaces.SpreadableBlock;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
@@ -29,7 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Bunnycraft implements ModInitializer {
+public class Bunnycraft implements ModInitializer, SpreadableBlock {
 	public static final String MOD_ID = "bunnycraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -53,6 +54,9 @@ public class Bunnycraft implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerModScreenHandlers();
 		ModSounds.registerSounds();
+
+		// not sure if this is the proper way to do set up a list like this but we'll see
+		this.SetupList();
 
 		ModifyLootTables.modifyLootTables();
 

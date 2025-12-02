@@ -1,6 +1,7 @@
 package net.bunnycraft.block;
 
 import com.mojang.serialization.MapCodec;
+import net.bunnycraft.interfaces.ConvertableBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.SculkSpreadManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,12 +14,13 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 import static net.minecraft.block.AbstractBlock.createCodec;
 
 
-public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSpreadable{
+public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSpreadable, ConvertableBlocks{
     public static final MapCodec<BuddingEchoBlock> CODEC = createCodec(BuddingEchoBlock::new);
 
     public static final int GROW_CHANCE = 5;
@@ -55,8 +57,18 @@ public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSp
         }
     }
 
+    @Override
+    protected void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        super.onBlockAdded(state, world, pos, oldState, notify);
+
+        System.out.println("HI");
+
+        convertAboveBlock(world,pos);
+    }
+
+
     public static boolean canGrowIn(BlockState state) {
-        return state.isAir() || state.isOf(Blocks.WATER) && state.getFluidState().getLevel() == 8;
+        return state.isAir() || state.isOf(Blocks.SCULK_VEIN) || state.isOf(Blocks.WATER) && state.getFluidState().getLevel() == 8;
     }
 
     public int spread(SculkSpreadManager.Cursor cursor, WorldAccess world, BlockPos catalystPos, Random random, SculkSpreadManager spreadManager, boolean shouldConvertToBlock) {
@@ -81,6 +93,7 @@ public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSp
             return i;
         }
     }
+
 
     private static int getDecay(SculkSpreadManager spreadManager, BlockPos cursorPos, BlockPos catalystPos, int charge) {
         int i = spreadManager.getMaxDistance();

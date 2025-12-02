@@ -72,5 +72,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.SCULK_WOOD_SLAB);
         getOrCreateTagBuilder(BlockTags.WALLS)
                 .add(ModBlocks.ECHO_BRICK_WALL);
+
+        getOrCreateTagBuilder(ModTags.Blocks.SCULK_REPLACEABLE_NON_FULL_BLOCK)
+                .add(Blocks.OAK_SAPLING)
+                .add(Blocks.AMETHYST_CLUSTER)
+                .add(Blocks.SMALL_AMETHYST_BUD)
+                .add(Blocks.MEDIUM_AMETHYST_BUD)
+                .add(Blocks.LARGE_AMETHYST_BUD);
     }
 }

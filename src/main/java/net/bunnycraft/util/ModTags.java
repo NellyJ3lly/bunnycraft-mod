@@ -22,6 +22,7 @@ public class ModTags {
         public static final TagKey<Block> INCORRECT_FOR_PRISMARINE_TOOL = createTag("incorrect_for_prismarine_tool");
 
         public static final TagKey<Block> CLIMB_CLAWS_IGNORE = createTag("climb_claws_ignore");
+        public static final TagKey<Block> SCULK_REPLACEABLE_NON_FULL_BLOCK = createTag("sculk_replaceable_non_full_block");
 
 
         private static TagKey<Block> createTag(String name) {

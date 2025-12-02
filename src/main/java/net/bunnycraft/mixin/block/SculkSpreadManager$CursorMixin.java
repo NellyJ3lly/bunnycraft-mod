@@ -35,7 +35,9 @@ public class SculkSpreadManager$CursorMixin {
             method = "spread(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;Lnet/minecraft/block/entity/SculkSpreadManager;Z)V",
             at = @At("HEAD"),
             cancellable = true)
-    private void tick3(WorldAccess world, BlockPos pos, Random random, SculkSpreadManager spreadManager, boolean shouldConvertToBlock, CallbackInfo ci) {
-//       LoopPositions(world,pos);
+    private void Bunnycraft$AllowMoreBlocksToBeCursors(WorldAccess world, BlockPos pos, Random random, SculkSpreadManager spreadManager, boolean shouldConvertToBlock, CallbackInfo ci) {
+        if (world.getBlockState(this.pos).isOf(Blocks.OAK_SAPLING)) {
+            world.setBlockState(this.pos.add(0,-1,0),Blocks.SCULK.getDefaultState(),3);
+        }
     }
 }
