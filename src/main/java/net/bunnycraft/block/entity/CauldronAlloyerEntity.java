@@ -1,8 +1,6 @@
-package net.bunnycraft.block.entity.custom;
+package net.bunnycraft.block.entity;
 
 import net.bunnycraft.Bunnycraft;
-import net.bunnycraft.block.entity.ImplementedInventory;
-import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.interfaces.CauldronAlloyerHeatInterface;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
@@ -30,7 +28,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.Hand;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

@@ -1,6 +1,7 @@
-package net.bunnycraft.block.entity.custom;
+package net.bunnycraft.client.render;
 
 import net.bunnycraft.BunnycraftClient;
+import net.bunnycraft.block.entity.CauldronAlloyerEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;

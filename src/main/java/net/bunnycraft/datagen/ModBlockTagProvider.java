@@ -4,6 +4,7 @@ import net.bunnycraft.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.bunnycraft.util.ModTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -79,5 +80,21 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.SMALL_AMETHYST_BUD)
                 .add(Blocks.MEDIUM_AMETHYST_BUD)
                 .add(Blocks.LARGE_AMETHYST_BUD);
+
+        getOrCreateTagBuilder(BlockTags.CLIMBABLE)
+                .add(Blocks.SCULK);
+
+        getOrCreateTagBuilder(ModTags.Blocks.BLOCKS_CAN_ECHOLOCATE)
+                .forceAddTag(BlockTags.DIAMOND_ORES)
+                .forceAddTag(BlockTags.GOLD_ORES)
+                .forceAddTag(BlockTags.COAL_ORES)
+                .forceAddTag(BlockTags.IRON_ORES)
+                .forceAddTag(BlockTags.REDSTONE_ORES)
+                .forceAddTag(BlockTags.LAPIS_ORES)
+                .forceAddTag(BlockTags.COAL_ORES)
+                .forceAddTag(BlockTags.COPPER_ORES)
+                .forceAddTag(BlockTags.EMERALD_ORES)
+                .add(Blocks.NETHER_QUARTZ_ORE)
+                .add(Blocks.ANCIENT_DEBRIS);
     }
 }

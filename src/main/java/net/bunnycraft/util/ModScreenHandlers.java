@@ -1,7 +1,7 @@
 package net.bunnycraft.util;
 
 import net.bunnycraft.Bunnycraft;
-import net.bunnycraft.block.entity.custom.EnchantingStandScreenHandler;
+import net.bunnycraft.client.screen.EnchantingStandScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;

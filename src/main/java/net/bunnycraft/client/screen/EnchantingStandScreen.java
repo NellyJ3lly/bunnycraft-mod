@@ -1,4 +1,4 @@
-package net.bunnycraft.block.entity.custom;
+package net.bunnycraft.client.screen;
 
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;

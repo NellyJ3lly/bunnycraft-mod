@@ -1,4 +1,4 @@
-package net.bunnycraft.block.entity.custom;
+package net.bunnycraft.client.screen;
 
 import com.mojang.datafixers.util.Pair;
 import net.bunnycraft.block.EnchantingStand;

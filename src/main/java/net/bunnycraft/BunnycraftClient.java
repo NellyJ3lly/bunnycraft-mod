@@ -2,10 +2,10 @@ package net.bunnycraft;
 
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.block.entity.ModBlockEntities;
-import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
-import net.bunnycraft.block.entity.custom.CauldronAlloyerEntityRenderer;
-import net.bunnycraft.block.entity.custom.EnchantingStandEntityRenderer;
-import net.bunnycraft.block.entity.custom.EnchantingStandScreen;
+import net.bunnycraft.block.entity.CauldronAlloyerEntity;
+import net.bunnycraft.client.render.CauldronAlloyerEntityRenderer;
+import net.bunnycraft.client.render.EnchantingStandEntityRenderer;
+import net.bunnycraft.client.screen.EnchantingStandScreen;
 import net.bunnycraft.entity.ModEntities;
 import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.entity.custom.RoseGoldSpearModel;
@@ -69,8 +69,6 @@ public class BunnycraftClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MEDIUM_ECHO_BUD, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SMALL_ECHO_BUD, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SCULK_WOOD_SAPLING, RenderLayer.getCutout());
-
-
         //registers the screen for enchanting stand
         HandledScreens.register(ModScreenHandlers.ENCHANTING_STAND_SCREEN_HANDLER_TYPE, EnchantingStandScreen::new);
 

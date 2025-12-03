@@ -1,6 +1,5 @@
-package net.bunnycraft.block.entity.custom;
+package net.bunnycraft.block.entity;
 
-import net.bunnycraft.block.entity.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.ComponentMap;

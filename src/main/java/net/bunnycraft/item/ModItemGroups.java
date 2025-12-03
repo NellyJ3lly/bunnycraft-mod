@@ -109,6 +109,7 @@ public class ModItemGroups {
 
                         entries.add(ModItems.TRUE);
                         entries.add(ModBlocks.ENCHANTING_STAND);
+                        entries.add(ModTools.ECHOLOCATOR);
 
                         entries.add(ModBlocks.ECHO_BLOCK);
                         entries.add(ModBlocks.ECHO_BRICK);

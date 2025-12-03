@@ -24,6 +24,9 @@ public class ModTags {
         public static final TagKey<Block> CLIMB_CLAWS_IGNORE = createTag("climb_claws_ignore");
         public static final TagKey<Block> SCULK_REPLACEABLE_NON_FULL_BLOCK = createTag("sculk_replaceable_non_full_block");
 
+        public static final TagKey<Block> BLOCKS_CAN_ECHOLOCATE = createTag("blocks_can_echolocate");
+
+
 
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(Bunnycraft.MOD_ID,name));

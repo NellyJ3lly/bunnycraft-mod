@@ -4,6 +4,7 @@ import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.custom.CaneItem;
 import net.bunnycraft.item.custom.ClimbingClawItem;
+import net.bunnycraft.item.custom.EcholocatorItem;
 import net.bunnycraft.item.custom.SpearItem;
 import net.bunnycraft.item.tools.ModToolMaterials;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -30,6 +31,8 @@ public class ModTools  {
             "climbing_claw",
             new ClimbingClawItem(new Item.Settings().maxDamage(250).component(ModComponents.CAN_CLIMB_ON_BLOCK,false))
     );
+
+    public static final Item ECHOLOCATOR = registerTool("echolocator", new EcholocatorItem(new Item.Settings().maxCount(1).component(ModComponents.ECHO_FUEL,16F)));
 
     public static final Item WOODEN_CANE = registerTool("wooden_cane",
             new CaneItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(

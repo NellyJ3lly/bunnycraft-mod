@@ -2,8 +2,6 @@ package net.bunnycraft.block.entity;
 
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
-import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
-import net.bunnycraft.block.entity.custom.EnchantingStandEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;

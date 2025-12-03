@@ -1,6 +1,7 @@
 package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.item.custom.EcholocatorItem;
 import net.bunnycraft.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;

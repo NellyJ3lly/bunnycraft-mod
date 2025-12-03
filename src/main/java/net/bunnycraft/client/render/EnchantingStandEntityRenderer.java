@@ -1,5 +1,6 @@
-package net.bunnycraft.block.entity.custom;
+package net.bunnycraft.client.render;
 
+import net.bunnycraft.block.entity.EnchantingStandEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;

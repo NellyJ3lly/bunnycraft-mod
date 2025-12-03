@@ -2,8 +2,8 @@ package net.bunnycraft.block;
 
 import com.mojang.serialization.MapCodec;
 import net.bunnycraft.block.entity.ModBlockEntities;
-import net.bunnycraft.block.entity.custom.EnchantingStandEntity;
-import net.bunnycraft.block.entity.custom.EnchantingStandScreenHandler;
+import net.bunnycraft.block.entity.EnchantingStandEntity;
+import net.bunnycraft.client.screen.EnchantingStandScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;

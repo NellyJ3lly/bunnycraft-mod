@@ -72,7 +72,6 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(Item.fromBlock(ModBlocks.MEDIUM_ECHO_BUD), Models.GENERATED);
         gen.register(Item.fromBlock(ModBlocks.SMALL_ECHO_BUD), Models.GENERATED);
 
-
         gen.register(ModItems.BUNNYCENT, Models.GENERATED);
         gen.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);

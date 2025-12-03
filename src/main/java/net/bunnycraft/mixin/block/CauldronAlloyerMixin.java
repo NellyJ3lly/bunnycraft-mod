@@ -3,7 +3,7 @@ package net.bunnycraft.mixin.block;
 //this class modifys the empty cauldron and turns it into the alloyer. i did this instead of a new cauldron state because the alloyer would use the same behavior map as the empty cauldron
 
 import net.bunnycraft.block.entity.ModBlockEntities;
-import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
+import net.bunnycraft.block.entity.CauldronAlloyerEntity;
 import net.bunnycraft.interfaces.CauldronAlloyerHeatInterface;
 import net.minecraft.block.*;
 import net.minecraft.block.cauldron.CauldronBehavior;
