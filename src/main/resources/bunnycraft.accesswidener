@@ -17,3 +17,6 @@ accessible class net/minecraft/block/SculkVeinBlock$SculkVeinGrowChecker
 accessible method net/minecraft/block/SculkVeinBlock convertToBlock (Lnet/minecraft/block/entity/SculkSpreadManager;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)Z
 accessible field net/minecraft/block/entity/SculkSpreadManager$Cursor charge I
 accessible field net/minecraft/block/entity/SculkSpreadManager worldGen Z
+accessible class net/minecraft/client/render/BackgroundRenderer$FogData
+accessible field net/minecraft/client/render/BackgroundRenderer$FogData fogStart F
+accessible field net/minecraft/client/render/BackgroundRenderer$FogData fogEnd F

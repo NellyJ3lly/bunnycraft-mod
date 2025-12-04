@@ -44,7 +44,9 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
     private boolean checkIfPlayerIsInSculk(BlockView world, ShapeContext context) {
         if (context instanceof EntityShapeContext entityShapeContext) {
             if (entityShapeContext.getEntity() instanceof PlayerEntity player) {
-                if (player.isSneaking() || world.getBlockState(player.getBlockPos()).isOf(Blocks.SCULK)) {
+                if (player.isSneaking()
+                        || world.getBlockState(player.getBlockPos()).isOf(Blocks.SCULK)
+                        || world.getBlockState(player.getBlockPos().add(0,1,0)).isOf(Blocks.SCULK)) {
                     return true;
                 } else {
                     return false;
@@ -59,7 +61,7 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
     @Override
     protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!(entity instanceof LivingEntity) || entity.getBlockStateAtPos().isOf(this)) {
-//            entity.slowMovement(state, new Vec3d((double) 0.9F, (double) 0.9F, (double) 0.9F));
+            entity.slowMovement(state, new Vec3d(1F,1F,1F));
 //            entity.slowMovement(state, new Vec3d((double) 1.5F, (double) 1.5F, (double) 1.5F));
         }
     }
