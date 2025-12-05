@@ -73,7 +73,6 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(Item.fromBlock(ModBlocks.SMALL_ECHO_BUD), Models.GENERATED);
         gen.register(Item.fromBlock(ModBlocks.SCULK_WOOD_SAPLING), Models.GENERATED);
 
-
         gen.register(ModItems.BUNNYCENT, Models.GENERATED);
         gen.register(ModItems.COPPER_BUNNYCOIN, Models.GENERATED);
         gen.register(ModItems.GOLD_BUNNYCOIN, Models.GENERATED);
@@ -125,7 +124,6 @@ public class ModModelProvider extends FabricModelProvider {
 
         gen.registerArmor(((ArmorItem) ModArmors.DEALMAKER));
         gen.register(ModTools.CLIMBING_CLAW, Models.GENERATED);
-        gen.register(ModTools.WOODEN_CANE, Models.HANDHELD);
 
         gen.register(ModItems.TRUE, Models.GENERATED);
         gen.register(ModItems.POINT_LIGHT_MUSIC_DISC, Models.GENERATED);

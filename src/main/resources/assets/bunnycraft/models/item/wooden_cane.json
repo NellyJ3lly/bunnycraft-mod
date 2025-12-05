@@ -1,0 +1,6 @@
+{
+  "parent": "bunnycraft:item/handheld/cane",
+  "textures": {
+    "layer0": "bunnycraft:item/wooden_cane"
+  }
+}
