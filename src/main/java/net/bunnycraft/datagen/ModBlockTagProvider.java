@@ -60,10 +60,20 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(ModTags.Blocks.NEEDS_ROSE_GOLD_TOOL)
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
 
-        getOrCreateTagBuilder(BlockTags.FENCES).add(ModBlocks.SCULK_WOOD_FENCE);
-        getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(ModBlocks.SCULK_WOOD_FENCE);
-        getOrCreateTagBuilder(BlockTags.PRESSURE_PLATES).add(ModBlocks.SCULK_WOOD_FENCE);
-        getOrCreateTagBuilder(BlockTags.BUTTONS).add(ModBlocks.SCULK_WOOD_FENCE);
+        getOrCreateTagBuilder(BlockTags.LOGS)
+                .add(ModBlocks.SCULK_WOOD_LOG)
+                .add(ModBlocks.SCULK_WOOD_WOOD)
+                .add(ModBlocks.STRIPPED_SCULK_WOOD_LOG)
+                .add(ModBlocks.STRIPPED_SCULK_WOOD_WOOD);
+
+        getOrCreateTagBuilder(BlockTags.FENCES)
+                .add(ModBlocks.SCULK_WOOD_FENCE);
+        getOrCreateTagBuilder(BlockTags.FENCE_GATES)
+                .add(ModBlocks.SCULK_WOOD_FENCE);
+        getOrCreateTagBuilder(BlockTags.PRESSURE_PLATES)
+                .add(ModBlocks.SCULK_WOOD_FENCE);
+        getOrCreateTagBuilder(BlockTags.BUTTONS)
+                .add(ModBlocks.SCULK_WOOD_FENCE);
 
         getOrCreateTagBuilder(BlockTags.STAIRS)
                 .add(ModBlocks.ECHO_BRICK_STAIRS)

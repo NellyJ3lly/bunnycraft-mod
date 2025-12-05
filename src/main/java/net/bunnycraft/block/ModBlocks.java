@@ -61,7 +61,7 @@ public class ModBlocks {
             new SlabBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
     public static final Block ECHO_BRICK_WALL = registerBlock("echo_brick_wall",
             new WallBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
-    public static final Block CHISELED_ECHO_BLOCK = registerBlock("chiseled_echo_block",
+    public static final Block CHISELED_ECHO_BRICK = registerBlock("chiseled_echo_brick",
             new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
 
 
@@ -106,7 +106,7 @@ public class ModBlocks {
     }
 
     public static void registerModBlocks() {
-        Bunnycraft.LOGGER.info("Registering Mod Blocks for " + Bunnycraft.MOD_ID);
+        Bunnycraft.LOGGER.info("Registering Blocks for " + Bunnycraft.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.add(ModBlocks.PANCAKE_RABBIT_ORE);

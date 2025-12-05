@@ -1,5 +1,6 @@
 package net.bunnycraft.datagen;
 
+import net.bunnycraft.block.EchoClusterBlock;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -33,8 +34,6 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.PANCAKE_RABBIT_ORE, oreDrops(ModBlocks.PANCAKE_RABBIT_ORE, ModItems.PANCAKE_RABBIT));
 
-        addDrop(ModBlocks.ECHO_CLUSTER, oreDrops(ModBlocks.ECHO_CLUSTER, Items.ECHO_SHARD));
-
         addDrop(ModBlocks.COPPER_BUNNYCOIN_BLOCK);
         addDrop(ModBlocks.GOLD_BUNNYCOIN_BLOCK);
         addDrop(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
@@ -47,11 +46,27 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.ENCHANTING_STAND);
 
+        addDrop(ModBlocks.ECHO_BLOCK);
+        addDrop(ModBlocks.ECHO_BRICK);
+        addDrop(ModBlocks.ECHO_BRICK_WALL);
+        addDrop(ModBlocks.ECHO_BRICK_SLAB);
+        addDropWithSilkTouch(ModBlocks.SMALL_ECHO_BUD);
+        addDropWithSilkTouch(ModBlocks.MEDIUM_ECHO_BUD);
+        addDropWithSilkTouch(ModBlocks.LARGE_ECHO_BUD);
+        multipleOreDrops(ModBlocks.ECHO_CLUSTER,Items.ECHO_SHARD,1,4);
+
+        addDrop(ModBlocks.SCULK_WOOD_SAPLING);
         addDrop(ModBlocks.SCULK_WOOD_WOOD);
         addDrop(ModBlocks.SCULK_WOOD_LOG);
         addDrop(ModBlocks.STRIPPED_SCULK_WOOD_LOG);
         addDrop(ModBlocks.STRIPPED_SCULK_WOOD_WOOD);
         addDrop(ModBlocks.SCULK_WOOD_PLANKS);
+        addDrop(ModBlocks.SCULK_WOOD_STAIRS);
+        addDrop(ModBlocks.SCULK_WOOD_SAPLING);
+        addDrop(ModBlocks.SCULK_WOOD_DOOR);
+        addDrop(ModBlocks.SCULK_WOOD_TRAPDOOR);
+        addDrop(ModBlocks.SCULK_WOOD_PRESSURE_PLATE);
+        addDrop(ModBlocks.SCULK_WOOD_BUTTON);
     }
 
     public LootTable.Builder multipleOreDrops(Block drop, Item item, float minDrops, float maxDrops) {

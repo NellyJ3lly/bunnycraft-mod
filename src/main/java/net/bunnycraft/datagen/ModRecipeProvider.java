@@ -53,19 +53,52 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         BunnycoinCrafting.makeCoin(exporter,"copper_gold_conversion",ModItems.GOLD_BUNNYCOIN,ModItems.COPPER_BUNNYCOIN);
         BunnycoinCrafting.makeCoin(exporter,"gold_diamond_conversion",ModItems.DIAMOND_BUNNYCOIN,ModItems.GOLD_BUNNYCOIN);
 
-
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);
 
-//        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.ENCHANTING_STAND)
-//                .pattern(" B ")
-//                .pattern("GDG")
-//                .pattern(" D ")
-//                .input('B', Items.BOOK)
-//                .input('D', Items.DEEPSLATE)
-//                .input('G', Items.BOOK)
-//                .criterion(hasItem(Items.BOOK), conditionsFromItem(Items.BOOK))
-//                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_PLANKS,4)
+                .input(ModBlocks.SCULK_WOOD_LOG)
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_LOG),conditionsFromItem(ModBlocks.SCULK_WOOD_LOG)).offerTo(exporter);
+
+        createSlabRecipe(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_SLAB,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS))
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
+        createStairsRecipe(ModBlocks.SCULK_WOOD_STAIRS,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
+        createDoorRecipe(ModBlocks.SCULK_WOOD_DOOR,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
+        createTrapdoorRecipe(ModBlocks.SCULK_WOOD_TRAPDOOR,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
+        createFenceRecipe(ModBlocks.SCULK_WOOD_FENCE,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
+        createFenceGateRecipe(ModBlocks.SCULK_WOOD_FENCE_GATE,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
+        createPressurePlateRecipe(
+                RecipeCategory.REDSTONE,ModBlocks.SCULK_WOOD_PRESSURE_PLATE,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,ModBlocks.ECHO_BRICK)
+                .input('#', ModBlocks.ECHO_BLOCK)
+                .pattern("##")
+                .pattern("##")
+                .criterion(hasItem(ModBlocks.ECHO_BLOCK),conditionsFromItem(ModBlocks.ECHO_BLOCK)).offerTo(exporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE,ModBlocks.SCULK_WOOD_BUTTON)
+                .input(ModBlocks.SCULK_WOOD_PLANKS)
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
+
+        createSlabRecipe(RecipeCategory.BUILDING_BLOCKS,ModBlocks.ECHO_BRICK_SLAB,Ingredient.ofItems(ModBlocks.ECHO_BRICK))
+                .criterion(hasItem(ModBlocks.ECHO_BRICK),conditionsFromItem(ModBlocks.ECHO_BRICK)).offerTo(exporter);
+        createStairsRecipe(ModBlocks.ECHO_BRICK_STAIRS,Ingredient.ofItems(ModBlocks.ECHO_BRICK))
+                .criterion(hasItem(ModBlocks.ECHO_BRICK),conditionsFromItem(ModBlocks.ECHO_BRICK)).offerTo(exporter);
+        createChiseledBlockRecipe(RecipeCategory.BUILDING_BLOCKS,ModBlocks.CHISELED_ECHO_BRICK,Ingredient.ofItems(ModBlocks.ECHO_BRICK_SLAB))
+                .criterion(hasItem(ModBlocks.ECHO_BRICK),conditionsFromItem(ModBlocks.ECHO_BRICK)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,ModBlocks.ECHO_BRICK_WALL,6)
+                .input('#', ModBlocks.ECHO_BRICK)
+                .pattern("###")
+                .pattern("###")
+                .criterion(hasItem(ModBlocks.ECHO_BRICK),conditionsFromItem(ModBlocks.ECHO_BRICK)).offerTo(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MOLD, 8)
                 .pattern("OOO")
@@ -156,7 +189,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('D',Items.DIAMOND)
                 .criterion(hasItem(ModItems.POINT_LIGHT_MUSIC_DISC), conditionsFromItem(ModItems.POINT_LIGHT_MUSIC_DISC)).offerTo(exporter);
 
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ROSE_GOLD_INGOT)
                         .input(ModItems.MOLTEN_ROSE_GOLD)
                         .input(ModItems.MOLD)
@@ -232,8 +264,15 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,ModTools.IRON_SPEAR,ModItems.STEEL_INGOT,ModTools.STEEL_SPEAR).offerTo(exporter,"iron_spear_to_steel");
         upgradeItem(ModItems.STEEL_UPGRADE_TEMPLATE,Items.SHEARS,ModItems.STEEL_INGOT,ModTools.STEEL_SHEARS).offerTo(exporter,"iron_shear_to_steel");
 
-
-
+//        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.ENCHANTING_STAND)
+//                .pattern(" B ")
+//                .pattern("GDG")
+//                .pattern(" D ")
+//                .input('B', Items.BOOK)
+//                .input('D', Items.DEEPSLATE)
+//                .input('G', Items.BOOK)
+//                .criterion(hasItem(Items.BOOK), conditionsFromItem(Items.BOOK))
+//                .offerTo(exporter);
 
         /// Guardian Armor
 

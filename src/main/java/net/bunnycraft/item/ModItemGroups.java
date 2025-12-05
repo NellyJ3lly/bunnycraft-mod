@@ -110,7 +110,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ECHO_BRICK_STAIRS);
                         entries.add(ModBlocks.ECHO_BRICK_SLAB);
                         entries.add(ModBlocks.ECHO_BRICK_WALL);
-                        entries.add(ModBlocks.CHISELED_ECHO_BLOCK);
+                        entries.add(ModBlocks.CHISELED_ECHO_BRICK);
 
                         entries.add(ModBlocks.SCULK_WOOD_SAPLING);
                         entries.add(ModBlocks.SCULK_WOOD_LOG);

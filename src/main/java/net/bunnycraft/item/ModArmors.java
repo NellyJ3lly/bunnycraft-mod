@@ -128,7 +128,7 @@ public class ModArmors {
 
     public static void registerModArmors() {
 
-        Bunnycraft.LOGGER.info("Registering Mod Armor for" + Bunnycraft.MOD_ID);
+        Bunnycraft.LOGGER.info("Registering Armor for" + Bunnycraft.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.add(STEEL_HELMET);

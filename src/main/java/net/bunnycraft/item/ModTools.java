@@ -182,7 +182,7 @@ public class ModTools  {
 
     public static void registerModTools() {
 
-        Bunnycraft.LOGGER.info("Registering Mod Tools for" + Bunnycraft.MOD_ID);
+        Bunnycraft.LOGGER.info("Registering Tools for" + Bunnycraft.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             entries.add(STEEL_SHEARS);
