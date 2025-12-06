@@ -1,10 +1,11 @@
-// 1.21.1	2025-12-04T17:49:03.2582375	Bunnycraft/Tags for minecraft:block
+// 1.21.1	2025-12-06T14:15:57.5345902	Bunnycraft/Tags for minecraft:block
 b08dbd6dd1e672f32ff22fb0e531c48093c4f92d data\minecraft\tags\block\mineable\shovel.json
 0452a9ff2ede74e98c4d7431dfddbeaecb1a648b data\bunnycraft\tags\block\blocks_can_echolocate.json
 32b13946c4cd1f944b029659ccce5fcb2adad4ff data\bunnycraft\tags\block\needs_rose_gold_tool.json
 a0476c1730342b6eb066567fbacfb5556f8c0a41 data\minecraft\tags\block\fence_gates.json
 a0476c1730342b6eb066567fbacfb5556f8c0a41 data\minecraft\tags\block\buttons.json
 87a1916e5c0ff3ef6cff1a8de37249984ca0c048 data\minecraft\tags\block\stairs.json
+3ba03686dd3181f31f8996deaa59c25af0c9546b data\minecraft\tags\block\inside_step_sound_blocks.json
 3213b5f7e7854e2fc3ad35bd59d65eec87eb49e4 data\minecraft\tags\block\slabs.json
 a0476c1730342b6eb066567fbacfb5556f8c0a41 data\minecraft\tags\block\pressure_plates.json
 015da52b9f8ccfe43da47d4a4d6a718f68837b9b data\minecraft\tags\block\needs_iron_tool.json

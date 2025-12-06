@@ -38,28 +38,8 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .criterion(hasItem(Template), conditionsFromItem(Template));
     }
 
-    @Override
-    public void generate(RecipeExporter exporter) {
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.PANCAKE_RABBIT, RecipeCategory.DECORATIONS, ModBlocks.PANCAKE_RABBIT_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.COPPER_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.COPPER_BUNNYCOIN_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.GOLD_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.GOLD_BUNNYCOIN_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.DIAMOND_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
-
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.PIPIS, RecipeCategory.DECORATIONS, ModBlocks.PIPIS_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.MS_PIPIS, RecipeCategory.DECORATIONS, ModBlocks.MS_PIPIS_BLOCK);
-
-
-        BunnycoinCrafting.makeCoin(exporter,"cent_copper_conversion",ModItems.COPPER_BUNNYCOIN,ModItems.BUNNYCENT);
-        BunnycoinCrafting.makeCoin(exporter,"copper_gold_conversion",ModItems.GOLD_BUNNYCOIN,ModItems.COPPER_BUNNYCOIN);
-        BunnycoinCrafting.makeCoin(exporter,"gold_diamond_conversion",ModItems.DIAMOND_BUNNYCOIN,ModItems.GOLD_BUNNYCOIN);
-
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_PLANKS,4)
-                .input(ModBlocks.SCULK_WOOD_LOG)
-                .criterion(hasItem(ModBlocks.SCULK_WOOD_LOG),conditionsFromItem(ModBlocks.SCULK_WOOD_LOG)).offerTo(exporter);
-
+    // move more blocks here later
+    public void generateBlockRecipes(RecipeExporter exporter) {
         createSlabRecipe(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_SLAB,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
                 .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS))
                 .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
@@ -100,6 +80,32 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .pattern("###")
                 .criterion(hasItem(ModBlocks.ECHO_BRICK),conditionsFromItem(ModBlocks.ECHO_BRICK)).offerTo(exporter);
 
+    }
+
+    @Override
+    public void generate(RecipeExporter exporter) {
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.PANCAKE_RABBIT, RecipeCategory.DECORATIONS, ModBlocks.PANCAKE_RABBIT_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.COPPER_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.COPPER_BUNNYCOIN_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.GOLD_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.GOLD_BUNNYCOIN_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.DIAMOND_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
+
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.PIPIS, RecipeCategory.DECORATIONS, ModBlocks.PIPIS_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.MS_PIPIS, RecipeCategory.DECORATIONS, ModBlocks.MS_PIPIS_BLOCK);
+
+
+        BunnycoinCrafting.makeCoin(exporter,"cent_copper_conversion",ModItems.COPPER_BUNNYCOIN,ModItems.BUNNYCENT);
+        BunnycoinCrafting.makeCoin(exporter,"copper_gold_conversion",ModItems.GOLD_BUNNYCOIN,ModItems.COPPER_BUNNYCOIN);
+        BunnycoinCrafting.makeCoin(exporter,"gold_diamond_conversion",ModItems.DIAMOND_BUNNYCOIN,ModItems.GOLD_BUNNYCOIN);
+
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_PLANKS,4)
+                .input(ModBlocks.SCULK_WOOD_LOG)
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_LOG),conditionsFromItem(ModBlocks.SCULK_WOOD_LOG)).offerTo(exporter);
+
+        generateBlockRecipes(exporter);
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MOLD, 8)
                 .pattern("OOO")
                 .input('O', Items.CLAY_BALL)
@@ -119,6 +125,15 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('I', Items.IRON_INGOT)
                 .input('L', Items.LEATHER)
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.ECHOLOCATOR, 1)
+                .pattern("#")
+                .pattern("R")
+                .pattern("N")
+                .input('#', Blocks.CALIBRATED_SCULK_SENSOR)
+                .input('R', Blocks.COMPARATOR)
+                .input('N', Items.NETHERITE_INGOT)
+                .criterion(hasItem(Items.ECHO_SHARD), conditionsFromItem(Items.ECHO_SHARD)).offerTo(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK)
                         .pattern("XXX")

@@ -6,7 +6,13 @@
   "overrides": [
     {
       "predicate": {
-        "bunnycraft:echo_fuel": 0
+        "bunnycraft:echo_fuel": 0.0
+      },
+      "model": "bunnycraft:item/empty_echolocator"
+    },
+    {
+      "predicate": {
+        "bunnycraft:echo_fuel": 0.16
       },
       "model": "bunnycraft:item/echolocator"
     }

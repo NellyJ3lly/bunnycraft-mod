@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-04T17:49:03.2512137	Bunnycraft/Recipes
+// 1.21.1	2025-12-06T14:15:57.5265294	Bunnycraft/Recipes
 79e911581d2d343d81f72c5783fd9c160b502b31 data\bunnycraft\advancement\recipes\combat\turtle_chestplate.json
 e1b0fe400a9d0fcb364ee3e632fe1b80065f7cf7 data\bunnycraft\recipe\prismarine_pickaxe.json
 fc07cad9624d13ca5247a2b9d4e28405392b0cba data\bunnycraft\recipe\echo_brick.json
@@ -43,6 +43,7 @@ ed331f76b96432a0f55f81b836130aa16a2f0dcd data\bunnycraft\recipe\diving_boots.jso
 712956bfc1a528f09cf5de08a057a8d7e5dd656b data\bunnycraft\advancement\recipes\tools\golden_spear.json
 1f17854c2554759ff9e5bca3e591ce6bb13af3d8 data\bunnycraft\advancement\recipes\tools\trident.json
 f505cffbcf0d78460ebba84adc2d239497ffc373 data\bunnycraft\advancement\recipes\building_blocks\echo_brick.json
+d976c4032700663d3d1a81f2a5d3ac015380becc data\bunnycraft\recipe\echolocator.json
 29e0341005fb3b7426e798b44ad7fff20f7ad915 data\bunnycraft\advancement\recipes\tools\wooden_cane.json
 65417fa56ea028a2c6129f2d7b2461ac5383a84b data\bunnycraft\recipe\iron_sword_to_steel.json
 87e294db2802da466627019661fa8eea79ee4f94 data\bunnycraft\advancement\recipes\misc\pipis.json
@@ -85,6 +86,7 @@ fb594b3f99e71c479ca1829b7b22dc30bf778452 data\bunnycraft\advancement\recipes\com
 146b5297fb5e4312444db4edee98e6e3186a92f6 data\bunnycraft\advancement\recipes\tools\iron_helmet_to_steel.json
 3d28d4a7cea474f827f625e4c42002261af34850 data\bunnycraft\advancement\recipes\tools\rose_gold_sword.json
 7b00d0680254929ac98b0ff177c16f92419711a8 data\bunnycraft\advancement\recipes\combat\guardian_boots.json
+f67b377b157bb184e6445011582e2e38ab2ea432 data\bunnycraft\advancement\recipes\tools\echolocator.json
 0d4cb676f31f796ff4dfd01e2c985266b68867fc data\bunnycraft\advancement\recipes\decorations\rose_gold_molten_compacting.json
 edda49e75b1375fc471ab92989a7b08c4badb2f8 data\bunnycraft\recipe\guardian_boots.json
 5fcdd6fbf1e5bae1d60bdf8c297f3dbdf10a0de7 data\bunnycraft\recipe\steel_ingot.json

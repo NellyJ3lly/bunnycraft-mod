@@ -26,8 +26,7 @@ public class ModComponents {
             ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
     );
 
-    public static final ComponentType<Float> ECHO_FUEL = register("echo_fuel",
-            floatBuilder -> floatBuilder.codec(Codec.FLOAT));
+    public static final ComponentType<Float> ECHO_FUEL = register("echo_fuel", floatBuilder -> floatBuilder.codec(Codec.FLOAT));
 
     private static <T>ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(Bunnycraft.MOD_ID, name),

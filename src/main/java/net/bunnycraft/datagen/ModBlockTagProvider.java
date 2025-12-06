@@ -106,5 +106,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .forceAddTag(BlockTags.EMERALD_ORES)
                 .add(Blocks.NETHER_QUARTZ_ORE)
                 .add(Blocks.ANCIENT_DEBRIS);
+
+        getOrCreateTagBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS)
+                .add(Blocks.SCULK);
     }
 }

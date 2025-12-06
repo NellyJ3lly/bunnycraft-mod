@@ -25,6 +25,15 @@ public class ModModelPredicates {
         }
 
         ModelPredicateProviderRegistry.register(ModTools.ECHOLOCATOR,Identifier.of(Bunnycraft.MOD_ID,"echo_fuel"),
-                (stack,world,entity,seed) -> stack.get(ModComponents.ECHO_FUEL));
+                (stack,world,entity,seed) -> {
+                    float Fuel = stack.get(ModComponents.ECHO_FUEL);
+
+                    // for some reason it just doesn't want to use the main model so I have to add an override for the main model
+                    if (Fuel == 0) {
+                        return 0.0F;
+                    } else {
+                        return 0.16F;
+                    }
+                });
     }
 }

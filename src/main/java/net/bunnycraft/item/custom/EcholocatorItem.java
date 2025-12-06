@@ -3,6 +3,7 @@ package net.bunnycraft.item.custom;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.util.ModTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.*;
@@ -33,7 +34,7 @@ public class EcholocatorItem extends ToolItem {
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (stack.contains(ModComponents.ECHO_FUEL)) {
-            tooltip.add(Text.literal("Echo Fuel: " + stack.get(ModComponents.ECHO_FUEL)));
+            tooltip.add(Text.literal("Echo Fuel: " + Math.round(getEchoFuel(stack))));
         }
 
         super.appendTooltip(stack, context, tooltip, type);
@@ -72,21 +73,14 @@ public class EcholocatorItem extends ToolItem {
             return false;
         }
 
+
         if (clickType != ClickType.RIGHT) {
             return false;
         } else {
             if (otherStack.isOf(Items.ECHO_SHARD)) {
                 otherStack.decrement(1);
 
-
-
-                if (player.getWorld() instanceof ServerWorld world) {
-                    world.playSound(null,player.getBlockPos(),
-                            SoundEvents.BLOCK_SCULK_PLACE,
-                            SoundCategory.PLAYERS,
-                            1F,1F
-                    );
-                }
+                player.playSound(SoundEvents.BLOCK_SCULK_PLACE, 1F,1F);
 
                 this.addEchoFuel(stack,1);
                 return true;
@@ -169,6 +163,10 @@ public class EcholocatorItem extends ToolItem {
 
             if (!user.isInCreativeMode()) {
                 this.addEchoFuel(stack,-1);
+
+                if (this.getEchoFuel(stack) == 0) {
+                    user.playSound(SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1f,1f);
+                }
             }
 
             user.getItemCooldownManager().set(this,20 + ticksAdded);
