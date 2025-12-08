@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-06T14:15:57.5265294	Bunnycraft/Recipes
+// 1.21.1	2025-12-07T14:24:02.758027	Bunnycraft/Recipes
 79e911581d2d343d81f72c5783fd9c160b502b31 data\bunnycraft\advancement\recipes\combat\turtle_chestplate.json
 e1b0fe400a9d0fcb364ee3e632fe1b80065f7cf7 data\bunnycraft\recipe\prismarine_pickaxe.json
 fc07cad9624d13ca5247a2b9d4e28405392b0cba data\bunnycraft\recipe\echo_brick.json
@@ -54,6 +54,7 @@ af2d50159f501c4619e69465710c0c8429f6efbf data\bunnycraft\recipe\echo_brick_stair
 6cef6a2d22578dead851d942aefd0e3623dfe17c data\bunnycraft\advancement\recipes\decorations\pancake_rabbit_block.json
 d3f9705db0c53d9ff99e8dc7dc526a2f54bb97d5 data\bunnycraft\advancement\recipes\redstone\sculk_wood_trapdoor.json
 bb025d056f9c13ecab4df2c4725fdad8e3b1c864 data\bunnycraft\advancement\recipes\tools\iron_boots_to_steel.json
+08004a75985373a5fd81eea8a3ec3a171c2d178d data\bunnycraft\advancement\recipes\tools\amethyst_book.json
 3b235537104fbfd194547b969170a5056d933ec8 data\bunnycraft\recipe\rose_gold_spear.json
 6fbb69522c20222dcec1de0fbd8a19d8e9844611 data\bunnycraft\advancement\recipes\tools\rose_gold_spear.json
 d4cbcea8a826633e32905b11d242be349921ec80 data\bunnycraft\recipe\diving_chestplate.json
@@ -187,6 +188,7 @@ a10d2737b4551fa8aed720468d7af25cc253a701 data\bunnycraft\recipe\iron_spear.json
 a8539ed1f71a667ac77cb6a9f16ca14bac24e808 data\bunnycraft\recipe\copper_gold_conversion_convert_to_input.json
 6ea652d6a434b17bb3801b91ef3031e8a68de0cc data\bunnycraft\advancement\recipes\combat\turtle_boots.json
 4367e16a317dad578f46b7cc55076b35d34c32a4 data\bunnycraft\advancement\recipes\decorations\pipis_block.json
+ff21492f9dcc40adf228b3f9d9d206ad976d06b9 data\bunnycraft\recipe\amethyst_book.json
 2732256334235f47b19809a08614b926f652038f data\bunnycraft\recipe\rose_gold_ingot.json
 c60b1acbc6a58ead51f6b08786fc073b0497728d data\bunnycraft\advancement\recipes\misc\cent_copper_conversion_convert_to_input.json
 0e42e75b35040857fb4ef543c639024ba6006857 data\bunnycraft\advancement\recipes\decorations\gold_bunnycoin_block.json

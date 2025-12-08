@@ -21,11 +21,13 @@ public class ModItemGroups {
                         entries.add(ModItems.MOLTEN_STEEL);
                         entries.add(ModItems.STEEL_INGOT);
                         entries.add(ModItems.STEEL_UPGRADE_TEMPLATE);
+                        entries.add(ModItems.ECHO_INGOT);
 
                         entries.add(ModItems.MOLD);
                         entries.add(ModTools.CLIMBING_CLAW);
                         entries.add(ModTools.WOODEN_CANE);
                         entries.add(ModItems.VAULT_REWINDER);
+                        entries.add(ModItems.AMETHYST_BOOK);
                         entries.add(ModTools.ECHOLOCATOR);
 
                         entries.add(ModTools.WOODEN_SPEAR);

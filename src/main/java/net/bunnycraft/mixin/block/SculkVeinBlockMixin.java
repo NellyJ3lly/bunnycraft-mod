@@ -27,7 +27,6 @@ public abstract class SculkVeinBlockMixin extends MultifaceGrowthBlock implement
 
     @Unique
     private void convertBlock(WorldAccess world,BlockPos blockPos,BlockState oldBlockstate,BlockState newBlockState) {
-        System.out.println(world.getBlockState(blockPos.add(0,1,0)));
         world.setBlockState(blockPos, newBlockState, 3);
         Block.pushEntitiesUpBeforeBlockChange(oldBlockstate, newBlockState, world, blockPos);
         world.playSound((PlayerEntity) null, blockPos, SoundEvents.BLOCK_SCULK_SPREAD, SoundCategory.BLOCKS, 1.0F, 1.0F);

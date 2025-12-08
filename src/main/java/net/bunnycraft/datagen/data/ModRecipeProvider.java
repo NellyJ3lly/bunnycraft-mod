@@ -1,4 +1,4 @@
-package net.bunnycraft.datagen;
+package net.bunnycraft.datagen.data;
 
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
@@ -125,6 +125,16 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('I', Items.IRON_INGOT)
                 .input('L', Items.LEATHER)
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.AMETHYST_BOOK, 1)
+                .pattern("###")
+                .pattern("#BG")
+                .pattern("LG ")
+                .input('#', Items.AMETHYST_SHARD)
+                .input('B', Items.BOOK)
+                .input('G', Items.GOLD_INGOT)
+                .input('L',Items.LAPIS_LAZULI)
+                .criterion(hasItem(Items.AMETHYST_SHARD), conditionsFromItem(Items.AMETHYST_SHARD)).offerTo(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.ECHOLOCATOR, 1)
                 .pattern("#")

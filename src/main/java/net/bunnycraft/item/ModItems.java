@@ -1,10 +1,12 @@
 package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
-import net.bunnycraft.block.ModBlocks;
-import net.bunnycraft.item.custom.EcholocatorItem;
+import net.bunnycraft.item.custom.AmethystBookItem;
+import net.bunnycraft.item.custom.EnchantedAmethystBookItem;
 import net.bunnycraft.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
@@ -12,6 +14,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,10 +26,12 @@ public class ModItems {
     //registering as an ingot adds it to a public list currently used only by cauldron alloyer
     public static  final Item ROSE_GOLD_INGOT = registerIngot("rose_gold_ingot", new Item(new Item.Settings()));
     public static  final Item STEEL_INGOT = registerIngot("steel_ingot", new Item(new Item.Settings()));
-    public static  final Item BREEZE_BAR = registerIngot("breeze_bar", new Item(new Item.Settings()));
+    public static  final Item BREEZE_INGOT = registerIngot("breeze_ingot", new Item(new Item.Settings()));
+    public static  final Item ECHO_INGOT = registerIngot("echo_ingot", new Item(new Item.Settings()));
 
-    public static  final Item PIPIS = registerItem("pipis", new Item(new Item.Settings()));
-    public static  final Item MS_PIPIS = registerItem("ms_pipis", new Item(new Item.Settings()));
+    public static  final Item AMETHYST_BOOK = registerItem("amethyst_book", new AmethystBookItem(new Item.Settings()));
+    public static  final Item ENCHANTED_AMETHYST_BOOK = registerItem("enchanted_amethyst_book", new EnchantedAmethystBookItem(new Item.Settings().maxCount(1).component(DataComponentTypes.STORED_ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT).component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true).component(DataComponentTypes.RARITY, Rarity.RARE)));
+
     public static  final Item VAULT_REWINDER = registerItem("vault_rewinder", new Item(new Item.Settings()));
     public static  final Item STEEL_UPGRADE_TEMPLATE = registerItem("steel_upgrade_template", new Item(new Item.Settings()));
 
@@ -43,6 +48,9 @@ public class ModItems {
     public static  final Item COPPER_BUNNYCOIN = registerItem("copper_bunnycoin", new Item(new Item.Settings()));
     public static  final Item GOLD_BUNNYCOIN = registerItem("gold_bunnycoin", new Item(new Item.Settings()));
     public static  final Item DIAMOND_BUNNYCOIN = registerItem("diamond_bunnycoin", new Item(new Item.Settings()));
+
+    public static  final Item PIPIS = registerItem("pipis", new Item(new Item.Settings()));
+    public static  final Item MS_PIPIS = registerItem("ms_pipis", new Item(new Item.Settings()));
 
     public static  final Item MOLD = registerItem("mold", new Item( new Item.Settings()));
 

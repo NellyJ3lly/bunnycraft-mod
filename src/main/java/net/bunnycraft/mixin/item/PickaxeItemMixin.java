@@ -49,7 +49,7 @@ public class PickaxeItemMixin extends MiningToolItem {
 
         tooltip.add( damageToolTip.formatted(Formatting.GRAY) ); // appends the tooltip
 
-        Bunnycraft.LOGGER.info(tooltip.toString());
+//        Bunnycraft.LOGGER.info(tooltip.toString());
 
         super.appendTooltip(stack, context, tooltip, type);
     }

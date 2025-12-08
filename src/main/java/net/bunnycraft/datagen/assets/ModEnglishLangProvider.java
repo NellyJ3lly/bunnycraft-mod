@@ -1,7 +1,6 @@
-package net.bunnycraft.datagen;
+package net.bunnycraft.datagen.assets;
 
 import net.bunnycraft.block.ModBlocks;
-import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;

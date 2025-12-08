@@ -607,7 +607,6 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
     private boolean addStackifEmpty(ItemStack stack,PlayerEntity player,int Slot) {
         if (maxStackPerItem <= stack.getCount()) {
-            System.out.println(player.isInSneakingPose());
             if (player.isSprinting()) {
                 this.setStack(Slot, stack.copyWithCount(maxStackPerItem));
                 stack.decrement(maxStackPerItem);

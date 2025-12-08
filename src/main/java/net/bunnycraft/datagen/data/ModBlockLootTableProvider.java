@@ -1,6 +1,5 @@
-package net.bunnycraft.datagen;
+package net.bunnycraft.datagen.data;
 
-import net.bunnycraft.block.EchoClusterBlock;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

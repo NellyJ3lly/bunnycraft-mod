@@ -1,4 +1,4 @@
-package net.bunnycraft.datagen;
+package net.bunnycraft.datagen.data;
 
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
@@ -10,15 +10,11 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 
-import javax.swing.text.html.HTML;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-
-import static com.ibm.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 

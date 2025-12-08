@@ -3,6 +3,7 @@
   "package": "net.bunnycraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EnchantmentHelperMixin",
     "block.BrushableBlockDropXP",
     "block.CauldronAlloyerMixin",
     "block.DispenserUsesMoreShears",
@@ -25,7 +26,9 @@
     "item.PickaxeItemMixin",
     "item.ShearsBecomeSwordMixin",
     "item.ShovelItemMixin",
-    "item.attribute.ItemAttributesMixin"
+    "item.attribute.ItemAttributesMixin",
+    "screen.EnchantmentScreenHandlerMixin",
+    "screen.GrindstoneScreenHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

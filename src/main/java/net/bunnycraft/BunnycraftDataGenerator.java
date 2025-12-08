@@ -1,6 +1,8 @@
 package net.bunnycraft;
 
 import net.bunnycraft.datagen.*;
+import net.bunnycraft.datagen.assets.ModModelProvider;
+import net.bunnycraft.datagen.data.*;
 import net.bunnycraft.trim.ModTrimMaterials;
 import net.bunnycraft.trim.ModTrimPatterns;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;

@@ -61,8 +61,6 @@ public class BuddingEchoBlock extends ExperienceDroppingBlock implements SculkSp
     protected void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         super.onBlockAdded(state, world, pos, oldState, notify);
 
-        System.out.println("HI");
-
         convertAboveBlock(world,pos);
     }
 

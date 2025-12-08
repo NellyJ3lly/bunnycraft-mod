@@ -1,7 +1,8 @@
-package net.bunnycraft.datagen;
+package net.bunnycraft.datagen.assets;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.ibm.icu.text.Normalizer2;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.item.ModItems;
@@ -62,7 +63,7 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator gen) {
         gen.register(ModItems.STEEL_INGOT, Models.GENERATED);
-        gen.register(ModItems.BREEZE_BAR, Models.GENERATED);
+        gen.register(ModItems.BREEZE_INGOT, Models.GENERATED);
         gen.register(ModItems.ROSE_GOLD_INGOT, Models.GENERATED);
         gen.register(ModItems.PANCAKE_RABBIT, Models.GENERATED);
         gen.register(ModItems.STEEL_UPGRADE_TEMPLATE, Models.GENERATED);
@@ -85,6 +86,11 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.MOLTEN_STEEL, Models.GENERATED);
         gen.register(ModItems.MOLTEN_NETHERITE, Models.GENERATED);
         gen.register(ModItems.MOLD, Models.GENERATED);
+
+        gen.register(ModItems.AMETHYST_BOOK,Models.GENERATED);
+        gen.register(ModItems.ENCHANTED_AMETHYST_BOOK,Models.GENERATED);
+        gen.register(ModItems.ECHO_INGOT,Models.GENERATED);
+
 
         gen.register(ModTools.STEEL_SHEARS,Models.GENERATED);
 
