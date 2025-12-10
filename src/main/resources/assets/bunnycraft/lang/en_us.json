@@ -12,9 +12,16 @@
   "block.bunnycraft.steel_block": "Block of Steel",
 
   "tooltip.bunnycraft.empty_slot.instructions": "This item reserves a slot for your spear, Drop to delete",
+  "tooltip.bunnycraft.sculk_cane.instructions": "Allows you to enter the sculk while sneaking",
 
   "item.bunnycraft.rose_gold_ingot": "Rose Gold Ingot",
   "item.bunnycraft.molten_rose_gold": "Bucket of Molten Rose Gold",
+
+  "item.bunnycraft.amethyst_book": "Amethyst Book",
+  "item.bunnycraft.enchanted_amethyst_book": "Enchanted Amethyst Book",
+  "item.bunnycraft.sculk_cane": "Sculk Cane",
+  "item.bunnycraft.amethyst_upgrade_template": "Amethyst Upgrade Template",
+  "item.bunnycraft.echo_ingot": "Echo Ingot",
 
   "item.bunnycraft.steel_ingot": "Steel Ingot",
   "item.bunnycraft.molten_steel": "Bucket of Molten Steel",

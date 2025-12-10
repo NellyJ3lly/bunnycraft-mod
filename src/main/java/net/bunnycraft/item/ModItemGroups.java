@@ -22,10 +22,12 @@ public class ModItemGroups {
                         entries.add(ModItems.STEEL_INGOT);
                         entries.add(ModItems.STEEL_UPGRADE_TEMPLATE);
                         entries.add(ModItems.ECHO_INGOT);
+                        entries.add(ModItems.AMETHYST_UPGRADE_TEMPLATE);
 
                         entries.add(ModItems.MOLD);
                         entries.add(ModTools.CLIMBING_CLAW);
                         entries.add(ModTools.WOODEN_CANE);
+                        entries.add(ModTools.SCULK_CANE);
                         entries.add(ModItems.VAULT_REWINDER);
                         entries.add(ModItems.AMETHYST_BOOK);
                         entries.add(ModTools.ECHOLOCATOR);
@@ -74,6 +76,9 @@ public class ModItemGroups {
                         entries.add(ModArmors.COPPER_CHESTPLATE);
                         entries.add(ModArmors.COPPER_LEGGINGS);
                         entries.add(ModArmors.COPPER_BOOTS);
+
+                        entries.add(ModArmors.AMETHYST_HELMET);
+                        entries.add(ModArmors.AMETHYST_CHESTPLATE);
 
                         entries.add(ModArmors.STEEL_HELMET);
                         entries.add(ModArmors.STEEL_CHESTPLATE);

@@ -3,11 +3,13 @@ package net.bunnycraft.mixin.block;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.interfaces.ConvertableBlocks;
 import net.bunnycraft.interfaces.SpreadableBlock;
+import net.bunnycraft.item.ModTools;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.SculkSpreadManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -41,28 +43,26 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
     }
 
     @Unique
+    private boolean getSculkCane(PlayerEntity playerEntity) {
+        return playerEntity.getStackInHand(Hand.MAIN_HAND).isOf(ModTools.SCULK_CANE) || playerEntity.getStackInHand(Hand.OFF_HAND).isOf(ModTools.SCULK_CANE);
+    }
+
+
+    @Unique
     private boolean checkIfPlayerIsInSculk(BlockView world, ShapeContext context) {
         if (context instanceof EntityShapeContext entityShapeContext) {
             if (entityShapeContext.getEntity() instanceof PlayerEntity player) {
-                if (player.isSneaking()
-                        || world.getBlockState(player.getBlockPos()).isOf(Blocks.SCULK)
-                        || world.getBlockState(player.getBlockPos().add(0,1,0)).isOf(Blocks.SCULK)) {
-                    return true;
-                } else {
-                    return false;
-                }
+                boolean insideSculk = world.getBlockState(player.getBlockPos()).isOf(Blocks.SCULK) || world.getBlockState(player.getBlockPos().add(0,1,0)).isOf(Blocks.SCULK);
+                return (getSculkCane(player) && player.isSneaking()) || insideSculk;
             }
         }
         return false;
     }
 
-
-
     @Override
     protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!(entity instanceof LivingEntity) || entity.getBlockStateAtPos().isOf(this)) {
-            entity.slowMovement(state, new Vec3d(1F,1F,1F));
-//            entity.slowMovement(state, new Vec3d((double) 1.5F, (double) 1.5F, (double) 1.5F));
+            entity.slowMovement(state, new Vec3d(0.9F,1F,0.9F));
         }
     }
 

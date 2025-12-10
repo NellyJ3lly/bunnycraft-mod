@@ -13,11 +13,14 @@ import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ModTools  {
@@ -38,6 +41,20 @@ public class ModTools  {
             new CaneItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
                     CaneItem.createAttributeModifiers(ToolMaterials.WOOD,0.1f,1f,2,-3f,2f)
             )));
+
+    public static final Item SCULK_CANE = registerTool("sculk_cane",
+            new CaneItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
+                    CaneItem.createAttributeModifiers(ToolMaterials.WOOD,0.08f,1f,5,-2f,3f)
+            )){
+                @Override
+                public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+
+                    //tells what the empty slot item does
+                    tooltip.add(Text.translatable("tooltip.bunnycraft.sculk_cane.instructions"));
+
+                    super.appendTooltip(stack, context, tooltip, type);
+                }
+            });
 
     // WOODEN TOOLS
     public static final Item WOODEN_SPEAR = registerTool("wooden_spear", new SpearItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(

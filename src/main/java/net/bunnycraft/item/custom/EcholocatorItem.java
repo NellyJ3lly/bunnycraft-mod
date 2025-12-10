@@ -31,6 +31,9 @@ public class EcholocatorItem extends ToolItem {
         super(ToolMaterials.NETHERITE,settings);
     }
 
+    int HorizontalRange = 4;
+    int VerticalRange = 4;
+
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         if (stack.contains(ModComponents.ECHO_FUEL)) {
@@ -118,10 +121,7 @@ public class EcholocatorItem extends ToolItem {
     }
 
     public int IterateBlocks(World world,PlayerEntity user) {
-        int RangeX = 4;
-        int RangeY = 4;
-        int RangeZ = 4;
-        Iterable<BlockPos> blocks = BlockPos.iterateOutwards(user.getBlockPos(), RangeX, RangeY, RangeZ);
+        Iterable<BlockPos> blocks = BlockPos.iterateOutwards(user.getBlockPos(), HorizontalRange, VerticalRange, HorizontalRange);
 
         int blocksDetected = 0;
 

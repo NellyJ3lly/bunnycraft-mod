@@ -122,6 +122,13 @@ public class ModArmors {
                     }
             });
 
+    public static final Item AMETHYST_HELMET = registerItem("amethyst_helmet",
+            new AmethystArmorItem(ModArmorMaterials.AMETHYST_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(12))));
+    public static final Item AMETHYST_CHESTPLATE = registerItem("amethyst_chestplate",
+            new AmethystArmorItem(ModArmorMaterials.AMETHYST_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(12))));
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(Bunnycraft.MOD_ID,name), item);
     }

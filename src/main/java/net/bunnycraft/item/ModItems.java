@@ -3,6 +3,7 @@ package net.bunnycraft.item;
 import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.item.custom.AmethystBookItem;
 import net.bunnycraft.item.custom.EnchantedAmethystBookItem;
+import net.bunnycraft.item.custom.ModSmithingTemplateItem;
 import net.bunnycraft.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.DataComponentTypes;
@@ -35,6 +36,8 @@ public class ModItems {
     public static  final Item VAULT_REWINDER = registerItem("vault_rewinder", new Item(new Item.Settings()));
     public static  final Item STEEL_UPGRADE_TEMPLATE = registerItem("steel_upgrade_template", new Item(new Item.Settings()));
 
+    public static  final Item AMETHYST_UPGRADE_TEMPLATE = registerItem("amethyst_upgrade_template",new Item(new Item.Settings()));
+
     public static  final Item TRUE = registerItem("true", new Item(new Item.Settings()));
     public static  final Item POINT_LIGHT_MUSIC_DISC = registerItem("point_light_music_disc", new Item(new Item.Settings().jukeboxPlayable(ModSounds.POINT_LIGHT_KEY).maxCount(1)));
 
@@ -56,7 +59,6 @@ public class ModItems {
 
     //item that reserves a slot for your spear
     public static final Item EMPTY_SPEAR_SLOT = registerItem("empty_spear_slot", new Item(new Item.Settings().maxCount(1)) {
-
         //appends a tooltip within an anonymous class
         @Override
         public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
@@ -66,7 +68,6 @@ public class ModItems {
 
             super.appendTooltip(stack, context, tooltip, type);
         }
-
     });
 
     private static Item registerItem(String name, Item item) {

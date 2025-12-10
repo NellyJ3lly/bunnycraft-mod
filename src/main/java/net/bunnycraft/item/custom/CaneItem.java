@@ -1,5 +1,6 @@
 package net.bunnycraft.item.custom;
 
+import com.sun.jna.platform.win32.NTSecApi;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
@@ -21,6 +22,8 @@ public class CaneItem extends ToolItem {
     private static final Identifier STEP_HEIGHT_ID = Identifier.ofVanilla("generic_step_height");
     private static final Identifier REACH_ID = Identifier.ofVanilla("player_entity_interaction_range");
     private ComponentType<AttributeModifiersComponent> attributeModifiers;
+
+
 
     public CaneItem(ToolMaterials material, Settings settings) {
         super(material, settings);

@@ -27,6 +27,5 @@ public class SculkSaplingBlock extends SaplingBlock implements SpreadableBlock {
     @Override
     public void generate(ServerWorld world, BlockPos pos, BlockState state, Random random) {
         super.generate(world, pos, state, random);
-        this.PlaceSculkVeins(world,pos);
     }
 }

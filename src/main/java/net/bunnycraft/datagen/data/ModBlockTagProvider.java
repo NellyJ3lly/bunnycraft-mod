@@ -4,6 +4,7 @@ import net.bunnycraft.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.bunnycraft.util.ModTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -37,7 +38,6 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.COPPER_BUNNYCOIN_BLOCK)
                 .add(ModBlocks.GOLD_BUNNYCOIN_BLOCK)
                 .add(ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
-        ;
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.PANCAKE_RABBIT_ORE)
@@ -88,6 +88,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.SMALL_AMETHYST_BUD)
                 .add(Blocks.MEDIUM_AMETHYST_BUD)
                 .add(Blocks.LARGE_AMETHYST_BUD);
+
+        getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE)
+                .add(Blocks.AMETHYST_BLOCK)
+                .add(Blocks.BUDDING_AMETHYST);
 
         getOrCreateTagBuilder(BlockTags.CLIMBABLE)
                 .add(Blocks.SCULK);

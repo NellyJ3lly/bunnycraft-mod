@@ -7,12 +7,16 @@ import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Overwrite;
+
+import java.util.List;
 
 public class AmethystBookItem extends BookItem {
     public AmethystBookItem(Item.Settings settings) {
@@ -24,7 +28,7 @@ public class AmethystBookItem extends BookItem {
         return 25;
     }
 
-    public void giveItem(World world, PlayerEntity user, Hand hand,ItemStack stack) {
+    public void giveItem(PlayerEntity user, Hand hand,ItemStack stack) {
         user.getStackInHand(hand).decrement(1);
 
         if (user.getInventory().getEmptySlot() == -1) {
@@ -32,8 +36,14 @@ public class AmethystBookItem extends BookItem {
         } else {
             user.giveItemStack(stack);
         }
+    }
 
-        user.playSound(SoundEvents.ITEM_BOOK_PAGE_TURN);
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        // make this a translation later
+        tooltip.add(Text.literal("Right click with this book in your hand and an Enchanted book in the other hand to duplicate it!"));
+
+        super.appendTooltip(stack, context, tooltip, type);
     }
 
     @Override
@@ -45,7 +55,9 @@ public class AmethystBookItem extends BookItem {
             ItemStack newAmethystBook = ModItems.ENCHANTED_AMETHYST_BOOK.getDefaultStack();
             newAmethystBook.set(DataComponentTypes.STORED_ENCHANTMENTS,itemInOtherHand.get(DataComponentTypes.STORED_ENCHANTMENTS));
 
-            giveItem(world,user,hand,newAmethystBook);
+            giveItem(user,hand,newAmethystBook);
+
+            user.playSound(SoundEvents.ITEM_BOOK_PAGE_TURN);
             return TypedActionResult.success(user.getStackInHand(hand));
         }
         return TypedActionResult.fail(user.getStackInHand(hand));

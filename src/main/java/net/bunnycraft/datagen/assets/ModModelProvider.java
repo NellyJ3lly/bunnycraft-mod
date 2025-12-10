@@ -90,7 +90,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.AMETHYST_BOOK,Models.GENERATED);
         gen.register(ModItems.ENCHANTED_AMETHYST_BOOK,Models.GENERATED);
         gen.register(ModItems.ECHO_INGOT,Models.GENERATED);
-
+        gen.register(ModItems.AMETHYST_UPGRADE_TEMPLATE,Models.GENERATED);
 
         gen.register(ModTools.STEEL_SHEARS,Models.GENERATED);
 
