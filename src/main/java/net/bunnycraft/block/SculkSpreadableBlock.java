@@ -1,19 +1,97 @@
 package net.bunnycraft.block;
 
+import net.bunnycraft.item.ModTools;
+import net.bunnycraft.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.SculkSpreadManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.spongepowered.asm.mixin.Unique;
 
 public class SculkSpreadableBlock extends Block implements SculkSpreadable {
     public SculkSpreadableBlock(Settings settings) {
         super(settings);
+    }
+
+    @Unique
+    private boolean getSculkCane(PlayerEntity playerEntity) {
+        return playerEntity.getStackInHand(Hand.MAIN_HAND).isOf(ModTools.SCULK_CANE) || playerEntity.getStackInHand(Hand.OFF_HAND).isOf(ModTools.SCULK_CANE);
+    }
+
+
+    @Unique
+    private boolean checkIfPlayerIsInSculk(BlockView world, ShapeContext context) {
+        if (context instanceof EntityShapeContext entityShapeContext) {
+            if (entityShapeContext.getEntity() instanceof PlayerEntity player) {
+                boolean insideSculk = world.getBlockState(player.getBlockPos()).isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS) || world.getBlockState(player.getBlockPos().add(0,1,0)).isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS);
+                return (getSculkCane(player) && player.isSneaking()) || insideSculk;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (!(entity instanceof LivingEntity) || entity.getBlockStateAtPos().isOf(this)) {
+            entity.slowMovement(state, new Vec3d(0.9F,1F,0.9F));
+        }
+    }
+
+    protected VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
+        return VoxelShapes.empty();
+    }
+
+    protected boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+        return stateFrom.isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS) || super.isSideInvisible(state, stateFrom, direction);
+    }
+
+    @Override
+    protected VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (checkIfPlayerIsInSculk(world,context)) {
+            return VoxelShapes.empty();
+        }
+
+        return super.getCameraCollisionShape(state, world, pos, context);
+    }
+
+    @Override
+    public boolean hasDynamicBounds() {
+        return true;
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (context instanceof EntityShapeContext entityShapeContext) {
+            if (entityShapeContext.getEntity() instanceof PlayerEntity player) {
+                boolean bool = context.isAbove(VoxelShapes.fullCube(), pos, false)
+                        || world.getBlockState(player.getBlockPos().add(0,-1,0)).isAir();
+
+                if (bool && !context.isDescending()) {
+                    return super.getCollisionShape(state, world, pos, context);
+                }
+//
+                if (checkIfPlayerIsInSculk(world,context)) {
+                    return VoxelShapes.empty();
+                }
+            }
+        }
+
+        return super.getCollisionShape(state, world, pos, context);
     }
 
     @Override

@@ -1,8 +1,10 @@
 package net.bunnycraft.mixin.entity;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.util.ModTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
@@ -123,7 +125,7 @@ public abstract class LivingEntityMixin {
             method = "Lnet/minecraft/entity/LivingEntity;isClimbing()Z",
             at = @At("TAIL"))
     public boolean Bunnycraft$LetClimbClawClimb(boolean original) {
-        if (entity.getBlockStateAtPos().isOf(Blocks.SCULK) && entity.getMovement().y <= 0) {
+        if (entity.getBlockStateAtPos().isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS) && entity.getMovement().y <= 0) {
             return false;
         }
 
@@ -161,7 +163,7 @@ public abstract class LivingEntityMixin {
             return new Vec3d(originalMotion.x, originalMotion.y * climbSpeed, originalMotion.z);
         }
 
-        if (entity.getBlockStateAtPos().isOf(Blocks.SCULK)
+        if (entity.getBlockStateAtPos().isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS)
                 || entity.getWorld().getBlockState(
                         entity.getBlockPos().add(0,-1,0)).isOf(Blocks.SCULK)) {
             return entity.getMovement();

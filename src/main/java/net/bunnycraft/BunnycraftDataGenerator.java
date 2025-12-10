@@ -16,12 +16,12 @@ public class BunnycraftDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		pack.addProvider(ModItemTagProvider::new);
-		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModBlockLootTableProvider::new);
 		pack.addProvider(ModRegistryDataGenerator::new);
 		pack.addProvider(ModSimpleLootTableProvider::new);
+		pack.addProvider(ModRecipeProvider::new);
 //		pack.addProvider(ModEnglishLangProvider::new);
 	}
 

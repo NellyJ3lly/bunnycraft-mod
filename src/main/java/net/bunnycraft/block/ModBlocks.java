@@ -33,7 +33,6 @@ public class ModBlocks {
                     .nonOpaque()
                     .sounds(BlockSoundGroup.STONE)));
 
-
     // we will need to change the strengths and actual stuff to mine these blocks
     // for now I'm leaving it as is to focus on other things
     public static final Block COPPER_BUNNYCOIN_BLOCK = registerBlock("copper_bunnycoin_block",
@@ -49,20 +48,13 @@ public class ModBlocks {
     public static final Block ROSE_GOLD_BLOCK = registerBlock("rose_gold_block",
             new Block(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(BlockSoundGroup.METAL)));
 
-    public static final Block BUDDING_ECHO = registerBlock("budding_echo", new BuddingEchoBlock(
-            AbstractBlock.Settings.create().mapColor(MapColor.BLUE).ticksRandomly().strength(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block ECHO_BLOCK = registerBlock("echo_block",
-            new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
-    public static final Block ECHO_BRICK = registerBlock("echo_brick",
-            new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
-    public static final Block ECHO_BRICK_STAIRS = registerBlock("echo_brick_stairs",
-            new StairsBlock(ModBlocks.ECHO_BRICK.getDefaultState(),AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
-    public static final Block ECHO_BRICK_SLAB = registerBlock("echo_brick_slab",
-            new SlabBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
-    public static final Block ECHO_BRICK_WALL = registerBlock("echo_brick_wall",
-            new WallBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
-    public static final Block CHISELED_ECHO_BRICK = registerBlock("chiseled_echo_brick",
-            new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
+    public static final Block BUDDING_ECHO = registerBlock("budding_echo", new BuddingEchoBlock(AbstractBlock.Settings.create().mapColor(MapColor.BLUE).ticksRandomly().strength(1.5F).sounds(BlockSoundGroup.AMETHYST_BLOCK).requiresTool().pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block ECHO_BLOCK = registerBlock("echo_block", new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+    public static final Block ECHO_BRICK = registerBlock("echo_brick", new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
+    public static final Block ECHO_BRICK_STAIRS = registerBlock("echo_brick_stairs", new StairsBlock(ModBlocks.ECHO_BRICK.getDefaultState(),AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
+    public static final Block ECHO_BRICK_SLAB = registerBlock("echo_brick_slab", new SlabBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
+    public static final Block ECHO_BRICK_WALL = registerBlock("echo_brick_wall", new WallBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
+    public static final Block CHISELED_ECHO_BRICK = registerBlock("chiseled_echo_brick", new SculkSpreadableBlock(AbstractBlock.Settings.create().strength(1.5f).requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
 
 
     public static final Block ECHO_CLUSTER = registerBlock("echo_cluster",

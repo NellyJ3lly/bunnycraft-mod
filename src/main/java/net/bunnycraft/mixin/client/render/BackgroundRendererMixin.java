@@ -1,6 +1,7 @@
 package net.bunnycraft.mixin.client.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.bunnycraft.util.ModTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
@@ -35,7 +36,7 @@ public class BackgroundRendererMixin {
             at = @At("TAIL")
     )
     private static void SculkFogColor(Camera camera, float tickDelta, ClientWorld world, int viewDistance, float skyDarkness, CallbackInfo ci) {
-        if (world.getBlockState(camera.getBlockPos()).isOf(Blocks.SCULK)) {
+        if (world.getBlockState(camera.getBlockPos()).isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS)) {
             red = 0.1F;
             green = 0.2F;
             blue = 0.2F;

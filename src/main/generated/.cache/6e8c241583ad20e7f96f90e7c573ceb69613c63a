@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-07T21:10:58.1804748	Bunnycraft/Tags for minecraft:block
+// 1.21.1	2025-12-10T16:28:33.3139592	Bunnycraft/Tags for minecraft:block
 b08dbd6dd1e672f32ff22fb0e531c48093c4f92d data\minecraft\tags\block\mineable\shovel.json
 0452a9ff2ede74e98c4d7431dfddbeaecb1a648b data\bunnycraft\tags\block\blocks_can_echolocate.json
 32b13946c4cd1f944b029659ccce5fcb2adad4ff data\bunnycraft\tags\block\needs_rose_gold_tool.json
@@ -7,6 +7,7 @@ a0476c1730342b6eb066567fbacfb5556f8c0a41 data\minecraft\tags\block\buttons.json
 87a1916e5c0ff3ef6cff1a8de37249984ca0c048 data\minecraft\tags\block\stairs.json
 3ba03686dd3181f31f8996deaa59c25af0c9546b data\minecraft\tags\block\inside_step_sound_blocks.json
 3213b5f7e7854e2fc3ad35bd59d65eec87eb49e4 data\minecraft\tags\block\slabs.json
+142370368e43b7d4da321528401df987a6ce35d4 data\minecraft\tags\block\sculk_replaceable.json
 a0476c1730342b6eb066567fbacfb5556f8c0a41 data\minecraft\tags\block\pressure_plates.json
 015da52b9f8ccfe43da47d4a4d6a718f68837b9b data\minecraft\tags\block\needs_iron_tool.json
 cfafc876974ff82a9f19a42f29c8c742bb0f6d21 data\minecraft\tags\block\mineable\pickaxe.json
@@ -15,6 +16,7 @@ fb47e9f24381515b366ed2e571fab9abec69da82 data\bunnycraft\tags\block\sculk_replac
 a7565416034fb293546d6be2c47321f09bf5eda7 data\bunnycraft\tags\block\needs_steel_tool.json
 aaee994e78534cf4648603389545a98b000c24e7 data\minecraft\tags\block\logs.json
 6d526f4b631e56716406556e6599fa9b14981c77 data\minecraft\tags\block\walls.json
-3ba03686dd3181f31f8996deaa59c25af0c9546b data\minecraft\tags\block\climbable.json
+ddf6ccee09f96a41198e180da3d95c890ea62ef0 data\minecraft\tags\block\climbable.json
 32b13946c4cd1f944b029659ccce5fcb2adad4ff data\bunnycraft\tags\block\needs_copper_tool.json
 b08dbd6dd1e672f32ff22fb0e531c48093c4f92d data\minecraft\tags\block\needs_stone_tool.json
+df97f0cb5621a73b91ed1c152e1eb0e476106034 data\bunnycraft\tags\block\collidable_sculk_blocks.json

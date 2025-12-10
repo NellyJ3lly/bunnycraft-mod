@@ -19,7 +19,6 @@ import java.util.stream.Stream;
 
 @Mixin(EnchantmentHelper.class)
 public class EnchantmentHelperMixin {
-
     @Unique
     private static boolean hasAmethystBook = false;
 

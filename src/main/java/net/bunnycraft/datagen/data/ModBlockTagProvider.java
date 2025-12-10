@@ -93,8 +93,15 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.AMETHYST_BLOCK)
                 .add(Blocks.BUDDING_AMETHYST);
 
+        getOrCreateTagBuilder(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS)
+                .add(Blocks.SCULK)
+                .add(ModBlocks.BUDDING_ECHO)
+                .add(ModBlocks.ECHO_BLOCK)
+                .add(ModBlocks.ECHO_BRICK);
+
         getOrCreateTagBuilder(BlockTags.CLIMBABLE)
-                .add(Blocks.SCULK);
+                .addTag(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS);
+
 
         getOrCreateTagBuilder(ModTags.Blocks.BLOCKS_CAN_ECHOLOCATE)
                 .forceAddTag(BlockTags.DIAMOND_ORES)

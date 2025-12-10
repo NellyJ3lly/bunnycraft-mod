@@ -4,6 +4,7 @@ import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.interfaces.ConvertableBlocks;
 import net.bunnycraft.interfaces.SpreadableBlock;
 import net.bunnycraft.item.ModTools;
+import net.bunnycraft.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.SculkSpreadManager;
 import net.minecraft.entity.Entity;
@@ -32,16 +33,6 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
         super(experienceDropped, settings);
     }
 
-    private static final VoxelShape FALLING_SHAPE = VoxelShapes.cuboid((double)0.0F, (double)0.0F, (double)0.0F, (double)1.0F, (double)0.9F, (double)1.0F);
-
-    // I'm pretty sure this is fine as an override because the block itself doesn't have this method
-    @Override
-    protected void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        super.onBlockAdded(state, world, pos, oldState, notify);
-
-        convertAboveBlock(world,pos);
-    }
-
     @Unique
     private boolean getSculkCane(PlayerEntity playerEntity) {
         return playerEntity.getStackInHand(Hand.MAIN_HAND).isOf(ModTools.SCULK_CANE) || playerEntity.getStackInHand(Hand.OFF_HAND).isOf(ModTools.SCULK_CANE);
@@ -52,7 +43,7 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
     private boolean checkIfPlayerIsInSculk(BlockView world, ShapeContext context) {
         if (context instanceof EntityShapeContext entityShapeContext) {
             if (entityShapeContext.getEntity() instanceof PlayerEntity player) {
-                boolean insideSculk = world.getBlockState(player.getBlockPos()).isOf(Blocks.SCULK) || world.getBlockState(player.getBlockPos().add(0,1,0)).isOf(Blocks.SCULK);
+                boolean insideSculk = world.getBlockState(player.getBlockPos()).isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS) || world.getBlockState(player.getBlockPos().add(0,1,0)).isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS);
                 return (getSculkCane(player) && player.isSneaking()) || insideSculk;
             }
         }
@@ -71,7 +62,7 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
     }
 
     protected boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        return stateFrom.isOf(this) ? true : super.isSideInvisible(state, stateFrom, direction);
+        return stateFrom.isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS) || super.isSideInvisible(state, stateFrom, direction);
     }
 
     @Override
@@ -80,7 +71,7 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
             return VoxelShapes.empty();
         }
 
-        return super.getCollisionShape(state, world, pos, context);
+        return super.getCameraCollisionShape(state, world, pos, context);
     }
 
     @Override
@@ -92,7 +83,6 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
     protected VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if (context instanceof EntityShapeContext entityShapeContext) {
             if (entityShapeContext.getEntity() instanceof PlayerEntity player) {
-
                 boolean bool = context.isAbove(VoxelShapes.fullCube(), pos, false)
                         || world.getBlockState(player.getBlockPos().add(0,-1,0)).isAir();
 
@@ -107,6 +97,14 @@ public abstract class SculkBlockMixin extends ExperienceDroppingBlock implements
         }
 
         return super.getCollisionShape(state, world, pos, context);
+    }
+
+    // I'm pretty sure this is fine as an override because the block itself doesn't have this method
+    @Override
+    protected void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        super.onBlockAdded(state, world, pos, oldState, notify);
+
+        convertAboveBlock(world,pos);
     }
 
     @Inject(

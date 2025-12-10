@@ -40,6 +40,17 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
 
     // move more blocks here later
     public void generateBlockRecipes(RecipeExporter exporter) {
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.PANCAKE_RABBIT, RecipeCategory.DECORATIONS, ModBlocks.PANCAKE_RABBIT_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.COPPER_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.COPPER_BUNNYCOIN_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.GOLD_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.GOLD_BUNNYCOIN_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.DIAMOND_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
+
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);
+
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.PIPIS, RecipeCategory.DECORATIONS, ModBlocks.PIPIS_BLOCK);
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.MS_PIPIS, RecipeCategory.DECORATIONS, ModBlocks.MS_PIPIS_BLOCK);
+
         createSlabRecipe(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_SLAB,Ingredient.ofItems(ModBlocks.SCULK_WOOD_PLANKS))
                 .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS))
                 .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
@@ -63,6 +74,10 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .pattern("##")
                 .criterion(hasItem(ModBlocks.ECHO_BLOCK),conditionsFromItem(ModBlocks.ECHO_BLOCK)).offerTo(exporter);
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_PLANKS,4)
+                .input(ModBlocks.SCULK_WOOD_LOG)
+                .criterion(hasItem(ModBlocks.SCULK_WOOD_LOG),conditionsFromItem(ModBlocks.SCULK_WOOD_LOG)).offerTo(exporter);
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE,ModBlocks.SCULK_WOOD_BUTTON)
                 .input(ModBlocks.SCULK_WOOD_PLANKS)
                 .criterion(hasItem(ModBlocks.SCULK_WOOD_PLANKS),conditionsFromItem(ModBlocks.SCULK_WOOD_PLANKS)).offerTo(exporter);
@@ -80,31 +95,39 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .pattern("###")
                 .criterion(hasItem(ModBlocks.ECHO_BRICK),conditionsFromItem(ModBlocks.ECHO_BRICK)).offerTo(exporter);
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK)
+                .pattern("XXX")
+                .pattern("XXX")
+                .pattern("XXX")
+                .input('X', ModItems.MOLTEN_ROSE_GOLD)
+                .criterion(hasItem(ModItems.MOLTEN_ROSE_GOLD), conditionsFromItem(ModItems.MOLTEN_ROSE_GOLD))
+                .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "rose_gold_molten_compacting"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK)
+                .pattern("XXX")
+                .pattern("XXX")
+                .pattern("XXX")
+                .input('X', ModItems.MOLTEN_STEEL)
+                .criterion(hasItem(ModItems.MOLTEN_STEEL), conditionsFromItem(ModItems.MOLTEN_STEEL))
+                .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "steel_molten_compacting"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Blocks.NETHERITE_BLOCK)
+                .pattern("XXX")
+                .pattern("XXX")
+                .pattern("XXX")
+                .input('X', ModItems.MOLTEN_NETHERITE)
+                .criterion(hasItem(ModItems.MOLTEN_NETHERITE), conditionsFromItem(ModItems.MOLTEN_NETHERITE))
+                .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "netherite_molten_compacting"));
     }
 
     @Override
     public void generate(RecipeExporter exporter) {
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.PANCAKE_RABBIT, RecipeCategory.DECORATIONS, ModBlocks.PANCAKE_RABBIT_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.COPPER_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.COPPER_BUNNYCOIN_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.GOLD_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.GOLD_BUNNYCOIN_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.DIAMOND_BUNNYCOIN, RecipeCategory.DECORATIONS, ModBlocks.DIAMOND_BUNNYCOIN_BLOCK);
-
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.PIPIS, RecipeCategory.DECORATIONS, ModBlocks.PIPIS_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, ModItems.MS_PIPIS, RecipeCategory.DECORATIONS, ModBlocks.MS_PIPIS_BLOCK);
+        generateBlockRecipes(exporter);
 
 
         BunnycoinCrafting.makeCoin(exporter,"cent_copper_conversion",ModItems.COPPER_BUNNYCOIN,ModItems.BUNNYCENT);
         BunnycoinCrafting.makeCoin(exporter,"copper_gold_conversion",ModItems.GOLD_BUNNYCOIN,ModItems.COPPER_BUNNYCOIN);
         BunnycoinCrafting.makeCoin(exporter,"gold_diamond_conversion",ModItems.DIAMOND_BUNNYCOIN,ModItems.GOLD_BUNNYCOIN);
-
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_GOLD_INGOT, RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK);
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.STEEL_INGOT, RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK);
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_PLANKS,4)
-                .input(ModBlocks.SCULK_WOOD_LOG)
-                .criterion(hasItem(ModBlocks.SCULK_WOOD_LOG),conditionsFromItem(ModBlocks.SCULK_WOOD_LOG)).offerTo(exporter);
-
-        generateBlockRecipes(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MOLD, 8)
                 .pattern("OOO")
@@ -112,9 +135,9 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .criterion(hasItem(Items.CAULDRON), conditionsFromItem(Items.CAULDRON)).offerTo(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.WOODEN_CANE, 1)
-                .pattern(" S ")
-                .pattern(" W ")
-                .pattern(" S ")
+                .pattern("S")
+                .pattern("W")
+                .pattern("S")
                 .input('W', Items.OAK_PLANKS)
                 .input('S', Items.STICK)
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK)).offerTo(exporter);
@@ -145,14 +168,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('N', Items.NETHERITE_INGOT)
                 .criterion(hasItem(Items.ECHO_SHARD), conditionsFromItem(Items.ECHO_SHARD)).offerTo(exporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.ROSE_GOLD_BLOCK)
-                        .pattern("XXX")
-                        .pattern("XXX")
-                        .pattern("XXX")
-                        .input('X', ModItems.MOLTEN_ROSE_GOLD)
-                        .criterion(hasItem(ModItems.MOLTEN_ROSE_GOLD), conditionsFromItem(ModItems.MOLTEN_ROSE_GOLD))
-                        .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "rose_gold_molten_compacting"));
-
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.VAULT_REWINDER)
                 .pattern(" X ")
                 .pattern("CIC")
@@ -162,23 +177,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('I', Items.TRIAL_KEY)
                 .criterion(hasItem(Items.TRIAL_KEY), conditionsFromItem(Items.TRIAL_KEY))
                 .offerTo(exporter);
-
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.STEEL_BLOCK)
-                .pattern("XXX")
-                .pattern("XXX")
-                .pattern("XXX")
-                .input('X', ModItems.MOLTEN_STEEL)
-                .criterion(hasItem(ModItems.MOLTEN_STEEL), conditionsFromItem(ModItems.MOLTEN_STEEL))
-                .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "steel_molten_compacting"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Blocks.NETHERITE_BLOCK)
-                .pattern("XXX")
-                .pattern("XXX")
-                .pattern("XXX")
-                .input('X', ModItems.MOLTEN_NETHERITE)
-                .criterion(hasItem(ModItems.MOLTEN_NETHERITE), conditionsFromItem(ModItems.MOLTEN_NETHERITE))
-                .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "netherite_molten_compacting"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.TRIDENT)
                 .pattern("-O-")
