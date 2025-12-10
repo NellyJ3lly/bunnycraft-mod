@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:gold_bunnycoin"
+        "recipe": "bunnycraft:gold_bunnycoin"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:gold_bunnycoin"
+      "bunnycraft:gold_bunnycoin"
     ]
   }
 }
