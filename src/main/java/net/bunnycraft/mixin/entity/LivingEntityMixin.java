@@ -165,7 +165,7 @@ public abstract class LivingEntityMixin {
 
         if (entity.getBlockStateAtPos().isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS)
                 || entity.getWorld().getBlockState(
-                        entity.getBlockPos().add(0,-1,0)).isOf(Blocks.SCULK)) {
+                        entity.getBlockPos().add(0,-1,0)).isIn(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS)) {
             return entity.getMovement();
         }
 

@@ -14,7 +14,7 @@ import net.bunnycraft.modifiers.ModifyLootTables;
 import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
 import net.bunnycraft.sound.ModSounds;
-import net.bunnycraft.util.ModScreenHandlers;
+import net.bunnycraft.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;

@@ -33,6 +33,12 @@ public class ModBlocks {
                     .nonOpaque()
                     .sounds(BlockSoundGroup.STONE)));
 
+    public static final Block BUNNY_BANK = registerBlock("bunny_bank",
+            new BunnyBankBlock(AbstractBlock.Settings.create().strength(0f,1200f)
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.STONE)));
+
+
     // we will need to change the strengths and actual stuff to mine these blocks
     // for now I'm leaving it as is to focus on other things
     public static final Block COPPER_BUNNYCOIN_BLOCK = registerBlock("copper_bunnycoin_block",

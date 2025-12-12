@@ -10,9 +10,12 @@ import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.ModArmors;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.data.client.TexturedModel;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -21,6 +24,10 @@ import net.minecraft.util.Identifier;
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
         super(output);
+    }
+
+    public void generateInsideBlocks(BlockStateModelGenerator blockStateModelGenerator, Block block) {
+
     }
 
     @Override
@@ -33,8 +40,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STEEL_BLOCK);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BUDDING_ECHO);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ECHO_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHISELED_ECHO_BRICK);
+
         blockStateModelGenerator.registerAmethyst(ModBlocks.ECHO_CLUSTER);
         blockStateModelGenerator.registerAmethyst(ModBlocks.LARGE_ECHO_BUD);
         blockStateModelGenerator.registerAmethyst(ModBlocks.MEDIUM_ECHO_BUD);

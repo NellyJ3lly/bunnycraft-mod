@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bunnycraft:block/echo_block"
+    }
+  }
+}

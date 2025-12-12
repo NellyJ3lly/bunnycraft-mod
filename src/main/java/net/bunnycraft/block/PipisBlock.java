@@ -2,9 +2,11 @@ package net.bunnycraft.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Equipment;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -16,7 +18,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 
-public class PipisBlock extends HorizontalFacingBlock implements Waterloggable {
+public class PipisBlock extends HorizontalFacingBlock implements Waterloggable, Equipment {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
     public PipisBlock(Settings settings) {
@@ -66,5 +68,10 @@ public class PipisBlock extends HorizontalFacingBlock implements Waterloggable {
 
     protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return false;
+    }
+
+    @Override
+    public EquipmentSlot getSlotType() {
+        return EquipmentSlot.HEAD;
     }
 }

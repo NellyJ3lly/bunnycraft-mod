@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "bunnycraft:block/bunny_bank", "uvlock": false },
+    "facing=east":  { "model": "bunnycraft:block/bunny_bank", "y":  90, "uvlock": false },
+    "facing=south": { "model": "bunnycraft:block/bunny_bank", "y": 180, "uvlock": false },
+    "facing=west":  { "model": "bunnycraft:block/bunny_bank", "y": 270, "uvlock": false }
+  }
+}

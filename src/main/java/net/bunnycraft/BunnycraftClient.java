@@ -13,8 +13,9 @@ import net.bunnycraft.entity.custom.RoseGoldSpearRenderer;
 import net.bunnycraft.entity.custom.SpearModel;
 import net.bunnycraft.entity.custom.SpearRenderer;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
+import net.bunnycraft.screen.custom.BunnyBankScreen;
 import net.bunnycraft.util.ModModelPredicates;
-import net.bunnycraft.util.ModScreenHandlers;
+import net.bunnycraft.screen.ModScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -27,7 +28,6 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.Item;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
@@ -72,6 +72,8 @@ public class BunnycraftClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SCULK_WOOD_SAPLING, RenderLayer.getCutout());
         //registers the screen for enchanting stand
         HandledScreens.register(ModScreenHandlers.ENCHANTING_STAND_SCREEN_HANDLER_TYPE, EnchantingStandScreen::new);
+        HandledScreens.register(ModScreenHandlers.BUNNY_BANK_SCREEN_HANDLER, BunnyBankScreen::new);
+
 
         DIVING_SUIT_PIECES.forEach(item -> {
             ColorProviderRegistry.ITEM.register(

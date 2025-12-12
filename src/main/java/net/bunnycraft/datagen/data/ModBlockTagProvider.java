@@ -97,7 +97,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.SCULK)
                 .add(ModBlocks.BUDDING_ECHO)
                 .add(ModBlocks.ECHO_BLOCK)
-                .add(ModBlocks.ECHO_BRICK);
+                .add(ModBlocks.ECHO_BRICK)
+                .add(ModBlocks.BUDDING_ECHO)
+                .add(ModBlocks.CHISELED_ECHO_BRICK);
 
         getOrCreateTagBuilder(BlockTags.CLIMBABLE)
                 .addTag(ModTags.Blocks.COLLIDABLE_SCULK_BLOCKS);

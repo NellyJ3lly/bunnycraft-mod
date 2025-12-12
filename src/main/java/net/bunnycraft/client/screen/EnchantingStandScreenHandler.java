@@ -3,7 +3,7 @@ package net.bunnycraft.client.screen;
 import com.mojang.datafixers.util.Pair;
 import net.bunnycraft.block.EnchantingStand;
 import net.bunnycraft.block.ModBlocks;
-import net.bunnycraft.util.ModScreenHandlers;
+import net.bunnycraft.screen.ModScreenHandlers;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
