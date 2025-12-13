@@ -76,20 +76,6 @@ public class BunnyBankBlock extends BlockWithEntity implements BlockEntityProvid
     }
 
     @Override
-    protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if(state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if(blockEntity instanceof BunnyBankEntity) {
-                ItemScatterer.spawn(world, pos, ((BunnyBankEntity) blockEntity));
-                world.updateComparators(pos, this);
-            }
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
-        super.onStateReplaced(state, world, pos, newState, moved);
-    }
-
-
-    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(Properties.HORIZONTAL_FACING,Properties.WATERLOGGED);
     }

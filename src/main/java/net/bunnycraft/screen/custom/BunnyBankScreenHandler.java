@@ -1,12 +1,16 @@
 package net.bunnycraft.screen.custom;
 
 import net.bunnycraft.block.entity.BunnyBankEntity;
+import net.bunnycraft.block.entity.BunnyBankInventory;
+import net.bunnycraft.interfaces.IMyPlayerEntity;
+import net.bunnycraft.item.ModItems;
 import net.bunnycraft.screen.ModScreenHandlers;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
@@ -14,28 +18,47 @@ import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
 public class BunnyBankScreenHandler extends ScreenHandler {
-    private final Inventory inventory;
+    private final BunnyBankInventory inventory;
 
-    public BunnyBankScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId,playerInventory,playerInventory.player.getWorld().getBlockEntity(pos));
-    }
-
-    public BunnyBankScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity) {
+    public BunnyBankScreenHandler(int syncId,PlayerInventory playerInventory) {
         super(ModScreenHandlers.BUNNY_BANK_SCREEN_HANDLER, syncId);
-        this.inventory = ((Inventory) blockEntity);
+        IMyPlayerEntity playerEntity = (IMyPlayerEntity) playerInventory.player;
+        this.inventory = playerEntity.bunnycraft_mod$getBunnyBankInventory();
 
-        this.addSlot(new Slot(inventory,0,80,35)
-        {
+        this.addSlot(new Slot(inventory,0,46,35) {
             @Override
-            public int getMaxItemCount() {
-                return 512;
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.BUNNYCENT);
             }
-        }
-        );
+        });
+        this.addSlot(new Slot(inventory,1,69,35) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.COPPER_BUNNYCOIN);
+            }
+        });
+        this.addSlot(new Slot(inventory,2,91,35) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.GOLD_BUNNYCOIN);
+            }
+        });
+        this.addSlot(new Slot(inventory,3,113,35) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.DIAMOND_BUNNYCOIN);
+            }
+        });
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
     }
+
+    public BunnyBankScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
+        this(syncId,playerInventory);
+    }
+
+
 
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
@@ -62,6 +85,12 @@ public class BunnyBankScreenHandler extends ScreenHandler {
     }
 
 
+
+    @Override
+    public boolean canInsertIntoSlot(ItemStack stack, Slot slot) {
+        System.out.println(slot);
+        return  false;
+    }
 
     @Override
     public boolean canUse(PlayerEntity player) {

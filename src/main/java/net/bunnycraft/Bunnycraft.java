@@ -15,11 +15,13 @@ import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
 import net.bunnycraft.sound.ModSounds;
 import net.bunnycraft.screen.ModScreenHandlers;
+import net.bunnycraft.world.ModConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -50,6 +52,11 @@ public class Bunnycraft implements ModInitializer, SpreadableBlock {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerModScreenHandlers();
 		ModSounds.registerSounds();
+		ModConfiguredFeatures.bootstrap();
+
+		StrippableBlockRegistry.register(ModBlocks.SCULK_WOOD_LOG,ModBlocks.STRIPPED_SCULK_WOOD_LOG);
+		StrippableBlockRegistry.register(ModBlocks.SCULK_WOOD_WOOD,ModBlocks.STRIPPED_SCULK_WOOD_WOOD);
+
 
 		// not sure if this is the proper way to do set up a list like this but we'll see
 		this.SetupList();
