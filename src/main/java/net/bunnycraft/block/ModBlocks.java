@@ -1,6 +1,7 @@
 package net.bunnycraft.block;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.world.tree.ModSaplingGenerators;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
@@ -72,7 +73,7 @@ public class ModBlocks {
     public static final Block MEDIUM_ECHO_BUD = registerBlock("medium_echo_bud", new EchoClusterBlock(4.0F, 3.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.LARGE_AMETHYST_BUD).luminance((state) -> 1), 2));
     public static final Block SMALL_ECHO_BUD = registerBlock("small_echo_bud", new EchoClusterBlock(3.0F, 4.0F,AbstractBlock.Settings.copyShallow(ECHO_CLUSTER).sounds(BlockSoundGroup.SMALL_AMETHYST_BUD), 1));
 
-    public static final Block SCULK_WOOD_SAPLING = registerBlock("sculk_wood_sapling", new SculkSaplingBlock(SaplingGenerator.OAK, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block SCULK_WOOD_SAPLING = registerBlock("sculk_wood_sapling", new SculkSaplingBlock(ModSaplingGenerators.SCULKWOOD, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block SCULK_WOOD_LOG = registerBlock("sculk_wood_log",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
     public static final Block SCULK_WOOD_WOOD = registerBlock("sculk_wood_wood",new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));

@@ -52,7 +52,6 @@ public class Bunnycraft implements ModInitializer, SpreadableBlock {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerModScreenHandlers();
 		ModSounds.registerSounds();
-		ModConfiguredFeatures.bootstrap();
 
 		StrippableBlockRegistry.register(ModBlocks.SCULK_WOOD_LOG,ModBlocks.STRIPPED_SCULK_WOOD_LOG);
 		StrippableBlockRegistry.register(ModBlocks.SCULK_WOOD_WOOD,ModBlocks.STRIPPED_SCULK_WOOD_WOOD);
