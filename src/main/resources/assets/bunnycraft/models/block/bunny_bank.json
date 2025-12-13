@@ -4,7 +4,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "bunnycraft:block/gold_bunny_bank",
-		"particle": "bunnycraft:block/gold_bunny_bank"
+		"particle": "minecraft:block/gold_block"
 	},
 	"elements": [
 		{

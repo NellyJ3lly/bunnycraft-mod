@@ -21,6 +21,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +30,6 @@ public class BunnyBankEntity extends BlockEntity implements ImplementedInventory
     public BunnyBankEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BUNNY_BANK_ENTITY, pos, state);
     }
-
 
     private final ViewerCountManager stateManager = new ViewerCountManager(){
         @Override
@@ -83,6 +83,14 @@ public class BunnyBankEntity extends BlockEntity implements ImplementedInventory
 
     @Override
     public DefaultedList<ItemStack> getItems() {
-        return null;
+        return DefaultedList.of();
     }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+        return false;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction dir) {return false;}
 }

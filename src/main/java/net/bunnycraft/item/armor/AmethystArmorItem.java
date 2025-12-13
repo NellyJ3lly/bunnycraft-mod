@@ -59,7 +59,7 @@ public class AmethystArmorItem extends ArmorItem implements GeoItem {
         controllers.add(new AnimationController<>(this, 20, state -> {
             // Apply our generic idle animation.
             // Whether it plays or not is decided down below.
-            state.getController().setAnimation(DefaultAnimations.IDLE);
+//            state.getController().setAnimation(DefaultAnimations.IDLE);
 
             // Let's gather some data from the state to use below
             // This is the entity that is currently wearing/holding the item
