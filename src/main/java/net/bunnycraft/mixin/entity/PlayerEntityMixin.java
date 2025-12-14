@@ -62,7 +62,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IMyPlaye
             at = @At("TAIL")
     )
     public void writeBunnyBankData(NbtCompound nbt, CallbackInfo ci) {
-        System.out.println(this.bunnyBankInventory.toNbtList(this.getRegistryManager()));
         nbt.put("BunnyBankItems",this.bunnyBankInventory.toNbtList(this.getRegistryManager()));
     }
 

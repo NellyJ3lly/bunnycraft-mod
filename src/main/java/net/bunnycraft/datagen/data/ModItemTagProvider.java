@@ -7,6 +7,7 @@ import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
@@ -36,6 +37,31 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         createLists(ModTools.shovelList,ItemTags.SHOVELS);
         createLists(ModTools.axeList,ItemTags.AXES);
         createLists(ModTools.hoeList,ItemTags.HOES);
+
+        getOrCreateTagBuilder(ModTags.Items.ECHOLOCATOR_FILTER_ITEM)
+                .forceAddTag(ItemTags.COAL_ORES)
+                .forceAddTag(ItemTags.COPPER_ORES)
+                .forceAddTag(ItemTags.IRON_ORES)
+                .forceAddTag(ItemTags.GOLD_ORES)
+                .forceAddTag(ItemTags.DIAMOND_ORES)
+                .add(Blocks.ANCIENT_DEBRIS.asItem())
+                .forceAddTag(ItemTags.LAPIS_ORES)
+                .forceAddTag(ItemTags.REDSTONE_ORES)
+                .add(Blocks.QUARTZ_BLOCK.asItem());
+
+        getOrCreateTagBuilder(ModTags.Items.ECHOLOCATOR_LOW_COST)
+                .forceAddTag(ItemTags.COAL_ORES)
+                .forceAddTag(ItemTags.COPPER_ORES)
+                .forceAddTag(ItemTags.LAPIS_ORES)
+                .forceAddTag(ItemTags.REDSTONE_ORES)
+                .add(Blocks.QUARTZ_BLOCK.asItem());
+
+        getOrCreateTagBuilder(ModTags.Items.ECHOLOCATOR_MEDIUM_COST)
+                .forceAddTag(ItemTags.GOLD_ORES)
+                .forceAddTag(ItemTags.IRON_ORES);
+
+        getOrCreateTagBuilder(ModTags.Items.ECHOLOCATOR_HIGH_COST)
+                .add(Blocks.ANCIENT_DEBRIS.asItem());
 
         getOrCreateTagBuilder(ItemTags.LOGS)
                 .add(ModBlocks.SCULK_WOOD_LOG.asItem())

@@ -88,7 +88,6 @@ public class BunnyBankScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canInsertIntoSlot(ItemStack stack, Slot slot) {
-        System.out.println(slot);
         return  false;
     }
 

@@ -5,6 +5,7 @@ import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
+import net.minecraft.block.Block;
 import net.minecraft.component.Component;
 import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
@@ -27,6 +28,9 @@ public class ModComponents {
     );
 
     public static final ComponentType<Float> ECHO_FUEL = register("echo_fuel", floatBuilder -> floatBuilder.codec(Codec.FLOAT));
+
+    public static final ComponentType<String> BLOCK_FILTER = register("block_filter", stringBuilder -> stringBuilder.codec(Codec.STRING));
+
 
     private static <T>ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(Bunnycraft.MOD_ID, name),

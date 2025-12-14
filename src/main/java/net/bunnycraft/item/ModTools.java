@@ -35,7 +35,10 @@ public class ModTools  {
             new ClimbingClawItem(new Item.Settings().maxDamage(250).component(ModComponents.CAN_CLIMB_ON_BLOCK,false))
     );
 
-    public static final Item ECHOLOCATOR = registerTool("echolocator", new EcholocatorItem(new Item.Settings().maxCount(1).component(ModComponents.ECHO_FUEL,16F)));
+    public static final Item ECHOLOCATOR = registerTool("echolocator",
+            new EcholocatorItem(new Item.Settings().maxCount(1)
+                    .component(ModComponents.ECHO_FUEL,64F)
+                    .component(ModComponents.BLOCK_FILTER,"")));
 
     public static final Item WOODEN_CANE = registerTool("wooden_cane",
             new CaneItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(

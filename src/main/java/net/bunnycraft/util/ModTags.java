@@ -32,6 +32,12 @@ public class ModTags {
 
         public static final TagKey<Item> SPEARS = createTag("spear");
 
+        public static final TagKey<Item> ECHOLOCATOR_FILTER_ITEM = createTag("echolocator_filter_item");
+        public static final TagKey<Item> ECHOLOCATOR_LOW_COST = createTag("echolocator_low_cost");
+        public static final TagKey<Item> ECHOLOCATOR_MEDIUM_COST = createTag("echolocator_medium_cost");
+        public static final TagKey<Item> ECHOLOCATOR_HIGH_COST = createTag("echolocator_high_cost");
+
+
         public static final TagKey<Item> SPEAR_ENCHANTABLE = createTag("enchantable/spear");
 
         public static final TagKey<Item> HOE_ENCHANTABLE = createTag("enchantable/hoe");
