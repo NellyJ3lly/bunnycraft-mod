@@ -87,7 +87,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.AMETHYST_CLUSTER)
                 .add(Blocks.SMALL_AMETHYST_BUD)
                 .add(Blocks.MEDIUM_AMETHYST_BUD)
-                .add(Blocks.LARGE_AMETHYST_BUD);
+                .add(Blocks.LARGE_AMETHYST_BUD)
+                .add(Blocks.SWEET_BERRY_BUSH);
 
         getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE)
                 .add(Blocks.AMETHYST_BLOCK)

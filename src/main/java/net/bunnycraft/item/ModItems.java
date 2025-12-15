@@ -1,19 +1,28 @@
 package net.bunnycraft.item;
 
 import net.bunnycraft.Bunnycraft;
+import net.bunnycraft.block.ModBlocks;
+import net.bunnycraft.block.SculkBerryBushBlock;
 import net.bunnycraft.item.custom.AmethystBookItem;
 import net.bunnycraft.item.custom.BunnycoinItem;
 import net.bunnycraft.item.custom.EnchantedAmethystBookItem;
 import net.bunnycraft.item.custom.ModSmithingTemplateItem;
 import net.bunnycraft.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.component.type.FoodComponents;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -41,6 +50,12 @@ public class ModItems {
 
     public static  final Item TRUE = registerItem("true", new Item(new Item.Settings()));
     public static  final Item POINT_LIGHT_MUSIC_DISC = registerItem("point_light_music_disc", new Item(new Item.Settings().jukeboxPlayable(ModSounds.POINT_LIGHT_KEY).maxCount(1)));
+
+    public static final FoodComponent SCULK_BERRY_FOOD = new FoodComponent.Builder()
+            .nutrition(3).saturationModifier(3).snack().build();
+
+    public static  final Item SCULK_BERRIES = registerItem("sculk_berries", new AliasedBlockItem(ModBlocks.SCULK_BERRY_BUSH,new Item.Settings().food(SCULK_BERRY_FOOD)));
+
 
     public static  final Item MOLTEN_ROSE_GOLD = registerItem("molten_rose_gold", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_STEEL = registerItem("molten_steel", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));

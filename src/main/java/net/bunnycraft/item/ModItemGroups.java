@@ -107,6 +107,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ROSE_GOLD_BLOCK);
                         entries.add(ModBlocks.STEEL_BLOCK);
 
+                        entries.add(ModItems.SCULK_BERRIES);
                         entries.add(ModBlocks.ECHO_BLOCK);
                         entries.add(ModBlocks.BUDDING_ECHO);
                         entries.add(ModBlocks.MEDIUM_ECHO_BUD);

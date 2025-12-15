@@ -41,11 +41,11 @@ public abstract class SculkVeinBlockMixin extends MultifaceGrowthBlock implement
         for(Direction direction : Direction.shuffle(random)) {
             if (hasDirection(world.getBlockState(pos), direction)) {
                 BlockPos blockPos = pos.offset(direction);
-                Block oldBlock = world.getBlockState(blockPos).getBlock();
+                BlockState oldBlock = world.getBlockState(blockPos);
 
-                if (ConvertableBlocks.BLOCK_CONVERSION().containsKey(oldBlock)) {
+                if (ConvertableBlocks.BLOCK_CONVERSION().containsKey(oldBlock.getBlock())) {
                     cir.cancel();
-                    convertBlock(world,blockPos,oldBlock.getDefaultState(),ConvertableBlocks.BLOCK_CONVERSION().get(oldBlock).getDefaultState());
+                    convertBlock(world,blockPos,oldBlock,ConvertableBlocks.BLOCK_CONVERSION().get(oldBlock.getBlock()).getStateWithProperties(oldBlock));
                 }
             }
         }

@@ -37,8 +37,13 @@ public class ModBlocks {
     public static final Block BUNNY_BANK = registerBlock("bunny_bank",
             new BunnyBankBlock(AbstractBlock.Settings.create().strength(0f,1200f)
                     .nonOpaque()
-                    .sounds(BlockSoundGroup.STONE)));
+                    .sounds(BlockSoundGroup.METAL)));
 
+    public static final Block SCULK_BERRY_BUSH = registerBlock(
+            "sculk_berry_bush",
+            new SculkBerryBushBlock(
+                    AbstractBlock.Settings.create()
+                            .mapColor(MapColor.DARK_AQUA).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 3)));
 
     // we will need to change the strengths and actual stuff to mine these blocks
     // for now I'm leaving it as is to focus on other things

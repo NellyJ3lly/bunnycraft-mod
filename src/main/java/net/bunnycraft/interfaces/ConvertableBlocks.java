@@ -15,6 +15,7 @@ public interface ConvertableBlocks {
                 new AbstractMap.SimpleEntry<>(Blocks.BUDDING_AMETHYST,ModBlocks.BUDDING_ECHO),
                 new AbstractMap.SimpleEntry<>(Blocks.AMETHYST_BLOCK,ModBlocks.ECHO_BLOCK),
                 new AbstractMap.SimpleEntry<>(Blocks.OAK_SAPLING,ModBlocks.SCULK_WOOD_SAPLING),
+                new AbstractMap.SimpleEntry<>(Blocks.SWEET_BERRY_BUSH,ModBlocks.SCULK_BERRY_BUSH),
                 new AbstractMap.SimpleEntry<>(Blocks.SMALL_AMETHYST_BUD,ModBlocks.SMALL_ECHO_BUD),
                 new AbstractMap.SimpleEntry<>(Blocks.MEDIUM_AMETHYST_BUD,ModBlocks.MEDIUM_ECHO_BUD),
                 new AbstractMap.SimpleEntry<>(Blocks.LARGE_AMETHYST_BUD,ModBlocks.LARGE_ECHO_BUD),
