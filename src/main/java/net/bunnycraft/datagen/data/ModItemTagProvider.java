@@ -38,6 +38,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         createLists(ModTools.axeList,ItemTags.AXES);
         createLists(ModTools.hoeList,ItemTags.HOES);
 
+        getOrCreateTagBuilder(ModTags.Items.ENCHANTED_BOOKS)
+                .add(Items.ENCHANTED_BOOK)
+                .add(ModItems.ENCHANTED_AMETHYST_BOOK);
+
         getOrCreateTagBuilder(ModTags.Items.ECHOLOCATOR_FILTER_ITEM)
                 .forceAddTag(ItemTags.COAL_ORES)
                 .forceAddTag(ItemTags.COPPER_ORES)
@@ -48,6 +52,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .forceAddTag(ItemTags.LAPIS_ORES)
                 .forceAddTag(ItemTags.REDSTONE_ORES)
                 .add(Blocks.QUARTZ_BLOCK.asItem());
+
 
         getOrCreateTagBuilder(ModTags.Items.ECHOLOCATOR_LOW_COST)
                 .forceAddTag(ItemTags.COAL_ORES)
