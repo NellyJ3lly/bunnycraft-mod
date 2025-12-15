@@ -25,7 +25,7 @@ public class BunnyBankInventory extends SimpleInventory {
 
 
     public BunnyBankInventory() {
-        super(4);
+        super(8);
     }
 
     public void setActiveBlockEntity(@Nullable BunnyBankEntity blockEntity) {
