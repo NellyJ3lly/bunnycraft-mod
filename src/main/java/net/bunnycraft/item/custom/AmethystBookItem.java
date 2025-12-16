@@ -1,6 +1,7 @@
 package net.bunnycraft.item.custom;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.util.ModTags;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -11,6 +12,7 @@ import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
@@ -24,6 +26,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.List;
 
@@ -46,6 +49,13 @@ public class AmethystBookItem extends BookItem {
             user.giveItemStack(stack);
         }
     }
+
+    @Unique
+    private static boolean hasHelmet = false;
+    @Unique
+    private static boolean hasChestplate = false;
+    @Unique
+    private static double AmountOfPowerReduction = 1;
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
@@ -84,10 +94,24 @@ public class AmethystBookItem extends BookItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-
         if (entity instanceof PlayerEntity playerEntity) {
             Hand hand = CheckIfHoldingBook(playerEntity);
             if (hand != null) {
+                hasHelmet = playerEntity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModArmors.AMETHYST_HELMET);
+                hasChestplate = playerEntity.getEquippedStack(EquipmentSlot.CHEST).isOf(ModArmors.AMETHYST_CHESTPLATE);
+
+                if (hasHelmet && !hasChestplate) {
+                    AmountOfPowerReduction = 0.8;
+                }
+
+                if (hasChestplate && !hasHelmet) {
+                    AmountOfPowerReduction = 0.7;
+                }
+
+                if (hasHelmet && hasChestplate) {
+                    AmountOfPowerReduction = 0.5;
+                }
+
                 DisplayMessage(playerEntity,hand);
             } else if (DisplayedMessage) {
                 DisplayedMessage = false;
@@ -123,8 +147,6 @@ public class AmethystBookItem extends BookItem {
         int experienceCost = getExperience(stack);
         int playerExperience = (playerEntity.experienceLevel);
 
-        System.out.println(playerExperience + " " + experienceCost);
-
         if (playerExperience >= experienceCost) {
             return experienceCost;
         }
@@ -136,6 +158,9 @@ public class AmethystBookItem extends BookItem {
         ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.getEnchantments(stack);
         for (RegistryEntry<Enchantment> enchantmentEntry : itemEnchantmentsComponent.getEnchantments()) {
             i += itemEnchantmentsComponent.getLevel(enchantmentEntry);
+        }
+        if (AmountOfPowerReduction < 1) {
+            i = (int) Math.clamp(i * AmountOfPowerReduction,1,1000);
         }
         return i;
     }

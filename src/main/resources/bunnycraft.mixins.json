@@ -27,6 +27,7 @@
     "item.ShearsBecomeSwordMixin",
     "item.ShovelItemMixin",
     "item.attribute.ItemAttributesMixin",
+    "screen.AnvilScreenHandlerMixin",
     "screen.EnchantmentScreenHandlerMixin",
     "screen.GrindstoneScreenHandlerMixin"
   ],

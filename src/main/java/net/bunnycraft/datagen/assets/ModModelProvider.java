@@ -93,7 +93,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.MOLTEN_NETHERITE, Models.GENERATED);
         gen.register(ModItems.MOLD, Models.GENERATED);
 
-//        gen.register(ModItems.SCULK_BERRIES, Models.GENERATED);
+        gen.register(ModItems.SCULK_BERRIES, Models.GENERATED);
 
         gen.register(ModItems.AMETHYST_BOOK,Models.GENERATED);
         gen.register(ModItems.ENCHANTED_AMETHYST_BOOK,Models.GENERATED);
