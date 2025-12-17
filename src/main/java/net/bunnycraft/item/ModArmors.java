@@ -65,6 +65,20 @@ public class ModArmors {
             new ArmadilloArmorItem(ModArmorMaterials.ARMADILLO_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(20)),-0.03f));
 
+    public static final Item ECHO_HELMET = registerItem("echo_helmet",
+            new EchoArmorItem(ModArmorMaterials.ECHO_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(42)),-0.03f));
+    public static final Item ECHO_CHESTPLATE = registerItem("echo_chestplate",
+            new EchoArmorItem(ModArmorMaterials.ECHO_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(42)), -0.12f));
+    public static final Item ECHO_LEGGINGS = registerItem("echo_leggings",
+            new EchoArmorItem(ModArmorMaterials.ECHO_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(42)),-0.06f));
+    public static final Item ECHO_BOOTS = registerItem("echo_boots",
+            new EchoArmorItem(ModArmorMaterials.ECHO_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42)),-0.03f));
+
+
     public static final Item ROSE_GOLD_HELMET = registerItem("rose_gold_helmet",
             new RoseGoldArmorItem(ModArmorMaterials.ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
                     .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(16)),2f));

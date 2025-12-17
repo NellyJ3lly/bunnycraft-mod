@@ -104,6 +104,11 @@ public class ModItemGroups {
                         entries.add(ModArmors.GUARDIAN_LEGGINGS);
                         entries.add(ModArmors.GUARDIAN_BOOTS);
 
+                        entries.add(ModArmors.ECHO_HELMET);
+                        entries.add(ModArmors.ECHO_CHESTPLATE);
+                        entries.add(ModArmors.ECHO_LEGGINGS);
+                        entries.add(ModArmors.ECHO_BOOTS);
+
                         entries.add(ModBlocks.ROSE_GOLD_BLOCK);
                         entries.add(ModBlocks.STEEL_BLOCK);
 

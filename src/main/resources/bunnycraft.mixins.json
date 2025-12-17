@@ -16,6 +16,7 @@
     "entity.ChickenLayLootTableMixin",
     "entity.DealmakerLoseDurabilityOnTrade",
     "entity.DealmakerVillagerInteraction",
+    "entity.ExperienceOrbEntityMixin",
     "entity.ItemFrameEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",
