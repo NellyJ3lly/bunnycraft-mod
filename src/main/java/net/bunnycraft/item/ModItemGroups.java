@@ -137,6 +137,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.SCULK_WOOD_PRESSURE_PLATE);
                         entries.add(ModBlocks.SCULK_WOOD_FENCE);
                         entries.add(ModBlocks.SCULK_WOOD_FENCE_GATE);
+                        entries.add(ModBlocks.SCULK_BATTERY);
 
                         entries.add(ModItems.BUNNYCENT);
                         entries.add(ModItems.COPPER_BUNNYCOIN);

@@ -39,6 +39,11 @@ public class ModBlocks {
                     .nonOpaque()
                     .sounds(BlockSoundGroup.METAL)));
 
+    public static final Block SCULK_BATTERY = registerBlock("sculk_battery",
+            new SculkBatteryBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.METAL)));
+
     public static final Block SCULK_BERRY_BUSH = registerBlock(
             "sculk_berry_bush",
             new SculkBerryBushBlock(

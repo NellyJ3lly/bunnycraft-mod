@@ -4,8 +4,10 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModItems;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -23,6 +25,7 @@ import java.util.List;
 @Mixin(net.minecraft.screen.EnchantmentScreenHandler.class)
 public abstract class EnchantmentScreenHandlerMixin extends ScreenHandler {
 
+    @Unique
     EnchantmentScreenHandler screenHandler = (EnchantmentScreenHandler) (Object) this;
 
     @Shadow @Final private Inventory inventory;
@@ -39,7 +42,6 @@ public abstract class EnchantmentScreenHandlerMixin extends ScreenHandler {
     private static boolean hasChestplate = false;
     @Unique
     double AmountOfPowerReduction = 1;
-
 
     protected EnchantmentScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId) {
         super(type, syncId);
@@ -58,6 +60,21 @@ public abstract class EnchantmentScreenHandlerMixin extends ScreenHandler {
             }
         }
         return original.call(instance, registryManager, stack, slot, level);
+    }
+
+    @WrapOperation(
+            method = "method_17410(Lnet/minecraft/item/ItemStack;ILnet/minecraft/entity/player/PlayerEntity;ILnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;applyEnchantmentCosts(Lnet/minecraft/item/ItemStack;I)V")
+    )
+    public void Bunnycraft$RemoveCosts(PlayerEntity instance, ItemStack enchantedItem, int experienceLevels, Operation<Void> original) {
+        boolean doNotCostForEnchant = false;
+
+        screenHandler.context.run(((world, pos) -> {
+            if (!world.getBlockState(pos.add(-1,0,0)).isOf(Blocks.DIAMOND_BLOCK)) {
+                original.call(instance, enchantedItem, experienceLevels);
+                instance.enchantmentTableSeed = instance.getRandom().nextInt();
+            }
+        }));
     }
 
     @WrapOperation(

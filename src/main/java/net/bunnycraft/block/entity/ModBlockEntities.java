@@ -23,6 +23,10 @@ public class ModBlockEntities {
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Bunnycraft.MOD_ID, "bunny_bank_entity"),
                     BlockEntityType.Builder.create(BunnyBankEntity::new, ModBlocks.BUNNY_BANK).build(null));
 
+    public static final BlockEntityType<SculkBatteryBlockEntity> SCULK_BATTERY_BLOCK_ENTITY =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Bunnycraft.MOD_ID, "sculk_battery_block_entity"),
+                    BlockEntityType.Builder.create(SculkBatteryBlockEntity::new, ModBlocks.SCULK_BATTERY).build(null));
+
 
     public static void registerBlockEntities() {
         Bunnycraft.LOGGER.info("Registering Block Entities for " + Bunnycraft.MOD_ID);
