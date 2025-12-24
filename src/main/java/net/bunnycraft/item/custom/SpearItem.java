@@ -132,19 +132,17 @@ public class SpearItem extends ToolItem implements ProjectileItem {
                             } else if (slot >= 0 && slot <= 36 ){
                                 player.getInventory().setStack(slot, ModItems.EMPTY_SPEAR_SLOT.getDefaultStack());
                             } // -2 means should skip because it doesnt have loyalty or it was client world
-
-                        //creates the entity
-
-                        //passes in all variables needed
-                        SpearEntity thrownSpear = new SpearEntity(world, player, stack,this);
-                        //sets the velocity of the new spear
-                        thrownSpear.setVelocity(player, player.getPitch(), player.getYaw(), 0f, speed, divergence);
-
-                        //actually spawns in the entity
-                        world.spawnEntity(thrownSpear);
                     }
 
+                    //creates the entity
 
+                    //passes in all variables needed
+                    SpearEntity thrownSpear = new SpearEntity(world, player, stack,this);
+                    //sets the velocity of the new spear
+                    thrownSpear.setVelocity(player, player.getPitch(), player.getYaw(), 0f, speed, divergence);
+
+                    //actually spawns in the entity
+                    world.spawnEntity(thrownSpear);
                 }
             }
         }
