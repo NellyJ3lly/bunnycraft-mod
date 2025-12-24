@@ -3,8 +3,10 @@ package net.bunnycraft;
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.block.entity.ModBlockEntities;
 import net.bunnycraft.block.entity.CauldronAlloyerEntity;
+import net.bunnycraft.block.entity.SculkBatteryBlockEntity;
 import net.bunnycraft.client.render.CauldronAlloyerEntityRenderer;
 import net.bunnycraft.client.render.EnchantingStandEntityRenderer;
+import net.bunnycraft.client.render.SculkBatteryBlockEntityRenderer;
 import net.bunnycraft.client.screen.EnchantingStandScreen;
 import net.bunnycraft.entity.ModEntities;
 import net.bunnycraft.item.ModArmors;
@@ -13,6 +15,7 @@ import net.bunnycraft.entity.custom.RoseGoldSpearRenderer;
 import net.bunnycraft.entity.custom.SpearModel;
 import net.bunnycraft.entity.custom.SpearRenderer;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
+import net.bunnycraft.networking.SculkBatteryS2CPayload;
 import net.bunnycraft.screen.custom.BunnyBankScreen;
 import net.bunnycraft.util.ModModelPredicates;
 import net.bunnycraft.screen.ModScreenHandlers;
@@ -61,6 +64,7 @@ public class BunnycraftClient implements ClientModInitializer {
 
         BlockEntityRendererFactories.register(ModBlockEntities.ENCHANTING_STAND_ENTITY, EnchantingStandEntityRenderer :: new);
         BlockEntityRendererFactories.register(ModBlockEntities.CAULDRON_ALLOYER_ENTITY, CauldronAlloyerEntityRenderer :: new);
+        BlockEntityRendererFactories.register(ModBlockEntities.SCULK_BATTERY_BLOCK_ENTITY, SculkBatteryBlockEntityRenderer:: new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ENCHANTING_STAND, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MS_PIPIS_BLOCK, RenderLayer.getCutout());
@@ -71,17 +75,39 @@ public class BunnycraftClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SMALL_ECHO_BUD, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SCULK_WOOD_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SCULK_BERRY_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SCULK_BATTERY, RenderLayer.getCutout());
         //registers the screen for enchanting stand
         HandledScreens.register(ModScreenHandlers.ENCHANTING_STAND_SCREEN_HANDLER_TYPE, EnchantingStandScreen::new);
         HandledScreens.register(ModScreenHandlers.BUNNY_BANK_SCREEN_HANDLER, BunnyBankScreen::new);
-
 
         DIVING_SUIT_PIECES.forEach(item -> {
             ColorProviderRegistry.ITEM.register(
                     (stack, tintIndex) -> tintIndex > 0 ? -1 : getColor(stack, DIVING_SUIT_DEFAULT), item);
         });
 
+
+
         //recives the packet which tells which cauldron has what items and processes the data
+        ClientPlayNetworking.registerGlobalReceiver(SculkBatteryS2CPayload.ID, (payload, context) -> {
+
+            ClientWorld world = context.client().world;
+
+            if (world == null) {
+                return;
+            }
+
+            int experienceLevel = payload.experienceLevel();
+            int totalExperience = payload.totalExperience();
+            BlockPos pos = payload.pos();
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+
+            if (blockEntity instanceof SculkBatteryBlockEntity sculkBatteryBlockEntity){
+
+                sculkBatteryBlockEntity.setClientExperienceLevels(experienceLevel);
+                sculkBatteryBlockEntity.setClientTotalExperience(totalExperience);
+            }
+        });
+
         ClientPlayNetworking.registerGlobalReceiver(CauldronAlloyerS2CPayload.ID, (payload, context) -> {
 
             ClientWorld world = context.client().world;

@@ -13,6 +13,7 @@ import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.modifiers.ModifyLootTables;
 import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
+import net.bunnycraft.networking.SculkBatteryS2CPayload;
 import net.bunnycraft.sound.ModSounds;
 import net.bunnycraft.screen.ModScreenHandlers;
 import net.bunnycraft.world.ModConfiguredFeatures;
@@ -108,6 +109,7 @@ public class Bunnycraft implements ModInitializer, SpreadableBlock {
 
         // registers the payload for the cauldron to send info to the client so the renderer can display the correct item
         PayloadTypeRegistry.playS2C().register(CauldronAlloyerS2CPayload.ID, CauldronAlloyerS2CPayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(SculkBatteryS2CPayload.ID, SculkBatteryS2CPayload.CODEC);
 
         LOGGER.info("Bunnycraft Loading Complete!");
 	}

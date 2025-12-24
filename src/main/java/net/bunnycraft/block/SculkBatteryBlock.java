@@ -55,9 +55,18 @@ public class SculkBatteryBlock extends BlockWithEntity implements BlockEntityPro
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof SculkBatteryBlockEntity sculkBatteryBlockEntity) {
+            if (sculkBatteryBlockEntity.getExperienceLevels() >= sculkBatteryBlockEntity.getMaxLevel()) {
+                return ItemActionResult.FAIL;
+            }
+
             if (stack.isOf(Items.ECHO_SHARD)) {
                 int i = 3 + world.random.nextInt(5) + world.random.nextInt(5);
                 sculkBatteryBlockEntity.addExperience(i);
+                stack.decrementUnlessCreative(1,player);
+                return ItemActionResult.SUCCESS ;
+            }
+            if (stack.isOf(Items.ENCHANTED_BOOK)) {
+                sculkBatteryBlockEntity.addExperience(100);
                 stack.decrementUnlessCreative(1,player);
                 return ItemActionResult.SUCCESS ;
             }
@@ -69,11 +78,11 @@ public class SculkBatteryBlock extends BlockWithEntity implements BlockEntityPro
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (world.getBlockEntity(pos) instanceof SculkBatteryBlockEntity sculkBatteryBlockEntity) {
-            if (sculkBatteryBlockEntity.getTotalExperience() > 0) {
-                if (world instanceof ServerWorld serverWorld) {
-                    dropExperience(serverWorld,pos,sculkBatteryBlockEntity.getTotalExperience());
-                }
-            }
+//            if (sculkBatteryBlockEntity.getTotalExperience() > 0) {
+//                if (world instanceof ServerWorld serverWorld) {
+//                    dropExperience(serverWorld,pos,sculkBatteryBlockEntity.getTotalExperience());
+//                }
+//            }
         }
 
         return super.onBreak(world, pos, state, player);

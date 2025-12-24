@@ -1,16 +1,17 @@
 package net.bunnycraft.block.entity;
 
+import net.bunnycraft.networking.SculkBatteryS2CPayload;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
@@ -19,26 +20,41 @@ public class SculkBatteryBlockEntity extends BlockEntity {
     private int experienceLevel;
     private int totalExperience;
     private float experienceProgress;
-
+    private int clientExperienceLevel = 0;
+    private int clientTotalExperience = 0;
 
     public SculkBatteryBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SCULK_BATTERY_BLOCK_ENTITY, pos, state);
+
+    }
+
+    public int getMaxLevel() {
+        return 60;
+    }
+
+    public int getMaxExperience() {
+        return 9062;
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
         nbt.putInt("Levels", this.experienceLevel);
         nbt.putInt("TotalExperience", this.totalExperience);
         nbt.putFloat("Progress", this.experienceProgress);
-        super.writeNbt(nbt, registryLookup);
     }
 
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
         this.experienceLevel = nbt.getInt("Levels");
         this.totalExperience = nbt.getInt("TotalExperience");
         this.experienceProgress = nbt.getInt("Progress");
-        super.readNbt(nbt, registryLookup);
+
+        this.clientExperienceLevel = nbt.getInt("Levels");
+        this.clientTotalExperience = nbt.getInt("TotalExperience");
+
+        updateDisplays();
     }
 
     public int getExperienceLevels() {
@@ -47,7 +63,24 @@ public class SculkBatteryBlockEntity extends BlockEntity {
     public int getTotalExperience() {
         return this.totalExperience;
     }
+    public int convertLevelsToExperience(int Levels) {
+        int TotalExperience = 0;
+        for (int Level = 0; Level <= Levels; Level++) {
+            TotalExperience += getLevelExperience(Level);
+        }
 
+        return TotalExperience;
+    }
+
+    @Override
+    public void markDirty() {
+        assert this.getWorld() != null;
+        if (!this.getWorld().isClient) {
+            updateDisplays();
+        }
+
+        super.markDirty();
+    }
 
     public void addExperienceLevels(int levels) {
         this.experienceLevel += levels;
@@ -93,6 +126,16 @@ public class SculkBatteryBlockEntity extends BlockEntity {
         return 7 + this.experienceLevel * 2;
     }
 
+    public int getLevelExperience(int Level) {
+        if (Level >= 30) {
+            return 112 + (Level - 30) * 9;
+        }
+        if (Level >= 15) {
+            return 37 + (Level - 15) * 5;
+        }
+        return 7 + Level * 2;
+    }
+
     @Override
     public @Nullable Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
@@ -100,6 +143,31 @@ public class SculkBatteryBlockEntity extends BlockEntity {
 
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        assert this.getWorld() != null;
+
         return createNbt(registryLookup);
     }
+
+
+    private void updateDisplays() {
+        if (this.getWorld() instanceof ServerWorld server) {
+            SculkBatteryS2CPayload payload = new SculkBatteryS2CPayload(this.getExperienceLevels(),this.getTotalExperience(), this.getPos());
+
+            for (ServerPlayerEntity player : PlayerLookup.world( server )) {
+                ServerPlayNetworking.send(player, payload);
+            }
+        }
+    }
+
+    public void setClientExperienceLevels(int Levels) {
+        this.clientExperienceLevel = Levels;
+    }
+    public void setClientTotalExperience(int TotalExperience) {
+        this.clientTotalExperience = TotalExperience;
+    }
+
+    public int getClientTotalExperience() {
+        return this.clientTotalExperience;
+    }
+
 }
