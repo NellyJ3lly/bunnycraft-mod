@@ -65,8 +65,8 @@ public class SculkBatteryBlock extends BlockWithEntity implements BlockEntityPro
                 stack.decrementUnlessCreative(1,player);
                 return ItemActionResult.SUCCESS ;
             }
-            if (stack.isOf(Items.ENCHANTED_BOOK)) {
-                sculkBatteryBlockEntity.addExperience(100);
+            if (stack.isOf(Items.NETHER_STAR)) {
+                sculkBatteryBlockEntity.addExperience(1000);
                 stack.decrementUnlessCreative(1,player);
                 return ItemActionResult.SUCCESS ;
             }

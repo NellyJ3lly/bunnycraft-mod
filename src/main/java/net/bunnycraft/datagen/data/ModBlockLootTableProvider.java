@@ -66,6 +66,10 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SCULK_WOOD_TRAPDOOR);
         addDrop(ModBlocks.SCULK_WOOD_PRESSURE_PLATE);
         addDrop(ModBlocks.SCULK_WOOD_BUTTON);
+
+
+        addDrop(ModBlocks.BUNNY_BANK);
+        addDrop(ModBlocks.SCULK_BATTERY);
     }
 
     public LootTable.Builder multipleOreDrops(Block drop, Item item, float minDrops, float maxDrops) {

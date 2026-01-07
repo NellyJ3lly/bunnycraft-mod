@@ -27,7 +27,27 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.ROSE_GOLD_BLOCK)
                 .add(ModBlocks.STEEL_BLOCK)
                 .add(ModBlocks.BUDDING_ECHO)
-                .add(ModBlocks.ECHO_CLUSTER);
+                .add(ModBlocks.ECHO_CLUSTER)
+                .add(ModBlocks.ECHO_BLOCK)
+                .add(ModBlocks.ECHO_BRICK)
+                .add(ModBlocks.ECHO_BRICK_WALL)
+                .add(ModBlocks.ECHO_BRICK_SLAB)
+                .add(ModBlocks.ECHO_BRICK_STAIRS)
+                .add(ModBlocks.CHISELED_ECHO_BRICK)
+                .add(ModBlocks.SCULK_BATTERY);
+
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .add(ModBlocks.SCULK_WOOD_LOG)
+                .add(ModBlocks.SCULK_WOOD_PLANKS)
+                .add(ModBlocks.SCULK_WOOD_FENCE)
+                .add(ModBlocks.SCULK_WOOD_DOOR)
+                .add(ModBlocks.SCULK_WOOD_WOOD)
+                .add(ModBlocks.SCULK_WOOD_TRAPDOOR)
+                .add(ModBlocks.SCULK_WOOD_BUTTON)
+                .add(ModBlocks.SCULK_WOOD_PRESSURE_PLATE)
+                .add(ModBlocks.SCULK_WOOD_FENCE_GATE)
+                .add(ModBlocks.STRIPPED_SCULK_WOOD_WOOD)
+                .add(ModBlocks.STRIPPED_SCULK_WOOD_LOG);
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(ModBlocks.COPPER_BUNNYCOIN_BLOCK)
@@ -56,7 +76,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         getOrCreateTagBuilder(ModTags.Blocks.NEEDS_ROSE_GOLD_TOOL)
-                .addTag(BlockTags.NEEDS_IRON_TOOL);
+                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
 
         getOrCreateTagBuilder(BlockTags.LOGS)
                 .add(ModBlocks.SCULK_WOOD_LOG)

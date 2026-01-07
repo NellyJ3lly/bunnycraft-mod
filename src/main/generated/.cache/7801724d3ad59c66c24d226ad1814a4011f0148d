@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-18T18:33:08.2178187	Bunnycraft/Block Loot Tables
+// 1.21.1	2026-01-07T13:18:50.2764691	Bunnycraft/Block Loot Tables
 2ae620ffd5ddd776d87c0bbc989f918cc7fdad39 data\bunnycraft\loot_table\blocks\stripped_sculk_wood_wood.json
 e3ac84bb7cc86b4a886ce591fd69513852192232 data\bunnycraft\loot_table\blocks\sculk_wood_log.json
 b060d5e46cfd1070fb73227a0f70a312299b10e7 data\bunnycraft\loot_table\blocks\echo_brick.json
@@ -17,13 +17,15 @@ c35c2d0184a2c8c05b4ec1f2df6c296e9a441e0b data\bunnycraft\loot_table\blocks\encha
 f310afbb2188ee5d811091bd3ec61b7ba0f68f88 data\bunnycraft\loot_table\blocks\pancake_rabbit_ore.json
 295542386c8f3d321bcfe03b836d21ae13d4791e data\bunnycraft\loot_table\blocks\sculk_wood_pressure_plate.json
 93de846c1f236fe920207eb46ef12fb959aaa1f2 data\bunnycraft\loot_table\blocks\stripped_sculk_wood_log.json
+47c34ff247c63369071fd02577aaabf67984ab23 data\bunnycraft\loot_table\blocks\bunny_bank.json
 af434b0f9c487165ac436e981413f632513ee253 data\bunnycraft\loot_table\blocks\pipis_block.json
 0769d7cca8298986322419b2b6208bf6a485309e data\bunnycraft\loot_table\blocks\sculk_wood_wood.json
 dc5cfab7fe949defd6c6e9e13b7c0078257cda9e data\bunnycraft\loot_table\blocks\sculk_wood_button.json
 fc9f1327207b03ad414c1cd57453f43b3bde6aa6 data\bunnycraft\loot_table\blocks\copper_bunnycoin_block.json
 7df574371329cb046eb0d7a32afcc044275ee96a data\bunnycraft\loot_table\blocks\echo_brick_slab.json
-9630ea34e6f9917e6c9a5a7ad122461461ebebce data\bunnycraft\loot_table\blocks\sculk_wood_planks.json
 c5e6569bdb5493421d2ec7fcf3fa7c2cd09b8657 data\bunnycraft\loot_table\blocks\echo_block.json
+9630ea34e6f9917e6c9a5a7ad122461461ebebce data\bunnycraft\loot_table\blocks\sculk_wood_planks.json
 d8bc4b2d525f3bd2f52f5569d638aaa0095928df data\bunnycraft\loot_table\blocks\sculk_wood_stairs.json
 be3e6d6d601954d43e3d82cd74097d922311911e data\bunnycraft\loot_table\blocks\echo_brick_wall.json
+66c09cb9ff1c0aaeac03859ec37d261577db64d9 data\bunnycraft\loot_table\blocks\sculk_battery.json
 ac256ba11d44d6895102a07eb2b7348b7f8037c1 data\bunnycraft\loot_table\blocks\sculk_wood_door.json

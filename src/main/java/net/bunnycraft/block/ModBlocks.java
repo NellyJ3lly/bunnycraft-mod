@@ -42,7 +42,7 @@ public class ModBlocks {
     public static final Block SCULK_BATTERY = registerBlock("sculk_battery",
             new SculkBatteryBlock(AbstractBlock.Settings.create()
                     .nonOpaque()
-                    .sounds(BlockSoundGroup.METAL)));
+                    .sounds(BlockSoundGroup.METAL).luminance(state -> 6)));
 
     public static final Block SCULK_BERRY_BUSH = registerBlock(
             "sculk_berry_bush",

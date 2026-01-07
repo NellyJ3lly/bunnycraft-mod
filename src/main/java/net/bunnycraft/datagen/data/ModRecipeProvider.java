@@ -74,6 +74,24 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .pattern("##")
                 .criterion(hasItem(ModBlocks.ECHO_BLOCK),conditionsFromItem(ModBlocks.ECHO_BLOCK)).offerTo(exporter);
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE,ModBlocks.SCULK_BATTERY)
+                .input('G', Items.GOLD_INGOT)
+                .input('E', Items.ECHO_SHARD)
+                .input('R', Items.REDSTONE)
+                .input('C', Blocks.CAULDRON)
+                .pattern("EEE")
+                .pattern("RCR")
+                .pattern("GGG")
+                .criterion(hasItem(Items.ECHO_SHARD),conditionsFromItem(Items.ECHO_SHARD)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE,ModBlocks.BUNNY_BANK)
+                .input('G', Items.GOLD_INGOT)
+                .input('C', Blocks.ENDER_CHEST)
+                .pattern(" G ")
+                .pattern("GCG")
+                .pattern(" G ")
+                .criterion(hasItem(Items.GOLD_INGOT),conditionsFromItem(Items.GOLD_INGOT)).offerTo(exporter);
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,ModBlocks.SCULK_WOOD_PLANKS,4)
                 .input(ModBlocks.SCULK_WOOD_LOG)
                 .criterion(hasItem(ModBlocks.SCULK_WOOD_LOG),conditionsFromItem(ModBlocks.SCULK_WOOD_LOG)).offerTo(exporter);
@@ -224,6 +242,24 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .criterion(hasItem(ModItems.MOLTEN_STEEL), conditionsFromItem(ModItems.MOLTEN_STEEL))
                 .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "steel_ingot_casting"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.AMETHYST_UPGRADE_TEMPLATE,1)
+                .pattern("-G-")
+                .pattern("-E-")
+                .pattern("---")
+                .input('-', Items.AMETHYST_SHARD)
+                .input('E', Items.ECHO_SHARD)
+                .input('G',Items.GOLD_INGOT)
+                .criterion(hasItem(ModItems.AMETHYST_UPGRADE_TEMPLATE), conditionsFromItem(ModItems.AMETHYST_UPGRADE_TEMPLATE)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModTools.SCULK_CANE,1)
+                .pattern("EE")
+                .pattern(" /")
+                .pattern(" /")
+                .input('/', Items.BONE)
+                .input('E', Items.ECHO_SHARD)
+                .criterion(hasItem(ModTools.SCULK_CANE), conditionsFromItem(ModTools.SCULK_CANE)).offerTo(exporter);
+
+
         makePickaxe(ModTools.COPPER_PICKAXE,Items.COPPER_INGOT).offerTo(exporter);
         makeSword(ModTools.COPPER_SWORD,Items.COPPER_INGOT).offerTo(exporter);
         makeAxe(ModTools.COPPER_AXE,Items.COPPER_INGOT).offerTo(exporter);
@@ -252,6 +288,9 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
         makeSpear(ModTools.ROSE_GOLD_SPEAR, ModItems.ROSE_GOLD_INGOT).offerTo(exporter);
 
         offerSmithingTrimRecipe(exporter, ModItems.PANCAKE_RABBIT, Identifier.of(Bunnycraft.MOD_ID,"rabbit"));
+
+        upgradeItem(ModItems.AMETHYST_UPGRADE_TEMPLATE,Items.LEATHER_HELMET,Items.AMETHYST_SHARD,ModArmors.AMETHYST_HELMET);
+        upgradeItem(ModItems.AMETHYST_UPGRADE_TEMPLATE,Items.LEATHER_CHESTPLATE,Items.AMETHYST_SHARD,ModArmors.AMETHYST_CHESTPLATE);
 
         makeHelmet(ModArmors.DEALMAKER,ModItems.PIPIS).offerTo(exporter);
 
