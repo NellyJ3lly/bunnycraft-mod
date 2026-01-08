@@ -94,6 +94,8 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.MOLTEN_ECHO, Models.GENERATED);
         gen.register(ModItems.MOLD, Models.GENERATED);
 
+        gen.register(ModArmors.AMETHYST_CHESTPLATE, Models.GENERATED);
+
         gen.register(ModItems.SCULK_BERRIES, Models.GENERATED);
 
         gen.register(ModItems.AMETHYST_BOOK,Models.GENERATED);
@@ -112,6 +114,11 @@ public class ModModelProvider extends FabricModelProvider {
         gen.registerArmor(((ArmorItem) ModArmors.COPPER_CHESTPLATE));
         gen.registerArmor(((ArmorItem) ModArmors.COPPER_LEGGINGS));
         gen.registerArmor(((ArmorItem) ModArmors.COPPER_BOOTS));
+
+        gen.registerArmor(((ArmorItem) ModArmors.ECHO_HELMET));
+        gen.registerArmor(((ArmorItem) ModArmors.ECHO_CHESTPLATE));
+        gen.registerArmor(((ArmorItem) ModArmors.ECHO_LEGGINGS));
+        gen.registerArmor(((ArmorItem) ModArmors.ECHO_BOOTS));
 
         gen.registerArmor(((ArmorItem) ModArmors.GUARDIAN_HELMET));
         gen.registerArmor(((ArmorItem) ModArmors.GUARDIAN_CHESTPLATE));
