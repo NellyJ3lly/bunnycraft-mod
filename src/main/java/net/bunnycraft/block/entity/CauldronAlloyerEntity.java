@@ -48,18 +48,21 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             Map.entry("empty", 0x000000), // the hex code of each alloy, leave 0x
             Map.entry("steel", 0x95FFFF),
             Map.entry("rose_gold", 0xFFAFA4),
-            Map.entry("netherite", 0x4F3D44)
+            Map.entry("netherite", 0x4F3D44),
+            Map.entry("echo", 0x277DF5)
     );
     static final Map<String, Item> getAlloyBucket = Map.ofEntries(
             Map.entry("empty", Items.BUCKET), // this is a precaution, if the code glitches then it should give the bucket back
             Map.entry("steel", ModItems.MOLTEN_STEEL), // what alloy returns what bucket item
             Map.entry("rose_gold", ModItems.MOLTEN_ROSE_GOLD),
-            Map.entry("netherite", ModItems.MOLTEN_NETHERITE)
+            Map.entry("netherite", ModItems.MOLTEN_NETHERITE),
+            Map.entry("echo", ModItems.MOLTEN_ECHO)
     );
     static final Map<String, Integer> getAlloyConversionRate = Map.ofEntries(
             Map.entry("steel", 4), // how much alloy is required before you can scoop out a single bucket
             Map.entry("rose_gold", 2),
-            Map.entry("netherite", 4)
+            Map.entry("netherite", 4),
+            Map.entry("echo", 2)
     );
 
     public void tryAlloy() { // ----------------------------------- add new alloys here
@@ -69,6 +72,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         //make sure the name is consistent, the final is how many ticks it takes to complete the alloy
         trySpecificAlloy("rose_gold", 1, Items.COPPER_INGOT, Items.GOLD_INGOT, 80);
         trySpecificAlloy("steel", 4, Items.DIAMOND, Items.IRON_INGOT, 160);
+        trySpecificAlloy("echo", 4, ModItems.STEEL_INGOT, Items.ECHO_SHARD, 180);
         trySpecificAlloy("netherite", 4, Items.GOLD_INGOT, Items.NETHERITE_SCRAP, 140);
 
         tryConversion(1, Items.DIRT, Items.CLAY_BALL, 600); // conversions take 1 item and convert to another by heating

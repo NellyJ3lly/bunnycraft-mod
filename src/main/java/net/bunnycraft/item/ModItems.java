@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ModItems {
+public class        ModItems {
     public static final Identifier BASE_PLAYER_ENTITY_INTERACTION_RANGE_ID = Identifier.of(Bunnycraft.MOD_ID, "base_entity_interaction_range");
 
     //registering as an ingot adds it to a public list currently used only by cauldron alloyer
@@ -60,6 +60,7 @@ public class ModItems {
     public static  final Item MOLTEN_ROSE_GOLD = registerItem("molten_rose_gold", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_STEEL = registerItem("molten_steel", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static  final Item MOLTEN_NETHERITE = registerItem("molten_netherite", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
+    public static  final Item MOLTEN_ECHO = registerItem("molten_echo", new Item(new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
 
     public static  final Item PANCAKE_RABBIT = registerItem("pancake_rabbit",SmithingTemplateItem.of(Identifier.of(Bunnycraft.MOD_ID,"rabbit_trim"), FeatureFlags.VANILLA));
 
@@ -107,6 +108,7 @@ public class ModItems {
             ingotList.put(3, Items.DIAMOND);
             ingotList.put(4, Items.NETHERITE_SCRAP);
             ingotList.put(5, Items.DIRT); // used for a conversion recipe
+            ingotList.put(6, Items.ECHO_SHARD);
             //add any other items that should be able to go into the cauldron NOT MOD ITEMS, those should register using this method
             // we should probably change this to just use item tags instead
         }

@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-07T13:18:50.2784961	Bunnycraft/Tags for minecraft:item
+// 1.21.1	2026-01-07T22:09:12.7153892	Bunnycraft/Tags for minecraft:item
 aaee994e78534cf4648603389545a98b000c24e7 data\minecraft\tags\item\logs.json
 33f18e6f36653245c27806c7d52c6eca1cd7896f data\minecraft\tags\item\leg_armor.json
 6e21f397ea3d4f93d5163a97dad19b5b7d214b84 data\bunnycraft\tags\item\echolocator_filter_item.json
@@ -21,8 +21,8 @@ a1c2222abdb8af6a2b738854d7e940ed6b69340c data\minecraft\tags\item\shovels.json
 19b073a7559571c409a9e82de27bfabac67ee6ac data\bunnycraft\tags\item\echolocator_high_cost.json
 190a1d19ee517ea465c568ea89c61a06995d47c0 data\minecraft\tags\item\axes.json
 bc7a4f1d327f0c3286854888237365bd61e07fd4 data\minecraft\tags\item\trim_materials.json
-e029b61cde764722c8c810d3e8968546dc5d3cdd data\bunnycraft\tags\item\echolocator_low_cost.json
 d2cdf52573c1846efbf63c8b78366218e38fdc86 data\bunnycraft\tags\item\echolocator_medium_cost.json
+e029b61cde764722c8c810d3e8968546dc5d3cdd data\bunnycraft\tags\item\echolocator_low_cost.json
 bdb4053d28def340c591bb6cd77b677cfe510db6 data\bunnycraft\tags\item\enchantable\pickaxe.json
 f2f802158a14cd623f0aba1ce412496fe794c4e1 data\minecraft\tags\item\enchantable\sharp_weapon.json
 3961c077cc70c465981f7a64b0b0be17465a9201 data\bunnycraft\tags\item\enchantable\accepts_sweeping_edge.json

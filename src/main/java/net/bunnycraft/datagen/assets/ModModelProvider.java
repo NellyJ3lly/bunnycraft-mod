@@ -91,6 +91,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.MOLTEN_ROSE_GOLD, Models.GENERATED);
         gen.register(ModItems.MOLTEN_STEEL, Models.GENERATED);
         gen.register(ModItems.MOLTEN_NETHERITE, Models.GENERATED);
+        gen.register(ModItems.MOLTEN_ECHO, Models.GENERATED);
         gen.register(ModItems.MOLD, Models.GENERATED);
 
         gen.register(ModItems.SCULK_BERRIES, Models.GENERATED);

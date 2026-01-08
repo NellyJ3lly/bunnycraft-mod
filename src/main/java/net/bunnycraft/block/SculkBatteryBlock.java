@@ -59,20 +59,53 @@ public class SculkBatteryBlock extends BlockWithEntity implements BlockEntityPro
                 return ItemActionResult.FAIL;
             }
 
-            if (stack.isOf(Items.ECHO_SHARD)) {
+            if (stack.isOf(Items.EXPERIENCE_BOTTLE)) {
                 int i = 3 + world.random.nextInt(5) + world.random.nextInt(5);
                 sculkBatteryBlockEntity.addExperience(i);
                 stack.decrementUnlessCreative(1,player);
+
+                if (!player.isInCreativeMode()) {
+                    giveItem(player,Hand.MAIN_HAND,Items.EXPERIENCE_BOTTLE.getDefaultStack());
+                }
+
+                giveItem(player,Hand.MAIN_HAND,Items.GLASS_BOTTLE.getDefaultStack());
+
                 return ItemActionResult.SUCCESS ;
             }
-            if (stack.isOf(Items.NETHER_STAR)) {
-                sculkBatteryBlockEntity.addExperience(1000);
+
+            if (stack.isOf(Items.GLASS_BOTTLE)) {
+                int i = 3 + world.random.nextInt(5) + world.random.nextInt(5);
+                sculkBatteryBlockEntity.addExperience(-i);
                 stack.decrementUnlessCreative(1,player);
+                giveItem(player,Hand.MAIN_HAND,Items.EXPERIENCE_BOTTLE.getDefaultStack());
+
                 return ItemActionResult.SUCCESS ;
             }
+
+//            if (stack.isOf(Items.ECHO_SHARD)) {
+//                int i = 3 + world.random.nextInt(5) + world.random.nextInt(5);
+//                sculkBatteryBlockEntity.addExperience(i);
+//                stack.decrementUnlessCreative(1,player);
+//                return ItemActionResult.SUCCESS ;
+//            }
+//            if (stack.isOf(Items.NETHER_STAR)) {
+//                sculkBatteryBlockEntity.addExperience(1000);
+//                stack.decrementUnlessCreative(1,player);
+//                return ItemActionResult.SUCCESS ;
+//            }
         }
 
         return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+    }
+
+    public void giveItem(PlayerEntity user, Hand hand,ItemStack stack) {
+        user.getStackInHand(hand).decrement(1);
+
+        if (user.getInventory().getEmptySlot() == -1) {
+            user.dropItem(stack,true);
+        } else {
+            user.giveItemStack(stack);
+        }
     }
 
     @Override

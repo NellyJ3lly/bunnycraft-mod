@@ -236,6 +236,17 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                         .criterion(hasItem(ModItems.MOLTEN_ROSE_GOLD), conditionsFromItem(ModItems.MOLTEN_ROSE_GOLD))
                         .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "rose_gold_ingot_casting"));
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ECHO_INGOT)
+                .input(ModItems.MOLTEN_ECHO)
+                .input(ModItems.MOLD)
+                .criterion(hasItem(ModItems.MOLTEN_ECHO), conditionsFromItem(ModItems.MOLTEN_ECHO))
+                .offerTo(exporter, Identifier.of(Bunnycraft.MOD_ID, "molten_echo_casting"));
+
+        upgradeItem(Items.AIR,Items.DIAMOND_HELMET,ModItems.ECHO_INGOT,ModArmors.ECHO_HELMET).offerTo(exporter,"diamond_helmet_to_echo");
+        upgradeItem(Items.AIR,Items.DIAMOND_CHESTPLATE,ModItems.ECHO_INGOT,ModArmors.ECHO_CHESTPLATE).offerTo(exporter,"diamond_chestplate_to_echo");
+        upgradeItem(Items.AIR,Items.DIAMOND_LEGGINGS,ModItems.ECHO_INGOT,ModArmors.ECHO_LEGGINGS).offerTo(exporter,"diamond_leggings_to_echo");
+        upgradeItem(Items.AIR,Items.DIAMOND_BOOTS,ModItems.ECHO_INGOT,ModArmors.ECHO_BOOTS).offerTo(exporter,"diamond_boots_to_echo");
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.STEEL_INGOT)
                 .input(ModItems.MOLTEN_STEEL)
                 .input(ModItems.MOLD)
@@ -258,7 +269,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModToolRe
                 .input('/', Items.BONE)
                 .input('E', Items.ECHO_SHARD)
                 .criterion(hasItem(ModTools.SCULK_CANE), conditionsFromItem(ModTools.SCULK_CANE)).offerTo(exporter);
-
 
         makePickaxe(ModTools.COPPER_PICKAXE,Items.COPPER_INGOT).offerTo(exporter);
         makeSword(ModTools.COPPER_SWORD,Items.COPPER_INGOT).offerTo(exporter);
