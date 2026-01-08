@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
@@ -26,14 +27,18 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.injection.points.BeforeReturn;
 
 import java.util.*;
 
@@ -424,14 +429,16 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
 
                 this.markDirty();
 
-                updateDisplays();
+                server.getChunkManager().markForUpdate(pos);
 
+                updateDisplays();
 
                 tryAlloy();
             }
         }
 
         assert this.getWorld() != null;
+
         if (this.alloying) {
             if (this.getWorld().random.nextDouble() < .1) {
                 if (this.getWorld() instanceof ServerWorld server) {
@@ -480,6 +487,8 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         if (stack != null && ModItems.ingotList.containsValue(stack.getItem()) && !world.isClient()) { // if the item is a valid alloyable ingot
 
             if(insertStack(stack, player, world)) { // inserts the stack into the inventory
+                world.playSound(player,this.pos, SoundEvents.ENTITY_ITEM_FRAME_ADD_ITEM,SoundCategory.BLOCKS,1f,1f);
+
                 tryAlloy(); // and check if an alloy recipe has been successfully created
             }
 
@@ -563,9 +572,9 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.getStack(1).decrement(this.getStack(1).getCount() - 1);
 
             //dont update the displays cause there still should be al least 1 of each item in there
+            this.needsDisplayRefresh = true;
 
             return false; // dont pass to default cauldron interaction
-
         } else if (this.getStack(0) != ItemStack.EMPTY || this.getStack(1) != ItemStack.EMPTY){
 
             player.getInventory().insertStack(this.getStack(0));
@@ -574,6 +583,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
             this.setStack(0, ItemStack.EMPTY);
             this.setStack(1, ItemStack.EMPTY);
 
+            this.needsDisplayRefresh = true;
 
             updateDisplays(ItemStack.EMPTY, ItemStack.EMPTY, this.currentAlloy, this.getFluidLevel(this.alloyAmount));
 
@@ -594,24 +604,26 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
                     stack.decrement(maxStackPerItem - this.getStack(0).getCount());
                     this.getStack(Slot).increment(maxStackPerItem - this.getStack(Slot).getCount());
 
-                    return true;
                 } else {
                     this.getStack(0).increment(stack.getCount());
                     stack.copyAndEmpty();
-                    return true;
+
                 }
             } else {
                 stack.decrement(1);
                 this.getStack(Slot).increment(1);
 
-                return true;
             }
+
+            this.needsDisplayRefresh = true;
+
+            return true;
         }
     }
 
     private boolean addStackifEmpty(ItemStack stack,PlayerEntity player,int Slot) {
         if (maxStackPerItem <= stack.getCount()) {
-            if (player.isSprinting()) {
+            if (player.isSneaking()) {
                 this.setStack(Slot, stack.copyWithCount(maxStackPerItem));
                 stack.decrement(maxStackPerItem);
             } else {
@@ -639,14 +651,11 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         } else if (this.getStack(1).isEmpty()) {
             return addStackifEmpty(stack,player,1);
         } else {
-
             returnItems(player);
+            this.needsDisplayRefresh = true;
 
             return false;
         }
-
-
-
     }
 
     private int checkForHeat(BlockPos pos, FlowableFluid thisFluid, int heatForBlock) {
@@ -701,7 +710,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
     }
 
     private void updateDisplays() {
-        updateDisplays(this.getStack(0), this.getStack(1), this.currentAlloy, getFluidLevel(this.alloyAmount));
+        updateDisplays(this.getItems().get(0), this.getItems().get(1), this.currentAlloy, getFluidLevel(this.alloyAmount));
     }
 
     private void updateDisplays(ItemStack item1, ItemStack item2, String fluid, float fluidLevel) {
@@ -709,7 +718,7 @@ public class CauldronAlloyerEntity extends BlockEntity implements ImplementedInv
         // sends a packet to clients to notify of what items are in the cauldron and a blockpos to identify which cauldron
         // used in the renderer
         if (this.getWorld() instanceof ServerWorld server) {
-
+            server.getChunkManager().markForUpdate(pos);
             CauldronAlloyerS2CPayload payload = new CauldronAlloyerS2CPayload(new int[] {Item.getRawId(item1.getItem()), Item.getRawId(item2.getItem())}, alloyColor.get(fluid), fluidLevel, this.getPos());
 
             for (ServerPlayerEntity player : PlayerLookup.world( server )) {

@@ -1,6 +1,6 @@
 {
   "variants": {
-    "heat=0": {
+    "": {
       "model": "minecraft:block/cauldron"
     },
     "heat=1": {
