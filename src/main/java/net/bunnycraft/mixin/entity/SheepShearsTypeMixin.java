@@ -48,12 +48,14 @@ public class SheepShearsTypeMixin extends AnimalEntity implements Shearable {
     public void Bunnycraft$ChangeToTag(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.isIn(ModTags.Items.SHEAR_ENCHANTABLE)) {
-            this.ShearUsed = itemStack;
-            cir.cancel();
-            this.sheared(SoundCategory.PLAYERS);
-            this.emitGameEvent(GameEvent.SHEAR, player);
-            itemStack.damage(1, player, getSlotForHand(hand));
-            cir.setReturnValue(ActionResult.success(true));
+            if (!this.getWorld().isClient && this.isShearable()) {
+                this.ShearUsed = itemStack;
+                cir.cancel();
+                this.sheared(SoundCategory.PLAYERS);
+                this.emitGameEvent(GameEvent.SHEAR, player);
+                itemStack.damage(1, player, getSlotForHand(hand));
+                cir.setReturnValue(ActionResult.success(true));
+            }
         }
     }
 

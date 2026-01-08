@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:pancake_rabbit_block"
+        "recipe": "bunnycraft:pancake_rabbit_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:pancake_rabbit_block"
+      "bunnycraft:pancake_rabbit_block"
     ]
   }
 }

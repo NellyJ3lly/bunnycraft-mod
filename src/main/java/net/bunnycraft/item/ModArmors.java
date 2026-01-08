@@ -65,6 +65,20 @@ public class ModArmors {
             new ArmadilloArmorItem(ModArmorMaterials.ARMADILLO_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
                     .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(20)),-0.03f));
 
+    public static final Item ECHO_HELMET = registerItem("echo_helmet",
+            new EchoArmorItem(ModArmorMaterials.ECHO_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(42)),-0.03f));
+    public static final Item ECHO_CHESTPLATE = registerItem("echo_chestplate",
+            new EchoArmorItem(ModArmorMaterials.ECHO_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(42)), -0.12f));
+    public static final Item ECHO_LEGGINGS = registerItem("echo_leggings",
+            new EchoArmorItem(ModArmorMaterials.ECHO_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(42)),-0.06f));
+    public static final Item ECHO_BOOTS = registerItem("echo_boots",
+            new EchoArmorItem(ModArmorMaterials.ECHO_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(42)),-0.03f));
+
+
     public static final Item ROSE_GOLD_HELMET = registerItem("rose_gold_helmet",
             new RoseGoldArmorItem(ModArmorMaterials.ROSE_GOLD_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
                     .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(16)),2f));
@@ -122,13 +136,20 @@ public class ModArmors {
                     }
             });
 
+    public static final Item AMETHYST_HELMET = registerItem("amethyst_helmet",
+            new AmethystArmorItem(ModArmorMaterials.AMETHYST_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.HELMET.getMaxDamage(12))));
+    public static final Item AMETHYST_CHESTPLATE = registerItem("amethyst_chestplate",
+            new AmethystArmorItem(ModArmorMaterials.AMETHYST_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Settings()
+                    .maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(12))));
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(Bunnycraft.MOD_ID,name), item);
     }
 
     public static void registerModArmors() {
 
-        Bunnycraft.LOGGER.info("Registering Mod Armor for" + Bunnycraft.MOD_ID);
+        Bunnycraft.LOGGER.info("Registering Armor for" + Bunnycraft.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.add(STEEL_HELMET);

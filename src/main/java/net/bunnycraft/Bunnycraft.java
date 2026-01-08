@@ -2,36 +2,44 @@ package net.bunnycraft;
 
 import net.bunnycraft.block.ModBlocks;
 import net.bunnycraft.block.entity.ModBlockEntities;
-import net.bunnycraft.block.entity.custom.CauldronAlloyerEntity;
+import net.bunnycraft.block.entity.CauldronAlloyerEntity;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.entity.ModEntities;
+import net.bunnycraft.interfaces.SpreadableBlock;
 import net.bunnycraft.item.ModItemGroups;
 import net.bunnycraft.item.ModItems;
 import net.bunnycraft.item.ModTools;
 import net.bunnycraft.item.ModArmors;
-import net.bunnycraft.item.custom.ClimbingClawItem;
 import net.bunnycraft.modifiers.ModifyLootTables;
 import net.bunnycraft.networking.HorizontalCollisionPayload;
 import net.bunnycraft.networking.CauldronAlloyerS2CPayload;
+import net.bunnycraft.networking.SculkBatteryS2CPayload;
 import net.bunnycraft.sound.ModSounds;
-import net.bunnycraft.util.ModScreenHandlers;
+import net.bunnycraft.screen.ModScreenHandlers;
+import net.bunnycraft.world.ModConfiguredFeatures;
+import net.bunnycraft.world.decorator.SculkDroopDecorator;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.entity.EquipmentSlot;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.gen.treedecorator.TreeDecorator;
+import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Bunnycraft implements ModInitializer {
+public class Bunnycraft implements ModInitializer, SpreadableBlock {
 	public static final String MOD_ID = "bunnycraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static TreeDecoratorType<SculkDroopDecorator> CUSTOM_DECORATOR_TYPE = null;
 
 	public void ClimbingClaws(PlayerEntity entity,boolean horizontalCollision) {
 		ItemStack claws = entity.getStackInHand(Hand.MAIN_HAND);
@@ -39,6 +47,21 @@ public class Bunnycraft implements ModInitializer {
 		if (claws.isOf(ModTools.CLIMBING_CLAW)) {
 			claws.set(ModComponents.HORIZONTAL_COLLISION,horizontalCollision);
 		}
+	}
+
+	public static void registerDecorators() {
+		CUSTOM_DECORATOR_TYPE = Registry.register(
+				Registries.TREE_DECORATOR_TYPE,
+				Identifier.of(Bunnycraft.MOD_ID, "sculk_droop"),
+				new TreeDecoratorType<>(SculkDroopDecorator.SCULK_DROOP_DECORATOR_MAP_CODEC)
+		);
+
+		// This ensures the type is available for data generation
+		DynamicRegistrySetupCallback.EVENT.register(context -> {
+			context.getOptional(Registries.TREE_DECORATOR_TYPE.getKey()).ifPresent(registry -> {
+				Registry.register(registry, Identifier.of(Bunnycraft.MOD_ID, "sculk_droop"), CUSTOM_DECORATOR_TYPE);
+			});
+		});
 	}
 
 	@Override
@@ -53,6 +76,15 @@ public class Bunnycraft implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerModScreenHandlers();
 		ModSounds.registerSounds();
+
+		StrippableBlockRegistry.register(ModBlocks.SCULK_WOOD_LOG,ModBlocks.STRIPPED_SCULK_WOOD_LOG);
+		StrippableBlockRegistry.register(ModBlocks.SCULK_WOOD_WOOD,ModBlocks.STRIPPED_SCULK_WOOD_WOOD);
+
+		registerDecorators();
+
+
+		// not sure if this is the proper way to do set up a list like this but we'll see
+		this.SetupList();
 
 		ModifyLootTables.modifyLootTables();
 
@@ -77,6 +109,7 @@ public class Bunnycraft implements ModInitializer {
 
         // registers the payload for the cauldron to send info to the client so the renderer can display the correct item
         PayloadTypeRegistry.playS2C().register(CauldronAlloyerS2CPayload.ID, CauldronAlloyerS2CPayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(SculkBatteryS2CPayload.ID, SculkBatteryS2CPayload.CODEC);
 
         LOGGER.info("Bunnycraft Loading Complete!");
 	}

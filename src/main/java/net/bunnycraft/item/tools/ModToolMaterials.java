@@ -13,7 +13,6 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    // note for myself remember that only the last tool material needs a ;
     COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL,
             161, 5.5F, 1.5F, 12, () -> Ingredient.ofItems(Items.COPPER_INGOT)),
     STEEL(ModTags.Blocks.INCORRECT_FOR_STEEL_TOOL,

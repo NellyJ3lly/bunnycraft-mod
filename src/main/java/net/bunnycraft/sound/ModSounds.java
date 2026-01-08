@@ -20,6 +20,6 @@ public class ModSounds {
     }
 
     public static void registerSounds() {
-        Bunnycraft.LOGGER.info("Registering Mod Sounds for " + Bunnycraft.MOD_ID);
+        Bunnycraft.LOGGER.info("Registering Sounds for " + Bunnycraft.MOD_ID);
     }
 }

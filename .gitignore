@@ -5,6 +5,7 @@ build/
 out/
 classes/
 
+
 # eclipse
 
 *.launch
@@ -32,6 +33,8 @@ bin/
 
 run/
 src/main/generated/
+generated/.cache/
+.cache
 
 # java
 
@@ -39,4 +42,4 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
-/src/main/generated/.cache/
+

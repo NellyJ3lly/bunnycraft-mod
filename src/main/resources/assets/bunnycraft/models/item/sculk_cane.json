@@ -1,0 +1,6 @@
+{
+  "parent": "bunnycraft:item/handheld/canebackwards",
+  "textures": {
+    "layer0": "bunnycraft:item/sculk_cane"
+  }
+}

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:copper_bunnycoin"
+        "recipe": "bunnycraft:copper_bunnycoin"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:copper_bunnycoin"
+      "bunnycraft:copper_bunnycoin"
     ]
   }
 }

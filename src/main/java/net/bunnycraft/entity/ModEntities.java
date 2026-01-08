@@ -25,6 +25,6 @@ public class ModEntities {
 
     //dummy event for initializing the class
     public static void registerModEntities() {
-        Bunnycraft.LOGGER.info("Registering Mod Entities for" + Bunnycraft.MOD_ID);
+        Bunnycraft.LOGGER.info("Registering Entities for" + Bunnycraft.MOD_ID);
     }
 }

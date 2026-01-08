@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:rose_gold_ingot"
+        "recipe": "bunnycraft:rose_gold_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:rose_gold_ingot"
+      "bunnycraft:rose_gold_ingot"
     ]
   }
 }

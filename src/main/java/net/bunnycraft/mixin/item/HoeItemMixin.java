@@ -54,7 +54,7 @@ public class HoeItemMixin extends MiningToolItem {
 
         tooltip.add( text.formatted(Formatting.GRAY) ); // appends the tooltip
 
-        Bunnycraft.LOGGER.info(tooltip.toString());
+//        Bunnycraft.LOGGER.info(tooltip.toString());
 
         super.appendTooltip(stack, context, tooltip, type);
     }

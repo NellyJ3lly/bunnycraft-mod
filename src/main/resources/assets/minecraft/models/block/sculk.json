@@ -1,0 +1,7 @@
+{
+	"parent": "block/inside_faces_for_block",
+	"textures": {
+		"texture": "block/sculk",
+		"particle": "#texture"
+	}
+}

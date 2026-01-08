@@ -11,17 +11,17 @@ public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> NEEDS_COPPER_TOOL = createTag("needs_copper_tool");
         public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = createTag("incorrect_for_copper_tool");
-
         public static final TagKey<Block> NEEDS_STEEL_TOOL = createTag("needs_steel_tool");
         public static final TagKey<Block> INCORRECT_FOR_STEEL_TOOL = createTag("incorrect_for_steel_tool");
-
         public static final TagKey<Block> NEEDS_ROSE_GOLD_TOOL = createTag("needs_rose_gold_tool");
         public static final TagKey<Block> INCORRECT_FOR_ROSE_GOLD_TOOL = createTag("incorrect_for_rose_gold_tool");
-
         public static final TagKey<Block> NEEDS_PRISMARINE_TOOL = createTag("needs_prismarine_tool");
         public static final TagKey<Block> INCORRECT_FOR_PRISMARINE_TOOL = createTag("incorrect_for_prismarine_tool");
-
         public static final TagKey<Block> CLIMB_CLAWS_IGNORE = createTag("climb_claws_ignore");
+        public static final TagKey<Block> SCULK_REPLACEABLE_NON_FULL_BLOCK = createTag("sculk_replaceable_non_full_block");
+        public static final TagKey<Block> BLOCKS_CAN_ECHOLOCATE = createTag("blocks_can_echolocate");
+        public static final TagKey<Block> COLLIDABLE_SCULK_BLOCKS = createTag("collidable_sculk_blocks");
+
 
 
         private static TagKey<Block> createTag(String name) {
@@ -31,6 +31,15 @@ public class ModTags {
     public static class Items {
 
         public static final TagKey<Item> SPEARS = createTag("spear");
+
+        public static final TagKey<Item> ECHOLOCATOR_FILTER_ITEM = createTag("echolocator_filter_item");
+        public static final TagKey<Item> ECHOLOCATOR_LOW_COST = createTag("echolocator_low_cost");
+        public static final TagKey<Item> ECHOLOCATOR_MEDIUM_COST = createTag("echolocator_medium_cost");
+        public static final TagKey<Item> ECHOLOCATOR_HIGH_COST = createTag("echolocator_high_cost");
+
+        public static final TagKey<Item> ENCHANTED_BOOKS = createTag("enchanted_books");
+
+
 
         public static final TagKey<Item> SPEAR_ENCHANTABLE = createTag("enchantable/spear");
 

@@ -2,6 +2,8 @@ package net.bunnycraft.mixin.entity;
 
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.bunnycraft.block.entity.BunnyBankInventory;
+import net.bunnycraft.interfaces.IMyPlayerEntity;
 import net.bunnycraft.item.ModArmors;
 import net.bunnycraft.item.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -14,8 +16,11 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.EntityTypeTags;
@@ -38,11 +43,46 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //player mixin is used to detect when a player drops the spear slot reserver, and deletes it
 
 @Mixin (PlayerEntity.class)
-public abstract class PlayerEntityMixin extends LivingEntity {
+public abstract class PlayerEntityMixin extends LivingEntity implements IMyPlayerEntity {
     private final PlayerAbilities abilities = new PlayerAbilities();
+
+    public BunnyBankInventory bunnyBankInventory = new BunnyBankInventory();
 
     @Unique
     private static final byte hoeSweepRange = 4; // change this to tweak how far the hoe sweeps, sword default is 1
+
+
+    @Unique
+    public BunnyBankInventory bunnycraft_mod$getBunnyBankInventory() {
+        return this.bunnyBankInventory;
+    }
+
+    @Inject(
+            method = "writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V",
+            at = @At("TAIL")
+    )
+    public void writeBunnyBankData(NbtCompound nbt, CallbackInfo ci) {
+        nbt.put("BunnyBankItems",this.bunnyBankInventory.toNbtList(this.getRegistryManager()));
+    }
+
+    @Inject(
+            method = "readCustomDataFromNbt(Lnet/minecraft/nbt/NbtCompound;)V",
+            at = @At("TAIL")
+    )
+    public void readBunnyBankData(NbtCompound nbt, CallbackInfo ci) {
+        if (nbt.contains("BunnyBankItems", NbtElement.LIST_TYPE)) {
+            this.bunnyBankInventory.readNbtList(nbt.getList("BunnyBankItems", NbtElement.COMPOUND_TYPE), this.getRegistryManager());
+        }
+    }
+
+    @Inject(
+            method = "Lnet/minecraft/entity/player/PlayerEntity;writeCustomDataToNbt(Lnet/minecraft/nbt/NbtCompound;)V",
+            at = @At("TAIL")
+    )
+    public void getBunnyBankStackReference(NbtCompound nbt, CallbackInfo ci) {
+        nbt.put("BunnyBank",this.bunnyBankInventory.toNbtList(this.getRegistryManager()));
+    }
+
 
     //this doesnt matter and should be ignored, simply gives me access to protected variables in LivingEntity
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {

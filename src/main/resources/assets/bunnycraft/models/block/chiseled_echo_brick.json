@@ -1,0 +1,7 @@
+{
+  "parent": "block/inside_faces_for_block",
+  "textures": {
+    "texture": "bunnycraft:block/chiseled_echo_brick",
+    "particle": "#texture"
+  }
+}

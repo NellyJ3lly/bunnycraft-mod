@@ -6,6 +6,15 @@
     "bunnycraft:gold_bunnycoin_block",
     "bunnycraft:diamond_bunnycoin_block",
     "bunnycraft:rose_gold_block",
-    "bunnycraft:steel_block"
+    "bunnycraft:steel_block",
+    "bunnycraft:budding_echo",
+    "bunnycraft:echo_cluster",
+    "bunnycraft:echo_block",
+    "bunnycraft:echo_brick",
+    "bunnycraft:echo_brick_wall",
+    "bunnycraft:echo_brick_slab",
+    "bunnycraft:echo_brick_stairs",
+    "bunnycraft:chiseled_echo_brick",
+    "bunnycraft:sculk_battery"
   ]
 }

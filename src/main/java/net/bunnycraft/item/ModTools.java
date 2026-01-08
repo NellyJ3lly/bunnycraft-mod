@@ -4,6 +4,7 @@ import net.bunnycraft.Bunnycraft;
 import net.bunnycraft.component.ModComponents;
 import net.bunnycraft.item.custom.CaneItem;
 import net.bunnycraft.item.custom.ClimbingClawItem;
+import net.bunnycraft.item.custom.EcholocatorItem;
 import net.bunnycraft.item.custom.SpearItem;
 import net.bunnycraft.item.tools.ModToolMaterials;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -12,11 +13,14 @@ import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ModTools  {
@@ -31,10 +35,29 @@ public class ModTools  {
             new ClimbingClawItem(new Item.Settings().maxDamage(250).component(ModComponents.CAN_CLIMB_ON_BLOCK,false))
     );
 
+    public static final Item ECHOLOCATOR = registerTool("echolocator",
+            new EcholocatorItem(new Item.Settings().maxCount(1)
+                    .component(ModComponents.ECHO_FUEL,64F)
+                    .component(ModComponents.BLOCK_FILTER,"")));
+
     public static final Item WOODEN_CANE = registerTool("wooden_cane",
             new CaneItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
                     CaneItem.createAttributeModifiers(ToolMaterials.WOOD,0.1f,1f,2,-3f,2f)
             )));
+
+    public static final Item SCULK_CANE = registerTool("sculk_cane",
+            new CaneItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
+                    CaneItem.createAttributeModifiers(ToolMaterials.WOOD,0.08f,1f,5,-2f,3f)
+            )){
+                @Override
+                public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+
+                    //tells what the empty slot item does
+                    tooltip.add(Text.translatable("tooltip.bunnycraft.sculk_cane.instructions"));
+
+                    super.appendTooltip(stack, context, tooltip, type);
+                }
+            });
 
     // WOODEN TOOLS
     public static final Item WOODEN_SPEAR = registerTool("wooden_spear", new SpearItem(ToolMaterials.WOOD, new Item.Settings().attributeModifiers(
@@ -179,7 +202,7 @@ public class ModTools  {
 
     public static void registerModTools() {
 
-        Bunnycraft.LOGGER.info("Registering Mod Tools for" + Bunnycraft.MOD_ID);
+        Bunnycraft.LOGGER.info("Registering Tools for" + Bunnycraft.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             entries.add(STEEL_SHEARS);

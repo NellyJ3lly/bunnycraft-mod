@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:diamond_bunnycoin_block"
+        "recipe": "bunnycraft:diamond_bunnycoin_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:diamond_bunnycoin_block"
+      "bunnycraft:diamond_bunnycoin_block"
     ]
   }
 }

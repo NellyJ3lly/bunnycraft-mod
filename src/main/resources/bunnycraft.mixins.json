@@ -3,30 +3,40 @@
   "package": "net.bunnycraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EnchantmentHelperMixin",
     "block.BrushableBlockDropXP",
     "block.CauldronAlloyerMixin",
     "block.DispenserUsesMoreShears",
+    "block.SculkBlockMixin",
+    "block.SculkSpreadManager$CursorMixin",
+    "block.SculkVeinBlockMixin",
     "block.VaultBlockRewinderUse",
+    "block.entity.VaultRewinderBlockEntity",
     "datagen.ItemModelGeneratorMixin",
     "entity.ChickenLayLootTableMixin",
     "entity.DealmakerLoseDurabilityOnTrade",
     "entity.DealmakerVillagerInteraction",
+    "entity.ExperienceOrbEntityMixin",
+    "entity.ItemFrameEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",
     "entity.ShearableZombieMixin",
     "entity.SheepShearsTypeMixin",
     "entity.TurtleBrushingMixin",
-    "block.VaultRewinderBlockEntity",
     "item.HoeItemMixin",
     "item.PickaxeItemMixin",
     "item.ShearsBecomeSwordMixin",
     "item.ShovelItemMixin",
-    "item.attribute.ItemAttributesMixin"
+    "item.attribute.ItemAttributesMixin",
+    "screen.AnvilScreenHandlerMixin",
+    "screen.EnchantmentScreenHandlerMixin",
+    "screen.GrindstoneScreenHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "client.render.BackgroundRendererMixin",
     "item.ItemRendererMixin",
     "item.ModelLoaderMixin"
   ]
